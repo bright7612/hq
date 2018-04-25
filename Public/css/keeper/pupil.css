@@ -1,0 +1,42 @@
+ul li {
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 15px;
+}
+
+ul li:active {
+    background-color: #ECECEC;
+}
+
+.i_avatar {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+}
+
+.i_center {
+    overflow: hidden;
+    padding: 0 50px 0 60px;
+    margin: 15px 0;
+    color: #3E4752;
+}
+
+.i_del {
+    display: inline-block;
+    width: 20px;
+    height: 21px;
+    background: url("../../images/ic_del.png") no-repeat 10px 10px;
+    background-size: 16px 17px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    right: 15px;
+    padding: 10px ;
+}

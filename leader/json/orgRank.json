@@ -1,0 +1,160 @@
+{
+  "status": 1,
+  "result": {
+    "increase": 7896,
+    "showData": [
+      {
+        "rank": 1,
+        "name": "党建服务中心党支部",
+        "score": 100,
+        "condition": 1
+      },
+      {
+        "rank": 2,
+        "name": "社区事务受理中心党支部",
+        "score": 98,
+        "condition": 1
+      },
+      {
+        "rank": 3,
+        "name": "综合中心党支部",
+        "score": 95,
+        "condition": -1
+      },
+      {
+        "rank": 4,
+        "name": "文化中心党支部",
+        "score": 93,
+        "condition": 1
+      },
+      {
+        "rank": 5,
+        "name": "生活服务中心党支部",
+        "score": 90,
+        "condition": 1
+      },
+      {
+        "rank": 6,
+        "name": "城管分队党支部",
+        "score": 88,
+        "condition": -1
+      },
+      {
+        "rank": 7,
+        "name": "机关退休党支部",
+        "score": 86,
+        "condition": -1
+      },
+      {
+        "rank": 8,
+        "name": "乳一党支部",
+        "score": 81,
+        "condition": -1
+      },
+      {
+        "rank": 9,
+        "name": "荣成党支部",
+        "score": 80,
+        "condition": 1
+      },
+      {
+        "rank": 10,
+        "name": "东一党支部",
+        "score": 79,
+        "condition": -1
+      }
+    ],
+    "allData": [
+      {
+        "rank": 1,
+        "name": "党建服务中心党支部",
+        "score": 100,
+        "condition": 1
+      },
+      {
+        "rank": 2,
+        "name": "社区事务受理中心党支部",
+        "score": 98,
+        "condition": 1
+      },
+      {
+        "rank": 3,
+        "name": "综合中心党支部",
+        "score": 95,
+        "condition": -1
+      },
+      {
+        "rank": 4,
+        "name": "文化中心党支部",
+        "score": 93,
+        "condition": 1
+      },
+      {
+        "rank": 5,
+        "name": "生活服务中心党支部",
+        "score": 90,
+        "condition": 1
+      },
+      {
+        "rank": 6,
+        "name": "城管分队党支部",
+        "score": 88,
+        "condition": -1
+      },
+      {
+        "rank": 7,
+        "name": "机关退休党支部",
+        "score": 86,
+        "condition": -1
+      },
+      {
+        "rank": 8,
+        "name": "乳一党支部",
+        "score": 81,
+        "condition": -1
+      },
+      {
+        "rank": 9,
+        "name": "荣成党支部",
+        "score": 80,
+        "condition": 1
+      },
+      {
+        "rank": 10,
+        "name": "东一党支部",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 11,
+        "name": "城管分队党支部",
+        "score": 88,
+        "condition": -1
+      },
+      {
+        "rank": 12,
+        "name": "机关退休党支部",
+        "score": 86,
+        "condition": -1
+      },
+      {
+        "rank": 13,
+        "name": "乳一党支部",
+        "score": 81,
+        "condition": -1
+      },
+      {
+        "rank": 14,
+        "name": "荣成党支部",
+        "score": 80,
+        "condition": 1
+      },
+      {
+        "rank": 15,
+        "name": "东一党支部",
+        "score": 79,
+        "condition": -1
+      }
+    ]
+  }
+}

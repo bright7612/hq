@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <title>通讯录</title>
+    <script src="/Public/ljz3/src/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz3/src/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/css/telList.css"><link>
+    <script type="text/html" id="tel">
+        {{if deptlist.length}}
+        <ul class="org-list">
+            {{each deptlist as value index}}
+            <li class="org-item borderBtm-1px">
+                {{if value.userlist.length}}
+                <div class="org-name borderBtm-1px">{{value.deptName}}</div>
+                <ul class="people-list">
+                    {{each value.userlist as v i}}
+                    <li class="people-item borderBtm-1px">
+                        <section class="text-box">
+                            <p class="text-one">{{v.name}}&nbsp;&nbsp;
+                                {{if v.job == 1}}
+                                <span class="job">领导</span>
+                                {{else if v.job == 2}}
+                                <span class="job">主任</span>
+                                {{else if v.job == 3}}
+                                <span class="job">科员</span>
+                                {{/if}}
+                            </p>
+                            <p class="text-two">{{v.tel}}</p>
+                        </section>
+                        <section class="option-box clearfix">
+                            <a class="option fl" href="sms:{{v.tel}}">
+                                <span class="iconfont icon-xinxi"></span>
+                                <p class="text">信息</p>
+                            </a>
+                            <a class="option fl" href="tel:{{v.tel}}">
+                                <span class="iconfont icon-bohao"></span>
+                                <p class="text">拨号</p>
+                            </a>
+                        </section>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+
+        {{if userList.length}}
+        <div class="org-name borderBtm-1px">姓名检索</div>
+        <ul class="people-list">
+            {{each userList as item index}}
+            <li class="people-item borderBtm-1px">
+                <section class="text-box">
+                    <p class="text-one">{{item.name}}&nbsp;&nbsp;
+                        {{if item.job == 1}}
+                        <span class="job">领导</span>
+                        {{else if item.job == 2}}
+                        <span class="job">主任</span>
+                        {{else if item.job == 3}}
+                        <span class="job">科员</span>
+                        {{/if}}
+                    </p>
+                    <p class="text-two">{{item.tel}}</p>
+                </section>
+                <section class="option-box clearfix">
+                    <a class="option fl" href="sms:{{item.tel}}">
+                        <span class="iconfont icon-xinxi"></span>
+                        <p class="text">信息</p>
+                    </a>
+                    <a class="option fl" href="tel:{{item.tel}}">
+                        <span class="iconfont icon-bohao"></span>
+                        <p class="text">拨号</p>
+                    </a>
+                </section>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+
+        {{if deptlist.length == 0 && userList.length == 0}}
+        <div class="warning">无此相关数据</div>
+        {{/if}}
+    </script>
+</head>
+<body>
+
+    <!--搜索区域 start-->
+    <section class="search-wrapper borderBtm-1px">
+        <form class="form" action="#">
+            <input id="search" class="search" type="search" placeholder="搜索">
+            <span id="sou1" class="iconfont icon-sousuo sou1"></span>
+            <span id="sou2" class="iconfont icon-sousuo sou2"></span>
+        </form>
+    </section>
+<!--搜索区域 end-->
+
+    <div id="wrapper" class="content-wrapper">
+        <div id="scroll"></div>
+    </div>
+
+    <script src="/Public/ljz3/src/js/require.js" data-main="/Public/ljz3/src/js/telList"></script>
+</body>
+</html>

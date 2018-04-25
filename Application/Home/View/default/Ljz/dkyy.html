@@ -1,0 +1,73 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/lesson2.css">
+<div class="layout">
+    <!--课程信息区域 start-->
+    <section class="lesson-info">
+        <h3 class="address">{$data.course_name}</h3>
+        <p>授课时间：{$data.datetime|date='Y-m-d H:i',###|clean00}</p>
+        <p>授课老师：{$data.teacher}</p>
+        <p>教室容量：{$data.count}</p>
+        <p>授课地点：{$data.addr}</p>
+    </section>
+    <!--课程信息区域 end-->
+
+    <!--报名区域 start-->
+    <form class="lesson-appoint" action="">
+        <p>请留下您的联系方式</p>
+        <div class="clearfix formb name">
+            <span>预约人姓名</span>
+            <input id="name"  type="text" placeholder="请输入预约人姓名"  value="{$wxmember.name}">
+        </div>
+        <div class="clearfix formb tel">
+            <span>联系方式</span>
+            <input id="mobile" type="text" placeholder="请输入联系方式"  value="{$wxmember.mobile}">
+        </div>
+        <div class="clearfix formb num">
+            <span>预约课程人数</span>
+            <div><input type="text" id="num" value="1"> 人</div>
+        </div>
+        <div class="clearfix formb party">
+            <span>预约人所在党组织</span>
+            <select name="org" id="org">
+                <volist  name="dzz" id="di" >
+                <option value="{$di.name}">{$di.name}</option>
+                </volist>
+            </select>
+        </div>
+        <div class="confirm">
+            <div class="btn" id="submitBtn">提交</div>
+        </div>
+    </form>
+    <!--报名区域 end-->
+</div>
+   <script src="/Public/ljz/js/jquery.js"></script> 
+  <script>
+ 	$("#submitBtn").on("click",function () {
+
+		$.post("/home/ljz/dkyy", {
+			aid: {$data.id},
+            mobile: $("#mobile").val(),
+            name: $("#name").val(),
+            num: $("#num").val(),
+            org: $("#org").val(),
+
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	
+//			layer.open({
+//			    content: data.info
+//			    ,btn: '消息'
+//			  });
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+    	
+		
+    </script>
+</block>

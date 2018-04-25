@@ -1,0 +1,42 @@
+.avatar {
+    width: 60px;
+    height: 60px;
+    margin: 15px 10px;
+    float: left;
+    border-radius: 100px;
+}
+
+.call {
+    width: 45px;
+    height: 45px;
+    float: right;
+    margin: 20px 15px;
+}
+
+.center {
+    overflow: hidden;
+    padding :10px 0;
+    color: #5A5A5A;
+    font-size: 14px;
+}
+
+.name {
+    font-size: 18px;
+    color: #3E4752;
+}
+
+.bottom {
+    position: fixed;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+}
+
+.address {
+    font-size: 14px;
+    color: #454545;
+    background: url("../../images/ic_location.png") no-repeat 0 3px;
+    background-size: 12px;
+    padding-left: 15px;
+}

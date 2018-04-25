@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>爱互助</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            display: -webkit-flex;
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            height: 75%;
+            margin: 0 5%;
+        }
+
+        .container > div {
+            width: 50%;
+            height: 33%;
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            -webkit-flex-direction: column;
+            align-items: center;
+            -webkit-align-items: center;;
+        }
+
+        .container > div .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 100px;
+            margin-top: 15px;
+        }
+
+        .name {
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .name:after {
+            content: "";
+            margin-left: 8px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: url("/Public/images/ic_dang.png") no-repeat 0 0/100% 100%;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+        }
+
+    </style>
+</head>
+<body>
+<img src="/Public/images/p_banner.png" width="100%" height="auto">
+<div class="container" onclick="back()">
+    <volist name="list" id="v">
+        <div>
+            <img src="{$v.face|getFace}" class="avatar"/>
+            <p class="name">{$v.realName}</p>
+        </div>
+    </volist>
+</div>
+</body>
+<script>
+    function back(){
+        window.location.href= "{:U('Index/index')}?guide=1";
+    }
+</script>
+</html>

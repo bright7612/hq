@@ -1,0 +1,62 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/gycStudy.css">
+    <div class="layout">
+        <!--项目介绍区域 start-->
+        <section class="project">
+            <!--图文介绍-->
+            <div class="project-content">
+                <h5 class="tips">敬请关注“合庆党建”微信公众号活动预告，参与公益项目</h5>
+                <h2 class="title">{$data.name}</h2>
+                <p>{$data.desc}</p>
+                <notempty name="pics" >
+                    <volist name="pics" id="di" >
+                        <img src="{$di|get_cover='path'}" alt="">
+                    </volist>
+                </notempty>
+            </div>
+            <!--排名-->
+            <div class="project-rank">
+                <h3 class="rank-title">认领方</h3>
+                <ul class="rank-list">
+                    <volist name = "rldata"  id="di" >
+                        <eq name="di.rllx" value="1" >
+                            <li class="rank-item">
+                                <span class="iconfont icon-aixin"></span>
+                                {$di.name} 已捐赠{$di.sum}元
+                            </li>
+                            <else/>
+                            <li class="rank-item">
+                                <span class="iconfont icon-aixin"></span>
+                                {$di.dw} 已捐赠{$di.sum}元
+                            </li>
+                        </eq>
+
+                    </volist>
+                </ul>
+            </div>
+        </section>
+        <!--项目介绍区域 end-->
+
+        <!--捐赠按钮区域 start-->
+        <section class="btn">
+            <span class="company fl" id="company" >单位捐赠</span>
+            <span class="person fr" id="person">个人捐赠</span>
+        </section>
+        <!--捐赠按钮区域 end-->
+    </div>
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#company').on('click', function () {
+                window.location.href = "{:U('gycStudyCompany')}?id={$data.id}";
+            });
+            $('#person').on('click', function () {
+                window.location.href = "{:U('gycStudyPerson')}?id={$data.id}";
+            });
+        });
+    </script>
+</block>

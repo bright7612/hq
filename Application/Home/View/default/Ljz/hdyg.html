@@ -1,0 +1,39 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <!--<link rel="stylesheet" href="/Public/ljz/css/qt.css">-->
+    <link rel="stylesheet" href="/Public/ljz/css/activityIndex.css">
+    <div class="layout" id="layout">
+        <div class="culture">
+            <a href="/home/ljz/hdyglist/type/1"></a>
+        </div>
+        <div class="organization">
+            <a href="/home/ljz/life"></a>
+        </div>
+        <div class="benefit">
+            <a href="/home/ljz/hdyglist/type/3"></a>
+        </div>
+        <div class="movie">
+            <a href="/home/ljz/hdyglist/type/5"></a>
+        </div>
+        <div class="place">
+            <a href="/home/ljz/hdyglist/type/6"></a>
+        </div>
+        <div class="shuji">
+            <a href="/home/ljz/sbdk2"></a>
+        </div>
+    </div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script>
+        window.onload = function () {
+            //获取当前屏幕高度
+            var clientheight = window.innerHeight || document.documentElement.clientHeight ||
+                document.body.clientHeight || 0;
+            var layout = document.getElementById('layout')
+            if (clientheight < 1000) {
+                layout.style.backgroundSize = '100% auto';
+            }
+        }
+    </script>
+</block>

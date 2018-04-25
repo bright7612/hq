@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>发布请求</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/resort.css"/>
+</head>
+<body>
+<div class="ws_content" style="padding-bottom: 200px">
+    <!--选择一个服务 start-->
+    <div>
+        <p class="request_title">1.请选择一个服务</p>
+        <div id="tags" class="request_tags">
+            <i class="ws_tag">修水管</i>
+            <i class="ws_tag">收快递</i>
+            <i class="ws_tag">扛大米</i>
+            <i class="ws_tag">修马桶</i>
+            <i class="ws_tag">修水管</i>
+            <i class="ws_tag">收快递</i>
+            <i class="ws_tag">扛大米</i>
+            <i class="ws_tag">修马桶</i>
+        </div>
+    </div>
+    <!--选择一个服务 end-->
+    <div>
+        <p class="request_title">2.如果没有您要的服务标签<br>请写下备注或留言</p>
+        <textarea class="request_desc" placeholder="写下对本次求助的备注"></textarea>
+    </div>
+    <div class="spacing">
+        <a class="weui_btn weui_btn_primary" href="pennant.html">确认</a>
+    </div>
+</div>
+</body>
+<script src="/Public/js/jquery-2.1.1.js"></script>
+<script>
+    $("#tags").children().each(function (i, n) {
+        $(n).click(function () {
+            $(this).addClass("ws_tag_selected");
+            $(this).siblings().removeClass("ws_tag_selected");
+        });
+    })
+
+</script>
+</html>

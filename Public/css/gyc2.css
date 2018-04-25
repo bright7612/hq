@@ -1,0 +1,119 @@
+html {
+  font-size: 108px;
+  height: 100%;
+}
+body {
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  background-color: #F4F4F4;
+}
+.layout {
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  font-family: 'microsoft yahei';
+  margin: 0 auto;
+  position: relative;
+}
+.layout .project {
+  height: 100%;
+  padding: 0.53703704rem 0.46296296rem 0.83333333rem;
+  background-color: #FFF;
+  border-bottom: 2px solid #E0E0E0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.layout .project h2 {
+  font-weight: bold;
+  font-size: 16px;
+  padding-bottom: 0.25925926rem;
+}
+[data-dpr="2"] .layout .project h2 {
+  font-size: 32px;
+}
+[data-dpr="2.5"] .layout .project h2 {
+  font-size: 40px;
+}
+[data-dpr="2.75"] .layout .project h2 {
+  font-size: 44px;
+}
+[data-dpr="3"] .layout .project h2 {
+  font-size: 48px;
+}
+[data-dpr="4"] .layout .project h2 {
+  font-size: 64px;
+}
+.layout .project p {
+  color: #7D7D7D;
+}
+.layout .project p:nth-child(2) {
+  font-size: 13px;
+  padding-bottom: 0.37037037rem;
+}
+[data-dpr="2"] .layout .project p:nth-child(2) {
+  font-size: 25px;
+}
+[data-dpr="2.5"] .layout .project p:nth-child(2) {
+  font-size: 31px;
+}
+[data-dpr="2.75"] .layout .project p:nth-child(2) {
+  font-size: 34px;
+}
+[data-dpr="3"] .layout .project p:nth-child(2) {
+  font-size: 38px;
+}
+[data-dpr="4"] .layout .project p:nth-child(2) {
+  font-size: 50px;
+}
+.layout .project p:nth-child(3) {
+  font-size: 14px;
+  line-height: 0.64814815rem;
+}
+[data-dpr="2"] .layout .project p:nth-child(3) {
+  font-size: 28px;
+}
+[data-dpr="2.5"] .layout .project p:nth-child(3) {
+  font-size: 35px;
+}
+[data-dpr="2.75"] .layout .project p:nth-child(3) {
+  font-size: 39px;
+}
+[data-dpr="3"] .layout .project p:nth-child(3) {
+  font-size: 42px;
+}
+[data-dpr="4"] .layout .project p:nth-child(3) {
+  font-size: 56px;
+}
+.layout .btn {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.35185185rem 0.38888889rem;
+  background-color: #F4F4F4;
+}
+.layout .btn div {
+  width: 100%;
+  line-height: 1.15740741rem;
+  font-size: 16px;
+  color: #FFF;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #FFA200;
+}
+[data-dpr="2"] .layout .btn div {
+  font-size: 32px;
+}
+[data-dpr="2.5"] .layout .btn div {
+  font-size: 40px;
+}
+[data-dpr="2.75"] .layout .btn div {
+  font-size: 44px;
+}
+[data-dpr="3"] .layout .btn div {
+  font-size: 48px;
+}
+[data-dpr="4"] .layout .btn div {
+  font-size: 64px;
+}

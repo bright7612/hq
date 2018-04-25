@@ -1,0 +1,58 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+<link rel="stylesheet" href="/Public/ljz/css/manage.css">	
+
+<div class="layout">
+        <div class="top-box clearfix">
+            <div class="resident box fl" id="resident">
+                <img src="/Public/ljz/img/manage/m01.png" alt="">
+                <p>居民区党组织</p>
+            </div>
+            <div class="twonew box fr" id="twonew">
+                <img src="/Public/ljz/img/manage/m02.png" alt="">
+                <p>两新党组织</p>
+            </div>
+        </div>
+        <div class="bottom-box clearfix">
+            <div class="center box fl" id="center">
+                <img src="/Public/ljz/img/manage/m03.png" alt="">
+                <p>机关中心党组织</p>
+            </div>
+            <div class="company box fr" id="company">
+                <img src="/Public/ljz/img/manage/m04.png" alt="">
+                <p>驻区单位党组织</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+
+	<script>
+
+        $(function () {
+            $('#resident').on('click', function () {
+            	window.location.href='/home/ljz/dzz/type/1';
+            });
+            $('#twonew').on('click', function () {
+            	window.location.href='/home/ljz/dzz/type/2';
+                
+            });
+            $('#center').on('click', function () {
+            	window.location.href='/home/ljz/dzz/type/3';
+                
+            });
+            
+            $('#company').on('click', function () {
+            	window.location.href='/home/ljz/dzz/type/4';
+
+            });
+            
+        });
+	   
+	   
+	</script>
+    
+    
+</block>

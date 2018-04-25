@@ -1,0 +1,40 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/listcdyy.css">
+    <div class="layout">
+        <h3 class="lala">{$cdinfo.name}已预约时间段</h3>
+        <notempty name="data">
+
+            <ul>
+                <volist name="data" id="di">
+                    <li onclick="aaa('{$di.id}')">
+                        <div class="info-box clearfix">
+                            <div class="left fl">
+                                <p>
+                                    <span class="iconfont icon-icon-xuequdanwei color-green"></span>
+                                    预约单位:{$di.company}
+                                </p>
+                                <p>
+                                    <span class="iconfont icon-shijian color-blue"></span>
+                                    开始时间:{$di.starttime|date='Y-m-d H:i',###|clean00}
+                                </p>
+                                <p>
+                                    <span class="iconfont icon-shijian color-orange"></span>
+                                    结束时间:{$di.endtime|date='Y-m-d H:i',###|clean00}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+            <else/>
+            <p style="font-size: 18px;text-align: center;padding: 10px">
+                目前还没有预约
+            </p>
+        </notempty>
+
+    </div>
+    <script src="/Public/ljz/js/jquery.js"></script>
+</block>

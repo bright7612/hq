@@ -1,0 +1,40 @@
+window.onload=function(){
+    //显示本镇制度建设
+    tab2.onclick=function(){
+        build.style.display="block";
+        study.style.display="none";
+        tab2.style.backgroundColor="#fff";
+        tab2.style.color="#C33434";
+        tab1.style.backgroundColor="#EFEFEF";
+        tab1.style.color="#666666";
+
+    };
+    //显示上级制度学习
+    tab1.onclick=function(){
+        build.style.display="none";
+        study.style.display="block";
+        tab1.style.backgroundColor="#fff";
+        tab1.style.color="#C33434";
+        tab2.style.backgroundColor="#EFEFEF";
+        tab2.style.color="#666666";
+    }
+    tab3.onclick=function(){
+        console.log('111')
+        tab3Box.style.display="block";
+        tab4Box.style.display="none";
+        tab3.style.backgroundColor="#fff";
+        tab3.style.color="#C33434";
+        tab4.style.backgroundColor="#EFEFEF";
+        tab4.style.color="#666666";
+
+    };
+    //显示上级制度学习
+    tab4.onclick=function(){
+        tab3Box.style.display="none";
+        tab4Box.style.display="block";
+        tab4.style.backgroundColor="#fff";
+        tab4.style.color="#C33434";
+        tab3.style.backgroundColor="#EFEFEF";
+        tab3.style.color="#666666";
+    }
+};

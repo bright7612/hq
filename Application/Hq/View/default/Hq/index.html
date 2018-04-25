@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <title>合庆党建品牌</title>
+    <link rel="stylesheet" href="__BRAND__/css/index.css">
+</head>
+<body>
+    <!--党建品牌标题-->
+    <section class="title">
+        <img src="__BRAND__/img/title.png" />
+    </section>
+
+    <article class="content">
+
+        <!--视频专题片-->
+        <section class="video">
+            <video controls autoplay loop>
+                <source src="{$video.path}" type="video/mp4"></source>
+                <p>设备不支持</p>
+            </video>
+            <div class="subtitle">
+                <img src="__BRAND__/img/subtitle.png" />
+            </div>
+        </section>
+
+        <!--内容介绍-->
+        <section class="introduce">
+            <ul class="tab-list">
+                <li class="tab-item active">
+                    <div class="img-box">
+                        <img src="__BRAND__/img/icon-lesson.png" />
+                    </div>
+                    <div class="text-box">
+                        <p class="text">村民自治</p>
+                        <p class="text">1+1+X</p>
+                    </div>
+                </li>
+                <li class="tab-item">
+                    <div class="img-box">
+                        <img src="__BRAND__/img/icon-party.png" />
+                    </div>
+                    <div class="text-box">
+                        <p class="text">党建+</p>
+                        <p class="text">1+8+N</p>
+                    </div>
+                </li>
+                <li class="tab-item">
+                    <div class="img-box">
+                        <img src="__BRAND__/img/icon-book.png" />
+                    </div>
+                    <div class="text-box">
+                        <p class="text">三述两测</p>
+                        <p class="text">一考</p>
+                    </div>
+                </li>
+            </ul>
+            <div id="view" class="tab-view">
+                <div class="inner">
+                    <a href="{:U('Hq/categoryList?id=16')}">
+                        <div class="img-box">
+                            <img src="{$bg_detail.cover_id}" />
+                        </div>
+                        <div class="text-box">
+                            <p class="text">
+                                {$bg_detail.content}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="inner">
+                    <a href="{:U('Hq/categoryList?id=27')}">
+                        <div class="img-box">
+                            <img src="{$bg_detail1.cover_id}" />
+                        </div>
+                        <div class="text-box">
+                            <p class="text">
+                                {$bg_detail1.content}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="inner">
+                    <a href="{:U('Hq/categoryList?id=38')}">
+                        <div class="img-box">
+                            <img src="{$bg_detail2.cover_id}" />
+                        </div>
+                        <div class="text-box">
+                            <p class="text">
+                                {$bg_detail2.content}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </article>
+
+    <script src="__BRAND__/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var flag = null;
+            $('.tab-item').on('click', function () {
+                var index = $(this).index();
+                if (index === flag) {
+                    return false;
+                }
+                flag = index;
+                $(this).siblings().removeClass('active')
+                    .end().addClass('active');
+                $('#view .inner').hide().eq(index).show()
+            });
+            $('.tab-item').eq(0).click();
+        });
+    </script>
+</body>
+</html>

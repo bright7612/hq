@@ -1,0 +1,36 @@
+<if condition="vlist">
+    <volist name="vlist" id="v">
+        <li >
+            <a class="v_item" href="{:U('General/vhomepage')}?uid={$v.uid}" >
+                <img src="{$v.face|getFace}" class="ws_avatar">
+                <div class="ws_li_content" style="min-height: 65px">
+                    <p>
+                        <span style="font-size: 1.2em">{$v.realName}</span>
+                        <for start="0" end='$v.assessment'><i class='ws_star_small'></i></for>
+                        <if condition="$v.CCP eq 1">
+                            <i class="ws_ccp"></i>
+                        </if>
+                        <in name="v.uid" value="$twinVids">
+                            <i class="ws_twin" style="font-size: 15px"></i>
+                        </in>
+                    </p>
+                    <p style="font-size: small">{$v.signature|default="这家伙很懒，什么都没有写"}</p>
+                    <if condition="$v['stypes']">
+                        <p>
+                            <volist name="v.stypes" id="type">
+                                <i class="ws_tag">{$type|formatServiceType}</i>
+                            </volist>
+                        </p>
+                        <else/>
+                        <p style="color: #9B9B9B">还未设置可提供的服务</p>
+                    </if>
+                    <p style="font-size: 13px;margin-top: 2px">服务次数 {$v.serviceTimes}&nbsp;&nbsp;&nbsp;锦旗数
+                        {$v.flags}</p>
+                </div>
+                <span style="margin-right: 25px">更多</span>
+                <i class="arrow_r1"></i>
+            </a>
+        </li>
+    </volist>
+</if>
+

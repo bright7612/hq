@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>我的</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/caller/home.css"/>
+</head>
+<body>
+<!--我的 start-->
+<div id="content_mine" style="padding-bottom: 80px;">
+    <div class="ws_content">
+        <div class="mine_top">
+            <div style="display: inline-block;margin: 0 50px" id="info">
+                <img src="{$info.face|getFace}" class="mine_avatar">
+                <p>{$info.realname}
+                </p>
+                <p>
+                    <for start="0" end="$info.assessment">
+                        <i class='ws_star_medium'></i>
+                    </for>
+                </p>
+                <p style="font-size: 13px;max-width: 300px">简介:{$info.signature|default='这个人很懒，什么都没有写'}</p>
+                <div>
+                    <a class="btn_edit">编辑资料</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('General/myresort')}?type=2">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_xyd">我的心愿单</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px">
+                    全部心愿单
+                </div>
+            </a>
+            <a class="weui_cell" href="{:U('General/giftSend')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_send">我送出的礼物</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px">
+                </div>
+            </a>
+
+        </div>
+
+        <if condition="$info.permission eq 1">
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('Volunteer/myhelp')}?type=2">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_rl">我认领的任务</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px">
+                    全部任务
+                </div>
+            </a>
+            <a class="weui_cell" href="{:U('General/giftGet')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_receive">我收到的礼物</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px">
+                </div>
+            </a>
+        </div>
+        </if>
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('General/integral')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_integral">我的积分</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px;">
+                    <span style="color: #ff8844">{$info.score1}</span>积分
+                </div>
+            </a>
+            <a class="weui_cell" href="{:U('General/bei')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_bei">我的贝</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px;">
+                    <span style="color: #ff8844">{$info.score4|default="0"}</span>贝
+                </div>
+            </a>
+        </div>
+        <if condition="$info.permission neq 1">
+            <div class="weui_cells weui_cells_access">
+                <a class="weui_cell" href="{:U('General/authVolunteer')}">
+                    <div class="weui_cell_bd weui_cell_primary m_icon">
+                        <p class="m_auth">我要成为志愿者
+                            <if condition="$info.permission eq 2">(审核中)
+                            </if>
+                        </p>
+                    </div>
+                    <div class="weui_cell_ft">
+                    </div>
+                </a>
+            </div>
+        </if>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('General/settings')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_settings">设置</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!--我的 end-->
+<!--tabbar start-->
+<div class="ws_tabbar" id="tabs" style="position: fixed ;bottom: 0;z-index: 5">
+    <a class="ws_tabbar_item" id="tab_volunteer" href="{:U('Index/wall')}">
+        <div class="ws_tabbar_icon">
+            <i class="ic_style"></i>
+        </div>
+        <p class="ws_tabbar_label">风采榜</p>
+    </a>
+    <a class="ws_tabbar_item" id="tab_resort" href="{:U('General/hwish')}">
+        <div class="ws_tabbar_icon">
+            <i class="ic_wish"></i>
+        </div>
+        <p class="ws_tabbar_label">心愿单</p>
+    </a>
+    <a class="ws_tabbar_item on" id="tab_mine" href="javascript:void(0);">
+        <div class="ws_tabbar_icon">
+            <i class="ic_mine"></i>
+        </div>
+        <p class="ws_tabbar_label">我的</p>
+    </a>
+</div>
+<!--tabbar end-->
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script>
+    $("#info").click(function () {
+        window.location.href = "{:U('General/info')}";
+    });
+</script>
+</html>

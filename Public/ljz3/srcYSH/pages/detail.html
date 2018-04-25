@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>企业详情</title>
+    <script src="../js/flexible.js"></script>
+    <link rel="stylesheet" href="../css/initialize.css">
+    <link rel="stylesheet" href="../css/detail.css">
+    <script type="text/html" id="infor">
+        {{if xxfb}}
+            <h3 class="title">{{xxfb.title}}</h3>
+            <p class="infor">
+                <span>发布人：{{xxfb.creat_user}}</span>
+                <span>{{xxfb.creat_time | formatDate:'yyyy-MM-dd'}}</span>
+            </p>
+        {{/if}}
+    </script>
+</head>
+<body>
+    <article class="layout">
+        <!--上部-->
+        <header id="header" class="header borderBtm-1px">
+
+        </header>
+
+        <!--内容-->
+        <section id="content" class="content">
+
+        </section>
+    </article>
+
+    <script src="../js/require.js" data-main="../js/detail"></script>
+</body>
+</html>

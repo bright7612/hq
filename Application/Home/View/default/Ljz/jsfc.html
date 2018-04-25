@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$toptitle}</title>
+    <script src="/Public/ljz/js/flexible.js"></script>
+
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/teacherSpirit2.css">
+    	
+</head>
+<body>
+    <div class="layout">
+
+        <!--人物头像信息 start-->
+        <section class="photo-section clearfix">
+            <div class="fl">
+                <img src="{$data.path}" alt="">
+            </div>
+            <div class="fl">
+                <h2>{$data.name}</h2>
+            </div>
+        </section>
+        <!--人物头像信息 end-->
+
+        <!--板块1 start-->
+        <!--<section class="lesson-section">
+            <div class="title">
+                <h3>2017年上课的题目</h3>
+            </div>
+            <div class="content">
+                <h4>1、如何做一名合格的党员</h4>
+                <h4>2、如何处理好社工与居民的关系</h4>
+                <h4>3、读书使人立志、读书使人心态好、读书能充实自己的沟通能力</h4>
+                <h4>4、有好的心态，才能有好的服务</h4>
+            </div>
+        </section>-->
+        <!--板块1 end-->
+
+        <!--板块2 start-->
+        <section class="intro-section">
+            <div class="title">
+                <h3>个人简介</h3>
+            </div>
+            <div class="content">
+                <p>{$data.desc}</p>
+            </div>
+        </section>
+        <!--板块2 end-->
+
+    </div>
+</body>
+</html>

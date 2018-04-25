@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/gaikuang.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name"><img src="__DJ__/img/gaikuang-title.png"></div>
+	</div>
+	<div class="content">
+		<!-- 宣传片 -->
+		<div class="box xuanchuan">
+			<h4>
+				<i class="iconfont icon-shipin"></i>
+				<span class="text">宣传片</span>
+				<a href="{:U('Hq/videoList?id='.$video_id['1']['id'])}" class="more">更多>></a>
+			</h4>
+			<div class="wrapper">
+				<div class="video">
+					<video class="videoplay" controls="controls" autoplay="autoplay" loop="loop">
+						<source src="{$video.path}" type="video/mp4" />
+					</video>
+				</div>
+			</div>
+		</div>
+		<!-- 概貌概况 -->
+		<div class="box gaimao">
+			<h4>
+				<i class="iconfont icon-jieshao"></i>
+				<span class="text">概貌概况</span>
+				<a href="{:U('Hq/articleList?id='.$general['issue_id'])}" class="more">更多>></a>
+			</h4>
+			<a href="{:U('Hq/detail?id='.$general['id'])}">
+				<div class="wrapper" style="color: #000;">
+					<div class="gaiktext">{$general.content}</div>
+		     	</div></a>
+		</div>
+		<!-- 未来规划 -->
+		<div class="box weilai">
+			<h4>
+				<i class="iconfont icon-guihuasheji"></i>
+				<span class="text">未来规划</span>
+			</h4>
+			<div class="wrapper">
+				<a href="{:U('Hq/articleList?id='.$stitle['0']['id'])}"><dl class="frame" style="background:url(__DJ__/img/1.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-guihua"></i></dt>
+					<dd class="name">规划背景</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['1']['id'])}"><dl class="frame" style="background:url(__DJ__/img/2.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-icon-test"></i></dt>
+					<dd class="name">规划理念与思路</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['2']['id'])}"><dl class="frame" style="background:url(__DJ__/img/3.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-mubiaoguanli"></i></dt>
+					<dd class="name">发展目标</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['3']['id'])}"><dl class="frame" style="background:url(__DJ__/img/4.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-tixike"></i></dt>
+					<dd class="name">镇村体系</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['4']['id'])}"><dl class="frame" style="background:url(__DJ__/img/5.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-gonggongwenhuatiyusheshifuzhi"></i></dt>
+					<dd class="name">公共设施</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['5']['id'])}"><dl class="frame" style="background:url(__DJ__/img/6.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-drops"></i></dt>
+					<dd class="name">水系规划</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['6']['id'])}"><dl class="frame" style="background:url(__DJ__/img/7.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-jiaotongchuhang"></i></dt>
+					<dd class="name">公共交通</dd>
+				</dl></a>
+				<a href="{:U('Hq/articleList?id='.$stitle['7']['id'])}"><dl class="frame" style="background:url(__DJ__/img/8.png) no-repeat;background-size: 100% 100%;">
+					<dt class="icon"><i class="iconfont icon-gongyuan"></i></dt>
+					<dd class="name">郊野公园</dd>
+				</dl></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

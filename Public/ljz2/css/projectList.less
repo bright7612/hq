@@ -1,0 +1,38 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/activityBg.jpg") 100% 100% no-repeat;
+}
+
+.content {
+  width: 1826px;
+  height: 861px;
+  padding: 30px 50px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {display:none}
+
+  & > h2 {
+    color: #B51C22;
+    font-size: 55px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  & > p {
+    color: #4C4C4C;
+    font-size: 40px;
+    line-height: 70px;
+    text-indent: 2em;
+  }
+
+  & > img {
+    display: block;
+    width: 65%;
+    margin: 20px auto 0;
+  }
+}

@@ -1,0 +1,35 @@
+<extend name="Public/base"/>
+<block name="head_title">
+    <title>下载爱互助</title>
+</block>
+<block name="style">
+    <style>
+        html,body {
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+
+        img {
+            display: block;
+        }
+    </style>
+</block>
+<block name="body">
+    <img src="/Public/images/qr_android.jpg" width="100%"  height="auto" alt="" id="android" />
+    <img src="/Public/images/qr_ios.jpg" width="100%"  height="auto" alt="" id="ios"/>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isiOS){
+            $("#android").hide();
+            $("#ios").show();
+        }else{
+            $("#ios").hide();
+            $("#android").show();
+        }
+    </script>
+</block>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>修改密码</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/evaluate.css"/>
+    <style type="text/css">
+        input {
+            border: none;
+            padding: 15px 20px;
+            margin-top: 25px;
+            font-size: 18px;
+            color: #3E4752;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<input type="password" placeholder="请输入原密码" value="" id="pwd1">
+<input type="password" placeholder="请输入新密码" value="" id="pwd2">
+<input type="password" placeholder="请重新输入新密码" value="" id="pwd3">
+<div class="weui_btn_area" style="margin-top: 50px">
+    <a id="ok" class="weui_btn weui_btn_primary">确定</a>
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    $('#ok').click(function () {
+        var old1 = $("#pwd1").val();
+        var new1 = $("#pwd2").val();
+        var new2 = $("#pwd3").val();
+
+        if(old1 == "")
+        {
+            layer.open({
+                content: "请输入原密码",
+                skin:'msg',
+                time:2
+            });
+            return;
+        }
+
+        if(new1 =="")
+        {
+            layer.open({
+                content: "请输入新密码",
+                skin:'msg',
+                time:2
+            });
+            return;
+        }
+        if(new1 != new2)
+        {
+            layer.open({
+                content: "两次输入的新密码不同",
+                skin:'msg',
+                time:2
+            });
+            return;
+        }
+        $.post('{:U("Api/pwd")}', {oldpwd: old1,newpwd:new1}, function (data) {
+            var d = $.parseJSON(data);
+            if(d.result == 1)
+            {
+                layer.open({
+                    content:d.message,
+                    skin:'msg',
+                    time:2,
+                    end:function () {
+                        history.back(-1);
+                    }
+                });    
+            }else{
+                layer.open({
+                    content:d.message,
+                    skin:'msg',
+                    time:2,
+                });
+            }
+        });
+    });
+</script>
+</html>

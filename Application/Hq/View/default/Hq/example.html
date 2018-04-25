@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="__WARNING__/css/case_list.css">
+	<link rel="stylesheet" href="__WARNING__/iconfont3/iconfont.css">
+	<title>案例详情页面</title>
+</head>
+<body>
+<!--头部的字体-->
+<div id="header">
+</div>
+<!--第二部分-->
+<div id="part_content">
+	<!--左边栏-->
+	<div id="sidebar_left">
+		<dl>
+			<!--制度建设-->
+			<dt class="title">
+				<i class="iconfont3 icon3-wenjian"></i>
+				<img src="__WARNING__/img/organize_build.png" alt="">
+			</dt>
+			<dd>
+				<!--点击标签-->
+				<div id="system_tab">
+					<p id="tab1">上级制度学习</p>
+					<p id="tab2">本镇制度建设</p>
+				</div>
+				<!--上级制度学习-->
+				<div id="study">
+					<ul>
+						<volist name="articleList" id="vo">
+						<a href="{:U('Hq/organize_detail?id='.$vo[id])}">
+							<li>{$vo.title}</li>
+						</a>
+						</volist>
+					</ul>
+				</div>
+				<!--本镇制度建设-->
+				<div id="build">
+					<ul>
+						<volist name="articleList2" id="vo">
+						<a href="{:U('Hq/organize_detail?id='.$vo[id])}">
+							<li>{$vo.title}</li>
+						</a>
+						</volist>
+					</ul>
+				</div>
+			</dd>
+		</dl>
+		<div class="video_box">
+			<!--<video src="new.mp4"></video>-->
+			<div class="video_title">
+				<span class="iconfont3 icon3-shipin"></span>
+				<img src="__WARNING__/img/lzjyp.png" alt="">
+				<span class="more"><a href="{:U('Hq/warningList')}">更多>></a></span>
+			</div>
+
+			<video src="{$video.path}" poster="{$video.img_url}" class="video1" controls preload="auto"></video>
+		</div>
+		<div class="scroll_box">
+			<i class="iconfont3 icon3-lianjietanhua"></i>
+			<img src="__WARNING__/img/ljxts.png" alt="">
+			<marquee class="scroll_text" behavior="scroll" scrollamount="5" direction="left" width="111">
+				<volist name="lianzheng" id="vo">
+				<a style="margin-right: 50px" href="{:U('Hq/organize_detail?id='.$vo[id])}" class="tz-text">
+					{$vo.title}
+				</a>
+				</volist>
+			</marquee>
+		</div>
+	</div>
+	<!--右边栏-->
+	<div id="sidebar_right">
+		<dl>
+			<!--警示案例-->
+			<dt class="title">
+				<i class="iconfont3 icon3-jingcha"></i>
+				<img src="__WARNING__/img/anli-list.png" alt="">
+			</dt>
+			<div class="right_tab_item">
+				<span id="tab3">上海市基层警示案例</span>
+				<span id="tab4">全国范围内基层警示案例</span>
+			</div>
+			<dd id="tab3Box" >
+				<volist name="articleList1" id="vo">
+				<a href="{:U('Hq/organize_detail?id='.$vo[id])}">
+					<!-- 需要渲染的部分-->
+					<dl class="new_box">
+						<dt class="title">
+						{$vo.title}
+						</dt>
+						<dd class="abstract">
+							{$vo.content}
+						</dd>
+						<p class="time">
+							时间：<i>{$vo.time}</i>&nbsp;&nbsp;
+							来源：<i>{$vo.source}</i>
+						</p>
+					</dl>
+				</a>
+				</volist>
+
+			</dd>
+			<dd id="tab4Box" >
+				<volist name="articleList3" id="vo">
+				<a href="{:U('Hq/organize_detail?id='.$vo[id])}">
+					<!-- 需要渲染的部分-->
+					<dl class="new_box">
+						<dt class="title">
+						{$vo.title}
+						</dt>
+						<dd class="abstract">
+						{$vo.content}
+						</dd>
+						<p class="time">
+							时间：<i>{$vo.time}</i>&nbsp;&nbsp;
+							来源：<i>{$vo.source}</i>
+						</p>
+					</dl>
+				</a>
+				</volist>
+			</dd>
+		</dl>
+	</div>
+</div>
+<script src="__WARNING__/js/jquery.min.js"></script>
+<script src="__WARNING__/js/jquery.marquee.min.js"></script>
+<script src="__WARNING__/js/swiper-3.4.2.jquery.min.js"></script>
+<script src="__WARNING__/js/case_list.js"></script>
+
+<script>
+	(function () {
+
+		var flag = false;
+		var timer = null;
+		$('body').on('click', function () {
+
+			clearTimeout(timer);
+			flag = true;
+			timer= setTimeout(function () {
+//                    console.log('执行timer变为false');
+				flag = false;
+			}, 30000);
+		}).on('moveEnd', function () {
+
+			clearTimeout(timer);
+			flag = true;
+			timer= setTimeout(function () {
+//                    console.log('执行timer变为false');
+				flag = false;
+			}, 30000);
+		});
+
+		setInterval(function () {
+
+			if (!flag) {
+				window.location.href='http://hqdj.cmlzjz.com/hq/hq/warningindex.html'
+			}
+		}, 30000);
+	})();
+</script>
+</body>
+</html>

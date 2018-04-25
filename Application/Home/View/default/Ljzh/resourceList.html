@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>资源清单</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/resourceList.css">
+</head>
+<body>
+    <!--头部 start-->
+    <section  class="title clearfix">
+        <h1>资源清单</h1>
+        <div class="return fl">
+            <a href="javascript:;" onClick="javascript:history.back(-1);">
+                <span class="iconfont icon-fanhui"></span>
+                返回
+            </a>
+        </div>
+    </section>
+    <!--头部 end-->
+    <!--主体 start-->
+    <section class="content">
+        <ul class="list-wrapper">
+            <li class="list" data-type="1">
+                <p>居民区与驻区单位联建清单</p>
+            </li>
+            <li class="list" data-type="2" >
+                <p>党建服务站点清单</p>
+            </li>
+            <li class="list" data-type="3" >
+                <p>合庆街道活动场地清单</p>
+            </li>
+            <li class="list" data-type="4" >
+                <p>“合庆公益城”驻区单位资源清单</p>
+            </li>
+            <li class="list" data-type="8">
+                <p>社会组织服务清单</p>
+            </li>
+            <li class="list" data-type="9" >
+                <p>2017年度合庆街道自治金项目清单</p>
+            </li>
+            <li class="list" data-type="11" >
+                <p>金融服务进社区清单</p>
+            </li>
+            <li class="list" data-type="12" >
+                <p>2017年群团服务项目清单</p>
+            </li>
+        </ul>
+    </section>
+    <!--主体 end-->
+
+    <script src="/Public/ljz2/js/jquery.min.js"></script>
+    <script>
+        $('.list').on('click', function () {
+            window.location.href = '{:U("resourceList2")}?type='+$(this).data("type");
+        });
+    </script>
+</body>

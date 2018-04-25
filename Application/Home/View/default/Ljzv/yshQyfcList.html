@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>企业风采</title>
+    <script src="/Public/ljz3/srcYSH/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz3/srcYSH/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/srcYSH/css/list.css">
+    <script type="text/html" id="items">
+        {{each result as value index}}
+        <li class="item borderBtm-1px" data-id="{{value.id}}">
+            {{if !value.picture}}
+                <img class="photo" src="/Public/ljz3/srcYSH/imgs/img_mein.jpg">
+            {{else}}
+                <img class="photo" src="{{value.picture}}">
+            {{/if}}
+
+            <div class="text">
+                <h3 class="title">{{value.title}}</h3>
+                <span class="time">{{value.creat_time | formatDate:'yyyy-MM-dd'}}</span>
+                <p class="abstract">{{value.content_no}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </script>
+</head>
+<body data-type="qyfc">
+    <!--搜索区域 start-->
+    <section class="search-wrapper borderBtm-1px">
+        <form class="form" action="#">
+            <input id="search" class="search" type="search" placeholder="搜索">
+            <span id="sou1" class="iconfont icon-sousuo sou1"></span>
+            <span id="sou2" class="iconfont icon-sousuo sou2"></span>
+        </form>
+    </section>
+    <!--搜索区域 end-->
+
+    <section id="contentWrapper" class="content-wrapper">
+        <div id="scrollwrapper" class="layout">
+            <div id="image" class="img-wrapper">
+                <img src="/Public/ljz3/srcYSH/imgs/img_mein.jpg" alt="">
+            </div>
+            <ul id="listWrapper" class="list-wrapper">
+
+            </ul>
+            <div id="loadtext" class="loadtext"></div>
+        </div>
+    </section>
+
+
+    <script src="/Public/ljz3/srcYSH/js/require.js" data-main="/Public/ljz3/srcYSH/js/list"></script>
+</body>
+</html>

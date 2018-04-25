@@ -1,0 +1,223 @@
+<extend name="Public/base"/>
+<block name="head_title">
+    <title>订单详情</title>
+</block>
+<block name="style">
+    <link rel="stylesheet" href="/Public/css/orderdetail.css"/>
+    <style>
+        body {
+            background: #ededed
+        }
+    </style>
+</block>
+<block name="body">
+    <p class="state">{$order|formatStatus4}</p>
+    <if condition="$order.receiver_id neq 0">
+        <p class="sub_title">志愿者信息</p>
+        <div class="clearfix" style="background: #fff;position: relative;padding: 10px">
+            <img src="{$order.receiver_face|getFace}" class="v_avatar">
+            <div class="v_info">
+                <p>姓名：{$order.receiver_name}</p>
+                <p>电话：{$order.receiver_phone}</p>
+            </div>
+        </div>
+    </if>
+    <p class="sub_title ">求助人信息</p>
+    <div class="clearfix" style="background: #fff;position: relative;padding: 10px">
+        <img src="{$order.fs_face|getFace}" class="v_avatar">
+        <a href="tel:{$order.fs_phone}">
+            <img src="/Public/images/ic_call.png" alt="" class="v_call"/>
+        </a>
+        <div class="r_info">
+            <p>时间：{$order.create_time|date="Y-m-d H:i:s",###}</p>
+            <p>求助人：{$order.fs_name}</p>
+            <p>求助内容：{$order.fs_content}</p>
+            <if condition="$order.wav neq ''">
+                <a class="ws_audio1 ws_audio_static" id="o2audio" onclick="controlAudio();return false;">
+                    <audio id="audio" controls="controls" hidden>
+                        <source src="{:C(SERVER_IP)}{$order.wav}" type="audio/mpeg"/>
+                        不支持音频播放
+                    </audio>
+                </a>
+            </if>
+            <p>地址：{$order.fs_address}</p>
+        </div>
+    </div>
+    <if condition="$order.result neq ''">
+        <p class="sub_title ">志愿者评价</p>
+        <p class="comment" style="background: #fff">{$order.result}</p>
+    </if>
+    <if condition="$order.comment neq ''">
+        <p class="sub_title ">求助者评价</p>
+        <div style="background: #fff">
+            <p class="comment">{$order.comment}</p>
+            <div style="padding-left: 10px">
+                <for start="0" end="$order.star">
+                    <i class="ws_star_medium"></i>
+                </for>
+            </div>
+        </div>
+    </if>
+    <if condition="$order.status eq 6">
+        <p class="sub_title ">礼物</p>
+        <div style="background: #fff;padding: 10px">
+            <img src="{:C('SERVER_IP')}{$giftInfo.pic}" width="80px" height="auto">
+        </div>
+    </if>
+    <switch name="order.status">
+        <case value="1"></case>
+        <case value="2">
+            <if condition="$order.comment_time neq 0">
+                <if condition="$order.comment eq ''">
+                    <div style="background: #fff;padding: 10px;margin-top: 15px">
+                        用户已完成，待用户评价
+                    </div>
+                    <else/>
+                    <eq name ="order.result_time" value="0" >
+                        <div style="background: #fff;padding: 10px;margin-top: 15px">
+                            用户已完成评价,志愿者未完成
+                        </div>
+                    </eq>
+                </if>
+            </if>
+        </case>
+        <case value="3">
+                <div style="background: #fff;padding: 10px;margin-top: 15px">
+                    求助者未完成
+                </div>
+        </case>
+        <case value="4">
+            <if condition="$order.comment eq ''">
+                <div style="background: #fff;padding: 10px;margin-top: 15px">
+                    待求助者评价
+                </div>
+            </if>
+        </case>
+        <case value="5"></case>
+        <case value="6">
+        </case>
+    </switch>
+    <div class="weui_btn_area">
+        <switch name="order.status">
+            <case value="1"></case>
+            <case value="2">
+                <a class="weui_btn weui_btn_primary" onclick="vCompleteOrder('{$order.id}')">服务是否完成，请确认</a>
+            </case>
+            <case value="3">
+                <if condition="$order.result eq ''">
+                    <a class="weui_btn weui_btn_primary " href="{:U('evaluate')}?oid={$order.id}">待评价</a>
+                </if>
+            </case>
+            <case value="4">
+                <if condition="$order.result_time neq 0">
+                    <if condition="$order.result eq ''">
+                        <a class="weui_btn weui_btn_primary " href="{:U('evaluate')}?oid={$order.id}">待评价</a>
+                    </if>
+                </if>
+            </case>
+            <case value="5"></case>
+            <case value="6">
+                <if condition="$vo.result_time neq 0">
+                    <if condition="$order.result eq ''">
+                        <a class="weui_btn weui_btn_primary " href="{:U('evaluate')}?oid={$order.id}">待评价</a>
+                    </if>
+                </if>
+            </case>
+        </switch>
+    </div>
+</block>
+<block name="script">
+    <script src="/Public/js/soundmanager2-jsmin.js"></script>
+    <script>
+        function cancelResort(id) {
+            $.post('{:U("Api/orderDel")}', {id: id}, function (data) {
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                        , end: function () {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                    });
+                }
+            });
+        }
+        var isPlaying = false;
+        function controlAudio() {
+            if (isPlaying) {
+                return;
+            }
+            isPlaying = true;
+            var audio = document.getElementById("audio");
+            audio.play();
+            if (audio.error)
+                alert(audio.error.code);
+            $('#o2audio').addClass("ws_audio_anim");
+        }
+
+        $("#audio").on('ended', function () {
+            isPlaying = false;
+            $('#o2audio').removeClass("ws_audio_anim");
+
+        }).on("error", function (e) {
+            switch (e.target.error.code) {
+                case 1:
+                    alert("播放失败,下载过程被用户中止");
+                    break;
+                case 2:
+                    alert("播放失败,下载时发生错误");
+                    break;
+                case 3:
+                    alert("播放失败,解码时发生错误(不支持的音频格式)");
+                    break;
+                case 4:
+                    alert("播放失败,浏览器不支持音频");
+                    break;
+                default:
+                    alert("播放失败,未知错误");
+                    break;
+            }
+            isPlaying = false;
+            $('#o2audio').removeClass("ws_audio_anim");
+        }).on("canplay", function () {
+            //alert("canplay");
+        }).on("canplaythrough", function () {
+            //alert("canplaythrough");
+        }).on("loadstart", function () {
+            //alert("loadstart");
+        }).on("progress", function () {
+            //alert("progress");
+        });
+
+        function vCompleteOrder(oid) {
+            $.post('{:U("Api/complete")}', {oid: oid}, function (data) {
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    layer.open({
+                        content: "订单完成，2秒后跳转到评价求助者"
+                        , skin: "msg"
+                        , time: 2
+                        , end: function () {
+                            window.location.href = "{:U('evaluate')}?oid=" + oid;
+                        }
+                    });
+                } else {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                    });
+                }
+            });
+        }
+
+    </script>
+</block>

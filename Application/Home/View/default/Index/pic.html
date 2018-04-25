@@ -1,0 +1,18 @@
+<block name="body">
+    <link href="__CSS__/home.css" type="text/css" rel="stylesheet">
+    <div class="container common_block_border" style="position: relative" >
+       <img src="/Public/wx/{$id}.png" id="btn1"  style="width: 100%;margin: 0;padding: 0;" />
+	 <script src="/Public/ljz/js/jquery.js"></script>
+	
+		<script>
+        $(function () {
+            $('#btn1').on('click', function () {
+               window.location.href='/Public/wx/{$id+1}.png';
+            });
+           
+        });
+			
+
+		</script>
+    </div>
+</block>

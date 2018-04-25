@@ -1,0 +1,92 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>{:isset($data['id'])?L('_EDIT_WITH_SINGLE_'):L('_NEW_WITH_SINGLE_')}绑定微信用户与党员</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+
+            <div class="with-padding">
+                <div class="form-item">
+                    <label class="item-label">ID</label>
+                    <div class="controls">
+                        {$data.id}
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label class="item-label">微信昵称</label>
+                    {$data.nick|default=''}
+                </div>
+                <div class="form-item">
+                    <label class="item-label">微信用户填写的真实姓名</label>
+                    {$data.name|default=''}
+                </div>
+                <div class="form-item">
+                    <label class="item-label">微信用户填写的手机号码</label>
+                    {$data.mobile|default=''}
+                </div>
+
+                <div class="form-item">
+                    <label class="item-label">请选择党员进行关联</label>
+                    <div class="controls">
+                        <div  style="margin: 10px 0">
+                            <input id="key_people"  value="{$data.name}"  class="form-control " style="display:inline-block;width: 100px;margin-right: 20px"  type="text"  ><a class="btn btn-primary" onclick="searchPeople()" >搜索</a>
+                        </div>
+                        最多显示50条符合条件数据(默认显示用户所填真实姓名的搜索结果)
+                        <table id="table_people" class="table table-bordered" >
+
+                        </table>
+                        <script>
+                            function searchPeople() {
+                                var key= $('#key_people').val();
+                                if(!key || key.trim() == ""){
+                                    new $.zui.Messager('请输入姓名搜索', {
+                                        placement: 'bottom' // 定义显示位置
+                                    }).show();
+                                    return;
+                                }
+                                $.get("{:U('listPartyMember')}",{key:key,limit:50},function (data) {
+                                    var html = template('partymember',$.parseJSON(data));
+                                    $('#table_people').html(html);
+                                });
+
+                            }
+                            <if condition="$data.name neq '' ">
+                                $(function () {
+                                   searchPeople();
+                                });
+                            </if>
+                        </script>
+                    </div>
+                </div>
+
+        <div class="form-item with-padding">
+            <input type="hidden" name="id" value="{$data.id|default=''}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">
+                {:L("_SURE_WITH_SPACE_")}
+            </button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">
+                {:L("_RETURN_WITH_SPACE_")}
+            </button>
+        </div>
+    </form>
+</block>
+<block name="script">
+    <script type="text/javascript" src="/Public/ljz/js/template.js"></script>
+    <script type="text/html" id="partymember" >
+        <thead>
+        <tr>
+            <th></th><th>姓名</th><th>电话</th><th>党支部名称</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{each data as value i}}
+        <tr>
+            <td><input type="radio" name="pmid" value="{{value.id}}" ></td><td>{{value.name}}</td><td>{{value.tel}}</td><td>{{value.dzzmc}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </script>
+    <script>
+        highlight_subnav('{:U("wxmember")}');
+    </script>
+</block>

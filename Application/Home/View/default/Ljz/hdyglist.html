@@ -1,0 +1,161 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <!--<link rel="stylesheet" href="/Public/ljz/css/qt.css">-->
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/activity.css">
+    <script src="/Public/ljz/js/template.js"></script>
+    <script type="text/html" id="temp">
+        {{if data}}
+        {{each data as datas i}}
+        <li >
+            <!--活动信息板块 start-->
+            <div class="info-box clearfix">
+                <div class="title">
+                    <h2>{{datas.name}}</h2>
+                    <span class="logo">{{datas.type}}</span>
+                </div>
+                <div class="left fl" onclick="aaa('{{datas.id}}')">
+                	{{if datas.type!='场地预约'}}
+                    <p>
+                        <span class="iconfont icon-shijian color-blue"></span>
+                        时间：<span>{{datas.date}}</span>
+                        &nbsp;<span>{{datas.time}}</span>
+                    </p>
+                     {{/if}}
+                    <p>
+                        <span class="iconfont icon-svg18 color-orange"></span>
+                        地点：<span>{{datas.addr}}</span>
+                    </p>
+                    {{if datas.subtype == 2 && datas.type == '场地预约'}}
+                    <p>
+                        <span class="iconfont icon-lianxi color-orange"></span>
+                        预约电话：<span style="color: #F77F28;font-size: 1.3em;font-style: oblique;font-weight: bold " >{{datas.tel}}</span>
+                    </p>
+                    {{/if}}
+                </div>
+                {{if datas.subtype == 2 && datas.type == '场地预约'}}
+                {{else}}
+                <div class="right fr" >
+                    <div class="btn fr" style="background-color: #CC1022" onclick="aaa('{{datas.id}}')">{{datas.submittitle}}</div>
+                    {{if datas.type =='场地预约'}}
+                    <div class="btn fr" style="background-color: #CC1022" onclick="yy('{{datas.id}}')" >查看预约</div>
+                    {{/if}}
+                </div>
+                {{/if}}
+
+            </div>
+            <!--活动信息板块 end-->
+
+            <!--活动内容板块 start-->
+            <div class="content-box">
+                <p>
+                    <span class="iconfont icon-neirong color-green"></span>
+                    {{datas.content}}
+                </p>
+            </div>
+            <!--活动内容板块 end-->
+            {{if datas.subtype == 1 && datas.type == '场地预约'  && datas.picpath }}
+            <div>
+                <img src="{{datas.picpath}}">
+            </div>
+            {{/if}}
+
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+
+    <div id="containerList" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0; overflow: auto;-webkit-overflow-scrolling: touch;">
+        <div class="layout" style="height: auto" id="scrollcontainer">
+            <ul id="container">
+
+            </ul>
+            <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                正在加载...
+            </div>
+            <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                没有数据了
+            </div>
+        </div>
+    </div>
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        $(function () {
+            $('body').on('click', '#btn', function () {
+//          	$(this).data("id");
+//          	alert($(this).data("id"));
+                window.location.href='/home/ljz/hdxq/id/'+$(this).data("id");
+            });
+            var winH = $("#containerList").height();
+            $("#containerList").scroll(function () {
+                var pageH = $("#scrollcontainer").height();
+                var scrollT = $("#containerList").scrollTop();
+                var aa = (pageH - winH - scrollT) / winH;
+                if (aa < 0.05) {
+                    getData();
+                }
+            });
+
+            $('.logo').each(function () {
+                var logoSort = $(this).text();
+                if( logoSort && logoSort === '公益活动' ){
+                    $(this).addClass('redColor');
+                } else if( logoSort && logoSort === '文体活动' ){
+                    $(this).addClass('orangeColor');
+                } else if( logoSort && logoSort === '群团活动' ) {
+                    $(this).addClass('blueColor');
+                }
+            });
+        });
+
+        var rows = 10;
+        var page = 1;
+        var nomore = false;
+        var isloading = false;
+        function aaa(id){
+        	 window.location.href='/home/ljz/hdxq/id/'+id;
+        }
+        function getData() {
+            if (nomore || isloading) {
+                return;
+            }
+            isloading = true;
+            $("#loadingdiv").show();
+            $.get('{:U("Ljz/listhd")}', {
+                page: page,
+                type: {$type},
+                rows: rows
+            }, function (data) {
+                isloading = false;
+//                alert(data);
+                var d = $.parseJSON(data);
+                //console.log(d);
+                if (d.result == 1) {
+                    if (d.data &&  d.data.length == rows) {
+                        page++;
+                    } else {
+                        $('#nomorediv').show();
+                        nomore = true;
+                        $("#loadingdiv").hide();
+                    }
+                    var lis = template('temp', d);
+                    $('#container').append(lis);
+                }
+            });
+        }
+        getData();
+
+        $(function () {
+            $("#yycontainer").on("click",function () {
+                $(this).hide();
+            })
+        });
+
+
+        function yy(id) {
+            window.location.href='/home/ljz/listCdyy/id/'+id;
+        }
+
+    </script>
+</block>

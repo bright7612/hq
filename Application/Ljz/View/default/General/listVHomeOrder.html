@@ -1,0 +1,16 @@
+<if condition="$list">
+    <volist name="list" id="vo">
+        <li>
+            <img src="{$vo.fs_face|getFace}" class="item_avatar">
+            <div class="item_info" style="min-height: 70px">
+                <span class="item_time">{$vo.create_time|date="Y-m-d H:i:s",###}</span>
+                <span class="item_name">{$vo.fs_name}</span><br>
+                <span style="font-size: 12px">{$vo.fs_content}</span><br>
+                <p style="font-size: 12px;padding: 3px 0 5px 15px; " class="ws_pixel_line_down addr">{$vo.fs_address}</p>
+                <p style="padding: 5px 0;color: #45b5c5">
+                    {$vo|formatStatus}
+                </p>
+            </div>
+        </li>
+    </volist>
+</if>

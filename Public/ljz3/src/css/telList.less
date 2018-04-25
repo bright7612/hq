@@ -1,0 +1,121 @@
+@import "base";
+@text: #999999;
+@orgBorder: #D2D2D2;
+@nameBorder: #EFEFEF;
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  .font-size(28);
+  font-family: "microsoft yahei";
+  margin: 0 auto;
+  .displayFlex();
+  .flexDirColumn();
+}
+
+.search-wrapper {
+  padding: 26/108rem 0;
+  .borderBtm-1px(#D1D1D1);
+  background: #FFF;
+  .form {
+    position: relative;
+    .search {
+      display: block;
+      width: 998/108rem;
+      height: 101/108rem;
+      .font-size(32);
+      text-align: center;
+      padding-left: 100/108rem;
+      background: #EAEAEA;
+      border-radius: 5px;
+      margin: 0 auto;
+    }
+    .icon-sousuo {
+      color: rgb(147, 153, 159);
+      .font-size(40);
+      position: absolute;
+      &.sou1 {
+        top: 22/108rem;
+        left: 450/108rem;
+      }
+      &.sou2 {
+        top: 22/108rem;
+        left: 60/108rem;
+        display: none;
+      }
+    }
+  }
+}
+
+.content-wrapper {
+  .flex(1);
+  overflow: hidden;
+  .org-list {
+    width: 100%;
+    .org-item {
+      .borderBtm-1px(@orgBorder);
+    }
+  }
+  .org-name {
+    .font-size(32);
+    line-height: 110/108rem;
+    padding-left: 40/108rem;
+    .borderBtm-1px(@orgBorder);
+    background: #EEEEEE;
+  }
+  .people-item {
+    .displayFlex();
+    padding: 40/108rem 80/108rem;
+    .borderBtm-1px(@nameBorder);
+    &:last-child {
+      .borderBtm-none();
+    }
+    .text-box {
+      .flex(1);
+      .text-one {
+        .font-size(34);
+        line-height: 70/108rem;
+        .job {
+          color: @text;
+          .font-size(28);
+        }
+      }
+      .text-two {
+        color: @text;
+        .font-size(30);
+        line-height: 70/108rem;
+      }
+    }
+    .option-box {
+      .option {
+        width: 110/108rem;
+        height: 140/108rem;
+        .font-size(24);
+        color: #FFF;
+        text-align: center;
+        margin-right: 30/108rem;
+        border-radius: 5px;
+        &:first-child {
+          background: #FF546E;
+        }
+        &:last-child {
+          background: #06B414;
+        }
+        .iconfont {
+          display: inline-block;
+          .font-size(40);
+          margin: 15/108rem 0 10/108rem;
+        }
+      }
+    }
+  }
+  .warning {
+    .font-size(30);
+    line-height: 80/108rem;
+    padding: 20/108rem 30/108rem;
+  }
+}
+

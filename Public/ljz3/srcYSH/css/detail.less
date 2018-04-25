@@ -1,0 +1,48 @@
+@import "base";
+@timeColor: #5A5A5A;
+@fontColor: #515151;
+@borderColor: #BCB8AA;
+
+
+body {
+  height: 100%;
+  padding: 0 50/108rem;
+  overflow: hidden;
+}
+
+.header {
+  padding: 72/108rem 0 44/108rem;
+  .borderBtm-1px(@borderColor);
+  .title {
+    .font-size(32);
+    text-align: center;
+    line-height: 70/108rem;
+    //white-space: nowrap;
+    //text-overflow: ellipsis;
+    //overflow: hidden;
+  }
+  .infor {
+    color: @timeColor;
+    .font-size(26);
+    text-align: center;
+    margin-top: 20/108rem;
+    & > span:first-child {
+      margin: 0 30/108rem 0 20/108rem;
+    }
+  }
+}
+
+.content {
+  color: @fontColor;
+  .font-size(28);
+  padding: 40/108rem 0 80/108rem;
+  img {
+    display: block;
+    width: 80%;
+    margin: 28/108rem auto;
+  }
+  p {
+    text-indent: 2em;
+    line-height: 65/108rem;
+  }
+}

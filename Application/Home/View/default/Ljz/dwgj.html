@@ -1,0 +1,56 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	
+
+	<link rel="stylesheet" href="/Public/ljz/css/dwgj.css">	
+	<link rel="stylesheet" href="/Public/ljz/font/iconfont.css">	
+	
+  <div class="layout">
+    <div class="select bottom clearfix">
+        <div class="fl left">
+            <span>选择居委会</span>
+            <span class="iconfont icon-xia"></span>
+        </div>
+        <div class="fr right">
+            <span>选择项目</span>
+            <span class="iconfont icon-xia"></span>
+        </div>
+    </div>
+    <ul>
+        <volist  name="data" id="di" >
+                
+				<li class="clearfix" onclick="aaa('{$di.id}')">
+	                <!--上部分 start-->
+	                <div class="top">
+	                    <h2>{$di.title}</h2>
+	                    <p>居委：{$di.juwei}</p>
+	                    <p>{$di.content}</p>
+	                </div>
+	                <!--上部分 end-->
+	                <!--下部分 start-->
+	                <div class="bottom clearfix">
+	                    <div class="left fl">
+	                        <span class="iconfont icon-aixin redColor"></span>
+	                        <span class="grayColor">{$di.zan}</span>
+	                    </div>
+	                    <div class="right fr">
+	                        <span class="redColor">报名参加</span>
+	                    </div>
+	                </div>
+	                <!--下部分 end-->
+	            </li>
+             </volist>
+    </ul>
+</div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+
+        function aaa(id){
+        	 window.location.href='/home/ljz/xmbm/id/'+id;
+        }
+        
+        
+    </script>
+</block>

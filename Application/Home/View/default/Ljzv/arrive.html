@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>党员报到</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/arrive.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section class="tel-wrapper">
+        <ul class="list-wrapper">
+        	<volist  name="data" id="di" >
+
+        		<li class="list">
+                    <a href="{:U('arrive2')}?id={$di.id}">
+                        <h2>{$di.name}({$di.sbdcount}人)</h2>
+                    </a>
+                <!--<p>-->
+                    <!--<span class="iconfont icon-dianhua"></span>-->
+                    	<!--{$di.content}-->
+                <!--</p>-->
+	            </li>
+
+
+            </volist>
+
+
+        </ul>
+    </section>
+
+    <section class="echarts-wrapper">
+        <div class="echarts-box">
+            <div id="echartsSex"  class="echarts"></div>
+            <div id="echartsAge"  class="echarts hide"></div>
+            <div id="echartsCulture"  class="echarts hide"></div>
+        </div>
+        <div class="echarts-change">
+            <span id="sexList" class="change-list sex-list active">性别比例</span>
+            <span id="ageList" class="change-list age-list">年龄层次比例</span>
+            <span id="cultureList" class="change-list culture-list">文化程度比例</span>
+        </div>
+    </section>
+
+    <script src="/Public/ljz3/js/jquery.min.js"></script>
+    <script src="/Public/ljz3/lib/echarts/echarts.js"></script>
+    <script>
+        $(function () {
+            // 性别比例
+            var myChart1 = echarts.init(document.getElementById('echartsSex'));
+            //指定图表的配置项和数据
+            var option1 = {
+                tooltip: {},
+                color: ['#5B9BD5'],
+                legend: {
+                    data: ['性别比例']
+                },
+                xAxis: {
+                    data: ['男', '女'],
+                    axisLabel: { //调整x轴的lable
+                        textStyle: {
+                            fontSize: 30 // 让字体变大
+                        }
+                    }
+                },
+                yAxis: [{
+                    type: 'value',
+                    axisLabel: { //调整x轴的lable
+                        textStyle: {
+                            fontSize: 30 // 让字体变大
+                        }
+                    }
+                }],
+                series: [{
+                    name: '性别比例',
+                    type: 'bar',
+                    barWidth: '40%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{c}%',//百分比显示
+                        }
+                    },
+                    data: [
+                        {
+                            value: 62,
+                            itemStyle:{
+                                normal:{color:'#5B9BD5'}
+                            }
+                        },
+                        {
+                            value: 38,
+                            itemStyle:{
+                                normal:{color:'#5B9BD5'}
+                            }
+                        }
+                    ]
+                }],
+                textStyle: {
+                    fontSize: 30
+                }
+            };
+            //使用刚指定的配置项和数据显示图表
+            myChart1.setOption(option1);
+
+            // 性别比例
+            var myChart2 = echarts.init(document.getElementById('echartsAge'));
+            //指定图表的配置项和数据
+            var option2 = {
+                tooltip: {},
+                color: ['#ED7D31'],
+                legend: {
+                    data: ['年龄层次比例']
+                },
+                xAxis: {
+                    data: ['30岁以下', '30至39岁', '40至49岁', '50岁以上'],
+                    axisLabel: { //调整x轴的lable
+                        textStyle: {
+                            fontSize: 30 // 让字体变大
+                        }
+                    }
+                },
+                yAxis: [{
+                    type: 'value',
+                    axisLabel: { //调整x轴的lable
+                        textStyle: {
+                            fontSize: 30 // 让字体变大
+                        }
+                    }
+                }],
+                series: [{
+                    name: '性别比例',
+                    type: 'bar',
+                    barWidth: '50%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{c}%',//百分比显示
+                        }
+                    },
+                    data: [
+                        {
+                            value: 6,
+                            itemStyle:{
+                                normal:{color:'#ED7D31'}
+                            }
+                        },
+                        {
+                            value: 21,
+                            itemStyle:{
+                                normal:{color:'#ED7D31'}
+                            }
+                        },
+                        {
+                            value: 23,
+                            itemStyle:{
+                                normal:{color:'#ED7D31'}
+                            }
+                        },
+                        {
+                            value: 50,
+                            itemStyle:{
+                                normal:{color:'#ED7D31'}
+                            }
+                        }
+                    ]
+                }],
+                textStyle: {
+                    fontSize: 30
+                }
+            };
+            //使用刚指定的配置项和数据显示图表
+            myChart2.setOption(option2);
+
+            // 性别比例
+            var myChart3 = echarts.init(document.getElementById('echartsCulture'));
+            //指定图表的配置项和数据
+            var option3 = {
+                tooltip: {},
+                color: ['#70AD47'],
+                legend: {
+                    data: ['文化程度比例']
+                },
+                xAxis: {
+                    data: ['高中及以下', '大专及本科', '硕士及以上'],
+                    axisLabel: { //调整x轴的lable
+                        textStyle: {
+                            fontSize: 30 // 让字体变大
+                        }
+                    }
+                },
+                yAxis: [{
+                    type: 'value',
+                    axisLabel: { //调整x轴的lable
+                        textStyle: {
+                            fontSize: 30 // 让字体变大
+                        }
+                    }
+                }],
+                series: [{
+                    name: '性别比例',
+                    type: 'bar',
+                    barWidth: '50%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{c}%',//百分比显示
+                        }
+                    },
+                    data: [
+                        {
+                            value: 7,
+                            itemStyle:{
+                                normal:{color:'#70AD47'}
+                            }
+                        },
+                        {
+                            value: 92,
+                            itemStyle:{
+                                normal:{color:'#70AD47'}
+                            }
+                        },
+                        {
+                            value: 1,
+                            itemStyle:{
+                                normal:{color:'#70AD47'}
+                            }
+                        }
+                    ]
+                }],
+                textStyle: {
+                    fontSize: 30
+                }
+            };
+            //使用刚指定的配置项和数据显示图表
+            myChart3.setOption(option3);
+
+
+            $('.change-list').on('click', function () {
+                $('.echarts').removeClass('show').addClass('hide');
+                $('.change-list').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            $('.echarts-change').on('click', '#sexList', function () {
+                $('#echartsSex').removeClass('hide').addClass('show');
+            }).on('click', '#ageList', function () {
+                $('#echartsAge').removeClass('hide').addClass('show');
+            }).on('click', '#cultureList', function () {
+                $('#echartsCulture').removeClass('hide').addClass('show');
+            });
+        });
+
+
+    </script>
+</body>
+</html>

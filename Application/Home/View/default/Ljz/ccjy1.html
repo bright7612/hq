@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>长城家园</title>
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/css/greatWall.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+</head>
+<body>
+    <div class="layout">
+        <!--按钮区域 start-->
+        <div class="btn-section">
+            <div class="btn">情况介绍</div>
+            <div class="btn"><a href="/home/ljz/ccjy2">场馆概览</a></div>
+            <div class="btn">参观预约</div>
+        </div>
+        <!--按钮区域 end-->
+
+        <!--遮罩区域 start-->
+        <div id="bg" class="bg">
+            <div class="box">
+                <div class="cancel-box clearfix">
+                    <span id="cancel" class="iconfont icon-quxiao fr"></span>
+                </div>
+                <div id="contentBox" class="content-box">
+
+                </div>
+            </div>
+        </div>
+        <!--遮罩区域 end-->
+    </div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        $(function () {
+            var intro = '<div class="intro">' +
+                            '<p>合庆街道长城家园是社区国防教育、富国强军展示、“双拥”活动、军民“三同”实践、' +
+                            '国防后备力量和民防骨干锻炼的平台。先后被命名为上海市全民国防教育基地、浦东新区爱' +
+                            '国主义教育基地、浦东新区民防教育培训基地，它是融学习、教育、实践、互动于一体的爱国' +
+                            '主义教育活动场馆。</p>' +
+                            '<p>2005年始建于栖霞路120号社区文化中心内，2010年升级后兴建于乳山路180号梅园公' +
+                            '园内，主题馆建筑面积约1000平方米，公园内外建有国防教育、双拥宣传的雕塑、迎风旗等' +
+                            '教育元素，让居民在休闲娱乐中接受爱国主义的熏陶。</p>' +
+                            '<img src="/Public/ljz/img/greatWall.jpg" alt="长城家园">' +
+                        '</div>'
+
+            var appoint = '<div class="appoint">' +
+                                '<div class="appoint-list">' +
+                                    '<p>合庆街道长城家园</p>' +
+                                    '<p>免费向社区军民开放</p>' +
+                                '</div>' +
+                                '<div class="appoint-list">' +
+                                    '<p>开放时间：</p>' +
+                                    '<p>周一至周六</p>' +
+                                    '<p>上午 9:00 - 11:00</p>' +
+                                    '<p>下午 13:00 - 16:00</p>' +
+                                    '<p>节假日团队预约开放</p>' +
+                                '</div>' +
+                                '<div class="appoint-list">' +
+                                    '<p>温馨提示：</p>' +
+                                    '<p>长城家园5-6月升级改造</p>' +
+                                    '<p>闭馆时间：2017.5.1——2017.6.30</p>' +
+                                    '<p>计划于2017.7.1正式开馆</p>' +
+                                    '<p>敬请期待！</p>' +
+                                '</div>' +
+                                '<div class="appoint-list">' +
+                                    '<p>地址：上海市浦东新区乳山路180号</p>' +
+                                    '<p>联系电话：021-58767316、38751101</p>' +
+                                    '<p>邮编：200120</p>' +
+                                    '<p>网站查询：www.lujiazui.sh.gov.cn</p>' +
+                                '</div>' +
+                            '</div>'
+
+            $('.btn').on('click', function () {
+                var index = $(this).index();
+                var temp = null;
+                if (index === 1) {
+                    return;
+                }
+                if (index === 0) {
+                    temp = intro;
+                }else if (index === 2) {
+                    temp = appoint;
+                }
+                $('#bg').find('#contentBox').html('').html(temp).end().show();
+            });
+
+            $('#cancel').on('click', function () {
+                $('#bg').hide();
+            })
+        })
+    </script>
+</body>
+</html>

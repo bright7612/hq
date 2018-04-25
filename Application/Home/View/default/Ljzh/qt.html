@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>群团之家</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/qt.css">
+</head>
+<body>
+<!--头部 start-->
+<section  class="title clearfix">
+    <h1>群团之家</h1>
+    <div class="return fl">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+</section>
+<!--头部 end-->
+
+<!--主体 start-->
+<section class="content">
+    <div class="list">
+        <div class="list-title">
+            <h2>工会</h2>
+            <div class="circle bg-yellow">
+                <span class="iconfont icon-icon122"></span>
+            </div>
+        </div>
+        <div class="list-content">
+            <div class="content-title">
+                <h2>{$ghhd.name}</h2>
+            </div>
+            <img src="{$ghhd.pic|get_cover='path'}" alt="">
+            <p>{$ghhd.content}</p>
+            <span class="more"  data-qttype="1" >更多 &gt;</span>
+        </div>
+    </div>
+    <div class="list">
+        <div class="list-title">
+            <h2>妇联</h2>
+            <div class="circle bg-orange">
+                <span class="iconfont icon-fuke"></span>
+            </div>
+        </div>
+        <div class="list-content">
+            <div class="content-title">
+                <h2>{$flhd.name}</h2>
+            </div>
+            <img src="{$flhd.pic|get_cover='path'}" alt="">
+            <p>{$flhd.content}</p>
+            <span class="more" data-qttype="2" >更多 &gt;</span>
+        </div>
+    </div>
+    <div class="list">
+        <div class="list-title">
+            <h2>共青团</h2>
+            <div class="circle bg-green">
+                <span class="iconfont icon-icon"></span>
+            </div>
+        </div>
+        <div class="list-content">
+            <div class="content-title">
+                <h2>{$gqthd.name}</h2>
+            </div>
+            <img src="{$gqthd.pic|get_cover='path'}" alt="">
+            <p>{$gqthd.content}</p>
+            <span class="more" data-qttype="3" >更多 &gt;</span>
+        </div>
+    </div>
+</section>
+<!--主体 end-->
+<script src="/Public/ljz2/js/jquery.min.js" ></script>
+<script>
+    $(".more").on("click",function () {
+       location.href = "{:U('qtList')}?qttype="+$(this).data("qttype");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>党员双报到</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/double.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section class="content">
+        <div id="scroll" class="inner-box">
+            <ul class="site-list">
+
+                <volist name="data" id="di">
+                    <li class="site-item clearfix"  >
+                        <a href="/ljzv/double2.html?id={$di.id}">
+                            {$di.name}
+                            <span class="iconfont icon-right fr"></span>
+                        </a>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+
+        <div id="returnTP" class="returnTop">
+            <span class="iconfont icon-fanhuidingbu"></span>
+        </div>
+    </section>
+
+    <section class="ewm">
+        <img src="/Public/ljz3/imgs/ewm/ewm_ljzdj.jpg" alt="">
+        <p class="please">也可扫描二维码输入信息</p>
+    </section>
+
+    <script src="/Public/ljz3/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+
+
+
+
+            /*
+             监听滚动区域的scrollTop
+             * */
+            $('#scroll').on('scroll', function () {
+                var scroll = $(this).scrollTop();
+                if (scroll > 0) {
+                    $(this).parent().find('.returnTop').show();
+                } else {
+                    $(this).parent().find('.returnTop').hide();
+                }
+            });
+
+            returnTop('#returnTP', '#scroll');
+
+
+            /*
+             返回顶部功能
+             * */
+            function returnTop (btn, scroll) {
+                $(btn).on('click', function () {
+                    var top = $(scroll).scrollTop();
+                    var perTop = top / 25;
+                    var interval = setInterval(function () {
+                        if (top <= 0) {
+                            clearInterval(interval);
+                            top = 0
+                        }
+                        $(scroll).scrollTop(top -= perTop);
+                    }, 10);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

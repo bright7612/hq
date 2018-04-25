@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/volunteer/home.css"/>
+    <style type="text/css">
+                .t_bottom {
+                    background-color: #fff;
+                    position: relative;
+                    font-size: 15px;
+                    padding: 0 10%;
+                    color:#454545;
+                    display: flex;
+                    display: -webkit-flex;
+                    justify-content: space-around;
+                    -webkit-justify-content: space-around;
+                    align-items: center;
+                    -webkit-align-items: center;
+                }
+    </style>
+</head>
+<body>
+<!--我的 start-->
+<div id="content_mine" style="padding-bottom: 80px;">
+    <div class="ws_content">
+        <div class="mine_top">
+            <div style="display: inline-block" id="info">
+                <img src="{$info.face|getFace}" class="mine_avatar">
+                <p>{$info.realname}</p>
+                <p style="font-size: 13px">简介:{$info.signature|default="这个人很懒，什么都没有写"}</p>
+                <div>
+                    <a class="btn_edit">编辑资料</a>
+                </div>
+            </div>
+        </div>
+        <div class="t_bottom ws_divider">
+            <p style="text-align: center">服务次数<br>{$info.servicetimes}</p>
+            <i style="width: 1px;height: 20px;background-color: #e0e0e0"></i>
+            <p style="text-align: center">锦旗数<br>{$info.flags}</p>
+        </div>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('myhelp')}?type=1">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_resort_e">我的紧急支助</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px">
+                    查看全部紧急支助
+                </div>
+            </a>
+            <a class="weui_cell" href="{:U('myhelp')}?type=2">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_resort">我的支助</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px">
+                    查看全部支助
+                </div>
+            </a>
+        </div>
+
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('General/pennantGet')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_pennant">我收到的锦旗</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px;">
+                    {$info.flags}面
+                </div>
+            </a>
+        </div>
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('General/integral')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_integral">我的积分</p>
+                </div>
+                <div class="weui_cell_ft" style="font-size: 12px;">
+                    <span style="color: #ff8844">{$info.score1}</span>积分
+                </div>
+            </a>
+        </div>
+
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="{:U('General/settings')}">
+                <div class="weui_cell_bd weui_cell_primary m_icon">
+                    <p class="m_settings">设置</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+<!--我的 end-->
+<!--tabbar start-->
+<div class="ws_tabbar" id="tabs" style="position: fixed ;bottom: 0;z-index: 5">
+    <a class="ws_tabbar_item " href="{:U('home')}">
+        <div class="ws_tabbar_icon">
+            <i class="ic_caller"></i>
+        </div>
+        <p class="ws_tabbar_label">求助者</p>
+    </a>
+    <a class="ws_tabbar_item " href="{:U('hrank')}">
+        <div class="ws_tabbar_icon">
+            <i class="ic_rank"></i>
+        </div>
+        <p class="ws_tabbar_label">排行榜</p>
+    </a>
+    <a class="ws_tabbar_item ws_bar_item_on" href="#">
+        <div class="ws_tabbar_icon">
+            <i class="ic_mine"></i>
+        </div>
+        <p class="ws_tabbar_label">我的</p>
+    </a>
+</div>
+<!--tabbar end-->
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script>
+    $("#info").click(function () {
+        window.location.href = "{:U('General/info')}";
+    });
+</script>
+</html>

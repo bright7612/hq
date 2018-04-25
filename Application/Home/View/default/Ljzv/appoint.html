@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>预约登记</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/appoint.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section id="place" class="place-appoint">
+        <div id="scroll" class="appoint-content">
+            <div class="content-box">
+                <ul id="place-wrapper" class="list-wrapper">
+                    <volist name="data" id="di">
+                        <eq name="di.subtype" value="1" >
+                            <li class="list wyyy" data-id="{$di.id}">
+                                <h2>{$di.name}</h2>
+                                <p>
+                                    <span class="iconfont icon-didian"></span>
+                                    地址：{$di.addr}
+                                </p>
+                                <p>
+                                    <span class="iconfont icon-renshu"></span>
+                                    容纳人数：{$di.count}人
+                                </p>
+                                <p>
+                                    <span class="iconfont icon-dianhua"></span>
+                                    联系方式：{$di.tel}
+                                </p>
+                            </li>
+                         <else/>
+                            <li class="list" data-id="{$di.id}">
+                                <h2>{$di.name}</h2>
+                                <p>
+                                    <span class="iconfont icon-didian"></span>
+                                    地址：{$di.addr}
+                                </p>
+                                <p>
+                                    <span class="iconfont icon-renshu"></span>
+                                    容纳人数：{$di.count}人
+                                </p>
+                                <p>
+                                    <span class="iconfont icon-dianhua"></span>
+                                    联系方式：{$di.tel}
+                                </p>
+                            </li>
+                        </eq>
+                    </volist>
+                </ul>
+                <ul id="activity-wrapper" class="list-wrapper hide">
+                    <volist name="data2" id="di">
+                        <li class="list" data-id="{$di.id}">
+                            <h2>{$di.name}</h2>
+                            <p>
+                                <span class="iconfont icon-shijian"></span>
+                                {$di.datestr}
+                            </p>
+                            <p>
+                                <span class="iconfont icon-didian"></span>
+                                地址：{$di.addr}
+                            </p>
+                            <p>
+                                <span class="iconfont icon-jieshao"></span>
+                                {$di.content}
+                            </p>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <div id="returnTP" class="returnTop">
+            <span class="iconfont icon-fanhuidingbu"></span>
+        </div>
+    </section>
+
+    <section class="ewm">
+        <img src="/Public/ljz3/imgs/ewm/ewm_ljzdj.jpg" alt="">
+        <p class="please">扫描二维码查看更多</p>
+        <p class="text">聚焦合庆区域党建动态、宣传“金色纽带”党建模式、发布“合庆公益城”党建公益项目。</p>
+    </section>
+
+    <section id="bg" class="bg">
+        <div id="placeBox" class="place-box">
+            <h2 class="title"></h2>
+            <form class="form-box" action="">
+                <div class="form-list">
+                    <label>您的姓名：</label>
+                    <input id="placeName" type="text">
+                </div>
+                <div class="form-list">
+                    <label>您的电话：</label>
+                    <input id="placeTel" type="text">
+                </div>
+                <div class="form-list">
+                    <label>预约人数：</label>
+                    <input id="placePeople" type="text">
+                </div>
+                <div class="form-list">
+                    <label>开始时间：</label>
+                    <input class="time" type="datetime-local"  >
+                </div>
+                <div>
+                    <label>备注：</label>
+                    <textarea name="" id="placeMessage"></textarea>
+                </div>
+            </form>
+            <div class="btn-box clearfix">
+                <span id="placeConfirm" class="confirm fl color-red">确定</span>
+                <span class="cancel fr color-orange">取消</span>
+            </div>
+        </div>
+
+        <div id="activityBox" class="activity-box">
+            <h2 class="title">软笔书法</h2>
+            <form class="form-box" action="">
+                <div class="form-list">
+                    <label>您的姓名：</label>
+                    <input id="actName" type="text">
+                </div>
+                <div class="form-list">
+                    <label>您的电话：</label>
+                    <input id="actTel" type="text">
+                </div>
+            </form>
+            <div class="btn-box clearfix">
+                <span id="activityConfirm" class="confirm fl color-red">确定</span>
+                <span class="cancel fr color-orange">取消</span>
+            </div>
+        </div>
+    </section>
+
+    <script src="/Public/ljz3/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            /*
+             点击tab栏控制列表的显现
+             */
+            $('body').on('click', '.btn', function () {
+                $('.btn').removeClass('active');
+                $(this).addClass('active');
+                $('.appoint-content').scrollTop(0);
+                $('.list-wrapper').removeClass('show').addClass('hide');
+            }).on('click', '#place-btn', function () {
+                $('#place-wrapper').removeClass('hide').addClass('show');
+            }).on('click', '#activity-btn', function () {
+                $('#activity-wrapper').removeClass('hide').addClass('show');
+            })
+
+            /*
+             点击列表页控制模态框的行为
+             */
+            $('body').on('click', '#place-wrapper .list.wyyy', function () {
+                //点击场地预约每一个内容
+                var title = $(this).children().first().text();
+                var id = $(this).data('id');
+                $("#placeBox").data("id", id);
+                $('#placeBox').children().first().text(title)
+                    .end().end().show().parent().show();
+
+            }).on('click', '#activity-wrapper .list', function () {
+                //点击活动预约每一个内容
+                var title = $(this).children().first().text();
+                var id = $(this).data('id');
+                $("#activityBox").data("id", id);
+                $('#activityBox').children().first().text(title)
+                    .end().end().show().parent().show();
+
+            }).on('click', '.confirm, .cancel', function () {
+                //点击确认与取消按钮清除表单数据
+                $(this).parent().prev().find('input, textarea').val('')
+                    .end().parent().hide().parent().hide();
+
+            }).on('click', '#placeConfirm', function () {
+                //点击场地预约的确认按钮
+                var placeName = $('#placeName').val();
+                var placeTel = $('#placeTel').val();
+                var placePeople = $('#placePeople').val();
+                var placeMessage = $('#placeMessage').val();
+                $.post("{:U('hdbm')}", {
+                    name: placeName,
+                    mobile: placeTel,
+                    count: placePeople,
+                    content: placeMessage,
+                    aid: $("#placeBox").data("id")
+                }, function (data) {
+                    alert(data.info);
+                }, "json");
+
+
+            }).on('click', '#activityConfirm', function () {
+                //点击活动预约的确认按钮
+                var actName = $('#actName').val();
+                var actTel = $('#actTel').val();
+                $.post("{:U('hdbm')}", {
+                    name: actName,
+                    mobile: actTel,
+                    aid: $("#activityBox").data("id")
+                }, function (data) {
+                    alert(data.info);
+                }, "json");
+            });
+
+            /*
+             监听滚动区域的scrollTop
+             * */
+            $('#scroll').on('scroll', function () {
+                var scroll = $(this).scrollTop();
+                if (scroll > 0) {
+                    $(this).parent().find('.returnTop').show();
+                } else {
+                    $(this).parent().find('.returnTop').hide();
+                }
+            });
+
+
+            returnTop('#returnTP', '#scroll');
+
+
+            /*
+             返回顶部功能
+             * */
+            function returnTop (btn, scroll) {
+                $(btn).on('click', function () {
+                    var top = $(scroll).scrollTop();
+                    var perTop = top / 25;
+                    var interval = setInterval(function () {
+                        if (top <= 0) {
+                            clearInterval(interval);
+                            top = 0
+                        }
+                        $(scroll).scrollTop(top -= perTop);
+                    }, 10);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

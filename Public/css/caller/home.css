@@ -1,0 +1,169 @@
+ul li .ws_li_content{
+    position: relative;
+    padding-right: 15px;
+}
+
+
+.mine_avatar {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0 0;
+    border-radius: 100px;
+}
+
+.btn_edit {
+    font-size: 13px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    padding: 1px 8px;
+    display: inline-block;
+    margin: 10px 0 15px;
+}
+
+.btn_edit:active {
+    opacity: 0.8;
+}
+
+.mine_top {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    background: url("../../images/bg_mine.png") no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+}
+
+.v_item {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    color: #5A5A5A;
+    background-color: #fff;
+}
+
+.ic_volunteer {
+    background: url("../../images/icons1.png") no-repeat -31px 3px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ws_bar_item_on .ic_volunteer {
+    background: url("../../images/icons1.png") no-repeat 4px 3px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ic_resort {
+    background: url("../../images/icons1.png") no-repeat -31px -30px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ws_bar_item_on .ic_resort {
+    background: url("../../images/icons1.png") no-repeat 4px -30px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ic_mine {
+    background: url("../../images/icons1.png") no-repeat -31px -63px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ws_bar_item_on .ic_mine {
+    background: url("../../images/icons1.png") no-repeat 4px -63px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+
+.filt {
+    position: fixed;
+    line-height: 38px;
+    height: 38px;
+    display: block;
+    background: #fff;
+    width: 100%;
+    z-index: 8;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.f_icon {
+    background: url("../../images/ic_filter.png") no-repeat right center;
+    padding-right: 16px;
+    background-size: 14px;
+    color: #3E4752;
+}
+
+.filter {
+    position: fixed;
+    top:35px;
+    z-index: 7;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    display: block;
+    height: 100%;
+    display: none;
+}
+
+.filter ul li.filter_on {
+    color: #50CADA;
+}
+
+.filter ul li {
+    font-size: 15px;
+    padding: 6px 10px;
+    color: #656D77;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.filter ul li:active {
+    background-color: #e0e0e0;
+}
+
+.m_icon p {
+    padding-left: 30px;
+    background-repeat:  no-repeat;
+    background-position:  3px 2px;
+    background-size: 20px 20px;
+}
+
+.m_xyd {
+    background-image: url("../../images/ic_mine_xyd.png");
+}
+.m_rl {
+    background-image: url("../../images/ic_mine_rl.png");
+}
+.m_send {
+    background-image: url("../../images/ic_mine_send.png");
+}
+.m_receive {
+    background-image: url("../../images/ic_mine_receive.png");
+}
+.m_integral {
+    background-image: url("../../images/ic_mine_integral.png");
+}
+.m_bei {
+    background-image: url("../../images/ic_mine_bei.png");
+}
+.m_settings {
+    background: url("../../images/icons2.png") no-repeat 0 -123px/25px auto!important;
+}
+.m_auth {
+    background: url("../../images/ic_mine_auth.png");
+}

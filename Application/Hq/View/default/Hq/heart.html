@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微心愿</title>
+    <link rel="stylesheet" href="__DJ__/css/heart.css">
+</head>
+<body>
+<div class="title">
+    <a href="javascript:history.back(-1)">
+        <div class="back"><i class="iconfont icon-fanhui"></i>返回</div>
+    </a>
+    <div class="title-name" id="titleNme">微心愿</div>
+</div>
+<div class="position1">
+    <div class="content">
+     <volist name="detail" id="vo">
+        <div class="box">
+            <a href="{:U('Hq/detail?id='.$vo[id])}">
+                <img src="{$vo.cover_id}" alt="">
+            </a>
+            <div class="list_group">
+                <!--<p class="name">{$vo.title}</p>-->
+                <div class="job_box">
+                    <p class="job">{$vo.content}
+                    </p>
+                </div>
+            </div>
+        </div>
+     </volist>
+
+
+        <div class="img_box">
+            <img src="__DJ__/img/code/4.png" alt="" class="img">
+            <p class="text">关注微信一键提交</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

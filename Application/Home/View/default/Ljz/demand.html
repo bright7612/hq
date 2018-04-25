@@ -1,0 +1,191 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <title>需求提取表</title>
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/demand.css">
+    <section class="layout">
+        <!--标题部分 start-->
+        <header class="header">
+            <div class="header-title">
+                需求提取表
+            </div>
+        </header>
+        <!--标题部分 end-->
+
+        <!--基本信息 start-->
+        <section class="base-info">
+            <h3 class="info-title">基本信息</h3>
+            <form id="baseForm" action="" name="appointment" method="post">
+                <div class="formbox">
+                    <label>
+                        <span class="iconfont icon-dengji color-green"></span>需求方
+                    </label>
+                    <select name="xqf" id="type">
+                        <option value="1">个人</option>
+                        <option value="2">单位</option>
+                    </select>
+                </div>
+                <article id="personBlock">
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-iconfont color-red"></span>姓名
+                        </label>
+                        <input id="name" type="text" class="txt" placeholder="请输入您的姓名" name="name">
+                    </div>
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-xingbie color-blue"></span>性别
+                        </label>
+                        <div class="radiobox clearfix">
+                            <div class="radio fl clearfix" data-sex="1">
+                                <span class="circle checked fl"></span>
+                                <span class="fl">男</span>
+                            </div>
+                            <div class="radio fl" data-sex="2">
+                                <span class="circle fl"></span>
+                                <span class="fl">女</span>
+                            </div>
+                            <input name="sex" value="1" hidden id="sex">
+                        </div>
+                    </div>
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-zuzhi color-green"></span>年龄
+                        </label>
+                        <input type="text" class="txt" placeholder="请输入您的年龄" name="age" id="age">
+                    </div>
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-qi color-orange"></span>所在党组织
+                        </label>
+                        <input type="text" class="txt" placeholder="如不是中共党员可以不填" name="dzzname" id="dzzname">
+                    </div>
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-lianxi color-blue"></span>联系电话
+                        </label>
+                        <input type="text" class="txt" placeholder="为便于联系，请填写手机号码" name="tel" id="tel1">
+                    </div>
+                </article>
+                <article id="companyBlock">
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-yinxing01 color-orange"></span>单位名称
+                        </label>
+                        <input type="text" class="txt" placeholder="请填写所在单位名称" name="dw" id="dw">
+                    </div>
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-iconfont color-red"></span>联系人姓名
+                        </label>
+                        <input type="text" class="txt" placeholder="请填写联系人姓名" id="name2">
+                    </div>
+                    <div class="formbox">
+                        <label>
+                            <span class="iconfont icon-lianxi color-blue"></span>联系电话
+                        </label>
+                        <input type="text" class="txt" placeholder="为便于联系，请填写手机号码" id="tel2">
+                    </div>
+                </article>
+            </form>
+        </section>
+        <!--基本信息 end-->
+
+        <!--需求内容 start-->
+        <section class="demand-info">
+            <h3 class="info-title">需求内容</h3>
+            <form action="" name="appointment" method="post">
+                <div class="formbox">
+                    <label>
+                        <span class="iconfont icon-dengji color-green"></span>需求类别
+                    </label>
+                    <select name="" id="xqlb">
+                        <option value="1">公益帮扶类</option>
+                        <option value="2">家政服务类</option>
+                        <option value="3">政策解读类</option>
+                        <option value="4">党务党建类</option>
+                    </select>
+                </div>
+                <div class="formbox">
+                    <label>
+                        <span class="iconfont icon-shijian1 color-lblue"></span>需求时效
+                    </label>
+                    <input type="date" class="txt" placeholder="格式如：xx月xx日前" id="enddate" style="background-color: #fff">
+                </div>
+                <textarea class="textarea" id="content" placeholder="请将需求内容完整表述（字数300字以内）"></textarea>
+            </form>
+        </section>
+        <!--需求内容 end-->
+
+        <!--提交按钮 start-->
+        <section class="btn-wrapper">
+            <input id="btn" class="btn" type="button" value="提交">
+        </section>
+        <!--提交按钮 end-->
+    </section>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#type').on('change', function () {
+                var type = $(this).val();
+                if (type && type === '1') {
+                    $('#baseForm').find('#companyBlock').hide()
+                            .end().find('#personBlock').show();
+                } else if (type && type === '2') {
+                    $('#baseForm').find('#personBlock').hide()
+                            .end().find('#companyBlock').show();
+                }
+            });
+
+            $('.radio').on('click', function () {
+                $('.circle').removeClass('checked');
+                $(this).find('.circle').addClass('checked');
+                $("input[name='sex']").val($(this).data("sex"));
+            });
+
+            $('#btn').on('click', function () {
+                var type = $('#type').val();
+                if (type && type === '1') {
+                    $.post("{:U('xq')}", {
+                        xqf: 1,
+                        name: $("#name").val(),
+                        sex: $("#sex").val(),
+                        age: $("#age").val(),
+                        dzzname: $("#dzzname").val(),
+                        tel: $("#tel1").val(),
+                        xqlb: $("#xqlb").val(),
+                        enddate: $("#enddate").val(),
+                        content: $("#content").val()
+                    }, function (data) {
+                        if(data.info){
+                            alert(data.info);
+                            if(data.status){
+                                window.location.href=data.url;
+                            }
+                        }
+                    });
+                } else if (type && type === '2') {
+                    $.post("{:U('xq')}", {
+                        xqf: 2,
+                        name: $("#name2").val(),
+                        dw: $("#dw").val(),
+                        tel: $("#tel2").val(),
+                        xqlb: $("#xqlb").val(),
+                        enddate: $("#enddate").val(),
+                        content: $("#content").val()
+                    }, function (data) {
+                        if(data.info){
+                            alert(data.info);
+                            if(data.status){
+                                window.location.href=data.url;
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</block>

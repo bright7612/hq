@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <title>合庆党建服务中心</title>
+    <link rel="stylesheet" href="../css/initialize.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/center.css">
+    <script src="../js/template.js"></script>
+    <script type="text/html" id="showData">
+        {{if result}}
+            {{each result.showData as show i}}
+                <aside>
+                    <div class="aside-circle"></div>
+                    <div class="aside-bar"></div>
+                    <div class="link" data-id="{{show.id}}">{{show.name}}</div>
+                </aside>
+            {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="dzbList">
+        {{if result}}
+            {{each result.allData as list i}}
+                <li class="dzb-list" data-id="{{list.id}}">{{list.name}}</li>
+            {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="dyList">
+        {{if result}}
+            {{each result.allData as list i}}
+                <li class="dy-list fl">{{list.name}}</li>
+            {{/each}}
+        {{/if}}
+    </script>
+</head>
+<body>
+    <div class="banner">
+        <header class="title">
+            <span class="iconfont icon-dangyuanzuzhiguanli"></span>
+            <span class="text">合庆党建服务中心</span>
+        </header>
+        <section class="content">
+            <ul class="data-wrapper">
+                <li id="dzbNum" class="data shape">
+                    <span class="iconfont icon-huodong"></span>
+                    <span>基层党支部<b></b>个</span>
+                </li>
+                <li id="totalPeople" class="data shape">
+                    <span class="iconfont icon-huiyi-copy"></span>
+                    <span>总党员人数<b></b>万</span>
+                </li>
+                <li id="basePeople" class="data shape">
+                    <span class="iconfont icon-dangyuandangyuanguanlidangyuanzhuanchu"></span>
+                    <span>支部党员人数<b></b>人</span>
+                </li>
+            </ul>
+            <div id="first" class="center-wrapper big">
+                <div class="circle-wrapper">
+                    <div class="circle-one">
+                        <div class="circle-two">
+                            <div class="circle-rotate"></div>
+                            <div class="circle-inner">
+                                <span class="iconfont icon-dangyuanzuzhiguanli"></span>
+                                <p class="text">合庆</p>
+                                <p class="text">党建中心</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shape center-title">党支部</div>
+                <div id="dzbShowList" class="aside-wrapper">
+
+                </div>
+            </div>
+            <div id="second" class="center-wrapper">
+                <div class="circle-wrapper">
+                    <div class="circle-one">
+                        <div class="circle-two">
+                            <div class="circle-rotate"></div>
+                            <div class="circle-inner">
+                                <span class="iconfont icon-dangyuanzuzhiguanli"></span>
+                                <p id="dzbName" class="text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shape center-title">基层党员</div>
+                <div id="dyShowList" class="aside-wrapper">
+
+                </div>
+            </div>
+            <div id="shield" class="shield">
+                <div class="more-box">
+                    <div class="more-title">
+                        <span id="moreTitle">党支部名称</span>
+                        <div id="close" class="close">
+                            <span class="iconfont icon-guanbi"></span>
+                        </div>
+                    </div>
+                    <div class="more-content">
+                        <ul id="dzbAll" class="dzb-all">
+
+                        </ul>
+                        <ul id="dyAll" class="dy-all clearfix">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/alert.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/center.js"></script>
+</body>
+</html>

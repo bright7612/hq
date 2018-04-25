@@ -1,0 +1,178 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+
+    <link rel="stylesheet" href="/Public/ljz/css/myRegister.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+	<link rel="stylesheet" href="/Public/ljz/css/animate.min.css">
+
+
+
+<div class="layout">
+    <ul id="container">
+
+	    <volist name="list2" id="d">
+	    	<li  onclick="toSign('dk',{$d.id})">
+            <!--活动信息板块 start-->
+            <div class="info-box clearfix">
+                <div class="left fl">
+                    <div class="title">
+                        <h2>{$d.course_name}</h2><span class="logo">党课报名</span>
+                    </div>
+                	                   
+	            	<div class="clearfix">
+		                <div class="fl">
+		                    <p>
+		                        <span>授课时间：<span>{$d.datetime|date='Y-m-d',###} </span></span>
+		                        &nbsp;&nbsp;<span>人数：<span>{$d.count}</span></span>
+		                    </p>
+		                    <p>讲师：{$d.teacher}</p>
+		                </div>
+	            	</div>
+		            <p class="address">授课地点：{$d.addr}</p>
+		            <p>报名时间：<span>{$d.create_time|date='Y-m-d H:m:s ',###}</span></p>
+		            <p>报名状态：<span>{$d.state|statename}</span></p>
+                </div>
+                <div class="right fr">
+                	<if condition="$d.guoqi gt 0 ">
+                		已过期
+                	<else />
+	                	<div class="btn fr">
+	                        <span class="iconfont icon-dingwei"></span>
+	                        签到
+	                    </div>
+                	</if>
+                    
+                </div>
+            </div>
+            <!--活动信息板块 end-->
+
+            <!--活动内容板块 start-->
+            <div class="content-box">
+                <p>{$d.content}</p>
+            </div>
+            <!--活动内容板块 end-->
+        </li>
+
+	    </volist>
+
+
+   <volist name="list" id="d">
+
+
+		<li  onclick="toSign('hd',{$d.id})">
+            <!--活动信息板块 start-->
+            <div class="info-box clearfix">
+                <div class="left fl">
+                    <div class="title">
+                        <h2>{$d.name}</h2>
+                        <span class="logo">{$d.typename}</span>
+                    </div>
+                    <if condition="$d.type neq 6 ">
+                    <p>时间：<span>{$d.date|date='Y-m-d',###}</span>
+
+                    </p>
+                    </if>
+                    <p>地点：<span>{$d.addr}</span></p>
+                    <p>人数：<span>{$d.count}</span>人</p>
+                    <p>报名时间：<span>{$d.create_time|date='Y-m-d H:m:s ',###}</span></p>
+                    <p>报名状态：<span>{$d.state|statename}</span></p>
+                </div>
+                <div class="right fr">
+                	<if condition="$d.guoqi gt 0 ">
+                		已过期
+                	<else />
+	                	<div class="btn fr">
+	                        <span class="iconfont icon-dingwei"></span>
+	                        签到
+	                    </div>
+                	</if>
+                    
+                </div>
+            </div>
+            <!--活动信息板块 end-->
+
+            <!--活动内容板块 start-->
+            <div class="content-box">
+                <p>{$d.content}</p>
+            </div>
+            <!--活动内容板块 end-->
+        </li>
+        
+        
+    </volist>
+        
+        
+        
+      
+    </ul>
+    <!--<div class="bg" id="bg">-->
+        <!--<div class="success-box animated bounceInDown" id="success-box">-->
+            <!--<img src="/Public/ljz/img/my/success.png" alt="">-->
+            <!--<p class="p1">签到成功</p>-->
+            <!--<p class="p2">获得<span id="grade">15</span>积分</p>-->
+            <!--<div class="bottom" id="ok">好的</div>-->
+        <!--</div>-->
+        <!--<div class="failed-box" id="failed-box">-->
+            <!--<p class="p1">距离较远</p>-->
+            <!--<p class="p2">当前不在目的地附近，请前往目的地签到获得积分~</p>-->
+            <!--<div class="bottom" id="cancel">好的</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+
+
+<script src="/Public/ljz/js/jquery.js"></script>
+<script>
+    $(function () {
+        //遍历logo，改变其颜色
+        $('.logo').each(function () {
+            var logoSort = $(this).text();
+            if(logoSort && (logoSort === '公益活动'||logoSort === '党课报名' )){
+                $(this).addClass('orangeColor');
+            } else if(logoSort && (logoSort === '文体活动' ||logoSort === '场地预约' )){
+                $(this).addClass('blueColor');
+            } else if(logoSort && (logoSort === '群团活动'||logoSort === '红色电影' )){
+                $(this).addClass('rColor');
+            } 
+
+        });
+
+//        //遮罩层行为初始化
+//        $('#bg').removeClass('show').addClass('hide')
+//            .find('#success-box').addClass('hide')
+//            .end().find('#failed-box').addClass('hide');
+
+        //点击签到时
+        
+//            $('.btn').on('click', function () {
+//            	 $('#bg').removeClass('hide').addClass('show');
+//	            //判断用户是否在可定位区域
+//	            if(true){
+//	                $('#success-box').removeClass('hide').addClass('show');
+//	            } else {
+//	                $('#failed-box').removeClass('hide').addClass('show');
+//	            }
+//            });
+            
+//            $('#ok, #cancel').on('click', function () {
+//            	 $('#bg').removeClass('show').addClass('hide')
+//                .find('#success-box').removeClass('show').addClass('hide')
+//                .end().find('#failed-box').removeClass('show').addClass('hide');
+//            });
+        
+     
+    });
+
+
+    function toSign(type,id) {
+        window.location.href = '/home/ljz/map/type/'+type+'/id/'+id;
+    }
+
+</script>
+
+
+
+    
+</block>
+

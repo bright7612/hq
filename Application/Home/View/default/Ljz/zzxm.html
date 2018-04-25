@@ -1,0 +1,108 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	
+	<link rel="stylesheet" href="/Public/ljz/css/dwgj.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <!--模板-->
+    <script src="/Public/ljz/js/template.js"></script>
+    <script type="text/html" id="jwhList">
+        {{if result}}
+        {{each result as value i}}
+        <li id="{{value.name}}">
+            <span class="text">{{value.name}}</span>
+            <span class="iconfont icon-gou fr redColor"></span>
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="proList">
+        {{if result}}
+        {{each result as value i}}
+        <li id="{{value.proId}}">
+            <span class="text">{{value.name}}</span>
+            <span class="iconfont icon-gou fr redColor"></span>
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+    
+    
+  <script type="text/html" id="jwhList">
+        {{if result}}
+        {{each result as value i}}
+        <li id="{{value.name}}">
+            <span class="text">{{value.name}}</span>
+            <span class="iconfont icon-gou fr redColor"></span>
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="proList">
+        {{if result}}
+        {{each result as value i}}
+        <li id="{{value.proId}}">
+            <span class="text">{{value.name}}</span>
+            <span class="iconfont icon-gou fr redColor"></span>
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="contentList">
+        {{if result}}
+            {{each result as value i}}
+                <a href="/home/ljz/xmbm/id/{{value.proId}}">
+                    <li class="clearfix">
+                        <div class="top">
+                            <div class="clearfix">
+                                <h2>{{value.name}}</h2>
+                                <div class="zan fr">
+                                    <span class="iconfont icon-aixin redColor"></span>
+                                    <span>{{value.zan}}</span>
+                                </div>
+                            </div>
+                            <p>居委：{{value.juwei}}</p>
+                            <img src="/Public/ljz/xm/{{value.proId}}_1.jpg" alt="{{value.name}}">
+                            <p>{{value.content}}</p>
+                        </div>
+                    </li>
+                </a>
+            {{/each}}
+        {{/if}}
+    </script>
+  
+<div class="layout">
+    <div class="tab clearfix">
+        <ul class="clearfix tabs-header bottom">
+            <li class="fl left" id="header0">
+               <span id="jwh">选择居委会</span>
+               <span class="iconfont icon-xia"></span>
+            </li>
+            <li class="fl right" id="header1">
+               <span id="pro">选择项目</span>
+               <span class="iconfont icon-xia"></span>
+            </li>
+        </ul>
+        <ul class="tabs-list">
+
+        </ul>
+    </div>
+    <div class="content-box">
+        <ul class="content" id="content">
+
+        </ul>
+    </div>
+    <div class="bg" id="bg">
+        <div class="alert hide" id="alert">
+            请先选择居委会
+        </div>
+    </div>
+</div>
+
+
+    <script src="/Public/ljz/js/dwgj.js"></script>
+
+
+    
+</block>

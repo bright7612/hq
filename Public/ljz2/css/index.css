@@ -1,0 +1,143 @@
+html {
+  width: 1920px;
+  height: 1080px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.title {
+  width: 1826px;
+  height: 175px;
+  margin: 0 auto;
+  position: relative;
+}
+.title h1 {
+  color: #FFF;
+  font-size: 80px;
+  text-align: center;
+  line-height: 175px;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#FFDF70));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title .return {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.title .return a {
+  display: block;
+  color: #FFF;
+  font-size: 50px;
+  line-height: 128px;
+}
+.title .return a .iconfont {
+  font-size: 100px;
+}
+body {
+  background: url("/Public/ljz2/imgs/bg/indexbg.jpg") 100% 100% no-repeat;
+}
+.wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  width: 1063px;
+  height: 721px;
+  margin: 155px 0 0 504px;
+}
+.wrapper .wrapper-top,
+.wrapper .wrapper-bottom {
+  flex-basis: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper .wrapper-top .list,
+.wrapper .wrapper-bottom .list {
+  width: 508px;
+  height: 337px;
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+.wrapper .wrapper-top .list a,
+.wrapper .wrapper-bottom .list a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.wrapper .wrapper-top .list a .text,
+.wrapper .wrapper-bottom .list a .text {
+  width: 175px;
+  font-size: 50px;
+  text-align: center;
+  position: absolute;
+  top: 55px;
+  left: 35px;
+}
+.wrapper .wrapper-top .list a .iconfont,
+.wrapper .wrapper-bottom .list a .iconfont {
+  font-size: 150px;
+  position: absolute;
+  right: 50px;
+  bottom: 45px;
+}
+.wrapper .wrapper-top .list a.color-orange .text,
+.wrapper .wrapper-bottom .list a.color-orange .text {
+  color: #FF422E;
+}
+.wrapper .wrapper-top .list a.color-orange .iconfont,
+.wrapper .wrapper-bottom .list a.color-orange .iconfont {
+  color: #FF422E;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FEA43E), to(#FF4838));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wrapper .wrapper-top .list a.color-yellow .text,
+.wrapper .wrapper-bottom .list a.color-yellow .text {
+  color: #FF7200;
+}
+.wrapper .wrapper-top .list a.color-yellow .iconfont,
+.wrapper .wrapper-bottom .list a.color-yellow .iconfont {
+  color: #FF7200;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFC500), to(#FF9000));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wrapper .wrapper-top .list a.color-purple .text,
+.wrapper .wrapper-bottom .list a.color-purple .text {
+  color: #992FDB;
+}
+.wrapper .wrapper-top .list a.color-purple .iconfont,
+.wrapper .wrapper-bottom .list a.color-purple .iconfont {
+  color: #992FDB;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#E969D5), to(#A746E3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wrapper .wrapper-top .list a.color-blue .text,
+.wrapper .wrapper-bottom .list a.color-blue .text {
+  color: #1082ED;
+}
+.wrapper .wrapper-top .list a.color-blue .iconfont,
+.wrapper .wrapper-bottom .list a.color-blue .iconfont {
+  color: #1082ED;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#5BCDE4), to(#158EFB));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript"  src="/Public/ljz/js/jquery.min.js" ></script>
+<script>
+    $.post("/home/ljz/tes",{a:1,b:2},function (data) {
+            $("body").append(data);
+    });
+
+
+</script>
+</body>
+</html>

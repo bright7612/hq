@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+
+    <title>发布请求</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/resort.css"/>
+    <style>
+        .fb {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff
+        }
+
+        .tab_area {
+            display: flex;
+            display: -webkit-flex;
+            background-color: #fff;
+        }
+
+        .tab_cell {
+            flex: 1;
+            -webkit-flex: 1;
+            padding: 10px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .tab_cell_selected {
+            border-bottom: solid 3px #51C5D4;
+            color: #51C5D4;
+        }
+
+        .address {
+            display: block;
+            padding: 10px;
+            color: #3E4752;
+            box-sizing: border-box;
+            flex: 1;
+            -webkit-flex: 1;
+            outline: none;
+            border: none;
+            font-size: 17px;
+        }
+
+        .locate {
+            background: url("/Public/images/ic_locate2.png") no-repeat 0 0/100% 100%;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+        }
+
+
+
+    </style>
+</head>
+<body style="padding-bottom: 250px">
+<!--选择一个服务 start-->
+<p class="request_title">请选择一个服务</p>
+<if condition="$tovid">
+    <div id="tags" class="request_tags">
+        <volist name="types" id="vo">
+            <i class="ws_tag" data-id="{$vo.id}">{$vo.name}</i>
+        </volist>
+    </div>
+    <else/>
+    <div class="tab_area ws_pixel_line_down">
+        <volist name="pTypes" id="v">
+            <i class="tab_cell" data-id="{$v.id}">{$v.name}</i>
+        </volist>
+    </div>
+    <volist name="pTypes" id="v">
+        <div id="tags_out{$v.id}" class="request_tags" style="min-height: 100px;display: none;">
+            <volist name="v.cTypes" id="tag">
+                <i data-id="{$tag.id}" data-pid="{$tag.pid}" class="ws_tag">{$tag.name}</i>
+            </volist>
+        </div>
+    </volist>
+</if>
+<!--选择一个服务 end-->
+<div class="ws_cell_input2">
+    <input id="address" type="text" ><i class="locate" id="locate"></i>
+</div>
+<p style="font-size: 12px;color: #9B9B9B;padding-left: 20px" id="locateStatus">定位初始化中...</p>
+<div class="spacing fb ws_pixel_line_up" id="fb">
+
+    <div style="text-align: center;padding-bottom: 20px">
+        <a href="{:U('msgresort')}?tovid={$tovid}"
+           style="text-decoration: none;font-size: 1em;  border-bottom: 1px #3E4752 solid;">没有您需要的服务,点击这里吧>></a>
+    </div>
+    <a class="weui_btn weui_btn_primary" onclick="resort()">确认</a>
+</div>
+</body>
+<script src="/Public/js/jquery-2.1.1.js"></script>
+<script src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    var g_lat = 0, g_lng = 0;
+    var geolocation;
+    var geoc;
+    /*异步加载地图*/
+    function initialize() {
+        geolocation = new BMap.Geolocation();
+        geoc = new BMap.Geocoder();
+        locate();
+        $('#locate').click(function () {
+            locate();
+        });
+        
+//        $("#address").focus(function () {
+//            $('#fb').css('position',"relative");
+//            $('body').css("paddingBottom","50%");
+//        }).blur(function () {
+//            $('#fb').css('position',"fixed");
+//            $('body').css("paddingBottom","250px");
+//        });
+    }
+
+    $(".request_tags").children('i').each(function (i, n) {
+        $(n).click(function () {
+            $(".request_tags").children('i').removeClass("ws_tag_selected");
+            $(this).addClass("ws_tag_selected");
+        });
+    });
+
+    var isLocate =false;
+    function locate() {
+        if(isLocate)
+        {
+            return;
+        }
+        isLocate = true;
+        $('#locateStatus').text("正在定位...");
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                g_lat = r.point.lat;
+                g_lng = r.point.lng;
+                geoc.getLocation(r.point, function (rs) {
+                    isLocate = false;
+                    $('#locateStatus').text("定位成功");
+                    $('#address').val(rs.address);
+                });
+            } else {
+                isLocate =false;
+                $('#locateStatus').text("定位失败,请重试");
+                layer.open({
+                    content: "定位失败,请重试"
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        }, {enableHighAccuracy: true});
+    }
+
+    function loadScript() {
+        setupTags();
+
+        var script = document.createElement("script");
+        script.src = "http://api.map.baidu.com/api?v=2.0&ak=aF1pIRItNcC27rMZcPX04YZWpmKCvP3U&callback=initialize";
+        document.body.appendChild(script);
+    }
+
+    window.onload = loadScript;
+
+    function resort() {
+        var serviceid = $(".ws_tag_selected").data("id");
+        if (!serviceid) {
+            layer.open({
+                content: "请选择您需要的服务"
+                , skin: "msg"
+                , time: 2
+            });
+            return;
+        }
+        var address = $('#address').val();
+
+        if ((g_lat == 0 && g_lng == 0) || address == "") {
+            layer.open({
+                content: "无法获取您的位置"
+                , skin: "msg"
+                , time: 2
+            });
+            return;
+        }
+        layer.open({type: 2, shadeClose: false});
+        var tovid = "{$tovid}";
+        if (tovid == "") {
+            $.post('{:U("Api/resort")}', {
+                lat: g_lat,
+                lng: g_lng,
+                address: address,
+                type: 2,
+                accompanyType: serviceid
+            }, function (data) {
+                layer.closeAll();
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                        , end: function () {
+                            window.location.href = "{:U('General/hresort')}";
+                        }
+                    });
+                } else {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                    });
+                }
+            });
+        } else {
+            $.post('{:U("Api/resort2")}', {
+                lat: g_lat,
+                lng: g_lng,
+                address: address,
+                type: 2,
+                accompanyType: serviceid,
+                tovid: tovid
+            }, function (data) {
+                layer.closeAll();
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                        , end: function () {
+                            window.location.href = "{:U('General/hresort')}";
+                        }
+                    });
+                } else {
+                    layer.open({
+                        content: d.message
+                        , skin: "msg"
+                        , time: 2
+                    });
+                }
+            });
+        }
+    }
+
+    function setupTags() {
+        var area = $('.tab_area');
+        if (!area)    return;
+        area.children('.tab_cell:first-child').addClass('tab_cell_selected');
+        $(".request_tags").each(function (i, n) {
+            if (i == 0) {
+                $(n).show();
+            }
+        });
+        area.children('.tab_cell').each(function (i, n) {
+            $(n).click(function () {
+                $(this).addClass('tab_cell_selected').siblings().removeClass('tab_cell_selected');
+                $("#tags_out" + $(this).data('id')).show().siblings('.request_tags').hide();
+            });
+        });
+    }
+
+</script>
+</html>

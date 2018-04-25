@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的标签</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/volunteer/tag.css"/>
+    <style>
+        .tab_area {
+            display: flex;
+            display: -webkit-flex;
+            background-color: #fff;
+        }
+
+        .tab_cell {
+            flex: 1;
+            -webkit-flex: 1;
+            padding: 10px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .tab_cell_selected {
+            border-bottom: solid 3px #51C5D4;
+            color: #51C5D4;
+        }
+
+        .ft {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .section_title {
+            padding: 10px 20px;
+        }
+
+        .tags_in,.tags_out {
+            padding: 10px 5px 10px 15px;
+            min-height: 150px;
+            background-color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+<div class="ws_pixel_line_down">
+    <p class="section_title">我的服务标签</p>
+    <div id="tags_in" class="tags_in">
+        <volist name="tagsin" id="tag">
+            <span data-id="{$tag.id}" data-pid="{$tag.pid}">{$tag.name}</span>
+        </volist>
+    </div>
+</div>
+
+<div class="ws_pixel_line_down">
+    <p class="section_title">添加标签</p>
+    <div class="tab_area ws_pixel_line_down" style="background-color: #fff">
+        <volist name="pTypes" id="v">
+            <i class="tab_cell" data-id="{$v.id}">{$v.name}</i>
+        </volist>
+    </div>
+    <volist name="pTypes" id="v">
+        <div id="tags_out{$v.id}" class="tags_out" style="display: none; ">
+            <volist name="v.cTypes" id="tag">
+                <in name="tag.id" value="$myservicetypes">
+                    <else/>
+                <span data-id="{$tag.id}" data-pid="{$tag.pid}">{$tag.name}</span>
+                </in>
+            </volist>
+        </div>
+    </volist>
+</div>
+
+<div class="weui_btn_area bottom ft">
+    <a class="weui_btn weui_btn_primary" onclick="save()">保存</a>
+</div>
+
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="/Public/js/ahz.js"></script>
+<script>
+    $(".tags_out").on("click","span",function () {
+        change1(this);
+    });
+    $(".tags_in").on("click","span",function () {
+        change2(this);
+    });
+
+    function change1(node) {
+        var html = $(node)[0].outerHTML;
+        $("#tags_in").append(html);
+        $(node).remove();
+    }
+
+    function change2(node) {
+        var html = $(node)[0].outerHTML;
+        $("#tags_out"+$(node).data('pid')).append(html);
+        $(node).remove();
+    }
+
+    function save() {
+        var data = [];
+        $("#tags_in span").each(function (i, n) {
+            data[i] = $(n).data('id');
+        });
+        var res = "";
+        if (data.length > 0) {
+            res = data[0];
+            for (var i = 1; i < data.length; i++) {
+                res += "," + data[i];
+            }
+        }
+        $.post("{:U('Api/infoEdit')}", {
+            stypes: res
+        }, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2,
+                    end: function () {
+                        history.back();
+                    }
+                });
+            } else {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        });
+    }
+
+    setupTags();
+</script>
+</html>

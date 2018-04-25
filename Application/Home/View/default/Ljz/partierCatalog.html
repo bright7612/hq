@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>党员名册</title>
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <!-- 自动添加私有前缀 -->
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/css/partier.css">
+</head>
+<body>
+    <div class="layout">
+        <div class="info-box">
+            <div class="header">
+                <div class="img-box">
+                    <img src="/Public/ljz/img/default_avatar.png" alt=""/>
+                </div>
+                <h2>{$data.name}</h2>
+            </div>
+            <div class="detail">
+                <p>性别：<span>{$data.sexstr}</span></p>
+                <p>民族：<span>{$data.mz}</span></p>
+                <p>出生年月：<span>{$data.birth}</span></p>
+                <p>身份证号：<span>{$data.idnum}</span></p>
+                <p>文化程度：<span>{$data.whcd}</span></p>
+                <p>党员类型：<span>{$data.dylx}</span></p>
+                <p>入党年月：<span>{$data.rddate}</span></p>
+                <p>人员状态：<span>{$data.zt}</span></p>
+                <p>居住地址：<span>{$data.addr}</span></p>
+                <p>联系方式：<span>{$data.tel}</span></p>
+                <p>所属支部：<span>{$data.dzzmc}</span></p>
+                <p>备注：<span>{$data.bz}</span></p>
+
+                <br/>
+                <eq name="data.dymc" value="1" >
+                    <p>在党员名册中</p>
+                    <else/>
+                    <p>不在党员名册中</p>
+                </eq>
+                <eq name="data.sbd" value="1" >
+                    <br/>
+                    <p>双报到党员</p>
+                </eq>
+                <eq name="data.cgbldj" value="1" >
+                    <br/>
+                    <p>出国保留党籍党员</p>
+                    <p>目的地：<span>{$data.dzz}</span></p>
+                    <p>保留党籍时间：<span>{$data.bldjsj}</span></p>
+                    <p>出国（境）事由：<span>{$data.cgsy}</span></p>
+                </eq>
+
+                <eq name="data.mgzzsh" value="1" >
+                    <br/>
+                    <p>免过组织生活党员</p>
+                    <p>免过原因：<span>{$data.mgyy}</span></p>
+                </eq>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

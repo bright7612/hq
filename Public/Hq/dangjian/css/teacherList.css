@@ -1,0 +1,134 @@
+@import "base.css";
+@import "../fonts2/iconfont.css";
+html {
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: url("../img/list-bg.png") no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.title {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+.title .back {
+  width: 250px;
+  height: 105px;
+  color: #fff;
+  font-size: 46px;
+  text-align: center;
+  line-height: 90px;
+  border-radius: 55px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 40px;
+  left: 65px;
+}
+.title .back .icon-fanhui {
+  font-size: 70px;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+.title .title-name {
+  width: 1300px;
+  height: 116px;
+  text-align: center;
+  line-height: 116px;
+  color: #fff;
+  font-size: 50px;
+  margin: 30px auto 0;
+  background: url("../img/list-item.png") no-repeat;
+  background-size: 848px 100%;
+  background-position: 280px 0;
+  letter-spacing: 3px;
+}
+.content {
+  width: 1821px;
+  height: 858px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 35px;
+  margin: 42px auto 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  overflow-y: auto;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+.content .item {
+  float: left;
+  width: 50%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-right: 30px;
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.5);
+}
+.content .item > a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 51px 0;
+}
+.content .item .image-box {
+  width: 230px;
+  height: 251px;
+}
+.content .item .image-box > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.content .item .text-box {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 0 0 0 25px;
+  position: relative;
+  overflow: hidden;
+}
+.content .item .text-box .text-title {
+  color: #000;
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 60px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.content .item .text-box .text-infor {
+  height: 150px;
+  color: #483F3A;
+  font-size: 34px;
+  line-height: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+.content .item .text-box .text-infor::-webkit-scrollbar {
+  width: 10px;
+}
+.content .item .text-box .text-infor::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content .item .text-box .text-infor::-webkit-scrollbar-button {
+  display: none;
+}
+.content .item .text-box .text-infor::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #e8e8e8;
+}

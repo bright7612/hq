@@ -1,0 +1,247 @@
+<extend name="Public/base"/>
+<block name="body">
+
+    <div class="main-title">
+        <h2>{:isset($data['id'])?L('_EDIT_WITH_SINGLE_'):L('_NEW_WITH_SINGLE_')}党组织成员</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="with-padding">
+            <div class="form-item">
+                <label class="item-label">ID</label>
+                <div class="controls">
+                    {$data.id}
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">所属党组织</label>
+                <div class="controls">
+                    <notempty name="dzzinfo" >
+                        <input  type="hidden" name="dzz" value="{$dzzinfo.id}"  >
+                        {$dzzinfo.name}
+                        <else />
+                        <select class="form-control form-input-width" id="dzz" name="dzz">
+                            <volist name="dzzopt" id="di">
+                                <option value="{$di.id}"
+                                <eq name="di.id" value="$data.dzz">selected</eq>
+                                >{$di.name}</option>
+                            </volist>
+                        </select>
+                    </notempty>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">党员类型</label>
+                <div class="controls">
+                    <select class="form-control form-input-width" id="dylx" name="dylx">
+                        <option value="" >----请选择----</option>
+                        <option value="正式党员"
+                        <eq name="data.dylx" value="正式党员">selected</eq>
+                        >正式党员</option>
+                        <option value="预备党员"
+                        <eq name="data.dylx" value="预备党员">selected</eq>
+                        >预备党员</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-item">
+                <label class="item-label">姓名</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="name"
+                           value="{$data.name|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">性别</label>
+                <div class="controls">
+                    <select class="form-control form-input-width" id="sex" name="sex">
+                        <option value="" >----请选择----</option>
+                        <option value="1"
+                        <eq name="data.sex" value="1">selected</eq>
+                        >男</option>
+                        <option value="2"
+                        <eq name="data.sex" value="2">selected</eq>
+                        >女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">身份证号</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="idnum"
+                           value="{$data.idnum|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">人员状态(退休、在职、无业)</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="zt"
+                           value="{$data.zt|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">民族</label>
+                <div class="controls">
+                    <select class="form-control form-input-width" id="mz" name="mz">
+                        <volist name="mzopt" id="di">
+                            <option value="{$di}"
+                            <eq name="di" value="$data.mz">selected</eq>
+                            >{$di}</option>
+                        </volist>
+                    </select>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">联系电话</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="tel"
+                           value="{$data.tel|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">文化程度</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="whcd"
+                           value="{$data.whcd|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">工作单位</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="gzdw"
+                           value="{$data.gzdw|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">特长</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="tc"
+                           value="{$data.tc|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">职务</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="zw"
+                           value="{$data.zw|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">居住地址</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="addr"
+                           value="{$data.addr|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">所属支部</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="sszb"
+                           value="{$data.sszb|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">出生年月</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="birth"
+                           value="{$data.birth|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">入党年月</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="rddate"
+                           value="{$data.rddate|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">备注</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="bz"
+                           value="{$data.bz|default=''}">
+                </div>
+            </div>
+            <div class="form-item" style="margin-top: 15px">
+                <label for="dymc"> <input type="checkbox"  class="a_checkbox"  data-field-name="dymc"  id="dymc"  <eq name="data.dymc"  value="1"  > checked </eq>  /> 党员名册</label>
+                <input type="hidden" name="dymc" value="{$data.dymc}" class="a_checkbox_hidden"  data-field-name="dymc"  >
+
+                <label for="sbd"> <input type="checkbox"  class="a_checkbox"  data-field-name="sbd"  id="sbd"  <eq name="data.sbd"  value="1"  > checked </eq>  /> 双报到党员</label>
+                <input type="hidden" name="sbd" value="{$data.sbd}" class="a_checkbox_hidden"  data-field-name="sbd"  >
+
+                <label for="cgbldj"> <input type="checkbox"  class="a_checkbox"  data-target-blockid="block_cgbldj"  data-field-name="cgbldj"  id="cgbldj"  <eq name="data.cgbldj"  value="1"  > checked </eq>  /> 出国（境）保留党籍</label>
+                <input type="hidden" name="cgbldj" value="{$data.cgbldj}" class="a_checkbox_hidden"  data-field-name="cgbldj"  >
+
+                <label for="mgzzsh"> <input type="checkbox"  class="a_checkbox"  data-target-blockid="block_mgzzsh"  data-field-name="mgzzsh"  id="mgzzsh"  <eq name="data.mgzzsh"  value="1"  > checked </eq>  /> 免过组织生活</label>
+                <input type="hidden" name="mgzzsh" value="{$data.mgzzsh}" class="a_checkbox_hidden"  data-field-name="mgzzsh"  >
+                <script>
+                    $(function () {
+                        $(".a_checkbox").on("change",function () {
+                            var fieldName = $(this).attr('data-field-name');
+                            var checked = $('.a_checkbox[data-field-name=' + fieldName + ']').is(":checked");
+                            console.log(checked);
+                            $('.a_checkbox_hidden[data-field-name=' + fieldName + ']').val(checked?"1":"0");
+
+                            var targetblockid = $(this).attr('data-target-blockid');
+                            if(checked) {
+                                $("#" + targetblockid).show();
+                            }else{
+                                $("#" + targetblockid).hide();
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        <div id="block_cgbldj"  <neq name="data.cgbldj"  value="1"  > hidden </neq>   >
+            <div class="form-item">
+                <label class="item-label">目的地</label>
+                <p>(去何国（地区）)</p>
+                <div class="controls">
+                <input type="text" class="text input-large form-input-width form-control" name="mdd"
+                       value="{$data.mdd|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">保留党籍时间</label>
+                <p><span class="check-tips">(自XXXX年XX月至XXXX年XX月。（因私出国（境）的党员，其保留党籍期限一般不超过半年。离退休党员保留党籍期限可相应延长至一年。自费留学和应聘工作的党员，按实际学习和工作年限计算。期满后，再进行延续，每次延续都只能是1年。）)</span></p>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="bldjsj"
+                           value="{$data.bldjsj|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">出国（境）事由</label>
+                <p><span class="check-tips">(探亲、治病、求学、就业、旅游、其他非公务活动)</span></p>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="cgsy"
+                           value="{$data.cgsy|default=''}">
+                </div>
+            </div>
+        </div>
+
+
+        <div id="block_mgzzsh"  <neq name="data.mgzzsh"  value="1"  > hidden </neq>   >
+            <div class="form-item">
+                <label class="item-label">免过组织生活原因</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="mgyy"
+                           value="{$data.mgyy|default=''}">
+                </div>
+            </div>
+        </div>
+        <div class="form-item with-padding">
+            <input type="hidden" name="id" value="{$data.id|default=''}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">
+                {:L("_SURE_WITH_SPACE_")}
+            </button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">
+                {:L("_RETURN_WITH_SPACE_")}
+            </button>
+        </div>
+    </form>
+</block>
+<block name="script">
+    <script>
+        highlight_subnav('{:U("dzzcy")}');
+    </script>
+</block>

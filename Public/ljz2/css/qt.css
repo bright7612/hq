@@ -1,0 +1,152 @@
+html {
+  width: 1920px;
+  height: 1080px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.title {
+  width: 1826px;
+  height: 175px;
+  margin: 0 auto;
+  position: relative;
+}
+.title h1 {
+  color: #FFF;
+  font-size: 80px;
+  text-align: center;
+  line-height: 175px;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#FFDF70));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title .return {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.title .return a {
+  display: block;
+  color: #FFF;
+  font-size: 50px;
+  line-height: 128px;
+}
+.title .return a .iconfont {
+  font-size: 100px;
+}
+body {
+  background: url("../imgs/bg/ordinaryBg.jpg") 100% 100% no-repeat;
+}
+.content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  width: 1824px;
+  height: 812px;
+  margin: 50px auto 0;
+}
+.content .list {
+  width: 594px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+.content .list .list-title {
+  width: 100%;
+  height: 80px;
+  background-color: #F7F6F2;
+  box-sizing: border-box;
+  border-bottom: 1px solid #D9DDE0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+}
+.content .list .list-title > h2 {
+  color: #616161;
+  font-size: 32px;
+  line-height: 80px;
+  margin-left: 180px;
+}
+.content .list .list-title .circle {
+  width: 124px;
+  height: 124px;
+  color: #FFF;
+  text-align: center;
+  line-height: 110px;
+  border: 5px solid #FFF;
+  border-radius: 50%;
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  z-index: 100;
+}
+.content .list .list-title .circle.bg-yellow {
+  background-color: #FFC000;
+}
+.content .list .list-title .circle.bg-orange {
+  background-color: #FF9000;
+}
+.content .list .list-title .circle.bg-green {
+  background-color: #98CB35;
+}
+.content .list .list-title .circle .iconfont {
+  font-size: 90px;
+}
+.content .list .list-content {
+  padding: 20px 28px 0;
+}
+.content .list .list-content .content-title {
+  height: 100px;
+}
+.content .list .list-content .content-title h2 {
+  color: #B51C22;
+  font-size: 36px;
+  line-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.content .list .list-content > img {
+  display: block;
+  width: 100%;
+  height: 320px;
+  margin: 12px 0;
+}
+.content .list .list-content > p {
+  color: #4C4C4C;
+  font-size: 32px;
+  line-height: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.content .list .more {
+  width: 130px;
+  height: 60px;
+  color: #D31410;
+  font-size: 25px;
+  text-align: center;
+  line-height: 60px;
+  border: 2px solid #D31410;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  right: 28px;
+  bottom: 25px;
+}

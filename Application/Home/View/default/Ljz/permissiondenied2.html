@@ -1,0 +1,41 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/myApply.css">
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+
+<div class="layout">
+    <div style="padding: 15px" >
+        <div class="title">
+            <h2>您的权限不足！无法查看此信息</h2>
+        </div>
+        <p> </p>
+        <p> </p>
+    </div>
+
+</div>
+
+<script src="/Public/ljz/js/jquery.js"></script>
+<script>
+    $(function () {
+        //遍历logo，改变其颜色
+        $('.logo').each(function () {
+            var logoSort = $(this).text();
+            if(logoSort && logoSort === '志愿公益'){
+                $(this).addClass('orangeColor');
+            } else if(logoSort && logoSort === '文体活动'){
+                $(this).addClass('blueColor');
+            } else if(logoSort && logoSort === '群团活动'){
+                $(this).addClass('rColor');
+            }
+        });
+
+        $('body').on('click', '.btn', function () {
+            alert('跳转到签到页');
+        })
+    });
+</script>
+  
+</block>
+
+

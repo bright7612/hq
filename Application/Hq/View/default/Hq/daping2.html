@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/swiper-3.4.2.min.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont2/iconfont2.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/daping2.css">
+</head>
+<body>
+	<div class="title">
+		<div class="title-name"><img src="__DJ__/img/daping-title.png"></div>
+	</div>
+	<div class="content">
+		<!-- 美丽合庆 -->
+		<div class="box meili">
+			<h4><i class="iconfont icon-juweihui"></i>美丽合庆<a href="{:U('Hq/articleList?id='.$stitle[0][id])}" class="more">更多<i class="iconfont icon-gengduo"></i></a></h4>
+			<div class="wrapper">
+				<div class="video">
+					<div class="swiper-container"  style="width: 100%;height: 100%;">
+						<div class="swiper-wrapper"  style="width: 100%;height: 100%;">
+							<volist name="activity" id="vo">
+								<div class="swiper-slide" style="width: 100%;height: 100%;">
+									<a href="{:U('Hq/detail?id='.$vo[id])}" style="display: block;width: 100%;height: 100%;">
+										<img src="{$vo.cover_id}" style="display: block;width: 100%;height: 100%;"/>
+										<div style="position: absolute;z-index: 9999;" class="text">{$vo.title}</div>
+									</a>
+								</div>
+							</volist>
+						</div>
+						<!--<div class="text">吃白色的的</div>-->
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 党建中心每月活动 -->
+		<div class="box zhongxin">
+			<a class="chakanquji" href="javascript:void(0)">
+				<div onclick="window.open('http://dj.ischooldays.com/idealDJP/noaccess/web/eventsbigscreen/eventsbigscreen.action?communityCode=001.001.041','_blank','width='+(window.screen.availWidth)+',height='+(window.screen.availHeight)+ ',top=0,left=0,status=no, toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no')">
+					<p>查看区级党建平台</p>
+				</div>
+			</a>
+			<h4><i class="iconfont icon-huodong"></i>中心每月活动预告<a href="{:U('Hq/articleList?id=55')}" class="more">更多<i
+					class="iconfont icon-gengduo"></i></a></h4>
+
+			<div class="wrapper">
+				<ul class="list">
+					<volist name="message" id="vo">
+					<li class="item"><a href="{:U('Hq/detail?id='.$vo['id'])}">{$vo.title}</a></li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		<!-- frame -->
+		<div class="frame-box">
+			<a href="{:U('Hq/general')}"><dl class="frame frame1" style="background: linear-gradient(#00DAC9,#009988)">
+				<dt class="icon"><i class="iconfont icon-chengshi"></i></dt>
+				<dd class="name">合庆概况</dd>
+			</dl></a>
+			<a href="{:U('Hq/party')}"><dl class="frame frame2" style="background: linear-gradient(#FF584A,#8D2B29)">
+				<dt class="icon"><i class="iconfont icon-dangjianzaixian"></i></dt>
+				<dd class="name">党建建设</dd>
+			</dl></a>
+			<a href="{:U('Hq/bespoke')}"><dl class="frame frame3" style="background: linear-gradient(#B322ED,#7313DD)">
+				<dt class="icon"><i class="iconfont2 icon2-naozhong"></i></dt>
+				<dd class="name">场地预约</dd>
+			</dl></a>
+			<a href="{:U('Hq/communitySchool')}"><dl class="frame frame4" style="background:linear-gradient(#0093FF,#005EC8)">
+				<dt class="icon"><i class="iconfont2 icon2-xuexiao"></i></dt>
+				<dd class="name">社区党校</dd>
+			</dl></a>
+			<a href="{:U('Hq/redLife')}"><dl class="frame frame1" style="background:linear-gradient(#FF5A4B,#8A2A28)">
+				<dt class="icon"><i class="iconfont2 icon2-dangyuanxinxi"></i></dt>
+				<dd class="name">党员服务</dd>
+			</dl></a>
+			<a href="{:U('Hq/dyxs')}"><dl class="frame frame1" style="background:linear-gradient(#FBC606,#E66217)">
+				<dt class="icon"><i class="iconfont2 icon2-fuwu"></i></dt>
+				<dd class="name">党员心声</dd>
+			</dl></a>
+		</div>
+		<!-- 合庆之路专题片 -->
+		<div class="box zhuanti">
+			<h4><i class="iconfont icon-shipin"></i>合庆之路专题<a href="{:U('Hq/videoList?id='.$stitle[1][id])}" class="more">更多<i class="iconfont icon-gengduo"></i></a></h4>
+			<div class="wrapper">
+				<div class="video">
+					<video class="videoplay"  poster="{$video.img_url}" controls="controls" preload="load" loop="loop">
+						<source  src="{$video.path}" type="video/mp4" />
+					</video>
+				</div>
+			</div>
+		</div>
+		<!-- 活动照片 -->
+		<div class="photobox">
+			<div class="box photo">
+				<h4><i class="iconfont icon-fuwu"></i>党建活动<a href="{:U('Hq/articleList?id=54')}" class="more">更多<i
+						class="iconfont icon-gengduo"></i></a></h4>
+				<a href="javascript:;">
+					<div class="wrapper">
+						<div class="photos">
+							<div class="slider-wrap" style="width: 100%;height: 100%;">
+								<div class="swiper-container" style="height: 100%;">
+									<div class="swiper-wrapper" style="height: 100%;">
+										<volist name="photo" id="vo">
+										<div class="swiper-slide"><a href="{:U('Hq/detail?id='.$vo['id'])}"><img src="{$vo.cover_id}"></a>
+											<div class="text">{$vo.title}</div>
+										</div>
+										</volist>
+									</div>
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+						</div>
+						<div class="jianjie">
+							<ul>
+								<volist name="photo_title" id="vo">
+									<li><a href="{:U('Hq/detail?id='.$vo['id'])}">{$vo.title}</a></li>
+								</volist>
+							</ul>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+		<!-- 二维码 -->
+		<div class="box code">
+			<p style="text-align: center;margin-top:30px;font-size: 20px;">党建之家二维码</p>
+			<div class="wrapper">
+				<img style="width: 293px;height: 306px" src="__DJ__/img/code.png" class="codeimg">
+			</div>
+			
+		</div>
+	</div>
+	<script type="text/javascript" src="__DJ__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__DJ__/js/jquery.marquee.min.js"></script>
+	<script type="text/javascript" src="__DJ__/js/swiper-3.4.2.jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 轮播
+			var mySwiper = new Swiper('.swiper-container', {
+				autoplay: 5000,//可选选项，自动滑动
+				pagination : '.swiper-pagination',
+				loop : true,
+			});
+			// 滚动
+			// $("#marquee").marquee({yScroll: "bottom"}); 
+			
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/swiper-3.4.2.min.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/daping.css">
+</head>
+<body>
+	<div class="title">
+		<div class="title-name"><img src="__DJ__/img/daping-title.png"></div>
+	</div>
+	<div class="content">
+		<!-- 美丽合庆 -->
+		<div class="box meili">
+			<h4><i class="iconfont icon-juweihui"></i>美丽合庆<a href="{:U('Hq/articleList?id='.$stitle[0][id])}" class="more">更多<i class="iconfont icon-gengduo"></i></a></h4>
+			<div class="wrapper">
+				<div class="video">
+					<div class="slider-wrap" style="width: 100%;height: 100%;">
+						<div class="swiper-container"  style="height: 100%;">
+						    <div class="swiper-wrapper"  style="height: 100%;">
+								<volist name="activity" id="vo">
+									<div class="swiper-slide">
+										<a href="{:U('Hq/detail?id='.$vo[id])}">
+											<img src="{$vo.cover_id}" />
+											<div style="position: absolute;z-index: 9999;" class="text">{$vo.title}</div>
+										</a>
+									</div>
+								</volist>
+						    </div>
+						    <!--<div class="text">吃白色的的</div>-->
+						    <div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 党建中心每月活动 -->
+		<div class="box zhongxin">
+			<h4><i class="iconfont icon-huodong"></i>党建中心每月活动<a href="{:U('Hq/djActivityList?id='.$dj['3']['id'])}" class="more">更多<i class="iconfont icon-gengduo"></i></a></h4>
+			<div class="wrapper">
+				<ul class="list">
+					<volist name="month" id="vo">
+					<li class="item"><a href="{:U('Hq/detail?id='.$vo['id'])}">{$vo.title}</a></li>
+					</volist>
+				</ul>
+			</div>
+			<div class="chakanquji">
+				<a href="#">
+					<span > 查看区级党建建设</span>
+				</a>
+			</div>
+		</div>
+		</div>
+		<!-- frame -->
+		<div class="frame-box">
+			<a href="{:U('Hq/general')}"><dl class="frame" style="background:url(__DJ__/img/1.png) no-repeat;background-size: 100% 100%;">
+				<dt class="icon"><i class="iconfont icon-chengshi"></i></dt>
+				<dd class="name">合庆概况</dd>
+			</dl></a>
+			<a href="{:U('Hq/information')}"><dl class="frame" style="background:url(__DJ__/img/7.png) no-repeat;background-size: 100% 100%;">
+				<dt class="icon"><i class="iconfont icon-xinxi"></i></dt>
+				<dd class="name">综合信息</dd>
+			</dl></a>
+			<a href="{:U('Hq/party')}"><dl class="frame" style="background:url(__DJ__/img/3.png) no-repeat;background-size: 100% 100%;">
+				<dt class="icon"><i class="iconfont icon-dangjianzaixian"></i></dt>
+				<dd class="name">合庆党建</dd>
+			</dl></a>
+			<a href="{:U('Hq/redLife')}"><dl class="frame" style="background:url(__DJ__/img/8.png) no-repeat;background-size: 100% 100%;">
+				<dt class="icon"><i class="iconfont icon-partycommittee"></i></dt>
+				<dd class="name">红色生活</dd>
+			</dl></a>
+		</div>
+		<!-- 合庆之路专题片 -->
+		<div class="box zhuanti">
+			<h4><i class="iconfont icon-shipin"></i>合庆之路专题<a href="{:U('Hq/videoList?id='.$stitle[1][id])}" class="more">更多<i class="iconfont icon-gengduo"></i></a></h4>
+			<div class="wrapper">
+				<div class="video">
+					<video class="videoplay"  controls="controls" preload="load" loop="loop">
+						<source  src="{$video.path}" type="video/mp4" />
+					</video>
+				</div>
+			</div>
+		</div>
+		<!-- 活动照片 -->
+		<div class="photobox">
+			<div class="box photo">
+					<h4><i class="iconfont icon-fuwu"></i>活动照片<a href="{:U('Hq/articleList?id='.$dj['5']['id'])}" class="more">更多<i class="iconfont icon-gengduo"></i></a></h4>
+				<a href="{:U('Hq/detail?id='.$photo[id])}"><div class="wrapper">
+					<div class="photos"><img src="{$photo.cover_id}"></div>
+					<div class="jianjie">{$photo.content}</div>
+				</div></a>
+			</div>
+			<div class="box tongzhi">
+				<i class="iconfont icon-tongzhi"></i>
+				<div class="roll">
+					<marquee behavior="scroll" scrollamount="5" direction="left" width="630">
+						<volist name="message" id="vo">
+						<a style="margin-right: 100px;" href="{:U('Hq/detail?id='.$vo[id])}" class="tz-text">{$vo.content}</a>
+						</volist>
+					</marquee>
+				</div>
+			</div>
+
+		</div>
+		<!-- 二维码 -->
+		<div class="box code">
+			<h4><i class="iconfont icon-dangjianzaixian"></i>党建之家二维码</h4>
+			<div class="wrapper">
+				<img src="__DJ__/img/code/hqdj.png" class="codeimg">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="__DJ__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__DJ__/js/swiper-3.4.2.jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var mySwiper = new Swiper('.swiper-container', {
+				autoplay: 5000,//可选选项，自动滑动
+				pagination : '.swiper-pagination',
+				loop : true,
+			})
+		})
+	</script>
+</body>
+</html>

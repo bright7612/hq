@@ -1,0 +1,71 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/lesson.css">
+
+    <div id="containerList" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0;overflow-y: auto;-webkit-overflow-scrolling: touch;">
+        <div class="layout" id="scrollcontainer" style="height: auto">
+            <ul id="list">
+            </ul>
+            <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                正在加载...
+            </div>
+            <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                没有数据了
+            </div>
+        </div>
+    </div>
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        var rows = 10;
+        var page = 1;
+        var nomore = false;
+        var isloading = false;
+
+        $(function () {
+//            用类名：blue-color、gray-color控制按钮颜色
+
+
+            var winH = $("#containerList").height();
+            $("#containerList").scroll(function () {
+                var pageH = $("#scrollcontainer").height();
+                var scrollT = $("#containerList").scrollTop();
+                var aa = (pageH - winH - scrollT) / winH;
+                if (aa < 0.05) {
+                    getData();
+                }
+            });
+        });
+        function aaa(id){
+        	 window.location.href='/home/ljz/dkyy/id/'+id;
+        }
+        function getData() {
+            if (nomore || isloading) {
+                return;
+            }
+            isloading = true;
+            $("#loadingdiv").show();
+            $.get('{:U("Ljz/listdk")}', {
+                page: page,
+                rows: rows
+            }, function (data) {
+                isloading = false;
+                if ('nomore' == data) {
+                    $('#nomorediv').show();
+                    nomore = true;
+                    $("#loadingdiv").hide();
+                } else {
+                    page++;
+                    $("#list").append(data);
+                    if ($("#list").children('li').length % rows > 0) {
+                        $('#nomorediv').show();
+                        nomore = true;
+                        $('#loadingdiv').hide();
+                    }
+                }
+            });
+        }
+        getData();
+    </script>
+</block>

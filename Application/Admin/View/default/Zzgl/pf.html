@@ -1,0 +1,77 @@
+<extend name="Public/base"/>
+<block name="body">
+
+    <div class="main-title">
+        <h2>党组织成员评分</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="with-padding">
+            <div class="form-item">
+                <label class="item-label">ID</label>
+                <div class="controls">
+                    {$data.id}
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">姓名</label>
+                <div class="controls">
+                    {$data.name}
+                </div>
+            </div>
+            <table  class="table  table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>积分类型</th>
+                        <th>积分项</th>
+                        <th>分值</th>
+                        <th>打分</th>
+                    </tr>
+                </thead>
+                 <tbody>
+                     <volist name="pflist" id="di" >
+                         <if  condition="isset($di['rowspan'])" >
+                             <tr>
+                                 <td rowspan="{$di.rowspan}"  align="center" style="vertical-align: middle" >{$di.jftype_name}</td>
+                                 <td >{$di.title}</td>
+                                 <td >{$di.fen}{$di.extra_info}</td>
+                                 <td>
+                                     <select class="form-control"  style="width: 100px" name="type_{$di.id}" >
+                                         <for start="0" end="$di['fen']+1" name="j" >
+                                             <option value="{$j}"  <eq name="j" value="$di.fen_get" > selected</eq>   >{$j}</option>
+                                         </for>
+                                     </select>
+                                 </td>
+                             </tr>
+                             <else/>
+                             <tr>
+                                 <td >{$di.title}</td>
+                                 <td >{$di.fen}{$di.extra_info}</td>
+                                 <td>
+                                     <select class="form-control" style="width: 100px" name="type_{$di.id}" >
+                                         <for start="0" end="$di['fen']+1" name="j" >
+                                             <option value="{$j}"  <eq name="j" value="$di.fen_get" > selected</eq>   >{$j}</option>
+                                         </for>
+                                     </select>
+                                 </td>
+                             </tr>
+                         </if>
+                     </volist>
+                  </tbody>
+            </table>
+            <div class="form-item with-padding">
+                <input type="hidden" name="id" value="{$data.id|default=''}">
+                <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">
+                    {:L("_SURE_WITH_SPACE_")}
+                </button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">
+                    {:L("_RETURN_WITH_SPACE_")}
+                </button>
+            </div>
+        </div>
+    </form>
+</block>
+<block name="script">
+    <script>
+        highlight_subnav('{:U("dzzcy")}');
+    </script>
+</block>

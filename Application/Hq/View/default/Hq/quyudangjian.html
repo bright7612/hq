@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/quyudangjian.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name" id="titleNme">区域化党建</div>
+	</div>
+	<div class="content">
+		<div class="frame-box">
+			<dl class="frame" style="background:url(__DJ__/img/11.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/articleList?id='.$stitle['id'])}">
+				<dt class="icon"><i class="iconfont icon-activity"></i></dt>
+				<dd class="name">活动概览</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/22.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/demand')}">
+				<dt class="icon"><i class="iconfont icon-laba"></i></dt>
+				<dd class="name">需求传声筒</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/33.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/articleList?id=62')}">
+				<dt class="icon"><i class="iconfont icon-jianjie"></i></dt>
+				<dd class="name">资源清单</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/44.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/projectList')}">
+				<dt class="icon"><i class="iconfont icon-che"></i></dt>
+				<dd class="name">项目直通车</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/11.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/articleList?id=63')}">
+				<dt class="icon"><i class="iconfont icon-loufang"></i></dt>
+				<dd class="name">共建单位</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/22.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/hexinyuan')}">
+				<dt class="icon"><i class="iconfont icon-circle1"></i></dt>
+				<dd class="name">合心圆</dd>
+			</a></dl>
+		</div>
+	</div>
+	<script type="text/javascript" src="__DJ__/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			changeTitleStyle('titleNme', 29, 35, 60);
+			function changeTitleStyle(el, textLength, fontSize, lineHeight) {
+	            if (el) {
+	                var title = document.getElementById(el);
+	                if (title.innerText.length > textLength) {
+	                    title.style.fontSize = fontSize + 'px';
+	                    title.style.lineHeight = 116 + 'px';
+	                }
+	                if(title.innerText.length > 41){
+	                	title.style.fontSize = fontSize + 'px';
+	                	title.style.lineHeight = lineHeight + 'px';
+	                }
+	            }
+	        }
+		})
+	</script>
+</body>
+</html>

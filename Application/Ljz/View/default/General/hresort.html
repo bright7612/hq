@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>求助</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/caller/home.css"/>
+    <script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn_container {
+            position: absolute;
+            bottom: 61px;
+            left: 0;
+            padding: 5px 20px;
+            right: 0;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: space-around;
+            -webkit-justify-content: space-around;
+            background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+        }
+
+        .resort_e {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background: url("/Public/images/ic_resort2.png");
+            background-size: 80px 80px;
+        }
+
+        .resort_e:active {
+            background-image: url("/Public/images/ic_resort2_active.png");
+        }
+
+        .resort {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background: url("/Public/images/ic_resort3.png");
+            background-size: 80px 80px;
+        }
+
+        .resort:active {
+            background-image: url("/Public/images/ic_resort3_active.png");
+        }
+
+        .resort ~ p, .resort_e ~ p {
+            text-align: center;
+            color: #3E4752;
+            font-weight: 500;
+        }
+
+        /*.resort3 {*/
+            /*position: fixed;*/
+            /*right: 0;*/
+            /*bottom: 100px;*/
+            /*background: url("/Public/images/ic_resort4.png") no-repeat 0 0/100% 100%;*/
+            /*display: none;*/
+            /*width: 60px;*/
+            /*height: 49px;*/
+            /*z-index: 100;*/
+        /*}*/
+        /*.resort3:active {*/
+            /*background-image: url("/Public/images/ic_resort4_active.png");*/
+        /*}*/
+
+        .oinfo {
+            position: fixed;
+            z-index: 300;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: none;
+            box-shadow: 0 0 3px 0 rgba(0,0,0,.1);
+            -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+        }
+
+        .oi_vinfo {
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            -webkit-justify-content: center;
+        }
+
+        .oiv_center {
+            flex: 1;
+            -webkit-flex: 1;
+        }
+
+        .oi_btns {
+            display: flex;
+            display: -webkit-flex;
+            justify-content: flex-end;
+            -webkit-justify-content: flex-end;
+            padding: 10px 0 0 10px;
+            font-size: 13px;
+            color: #5A5A5A;
+        }
+
+        .oi_btns .ws_btn_primary {
+            height: 20px;
+        }
+
+        .o2top {
+            padding: 10px;
+            font-size: 16px;
+            color: #3E4752;
+        }
+
+        .o2top i {
+            font-style: normal;
+        }
+
+        .order_status {
+            flex: 1;
+            -webkit-flex: 1;
+            font-size: 14px;
+            color: #51C5D4;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--地图 start-->
+<div style="height:100%;padding-bottom: 30px;box-sizing: border-box; position: relative;">
+    <div id="container" style="height:100%;"></div>
+</div>
+<!--地图 end-->
+<!--求助按钮 start-->
+<div class="btn_container">
+    <div id="resort1">
+        <div id="resort_e" class="resort_e">
+        </div>
+        <p>长按求助</p>
+    </div>
+    <div id="resort2">
+        <a href="{:U('resort')}" class="resort">
+        </a>
+        <p>求助</p>
+    </div>
+</div>
+<!--求助按钮 end-->
+<!--长按求助-->
+<div class="resort3" id="resort3" >
+</div>
+<!--当前紧急求助订单信息start -->
+<div id="oinfo" class="oinfo">
+    <div class="oi_vinfo ws_pixel_line_down">
+        <img id="o_vface" src="/Public/images/ic_avatar.png" width="50px" height="50px"
+             style="margin: 10px;border-radius: 100px;">
+        <div class="oiv_center">
+            <p id="o_vname" style="color: #3E4752;font-size: 1.2em;margin-top: 10px"></p>
+            <p id="o_vtitle" style="color: #3E4752;"></p>
+            <p id="o_vstar"></p>
+        </div>
+        <a id="o_vmobile">
+            <img src="/Public/images/ic_call.png" width="50px" height="50px" style="margin: 10px">
+        </a>
+    </div>
+    <div class="oi_btns">
+        <p class="order_status" id="ostate"></p>
+        <a id="o_cancel" class="ws_btn_primary">取消求助</a>
+        <a id="o_complete" class="ws_btn_primary">完成求助</a>
+    </div>
+</div>
+<!--当前紧急求助订单信息start-->
+<!--当前普通求助订单信息start -->
+<div id="oinfo1" class="oinfo">
+    <div class="oi_vinfo ws_pixel_line_down">
+        <img id="o_vface1" src="/Public/images/ic_avatar.png" width="50px" height="50px"
+             style="margin: 10px;border-radius: 100px;">
+        <div class="oiv_center">
+            <p id="o_vname1" style="color: #3E4752;font-size: 1.2em;margin-top: 10px"></p>
+            <p id="o_vtitle1" style="color: #3E4752;"></p>
+            <p id="o_vstar1"></p>
+        </div>
+        <a id="o_vmobile1">
+            <img src="/Public/images/ic_call.png" width="50px" height="50px" style="margin: 10px">
+        </a>
+    </div>
+    <div class="oi_btns">
+        <p class="order_status" id="o1state"></p>
+        <a id="o_cancel1" class="ws_btn_primary">取消求助</a>
+        <a id="o_complete1" class="ws_btn_primary">完成求助</a>
+    </div>
+</div>
+<div id="oinfo2" class="oinfo">
+    <div class="o2top ws_pixel_line_down">
+        <p>求助信息</p>
+        <p>地址:<i id="o2address"></i></p>
+        <p>求助内容:<i id="o2content"></i></p>
+        <a class="ws_audio1 ws_audio_static" id="o2audio" onclick="controlAudio();return false;">
+            <audio id="audio" src="" controls="controls" hidden>不支持audio</audio>
+        </a>
+    </div>
+    <div class="oi_btns">
+        <p class="order_status" id="o2state"></p>
+        <a id="o2cancel" class="ws_btn_primary">取消求助</a>
+    </div>
+</div>
+<!--当前普通求助订单信息start-->
+<!--tabbar start-->
+<div class="ws_tabbar" id="tabs" style="position: fixed ;bottom: 0;z-index: 5">
+    <a class="ws_tabbar_item " id="tab_volunteer" href="home.html">
+        <div class="ws_tabbar_icon">
+            <i class="ic_volunteer"></i>
+        </div>
+        <p class="ws_tabbar_label">志愿者</p>
+    </a>
+    <a class="ws_tabbar_item ws_bar_item_on" id="tab_resort" href="#">
+        <div class="ws_tabbar_icon">
+            <i class="ic_resort"></i>
+        </div>
+        <p class="ws_tabbar_label">求助</p>
+    </a>
+    <a class="ws_tabbar_item" id="tab_mine" href="hmine.html">
+        <div class="ws_tabbar_icon">
+            <i class="ic_mine"></i>
+        </div>
+        <p class="ws_tabbar_label">我的</p>
+    </a>
+</div>
+<!--tabbar end-->
+
+<div id="o_dialog" class="weui_dialog_confirm" style="display: none">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog" style="padding: 40px 40px;width: auto;">
+        <div style="position: relative;margin-bottom: 20px">
+            <img id="loading" src="/Public/images/ic_resorting.png" width="200px" height="200px">
+            <i id="o_time"
+               style="position: absolute;top:50%;left: 50%;transform: translate(-50%,-50%);font-size: 20px;font-style: normal;-webkit-transform: translate(-50%,-50%); "></i>
+        </div>
+        <a class="ws_btn_block" id="o_d_cancel">取消求助</a>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="/Public/js/jQueryRotate.js"></script>
+<script type="text/javascript" src="/Public/js/zepto.min.js"></script>
+<script type="text/javascript" src="/Public/js/touch.js"></script>
+<script>
+
+    var timeInterval;
+    var orderInterval;
+
+    var map;
+    var g_lat = 0, g_lng = 0, g_address = "";
+    var geolocation;
+    var geoc;
+    /*异步加载地图*/
+    function initialize() {
+        map = new BMap.Map('container');
+        var lat ='{$info.lat}',lng;
+
+        map.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+        geolocation = new BMap.Geolocation();
+        geoc = new BMap.Geocoder();
+        locate();
+        refreshCurrentOrder();
+        orderInterval = setInterval("refreshCurrentOrder()", 5000);
+    }
+
+    function locate() {
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                var mk = new BMap.Marker(r.point);
+                map.addOverlay(mk);
+                map.centerAndZoom(r.point, 15);
+                g_lat = r.point.lat;
+                g_lng = r.point.lng;
+                geoc.getLocation(r.point, function (rs) {
+                    g_address = rs.address;
+                });
+                getNearby(r.point.lat, r.point.lng);
+            } else {
+                //alert('failed' + this.getStatus());
+                layer.open({
+                    content: "定位失败,请重试"
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        }, {enableHighAccuracy: true});
+    }
+
+    function loadScript() {
+        var script = document.createElement("script");
+        script.src = "http://api.map.baidu.com/api?v=2.0&ak=aF1pIRItNcC27rMZcPX04YZWpmKCvP3U&callback=initialize";
+        document.body.appendChild(script);
+    }
+
+    window.onload = loadScript;
+
+    function getNearby(lat, lng) {
+        $.get('{:U("General/getNearby")}', {lat: lat, lng: lng, community: "{$community}"}, function (data) {
+            var json = $.parseJSON(data);
+
+            function addMarker(point) {
+                var myIcon = new BMap.Icon("/Public/images/ic_volunteer.png", new BMap.Size(50, 49));
+                var marker = new BMap.Marker(point, {icon: myIcon});
+                map.addOverlay(marker);
+            }
+
+            for (var i = 0; i < json.length; i++) {
+                var point = new BMap.Point(json[i].lng, json[i].lat);
+                addMarker(point);
+            }
+        });
+    }
+
+    $('#resort_e').on('longTap', function () {
+        resort();
+        return false;
+    });
+
+    $('#resort3').on('longTap', function () {
+        resort();
+        return false;
+    });
+
+
+    function resort() {
+        $.post("{:U('Api/resort')}", {lat: g_lat, lng: g_lng, address: g_address, type: 1}, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                refreshViews(d.orderInfo);
+            } else {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        });
+    }
+
+    function refreshCurrentOrder() {
+        $.post("{:U('Api/currentOrder')}", {}, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                refreshViews(d.info)
+            } else {
+
+            }
+        });
+    }
+
+
+    var starttime = 0;
+
+    function refreshViews(info) {
+        var resort1 = $('#resort1');
+        var resort2 = $('#resort2');
+        var resort3 = $('#resort3');
+
+        var oinfo = $("#oinfo");
+        var o_vname = $("#o_vname");
+        var o_vface = $("#o_vface");
+        var o_vtitle = $("#o_vtitle");
+        var o_vstar = $("#o_vstar");
+        var o_vmobile = $("#o_vmobile");
+        var o_cancel = $('#o_cancel');
+        var o_complete = $('#o_complete');
+        var ostate = $('#ostate');
+        var startext = "";
+
+        var oinfo1 = $("#oinfo1");
+        var o1vname = $("#o_vname1");
+        var o1vface = $("#o_vface1");
+        var o1vtitle = $("#o_vtitle1");
+        var o1vstar = $("#o_vstar1");
+        var o1vmobile = $("#o_vmobile1");
+        var o1state = $("#o1state");
+        var o1cancel = $('#o_cancel1');
+        var o1complete = $('#o_complete1');
+
+        var oinfo2 = $('#oinfo2');
+        var o2audio = $('#o2audio');
+        var audio = $('#audio');
+        var o2address = $("#o2address");
+        var o2content = $("#o2content");
+        var o2cancel = $('#o2cancel');
+        var o2state = $('#o2state');
+
+        var o_dialog = $("#o_dialog");
+        var o_time = $("#o_time");
+        var o_d_cancel = $("#o_d_cancel");
+
+        o_d_cancel.unbind('click');
+        o_cancel.unbind('click');
+        o_complete.unbind('click');
+        if (!info || !info.id) {
+            oinfo.hide();
+            o_dialog.hide();
+            oinfo1.hide();
+            oinfo2.hide();
+            resort1.show();
+            resort2.show();
+            resort3.hide();
+        } else {
+            // 有id的正常订单
+            if (info.status == 1) {
+                //创建
+                if (info.type == 1) {
+                    //紧急求助
+                    o_dialog.show();
+                    oinfo1.hide();
+                    oinfo2.hide();
+                    oinfo.hide();
+                    resort1.hide();
+                    resort2.hide();
+                    starttime = new Date().getTime() / 1000 - info.create_time;
+                    starttime = parseInt(starttime);
+                    if (starttime < 0) {
+                        starttime = 0;
+                    }
+                    if (timeInterval) {
+                        clearInterval(timeInterval);
+                    }
+                    timeInterval = setInterval("updateTime()", 1000);
+                    o_d_cancel.click(function () {
+                        cancelResort(info.id);
+                    });
+                } else if (info.type == 2) {
+                    //陪伴求助
+                    oinfo.hide();
+                    oinfo1.hide();
+                    o_dialog.hide();
+                    oinfo2.show();
+                    resort1.hide();
+                    resort2.hide();
+                    resort3.show();
+
+                    if (info.wav) {
+                        if(audio.attr('src') !="{:C('SERVER_IP')}" + info.wav) {
+                            audio.attr('src', "{:C('SERVER_IP')}" + info.wav);
+                            audio.on('loadedmetadata',function () {
+                            })
+                        }
+                        o2audio.show();
+                    } else {
+                        audio.attr('src', '');
+                        o2audio.hide();
+                    }
+                    o2address.text(info.fs_address);
+                    if (info.serviceType == "" || info.serviceType == "0") {
+                        o2content.text(info.fs_content);
+                    } else {
+                        o2content.text(info.serviceTypeName[0].name);
+                    }
+                    o2state.text("已向志愿者发送求助");
+                    o2cancel.unbind('click');
+                    o2cancel.click(function () {
+                        cancelResort(info.id);
+                    });
+                }
+            } else if (info.status == 2) {
+                //被接单
+                if (info.type == 1) {
+                    //紧急求助
+                    o_dialog.hide();
+                    oinfo.show();
+                    oinfo1.hide();
+                    oinfo2.hide();
+                    resort1.hide();
+                    resort2.hide();
+
+                    o_vname.text(info.receiver_name);
+                    o_vface.attr("src", getFace(info.receiver_face));
+                    o_vtitle.text(info.receiver_community + "志愿者");
+                    for (var i = 0; i < info.receiver_star; i++) {
+                        startext += "<i class='ws_star_medium'></i>"
+                    }
+                    ostate.text('志愿者正在赶来，请耐心等待');
+                    o_vstar.html(startext);
+                    o_cancel.show();
+                    o_complete.show();
+                    o_cancel.click(function () {
+                        cancelResort(info.id);
+                    });
+                    o_vmobile.attr("href", "tel://" + info.receiver_phone);
+                    o_complete.click(function () {
+                        window.location.href = '{:U("General/evaluatev")}?oid=' + info.id + "&uid=" + info.receiver_id;
+                    });
+                } else if (info.type == 2) {
+                    //陪伴求助
+                    oinfo.hide();
+                    oinfo1.show();
+                    o_dialog.hide();
+                    oinfo2.hide();
+                    resort1.hide();
+                    resort2.hide();
+                    resort3.show();
+
+                    o1state.text('志愿者正在赶来，请耐心等待');
+                    o1vname.text(info.receiver_name);
+                    o1vface.attr('src', getFace(info.receiver_face));
+                    o1vtitle.text(info.receiver_community + "志愿者");
+                    for (var i = 0; i < info.receiver_star; i++) {
+                        startext += "<i class='ws_star_medium'></i>"
+                    }
+                    o1vstar.html(startext);
+                    o1vmobile.attr("href", "tel://" + info.receiver_phone);
+                    o1cancel.show();
+                    o1complete.show();
+                    o1cancel.unbind('click');
+                    o1complete.unbind('click');
+                    o1cancel.click(function () {
+                        cancelResort(info.id);
+                    });
+                    o1complete.click(function () {
+                        window.location.href = '{:U("General/evaluatev")}?oid=' + info.id + "&uid=" + info.receiver_id;
+                    });
+                }
+            } else if (info.status == 3) {
+                //志愿者完成
+                if (info.type == 1) {
+                    //紧急求助
+                    o_dialog.hide();
+                    oinfo.show();
+                    oinfo1.hide();
+                    oinfo2.hide();
+                    resort1.hide();
+                    resort2.hide();
+
+                    o_vname.text(info.receiver_name);
+                    o_vface.attr("src", getFace(info.receiver_face));
+                    o_vtitle.text(info.receiver_community + "志愿者");
+                    for (var i = 0; i < info.receiver_star; i++) {
+                        startext += "<i class='ws_star_medium'></i>"
+                    }
+                    ostate.text('志愿者已确认完成，您可以对其评价');
+                    o_vstar.html(startext);
+                    o_vmobile.attr("href", "tel://" + info.receiver_phone);
+                    o_cancel.hide();
+                    o_complete.show();
+                    o_complete.click(function () {
+                        window.location.href = '{:U("General/evaluatev")}?oid=' + info.id + "&uid=" + info.receiver_id;
+                    });
+                } else if (info.type == 2) {
+                    //陪伴求助
+                    //陪伴求助
+                    oinfo.hide();
+                    oinfo1.show();
+                    o_dialog.hide();
+                    oinfo2.hide();
+                    resort1.hide();
+                    resort2.hide();
+                    resort3.show();
+
+                    o1state.text('志愿者已确认完成，您可以对其评价');
+                    o1vname.text(info.receiver_name);
+                    o1vface.attr('src', getFace(info.receiver_face));
+                    o1vtitle.text(info.receiver_community + "志愿者");
+                    for (var i = 0; i < info.receiver_star; i++) {
+                        startext += "<i class='ws_star_medium'></i>"
+                    }
+                    o1vstar.html(startext);
+                    o1vmobile.attr("href", "tel://" + info.receiver_phone);
+                    o1cancel.hide();
+                    o1complete.show();
+                    o1complete.unbind('click');
+                    o1complete.click(function () {
+                        window.location.href = '{:U("General/evaluatev")}?oid=' + info.id + "&uid=" + info.receiver_id;
+                    });
+                }
+            } else {
+                oinfo.hide();
+                o_dialog.hide();
+                oinfo1.hide();
+                oinfo2.hide();
+                resort1.show();
+                resort2.show();
+                resort3.hide()
+            }
+        }
+    }
+
+    function updateTime() {
+        var o_time = $("#o_time");
+        o_time.text(formatSeconds(starttime));
+        starttime++;
+    }
+
+    function zeroize(value, length) {
+        if (!length) length = 2;
+        value = String(value);
+        for (var i = 0, zeros = ''; i < (length - value.length); i++) {
+            zeros += '0';
+        }
+        return zeros + value;
+    }
+
+    function formatSeconds(value) {
+        var date1 = new Date(2016, 1, 1);
+        date1.setSeconds(value);
+        var h = date1.getHours();
+        if (h > 0) {
+            return zeroize(h) + ":" + zeroize(date1.getMinutes()) + ":" + zeroize(date1.getSeconds());
+        } else {
+            return zeroize(date1.getMinutes()) + ":" + zeroize(date1.getSeconds());
+        }
+    }
+
+    function cancelResort(id) {
+        $.post('{:U("Api/orderDel")}', {id: id}, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                $("#o_dialog").hide();
+                refreshCurrentOrder();
+                $("#o_time").text('');
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                });
+            } else {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        });
+    }
+
+    function getFace(face) {
+        if (face == "") {
+            return "/Public/images/ic_avatar.png";
+        } else {
+            return "{:C('SERVER_IP')}" + face;
+        }
+    }
+    var rotation = function () {
+        $("#loading").rotate({
+            angle: 0,
+            animateTo: 360,
+            duration: 5000,
+            callback: rotation,
+            easing: function (x, t, b, c, d) {        // t: current time, b: begInnIng value, c: change In value, d: duration
+                return c * (t / d) + b;
+            }
+        });
+    };
+    rotation();
+
+    var isPlaying = false;
+    function controlAudio() {
+        if (isPlaying)
+            return;
+
+        isPlaying = true;
+        var audio = document.getElementById("audio");
+        $("#audio").bind('ended', function () {
+            $('#o2audio').removeClass("ws_audio_anim");
+            isPlaying = false;
+
+        });
+        audio.play();
+        $('#o2audio').addClass("ws_audio_anim");
+    }
+</script>
+</body>
+</html>

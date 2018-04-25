@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>绑定账号</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+</head>
+<body>
+<div class="ws_content">
+    <div class="spacing" style="margin-top: 20%">
+        <form class="weui_cells_form" action="{:U('Index/code')}" method="post">
+            <input id="mobile" name="mobile" type="text" class="ws_input" placeholder="请输入手机号">
+            <button type="submit" class="weui_btn weui_btn_area weui_btn_primary">获取验证码</button>
+        </form>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+
+</html>

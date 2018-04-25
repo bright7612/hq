@@ -1,0 +1,218 @@
+@import "base.css";
+@import "../fonts2/iconfont.css";
+html {
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: url("../img/list-bg.png") no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.anchorBL {
+  display: none;
+}
+.title {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+.title .back {
+  width: 250px;
+  height: 105px;
+  color: #fff;
+  font-size: 46px;
+  text-align: center;
+  line-height: 90px;
+  border-radius: 55px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 40px;
+  left: 65px;
+}
+.title .back .icon-fanhui {
+  font-size: 70px;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+.title .title-name {
+  width: 1300px;
+  height: 116px;
+  text-align: center;
+  line-height: 116px;
+  color: #fff;
+  font-size: 50px;
+  margin: 30px auto 0;
+  background: url("../img/list-item.png") no-repeat;
+  background-size: 848px 100%;
+  background-position: 280px 0;
+  letter-spacing: 3px;
+}
+.content {
+  width: 1840px;
+  height: 800px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 20px 15px;
+  margin: 50px auto 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+.content .scroll-section {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+}
+.content .scroll-section::-webkit-scrollbar {
+  width: 20px;
+}
+.content .scroll-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content .scroll-section::-webkit-scrollbar-button {
+  display: none;
+}
+.content .scroll-section::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.content .bg-section {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+.content .bg-section .bg-inner {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.content .lesson-item {
+  padding: 15px 20px;
+  background-image: linear-gradient(180deg, #FDFAF3, #EBE7DA);
+}
+.content .lesson-item .lesson-title {
+  font-size: 40px;
+  line-height: 50px;
+  margin-bottom: 10px;
+}
+.content .lesson-item .lesson-box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.content .lesson-item .lesson-box .box-left {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.content .lesson-item .lesson-box .box-left .text {
+  display: table;
+  color: #666;
+  font-size: 30px;
+  line-height: 46px;
+}
+.content .lesson-item .lesson-box .box-left .text .text-label,
+.content .lesson-item .lesson-box .box-left .text .text-desc {
+  display: table-cell;
+}
+.content .lesson-item .lesson-box .box-left .text .text-label {
+  white-space: nowrap;
+}
+.content .lesson-item .lesson-box .box-left .text .iconfont {
+  display: inline-block;
+  font-size: 30px;
+  margin-right: 10px;
+}
+.content .lesson-item .lesson-box .box-left .text .iconfont.color-blue {
+  color: #0091ED;
+}
+.content .lesson-item .lesson-box .box-left .text .iconfont.color-green {
+  color: #85BD53;
+}
+.content .lesson-item .lesson-box .box-left .text .iconfont.color-orange {
+  color: #F48840;
+}
+.content .lesson-item .lesson-box .box-left .text .iconfont.color-yellow {
+  color: #F8B136;
+}
+.content .lesson-item .lesson-box .box-left .text .iconfont.color-pink {
+  color: #F8848A;
+}
+.content .lesson-item .lesson-box .box-right {
+  width: 200px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.content .lesson-item .lesson-box .box-right .btn {
+  display: inline-block;
+  color: #FFF;
+  font-size: 40px;
+  line-height: 80px;
+  padding: 0 30px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: tomato;
+  cursor: pointer;
+}
+.content .ewm-box {
+  padding: 20px;
+  border: 1px solid #000;
+  background: #FFF;
+}
+.content .ewm-box .ewm {
+  display: block;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 20px;
+}
+.content .ewm-box .text {
+  color: #666;
+  font-size: 30px;
+  line-height: 50px;
+}
+.content .ewm-box .close {
+  display: block;
+  width: 100px;
+  color: #FFF;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px;
+  margin: 20px auto 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: #666;
+  cursor: pointer;
+}

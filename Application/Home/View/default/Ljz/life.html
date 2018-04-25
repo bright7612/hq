@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>组织生活会</title>
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/css/zzlife.css">
+</head>
+<body>
+    <div class="layout">
+
+        <!--介绍部分 start-->
+        <section class="intro-section">
+            <div class="introduce">
+                <p>党的组织生活是党生活的重要内容，是党组织对党员进行教育、管理和
+                监督的重要形式。无故不参加组织生活6个月以上将会被作为自动退党处理。</p>
+            </div>
+            <div class="title bg-blue">
+                <span class="title-bar"></span>
+                <h3>选择组织名称</h3>
+            </div>
+        </section>
+        <!--介绍部分 end-->
+
+        <!--选择部分 start-->
+        <section class="list-section">
+            <ul>
+
+		    <volist name="data"  id="di" >
+                <li>
+                    <a href="/home/ljz/zzlife/id/{$di.id}">{$di.name}</a>
+                </li>
+	            
+		    </volist>            	
+            	
+             
+            </ul>
+        </section>
+        <!--选择部分 end-->
+
+    </div>
+</body>
+</html>

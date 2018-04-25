@@ -1,0 +1,37 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	
+
+<link rel="stylesheet" href="/Public/ljz/css/myAppoint.css">
+<div class="layout">
+    <ul id="container">
+    	
+	    <volist name="list" id="d">
+	 		<li>
+	            <h2>{$d.course_name}</h2>
+	            <div class="clearfix">
+	                <div class="fl">
+	                    <p>
+	                        <span>授课时间：<span>{$d.datetime|date='Y-m-d',###} </span></span>
+	                        &nbsp;&nbsp;<span>人数：<span>{$d.count}</span></span>
+	                    </p>
+	                    <p>讲师：{$d.teacher}</p>
+	                </div>
+	            </div>
+	            <p class="address">授课地点：{$d.addr}</p>
+	            <p>报名时间：<span>{$d.create_time|date='Y-m-d H:m:s ',###}</span></p>
+	            <p>报名状态：<span>{$d.state|statename}</span></p>
+	        </li>
+	
+	    </volist>
+
+    </ul>
+</div>
+
+
+
+
+</block>
+
+

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/swiper-3.4.2.min.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont2/iconfont2.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/dangjian1.css">
+</head>
+<body>
+	<div class="title">
+		<a class="back" href="javascript:history.back(-1)">
+			<i class="iconfont icon-fanhui"></i>返回
+		</a>
+		<div class="title-name">
+			<img src="__DJ__/img/djjs.png">
+		</div>
+	</div>
+	<div class="content">
+		<section class="content-inner">
+			<!-- 活动概览 -->
+			<div class="box huodong">
+				<h4>
+					<i class="iconfont icon-fuwu"></i>
+					<span class="text">活动概览</span>
+					<a href="{:U('Hq/articleList?id='.$stitle[0][id])}" class="more">更多>></a>
+				</h4>
+				<div class="wrapper">
+					<div class="video">
+						<div class="slider-wrap" style="width: 100%;height: 100%;">
+							<div class="swiper-container"  style="height: 100%;">
+								<div class="swiper-wrapper"  style="height: 100%;">
+									<volist name="activity" id="vo">
+										<div class="swiper-slide">
+											<a href="{:U('Hq/detail?id='.$vo[id])}">
+												<img src="{$vo.cover_id}" />
+												<div style="position: absolute;z-index: 9999;" class="text">{$vo.title}</div>
+											</a>
+										</div>
+									</volist>
+								</div>
+
+								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 制度建设 -->
+			<div class="box zhidu">
+				<h4>
+					<i class="iconfont icon-bookNote"></i>
+					<span class="text">组织管理</span>
+					<a href="{:U('Hq/articleList?id='.$stitle[1][id])}" class="more">更多>></a>
+				</h4>
+				<div class="wrapper">
+					<ul class="list">
+						<volist name="rule" id="vo">
+							<li class="item">
+								<a href="{:U('Hq/detail?id='.$vo['id'])}">
+									<i class="spot">●</i>
+									<span>{$vo.title}</span>
+								</a>
+							</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<!-- frame -->
+			<div class="frame-box">
+				<div class="frame-left-right">
+					<a href="{:U('Hq/organize')}">
+						<dl class="frame" style="background:url(__DJ__/img/1.png) no-repeat;background-size: 100% 100%;">
+							<dt class="icon">
+								<i class="iconfont icon-zuzhijiagou"></i>
+							</dt>
+							<dd class="name">组织架构</dd>
+						</dl>
+					</a>
+					<a href="{:U('Hq/localDj')}">
+						<dl class="frame" style="background:url(__DJ__/img/3.png) no-repeat;background-size: 100% 100%;">
+							<dt class="icon">
+								<i class="iconfont icon-jianjie"></i>
+							</dt>
+							<dd class="name">区域化党建</dd>
+						</dl>
+					</a>
+				</div>
+				<div class="frame-left-right">
+					<a href="{:U('Hq/mapList')}">
+						<dl class="frame" style="background:url(__DJ__/img/2.png) no-repeat;background-size: 100% 100%;">
+							<dt class="icon">
+								<i class="iconfont icon-ditu"></i>
+							</dt>
+							<dd class="name">党建地图</dd>
+						</dl>
+					</a>
+					<a href="{:U('Hq/articleList?id=64&type=1')}">
+						<dl class="frame" style="background:url(__DJ__/img/4.png) no-repeat;background-size: 100% 100%;">
+							<dt class="icon">
+								<i class="iconfont2 icon2-fuwu"></i>
+							</dt>
+							<dd class="name">微心愿</dd>
+						</dl>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="content-inner">
+			<!-- 书记带教 -->
+			<div class="box shuji">
+				<h4>
+					<i class="iconfont icon-jiuyezhidao"></i>
+					<span class="text">书记带教</span>
+					<a href="{:U('Hq/shuji')}" class="more">更多>></a>
+				</h4>
+
+				<div class="wrapper">
+					<a class="shuji-link clearfix" href="javascript:;" style="color: #000;">
+						<div class="photo">
+							<img src="{$shuji.pic}">
+						</div>
+						<div class="jianjie">{$shuji.desc}</div>
+					</a>
+				</div>
+			</div>
+			<!-- 组织管理 -->
+			<div class="box zuzhi">
+				<h4>
+					<i class="iconfont icon-kucun"></i>
+					<span class="text">党员先锋</span>
+					<a href="{:U('Hq/articleList?id='.$stitle[2][id])}" class="more">更多>></a>
+				</h4>
+				<div class="wrapper">
+					<ul class="list">
+						<volist name="organize" id="vo">
+							<li class="item">
+								<a href="{:U('Hq/detail?id='.$vo['id'])}">
+									<i class="spot">●</i>
+									<span>{$vo.title}</span>
+								</a>
+							</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script type="text/javascript" src="__DJ__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__DJ__/js/swiper-3.4.2.jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var mySwiper = new Swiper('.swiper-container', {
+				autoplay: 5000,//可选选项，自动滑动
+				pagination : '.swiper-pagination',
+				loop : true,
+			})
+		})
+	</script>
+</body>
+</html>

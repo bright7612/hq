@@ -1,0 +1,313 @@
+<extend name="Public/base"/>
+<block name="body">
+    <script type="text/html" id="dzzname" >
+        {{each result as value i}}
+        <option value="{{value.id}}"
+
+        > {{value.name}} </option>
+        {{/each}}
+    </script>
+    <script type="text/html" id="partymember" >
+        <thead>
+        <tr>
+            <th>姓名</th><th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{each data as value i}}
+        <tr>
+            <td>{{value.name}}</td><td><a  style="cursor: pointer" onclick="addPeople('{{value.id}}','{{value.name}}')" >添加</a></td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </script>
+
+
+    <div class="main-title">
+        <h2>{:isset($data['id'])?L('_EDIT_WITH_SINGLE_'):L('_NEW_WITH_SINGLE_')}组织活动</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="with-padding">
+            <div class="form-item">
+                <label class="item-label">活动日期</label>
+                <input type="hidden" name="datetime" value="{$data.datetime|default=time()}"/>
+                <input type="text" data-field-name="datetime" class="text input-large form-datetime time form-control"
+                       style="width: 400px" value="{$data.datetime|time_format}"
+                       placeholder={:L("_PLEASE_CHOOSE_TIME_WITH_DOUBLE_")}/>
+            </div>
+            <div class="form-item">
+                <label class="item-label">主题</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="subject"
+                           value="{$data.subject|default=''}">
+                </div>
+            </div>
+            <notempty  name="admindzz" >
+                <div class="form-item">
+                    <label class="item-label">党组织名称</label>
+                    <div class="controls">
+                        <input type="hidden" class="text input-large form-input-width form-control" name="dzzid" id="dzzid"
+                               value="{$admindzz.id}">
+                        {$admindzz.name}
+                    </div>
+                </div>
+                <else/>
+                <div class="form-item">
+                    <label class="item-label">党组织类型</label>
+                    <div class="controls">
+                        <select class="form-control form-input-width" id="dzztype" >
+                            <volist name="dzztype" id="di" >
+                                <option  value="{$di.type}"  <eq name="di.type" value="$data.dzztype" >selected</eq> >{$di.type}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label class="item-label">党组织名称</label>
+                    <div class="controls">
+                        <select class="form-control form-input-width" id="dzzid" name="dzzid" >
+                            <volist name="dzzname" id="di" >
+                                <option  value="{$di.id}"  <eq name="di.id" value="$data.dzzid" >selected</eq> >{$di.name}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+
+            </notempty>
+
+            <div class="form-item">
+                <label class="item-label">地点</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="addr"
+                           value="{$data.addr|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">人数</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" name="count"
+                           value="{$data.count|default=''}">
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">参加人员</label>
+                <div class="controls">
+                    <input type="text" class="text" name="people"  hidden   value="{$data.people}">
+                    <div id="div_people" >
+                        <volist  name="people" id="pi" >
+                            <a title="删除"  style="cursor: pointer;margin-right: 20px;" data-id="{$pi.id}">{$pi.name}</a>
+                        </volist>
+                    </div>
+                    <div  style="margin: 10px 0">
+                    <input id="key_people" class="form-control " style="display:inline-block;width: 100px;margin-right: 20px"  type="text"  ><a class="btn btn-primary" onclick="searchPeople()" >搜索</a>
+                    </div>
+                    <table id="table_people" class="table table-bordered" >
+
+                    </table>
+                    <script>
+                        var selectedPeople = [{$data.people}];
+                        $('#div_people').on('click',"a",function () {
+                            selectedPeople.splice(selectedPeople.indexOf($(this).data('id')+""),1);
+                            $('input[name="people"]').val(selectedPeople.join(','));
+                           $(this).remove();
+                        });
+
+                        function addPeople(id,name) {
+                            if(selectedPeople.indexOf(id+"")>=0){
+                                return;
+                            }
+                            selectedPeople.push(id);
+                            $('input[name="people"]').val(selectedPeople.join(','));
+                            var a = '<a title="删除"  style="cursor: pointer;margin-right: 20px;"  data-id="'+id+'" >'+name+'</a>';
+                            $('#div_people').append(a);
+                        }
+
+                        function searchPeople() {
+                            var key= $('#key_people').val();
+                            if(!key || key.trim() == ""){
+                                new $.zui.Messager('请输入姓名搜索', {
+                                    placement: 'bottom' // 定义显示位置
+                                }).show();
+                                return;
+                            }
+                            $.get("{:U('listPartyMember')}",{key:key},function (data) {
+                                var html = template('partymember',$.parseJSON(data));
+                               $('#table_people').html(html);
+                            });
+
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <label class="item-label">学习内容</label>
+                <div class="controls">
+                    <label class="textarea input-large">
+                        <textarea name="content" class="form-control"
+                                  style="width: 400px;height: 150px">{$data.content}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">讨论情况</label>
+                <div class="controls">
+                    <label class="textarea input-large">
+                        <textarea name="discuss" class="form-control"
+                                  style="width: 400px;height: 150px">{$data.discuss}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">达成共识</label>
+                <div class="controls">
+                    <label class="textarea input-large">
+                        <textarea name="consensus" class="form-control" style="width: 400px;height: 150px">{$data.consensus}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="form-item">
+                <div class="controls" style="position: relative">
+                    <div id="upload_single_image_pic1" style="padding-bottom: 5px;">{:L("_SELECT_PICTURES_")}</div>
+                    <input class="attach" type="hidden" name="pic1" value="{$data.pic1}"/>
+                    <div class="upload-img-box">
+                        <div class="upload-pre-item popup-gallery">
+
+                            <notempty name="data.pic1">
+                                <div class="each">
+                                    <a href="{$data.pic1|get_cover='path'}"
+                                       title={:L("_CLICK_TO_SEE_THE_BIG_PICTURE_WITH_DOUBLE_")}>
+                                        <img src="{$data.pic1|get_cover='path'}">
+                                    </a>
+                                    <div class="text-center opacity del_btn"></div>
+                                    <div onclick="admin_image.removeImage($(this),'{$data.pic1}')"
+                                         class="text-center del_btn">{:L("_DELETE_")}
+                                    </div>
+                                </div>
+                            </notempty>
+                        </div>
+                    </div>
+                    <script src="/Public/js/ext/webuploader/js/webuploader.js"></script>
+                    <script>
+                        $(function () {
+                            var uploader_pic1 = WebUploader.create({
+                                // 选完文件后，是否自动上传。
+                                auto: true,
+                                // swf文件路径
+                                swf: 'Uploader.swf',
+                                // 文件接收服务端。
+                                server: "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                // 选择文件的按钮。可选。
+                                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                                pick: '#upload_single_image_pic1',
+                                // 只允许选择图片文件
+                                accept: {
+                                    title: 'Images',
+                                    extensions: 'gif,jpg,jpeg,bmp,png',
+                                    mimeTypes: 'image/*'
+                                }
+                            });
+                            uploader_pic1.on('fileQueued', function (file) {
+                                uploader_pic1.upload();
+                            });
+                            /*上传成功**/
+                            uploader_pic1.on('uploadSuccess', function (file, data) {
+                                if (data.status) {
+                                    $("[name='pic1']").val(data.id);
+                                    $("[name='pic1']").parent().find('.upload-pre-item').html(
+                                            ' <div class="each"><a href="' + data.path + '" title={:L("_CLICK_TO_SEE_THE_BIG_PICTURE_WITH_DOUBLE_")}><img src="' + data.path + '"></a><div class="text-center opacity del_btn" ></div>' +
+                                            '<div onclick="admin_image.removeImage($(this),' + data.id + ')"  class="text-center del_btn">{:L("_DELETE_")}</div></div>'
+                                    );
+                                    uploader_pic1.reset();
+                                } else {
+                                    updateAlert(data.info);
+                                    setTimeout(function () {
+                                        $('#top-alert').find('button').click();
+                                        $(that).removeClass('disabled').prop('disabled', false);
+                                    }, 1500);
+                                }
+                            });
+                        })
+                    </script>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-item with-padding">
+            <input type="hidden" name="id" value="{$data.id|default=''}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">
+                {:L("_SURE_WITH_SPACE_")}
+            </button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">
+                {:L("_RETURN_WITH_SPACE_")}
+            </button>
+        </div>
+    </form>
+</block>
+<block name="script">
+        <link href="/Public/zui/lib/datetimepicker/datetimepicker.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="/Public/zui/lib/datetimepicker/datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Public/ljz/js/template.js"></script>
+        <script>
+            $('.form-datetime').datetimepicker({
+                language: "zh-CN",
+                autoclose: true,
+                format: 'yyyy-mm-dd hh:ii'
+            });
+            $('.form-date').datetimepicker({
+                language: "zh-CN",
+                minView: 2,
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('.form-time').datetimepicker({
+                language: "zh-CN",
+                minView: 0,
+                startView: 1,
+                autoclose: true,
+                format: 'hh:ii'
+            });
+            $('.time').change(function () {
+                var fieldName = $(this).attr('data-field-name');
+                var dateString = $(this).val();
+                var date = new Date(dateString);
+                var timestamp = date.getTime();
+                $('[name=' + fieldName + ']').val(Math.floor(timestamp / 1000));
+            });
+        </script>
+
+    <script>
+        highlight_subnav('{:U("zzshh")}');
+
+        var dzz = {$dzznamestr};
+
+        $("#dzztype").on("change",function () {
+           var dzztype= $(this).val();
+            var html =  template("dzzname" ,{result:dzz[dzztype]});
+            $("#dzzid").html(html);
+            updatecy();
+        });
+        $("#dzzid").on("change",updatecy);
+        updatecy();
+        function  updatecy() {
+            var dzzid= $("#dzzid").val();
+            $.get('{:U("listMemberByDzzid")}',{dzzid:dzzid},function (data) {
+                console.log(data);
+                var d = $.parseJSON(data);
+                if(d && d.result == 1){
+                    selectedPeople = d.pids;
+                    $('input[name="people"]').val(selectedPeople.join(','));
+                    var html = "";
+                    if(d.data) {
+                        for (var i = 0; i < d.data.length; i++) {
+                            html += '<a title="删除"  style="cursor: pointer;margin-right: 20px;white-space: nowrap;"  data-id="' + d.data[i].id + '" >' + d.data[i].name + '</a>';
+                        }
+                    }
+                    $('#div_people').html(html);
+                }
+            });
+
+        }
+
+    </script>
+</block>

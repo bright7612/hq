@@ -1,0 +1,120 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+<link rel="stylesheet" href="/Public/ljz/css/manage3.css">
+<link rel="stylesheet" href="/Public/ljz/font/iconfont.css"/>
+    <div class="layout">
+        <!--概况简介 start-->
+        <section class="abstract-box">
+            <div class="title clearfix">
+                <div class="label fl"></div>
+                概况简介
+            </div>
+            <div class="content">
+                <p>{$data.content|default="还未添加，敬请期待"}</p>
+            </div>
+        </section>
+        <!--概况简介 end-->
+
+        <!--党员民主评议 start-->
+        <section class="democracy-box">
+            <div class="title clearfix">
+                <div class="label fl"></div>
+                党员民主评议
+                <div class="more fr"  onclick="topy()">更多
+                    <span class="iconfont icon-right"></span>
+                </div>
+            </div>
+            <ul>
+                <volist name="pydata" id="di" >
+                    <li>
+                        <p class="demo-title">
+                            <span>{$key}</span>年党员民主评议
+                        </p>
+                        <p class="demo-detail">
+                            <span>{$di.total|default=0}</span>人参评 <span>{$di.mp|default=0}</span>人免评
+                        </p>
+                        <p class="demo-detail">
+                            评测结果：<span>{$di.yx|default=0}</span>名优秀，<span>{$di.hg|default=0}</span>名合格
+                            <gt name="di.jbhg"  value="0">
+                                ，<span>{$di.jbhg}</span>名基本合格
+                            </gt>
+                            <gt name="di.bhg"  value="0">
+                                ，<span>{$di.bhg|default=0}</span>名不合格
+                            </gt>
+                            <gt name="di.gzr"  value="0">
+                                ，<span>{$di.gzr|default=0}</span>名刚转入
+                            </gt>
+                            <gt name="di.bldj"  value="0">
+                                ，<span>{$di.bldj|default=0}</span>名保留党籍
+                            </gt>
+                            <gt name="di.wz"  value="0">
+                                ，<span>{$di.wz|default=0}</span>名未知
+                            </gt>
+                        </p>
+                        <!--<p class="demo-free">-->
+                        <!--免评人员情况：<span>XXXXX</span>-->
+                        <!--</p>-->
+                    </li>
+                </volist>
+            </ul>
+        </section>
+        <!--党员民主评议 start-->
+
+        <!--党组织类别 start-->
+        <section class="category-box">
+            <div class="title clearfix">
+                <div class="label fl"></div>
+                党员类别
+            </div>
+            <ul class="list clearfix">
+                <li class="fl clearfix" onclick="aaa(1)">
+                    <span class="img fl">
+                        <img src="/Public/ljz/img/org/org01.png" alt="">
+                    </span>
+                    <span class="name fl">
+                        党员名册
+                    </span>
+                </li>
+                <li class="fl"  onclick="aaa(2)">
+                    <span class="img fl" >
+                        <img src="/Public/ljz/img/org/org02.png" alt="">
+                    </span>
+                    <span class="name fl">
+                        双报到党员
+                    </span>
+                </li>
+                <li class="fl" onclick="aaa(3)">
+                    <span class="img fl">
+                        <img src="/Public/ljz/img/org/org03.png" alt="">
+                    </span>
+                    <span class="name fl">
+                        免过组织生活
+                    </span>
+                </li>
+                <li class="fl" onclick="aaa(4)">
+                    <span class="img fl">
+                        <img src="/Public/ljz/img/org/org04.png" alt="">
+                    </span>
+                    <span class="name fl">
+                        出国保留党籍
+                    </span>
+                </li>
+            </ul>
+        </section>
+        <!--党组织类别 end-->
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+ 	<script>
+ 		function aaa(type){
+        	window.location.href='/home/ljz/peoplelist/dzz/{$dzz}/type/'+type;
+        }
+
+        function topy() {
+            window.location.href='/home/ljz/py/dzz/{$data.id}';
+        }
+
+ 	</script>
+    
+</block>

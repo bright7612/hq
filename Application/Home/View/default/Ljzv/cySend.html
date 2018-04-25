@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>事件督办</title>
+    <script src="/Public/ljz3/src/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz3/src/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/css/cySend.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/lib/webuploader/webuploader.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/lib/layer_mobile/need/layer.css">
+    <script type="text/html" id="items">
+        {{if result}}
+            {{each result as value index}}
+                <li class="incident-item borderBtm-1px" data-id="{{value.id}}">
+                    <div class="title-wrapper">
+                        <h3 class="title">{{value.eventname}}</h3>
+                        {{if value.status < 6}}
+                            <div class="logo delivery">
+                                <span class="iconfont icon-xunzhao03"></span>
+                                <span class="text">已派送</span>
+                            </div>
+                        {{else if value.status == 6}}
+                            <div class="logo back">
+                                <span class="iconfont icon-tuihuishanggang"></span>
+                                <span class="text">已退回</span>
+                            </div>
+                        {{/if}}
+                    </div>
+                    <p class="detail">{{value.eventmemo}}</p>
+                    <p class="infor">
+                        <span class="iconfont icon-renyuan"></span>
+                        接收人：
+                        {{each value.backuser as user}}
+                            <span>{{user}}</span>&nbsp;
+                        {{/each}}
+                    </p>
+                    <p class="infor">
+                        <span class="iconfont icon-shijian"></span>
+                        派送时间：<span>{{value.sendtime | formatDate:'yyyy-MM-dd'}}</span>
+                    </p>
+                    <p class="infor">
+                        <span class="iconfont icon-shijian"></span>
+                        计划完成时间：<span>{{value.adviseendtime | formatDate:'yyyy-MM-dd'}}</span>
+                    </p>
+                </li>
+            {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="typeOption">
+        {{if eventtype}}
+            {{each eventtype as value i}}
+                <option value="{{value.DICT_KEY}}">{{value.DICT_VALUE}}</option>
+            {{/each}}
+        {{/if}}
+    </script>
+</head>
+<body>
+    <!--搜索区域 start-->
+    <section class="search-wrapper borderBtm-1px">
+        <form class="form" action="#">
+            <input id="search" class="search" type="search" placeholder="搜索">
+            <span id="sou1" class="iconfont icon-sousuo sou1"></span>
+            <span id="sou2" class="iconfont icon-sousuo sou2"></span>
+        </form>
+    </section>
+    <!--搜索区域 end-->
+
+    <!--新增信息区域 start-->
+    <section class="add-wrapper borderTop-1px borderBtm-1px">
+        <span id="add" class="iconfont icon-xinzeng"></span>
+        <span class="text">新增信息</span>
+    </section>
+    <!--新增信息区域 end-->
+
+    <!--列表信息部分 start-->
+    <section id="contentWrapper" class="content-wrapper">
+        <div id="scrollwrapper" class="scrollwrapper">
+            <ul id="incidentList" class="incident-list receive"></ul>
+            <div id="loadtext" class="loadtext"></div>
+        </div>
+    </section>
+    <!--列表信息部分 end-->
+
+    <!--路由区域 start-->
+    <section class="link-wrapper">
+        <a class="link fl" href="./cyReceive.html">
+            <span class="iconfont icon-xinxi"></span>
+            <span class="text">收到信息</span>
+        </a>
+        <a class="link fr active" href="javascript:;">
+            <span class="iconfont icon-xinxi"></span>
+            <span class="text">发出信息</span>
+        </a>
+    </section>
+    <!--路由区域 end-->
+
+    <!--发送模态框 start-->
+    <section id="module" class="module-display">
+       <article class="module">
+           <section class="form-wrapper">
+               <form action="#">
+                   <!--事件标题-->
+                   <div class="event-box">
+                       <h3 class="title">事件标题</h3>
+                       <input id="eventTitle" type="text">
+                   </div>
+                   <!--事件类型-->
+                   <div class="select-box">
+                       <div class="box-left">
+                           <h3 class="title">选择事件类型</h3>
+                           <select name="" id="eventType"></select>
+                       </div>
+                       <div class="box-right"></div>
+                   </div>
+                   <!--事件时间-->
+                   <div class="select-box">
+                       <div class="box-left clearfix">
+                           <h3 class="title">发生日期</h3>
+                           <div class="date-box">
+                               <span class="iconfont icon-rili"></span>
+                               <input id="dateHappen" type="datetime-local">
+                           </div>
+                       </div>
+                       <div class="box-right">
+                           <h3 class="title">完成日期</h3>
+                           <div class="date-box">
+                               <span class="iconfont icon-rili"></span>
+                               <input id="dateComplete" type="date">
+                           </div>
+                       </div>
+                   </div>
+                   <!--事件处理-->
+                   <!--<div class="option-box clearfix">-->
+                       <!--<h3 class="title">添加处理人</h3>-->
+                       <!--<div id="nameWrapper" class="name fl">-->
+                           <!--<ul id="nameList" class="name-list clearfix">-->
+                               <!--&lt;!&ndash;<li class="name-item fl">&ndash;&gt;-->
+                                   <!--&lt;!&ndash;<span class="text">安稳</span>&ndash;&gt;-->
+                                   <!--&lt;!&ndash;<span class="delete">&ndash;&gt;-->
+                                       <!--&lt;!&ndash;<span class="iconfont icon-guanbi"></span>&ndash;&gt;-->
+                                   <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                               <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                           <!--</ul>-->
+                       <!--</div>-->
+                       <!--<div id="addName" class="addname fr">-->
+                           <!--<span class="iconfont icon-tianjia"></span>-->
+                       <!--</div>-->
+                   <!--</div>-->
+                   <!--事件发生地址-->
+                   <div class="event-box">
+                       <h3 class="title">事件发生地址</h3>
+                       <input id="eventAddress" type="text">
+                   </div>
+                   <!--事件内容-->
+                   <div class="content-box">
+                       <h3 class="title">事件内容</h3>
+                       <textarea name="" id="eventContent"></textarea>
+                   </div>
+                   <!--事件照片-->
+                   <div class="photo-box">
+                       <h3 class="title">添加图片</h3>
+                       <!--dom结构部分-->
+                       <div id="uploader" class="uploader">
+                           <!--用来存放item-->
+                           <ul id="fileList" class="uploader-list">
+                               <li class="uploader-item">
+                                   <div id="filePicker" class="file-picker">
+                                       <span class="iconfont icon-tianjia"></span>
+                                   </div>
+                               </li>
+                               <li class="uploader-item">
+                                   <img src="/Public/ljz3/src/imgs/default.jpg">
+                               </li>
+                               <li class="uploader-item">
+                                   <img src="/Public/ljz3/src/imgs/default.jpg">
+                               </li>
+                           </ul>
+                       </div>
+                   </div>
+               </form>
+           </section>
+           <section class="btn-wrapper clearfix">
+               <input id="submit" class="submit fl" type="submit" value="发送">
+               <input id="close" class="close fr" type="button" value="关闭">
+           </section>
+       </article>
+    </section>
+    <!--发送模态框 end-->
+
+    <!--通讯录 start-->
+    <section id="note" class="note-display">
+        <div class="note">
+            <select name="">
+                <option value="1">机构一</option>
+                <option value="2">机构二</option>
+                <option value="3">机构三</option>
+            </select>
+            <div id="noteLists" class="note-lists">
+                <ul>
+                    <li class="note-list">
+                        <h3 class="title"></h3>
+                        <ul>
+                            <li class="note-item borderBtm-1px" data-nameid="name01">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name02">安稳</li>
+                        </ul>
+                    </li>
+                    <li class="note-list">
+                        <h3 class="title">城运办二</h3>
+                        <ul>
+                            <li class="note-item borderBtm-1px" data-nameid="name03">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name04">安稳</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name05">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name06">安稳</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name07">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name08">安稳</li>
+                        </ul>
+                    </li>
+                    <li class="note-list">
+                        <h3 class="title">城运办二</h3>
+                        <ul>
+                            <li class="note-item borderBtm-1px" data-nameid="name09">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name10">安稳</li>
+                        </ul>
+                    </li>
+                    <li class="note-list">
+                        <h3 class="title">城运办二</h3>
+                        <ul>
+                            <li class="note-item borderBtm-1px" data-nameid="name11">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name12">安稳</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name13">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name14">安稳</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name15">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name16">安稳</li>
+                        </ul>
+                    </li>
+                    <li class="note-list">
+                        <h3 class="title">城运办二</h3>
+                        <ul>
+                            <li class="note-item borderBtm-1px" data-nameid="name17">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name18">安稳</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name19">励志</li>
+                            <li class="note-item borderBtm-1px" data-nameid="name20">安稳</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--通讯录 end-->
+
+    <script src="/Public/ljz3/src/js/alert.js"></script>
+    <script src="/Public/ljz3/src/js/require.js" data-main="/Public/ljz3/src/js/cySend"></script>
+</body>
+</html>

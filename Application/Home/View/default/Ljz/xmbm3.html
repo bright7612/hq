@@ -1,0 +1,77 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/dwgj3.css">
+  
+    
+   <div class="layout">
+        <section class="support">
+            <div class="support-list">
+                <p>居委会共建</p>
+                <ul class="clearfix">
+                    <li class="fl">经费支持</li>
+                    <!-- 通过类名choose-style控制按钮的显示隐藏与否 -->
+                    <li class="fl choose-style">物资支持</li>
+                    <li class="fl">其他</li>
+                </ul>
+            </div>
+            <div class="support-list">
+                <p>项目共建</p>
+                <ul class="clearfix">
+                    <li class="fl">经费支持</li>
+                    <li class="fl">物资支持</li>
+                    <li class="fl">其他</li>
+                </ul>
+            </div>
+        </section>
+        <section class="form">
+            <h3>单位信息</h3>
+            <form action="">
+                <div>
+                    <span>名称</span>
+                    <input type="text" placeholder="请输入名称"/>
+                </div>
+                <div>
+                    <span>地址</span>
+                    <input type="text" placeholder="请输入地址"/>
+                </div>
+                <div>
+                    <span>联系人</span>
+                    <input type="text" placeholder="请输入联系人" name="name" id="name"/>
+                </div>
+                 <div>
+	                <span>联系电话</span>
+	                <input type="text" placeholder="请输入手机号" name="mobile" id="mobile">
+                </div>
+
+            </form>
+        </section>
+        <div class="confirm">
+            <div  id="submitBtn">提交</div>
+            <p>感谢您对社区自治工作的支持，最美家园，你我携手共建。</p>
+        </div>
+    </div>
+    
+   <script src="/Public/ljz/js/jquery.js"></script> 
+  <script>
+ 	$("#submitBtn").on("click",function () {
+		$.post("/home/ljz/xmbm2", {
+			aid: '{$data.id}',
+            mobile: $("#mobile").val(),
+            name: $("#name").val()
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+            $('li').on('click', function () {
+                $('.support').find('li').removeClass('choose-style')
+                $(this).addClass('choose-style');
+            });
+
+    </script>
+</block>

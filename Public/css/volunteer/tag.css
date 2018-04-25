@@ -1,0 +1,42 @@
+.tags_in > span {
+    padding: 2px 0 2px 10px;
+    border-radius: 50px;
+    background: #50CADA;
+    display: inline-block;
+    margin: 5px;
+    color: #fff;
+}
+
+.tags_in > span::after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("/Public/images/ic_del1.png") no-repeat 0 0/100% 100%;
+    position: relative;
+    top: -10px;
+    right: -5px;
+
+}
+
+.tags_out > span {
+    padding: 2px 12px;
+    border-radius: 50px;
+    border: 1px solid #5A5A5A ;
+    display: inline-block;
+    margin: 5px;
+    color: #5A5A5A;
+    border-radius: 50px;
+}
+
+.tags_out > span:active {
+    color: #fff;
+    background-color: #50CADA;
+    border-color: #50CADA;
+}
+
+.tag_on {
+    color: #fff;
+    background-color: #50CADA;
+    border-color: #50CADA;
+}

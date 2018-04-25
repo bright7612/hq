@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/dangxiao.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name" id="titleNme">社区党校</div>
+	</div>
+	<div class="content">
+		<div class="frame-box">
+			<dl class="frame" style="background:url(__DJ__/img/x.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/articleList?id=59')}">
+				<dt class="icon"><i class="iconfont icon-jieshao"></i></dt>
+				<dd class="name">总体介绍</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/y.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/articleList?id=57')}">
+				<dt class="icon"><i class="iconfont icon-zhaopian"></i></dt>
+				<dd class="name">活动照片</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/z.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/lessionList')}">
+				<dt class="icon"><i class="iconfont icon-dangjianzaixian"></i></dt>
+				<dd class="name">党课列表</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__DJ__/img/w.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/teacherList')}">
+				<dt class="icon"><i class="iconfont icon-jiuyezhidao"></i></dt>
+				<dd class="name">讲师风范</dd>
+			</a></dl>
+		</div>
+	</div>
+	<script type="text/javascript" src="__DJ__/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			changeTitleStyle('titleNme', 29, 35, 60);
+			function changeTitleStyle(el, textLength, fontSize, lineHeight) {
+	            if (el) {
+	                var title = document.getElementById(el);
+	                if (title.innerText.length > textLength) {
+	                    title.style.fontSize = fontSize + 'px';
+	                    title.style.lineHeight = 116 + 'px';
+	                }
+	                if(title.innerText.length > 41){
+	                	title.style.fontSize = fontSize + 'px';
+	                	title.style.lineHeight = lineHeight + 'px';
+	                }
+	            }
+	        }
+		})
+	</script>
+</body>
+</html>

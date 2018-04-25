@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>党费支付</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <style>
+        .tag {
+            color: #51C5D4;
+            border: #51C5D4 solid 2px;
+            padding: 20px 15px;
+            border-radius: 5px;
+            margin: 20px;
+            display: block;
+            font-size: 25px;
+            line-height: 25px;
+        }
+
+        .tag.on {
+            border: #51C5D4 solid 2px;
+            background-color: #51C5D4;
+            color: #fff;
+        }
+
+        .tag span {
+            font-size: 15px;
+            line-height: 15px;
+        }
+
+    </style>
+</head>
+<body style="text-align: center;color: #3E4752;font-size: 1em;">
+<form action="{:U('Wxpayljz/index')}" method="post">
+    <input type="text" id="sum" name="sum" class="weui_input"/>
+    <input type="text" name="rdurl" hidden value="http://www.baidu.com"/>
+</form>
+<div class="spacing">
+    <a class="ws_btn_block" onclick="recharge();">充值</a>
+</div>
+
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+
+    function recharge() {
+        $("form").submit();
+//        if(isNumeric($("#sum").val())) {
+//        }else{
+//            alert("请输入数字");
+//        }
+    }
+</script>
+</body>
+</html>

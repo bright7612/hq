@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>合庆党建品牌</title>
+	<link rel="stylesheet" type="text/css" href="__BRAND__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__BRAND__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__BRAND__/css/list-item.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name" id="titleNme">{$detail.title}</div>
+	</div>
+	<div class="content">
+		<div class="wrapper">
+			<p>{$detail.content}</p>
+			<div class="imgarea"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="__BRAND__/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			changeTitleStyle('titleNme', 29, 35, 60);
+			function changeTitleStyle(el, textLength, fontSize, lineHeight) {
+	            if (el) {
+	                var title = document.getElementById(el);
+	                if (title.innerText.length > textLength) {
+	                    title.style.fontSize = fontSize + 'px';
+	                    title.style.lineHeight = 116 + 'px';
+	                }
+	                if(title.innerText.length > 41){
+	                	title.style.fontSize = fontSize + 'px';
+	                	title.style.lineHeight = lineHeight + 'px';
+	                }
+	            }
+	        }
+		})
+	</script>
+</body>
+</html>

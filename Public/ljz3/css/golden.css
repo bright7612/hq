@@ -1,0 +1,115 @@
+html {
+  width: 1080px;
+  height: 1920px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.return {
+  width: 194px;
+  height: 81px;
+  text-align: center;
+  line-height: 81px;
+  border-radius: 10px;
+  background-color: #5D1113;
+  position: relative;
+  top: 82px;
+  left: 51px;
+}
+.return a {
+  color: #FFF;
+  font-size: 30px;
+}
+.return a .iconfont {
+  font-size: 70px;
+  vertical-align: middle;
+}
+body {
+  background: url("../imgs/bg/jsnd_bg.jpg") 100% 100% no-repeat;
+}
+.intro-wrapper {
+  width: 991px;
+  height: 1020px;
+  padding: 60px 40px;
+  margin: 150px auto 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.intro-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.intro-wrapper h2 {
+  color: #CD332A;
+  font-size: 51px;
+  text-align: center;
+  line-height: 80px;
+  margin-top: 20px;
+}
+.intro-wrapper p {
+  color: #515151;
+  font-size: 40px;
+  line-height: 60px;
+  text-indent: 2em;
+}
+.intro-wrapper p span {
+  font-weight: 700;
+}
+.intro-wrapper img {
+  display: block;
+  width: 430px;
+  height: 430px;
+  margin: 0 auto;
+}
+.photo-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  width: 991px;
+  height: 592px;
+  margin: 34px auto 0;
+  border-radius: 10px;
+}
+.photo-wrapper .photo-tb {
+  flex-basis: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+}
+.photo-wrapper .photo-tb .swiper-container {
+  width: 474px;
+  height: 274px;
+  border-radius: 10px;
+  position: relative;
+}
+.photo-wrapper .photo-tb .swiper-container > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.photo-wrapper .photo-tb .swiper-container .bar {
+  width: 100%;
+  height: 52px;
+  color: #FFF;
+  line-height: 52px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+}

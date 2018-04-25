@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>合庆党建品牌</title>
+	<link rel="stylesheet" type="text/css" href="__BRAND__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__BRAND__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__BRAND__/css/neirong.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name" id="titleNme">内容、机制</div>
+	</div>
+	<div class="content">
+		<div class="frame-box">
+			<dl class="frame" style="background:url(__BRAND__/img/a.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[1][id])}">
+				<dt class="icon"><i class="iconfont icon-jingji"></i></dt>
+				<dd class="name">党建+经济</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/b.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[2][id])}">
+				<dt class="icon"><i class="iconfont icon-jianshe"></i></dt>
+				<dd class="name">党建+建设</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/c.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[3][id])}">
+				<dt class="icon"><i class="iconfont icon-yinhuanzhili-copy"></i></dt>
+				<dd class="name">党建+治理</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/g.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[7][id])}">
+				<dt class="icon"><i class="iconfont icon-minzhupingyi"></i></dt>
+				<dd class="name">党建+民主</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/c.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[4][id])}">
+				<dt class="icon"><i class="iconfont icon-shengtaizhili-copy"></i></dt>
+				<dd class="name">党建+生态</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/g.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[6][id])}">
+				<dt class="icon"><i class="iconfont icon-qiyewenhua"></i></dt>
+				<dd class="name">党建+文化</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/a.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[5][id])}">
+				<dt class="icon"><i class="iconfont icon-minsheng"></i></dt>
+				<dd class="name">党建+民生</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/b.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[8][id])}">
+				<dt class="icon"><i class="iconfont icon-jiuyuanduiwu "></i></dt>
+				<dd class="name">党建+队伍</dd>
+			</a></dl>
+		</div>
+	</div>
+	<script type="text/javascript" src="__BRAND__/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			changeTitleStyle('titleNme', 29, 35, 60);
+			function changeTitleStyle(el, textLength, fontSize, lineHeight) {
+	            if (el) {
+	                var title = document.getElementById(el);
+	                if (title.innerText.length > textLength) {
+	                    title.style.fontSize = fontSize + 'px';
+	                    title.style.lineHeight = 116 + 'px';
+	                }
+	                if(title.innerText.length > 41){
+	                	title.style.fontSize = fontSize + 'px';
+	                	title.style.lineHeight = lineHeight + 'px';
+	                }
+	            }
+	        }
+		})
+	</script>
+</body>
+</html>

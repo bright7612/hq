@@ -1,0 +1,107 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/partyIdea.css"/>
+    <div class="layout clearfix">
+        <!--表单盒子 start-->
+        <section class="form-box">
+            <form action="" class="clearfix">
+                <textarea name="voice" id="voice" cols="30" rows="10" placeholder="各位党员，如果您对我们有任何建议或者意见，或者有党务类问题需要咨询请在下方空白处留下您的建议、问题，我们会通过后台第一时间给您反馈！请输入您想说的话（字数500字以内）"></textarea>
+                <div id="info" >
+                <div class="txtform clearfix">
+                    <span>姓名</span>
+                    <input type="text" placeholder="请输入姓名" id="name" name="name">
+                </div>
+                <div class="txtform clearfix">
+                    <span>电话</span>
+                    <input type="text" placeholder="请留下电话" id="tel" name="tel">
+                </div>
+                <div class="selform clearfix">
+                    <span>所在党组织</span>
+                    <select name="org" id="org">
+                        <volist name="dzz" id="di">
+                            <option value="{$di.name}">{$di.name}</option>
+                        </volist>
+                    </select>
+                </div>
+                </div>
+                <div class="txtform clearfix" style="border-top: 0;" >
+                    <label >
+                    <span>匿名</span>
+                    <input type="checkbox"  name="anonymous" value="1" id="anonymous" ></label>
+                </div>
+                <div class="subform">
+                    <!--<input type="submit" value="提交" onclick="commit();return false;">-->
+                    	<div class="submit" onclick="commit();return false;">提交</div>
+                </div>
+            </form>
+        </section>
+        <!--表单盒子 end-->
+
+        <!--&lt;!&ndash;留言陈列 start&ndash;&gt;-->
+        <!--<section class="note-box">-->
+            <!--<div class="note-title">-->
+                <!--<img src="/Public/ljz/img/theirIdea.png" alt="">-->
+            <!--</div>-->
+            <!--<div class="note-content">-->
+                <!--<ul class="clearfix">-->
+                    <!--<volist name="data" id="di">-->
+                        <!--<li class="clearfix">-->
+                            <!--<p class="fl">{$di.voice}</p>-->
+                            <!--<p class="fr">&#45;&#45;-->
+                                <!--<span class="address">{$di.org}</span>-->
+                                <!--&nbsp;&nbsp;&nbsp;-->
+                                <!--<span class="name">{$di.name}</span>-->
+                            <!--</p>-->
+                        <!--</li>-->
+                    <!--</volist>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</section>-->
+        <!--留言陈列 end-->
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+
+
+        function commit() {
+            var voice = $('#voice').val();
+            if (!voice || (voice == "")) {
+                alert("请写下你的意见");
+                return;
+            }
+            if(!$("#anonymous").prop("checked")) {
+                var name = $('#name').val();
+                if (!name || (name == "")) {
+                    alert("请写下你的姓名");
+                    return;
+                }
+            }
+
+            $.post("__SELF__", $("form").serialize(), function (data) {
+                var d = $.parseJSON(data);
+                alert(d.msg);
+                $("form")[0].reset();
+            });
+        }
+
+        var height = 0;
+        $(function () {
+            height = $("#info").height();
+        });
+
+        $("#anonymous").on("change",function () {
+            //alert($("#anonymous").prop("checked"));
+            if($("#anonymous").prop("checked")){
+                $("#info").animate({height:"0"});
+                $("#info").hide();
+            }else{
+                $("#info").animate({height:height+"px"});
+                $("#info").show();
+            }
+
+        });
+
+    </script>
+</block>

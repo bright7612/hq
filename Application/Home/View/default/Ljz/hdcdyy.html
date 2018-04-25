@@ -1,0 +1,98 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/activity3.css">
+<div class="layout">
+    <div style="padding: 10px;">
+        请<span style="color: red">提前3个工作日</span>预约
+    </div>
+    <form action="">
+        <p>请留下您的联系方式</p>
+        <div class="clearfix name">
+            <span>姓名</span>
+            <input type="text" placeholder="请输入姓名" id="name" value="{$wxmember.name}">
+        </div>
+        <div class="clearfix tel">
+            <span>联系方式</span>
+            <input type="text" placeholder="请输入联系方式" id="mobile" value="{$wxmember.mobile}">
+
+        </div>
+        <div class="clearfix tel">
+            <span>人数</span>
+            <input type="text" placeholder="人数" id="num" >
+
+        </div>
+        <div class="clearfix tel">
+            <span>所属党支部/单位</span>
+            <input type="text" placeholder="请输所属党支部/单位" id="company" >
+
+        </div>
+        <div class="clearfix tel">
+            <span>活动主题</span>
+            <input type="text" placeholder="请输活动主题" id="content" >
+
+        </div>
+        <div class="clearfix tel">
+            <span>活动开始时间</span>
+            <input type="datetime-local" placeholder="时间" id="start" name="start"  >
+        </div>
+        <div class="clearfix tel">
+            <span>活动结束时间</span>
+            <input type="datetime-local" placeholder="时间" id="end" name="end" >
+        </div>
+        <notempty name="hdsb" >
+        <div class="clearfix tel">
+            <span>设备要求</span>
+            <volist name="hdsb" id="di" >
+               <lable><input type="checkbox"   value="{$di.id}" >{$di.name}</lable>
+            </volist>
+            <input type="text"   name="sb"  id="sb" hidden>
+        </div>
+        </notempty>
+        <div class="clearfix tel">
+            <span></span>
+            提交预约申请后，后台审核时间需一个工作日。
+        </div>
+        
+        <div class="confirm" style="padding-bottom: 15px">
+             <div class="btn" id="submitBtn"   />提交</div>
+        </div>
+    </form>
+    
+    
+    
+</div>
+   <script src="/Public/ljz/js/jquery.js"></script> 
+  <script>
+      $('input[type=checkbox]').change(function(){
+          $('#sb').val($('input[type=checkbox]:checked').map(function(){return this.value}).get().join(','))
+      });
+ 	$("#submitBtn").on("click",function () {
+		$.post("/home/ljz/hdbm", {
+			aid: '{$data.id}',
+            mobile: $("#mobile").val(),
+            name: $("#name").val(),
+            company: $("#company").val(),
+            content: $("#content").val(),
+            count: $("#num").val(),
+            start:$("#start").val(),
+            end:$("#end").val(),
+            sb:$("#sb").val()
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	
+//			layer.open({
+//			    content: data.info
+//			    ,btn: '消息'
+//			  });
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+    	
+		
+    </script>
+</block>

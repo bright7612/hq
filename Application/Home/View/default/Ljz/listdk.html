@@ -1,0 +1,39 @@
+<volist name="data"  id="di" >
+<li <eq name="di.canyy" value="1">  onclick="aaa('{$di.id}')"  </eq> >
+    <div class="info-box clearfix">
+        <div class="title">
+            <h2>{$di.course_name}</h2>
+        </div>
+        <div class="left fl">
+            <p>
+                <span class="iconfont icon-shijian color-blue"></span>
+                <!--{$di.datetime|date='Y-m-d H:i',###|clean00}-->
+                {$di.datestr}
+            </p>
+             <if condition="$di.content neq ''">
+            <p>
+                <span class="iconfont icon-neirong color-green"></span>
+                <span>{$di.content}</span>
+            </p>
+            </if>
+            <p>
+                <span class="iconfont icon-svg18 color-orange"></span>
+                地点：<span>{$di.addr}</span>
+            </p>
+            <p>
+                <span class="iconfont icon-guanyangdanwei color-green"></span>
+                组织单位：<span>{$di.jbdw}</span>
+            </p>
+            <p>
+                <span class="iconfont icon-renshu1 color-pink"></span>
+                教室容量：<span>{$di.count}</span>
+            </p>
+        </div>
+        <eq name="di.canyy" value="1">
+            <div class="right fr">
+                <div class="btn">预约</div>
+            </div>
+        </eq>
+    </div>
+</li>
+</volist>

@@ -1,0 +1,29 @@
+html {
+  width: 1080px;
+  height: 1920px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.return {
+  width: 194px;
+  height: 81px;
+  text-align: center;
+  line-height: 81px;
+  border-radius: 10px;
+  background-color: #5D1113;
+  position: relative;
+  top: 82px;
+  left: 51px;
+}
+.return a {
+  color: #FFF;
+  font-size: 30px;
+}
+.return a .iconfont {
+  font-size: 70px;
+  vertical-align: middle;
+}

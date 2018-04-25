@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美丽合庆</title>
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__DJ__/css/djactivity.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name" id="titleNme">{$result[0][stitle]}</div>
+	</div>
+	<div class="content">
+		<div class="wrapper">
+			<ul class="list">
+				<volist name="result" id="vo">
+					<li class="item"><a href="{:U('Hq/detail?id='.$vo[id])}">{$vo.title}</a></li>
+				</volist>
+
+			</ul>
+		</div>
+		<!--<a  href="javascript:void(0)">-->
+			<!--<div style="font-size:28px;line-height: 70px;color: #fff;" class="href" onclick="window.open('http://dj.ischooldays.com/idealDJP/noaccess/web/eventsbigscreen/eventsbigscreen.action?communityCode=001.001.041','_blank','width='+(window.screen.availWidth)+',height='+(window.screen.availHeight)+ ',top=0,left=0,status=no, toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no')">-->
+				<!--<p>查看区级党建平台</p>-->
+			<!--</div>-->
+		<!--</a>-->
+
+		<!--<a style="font-size:28px;line-height: 70px;color: #fff;" href="javascript:;"><div class="href">查看区级党建平台</div></a>-->
+	</div>
+	<script type="text/javascript" src="__DJ__js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			changeTitleStyle('titleNme', 29, 35, 60);
+			function changeTitleStyle(el, textLength, fontSize, lineHeight) {
+	            if (el) {
+	                var title = document.getElementById(el);
+	                if (title.innerText.length > textLength) {
+	                    title.style.fontSize = fontSize + 'px';
+	                    title.style.lineHeight = 116 + 'px';
+	                }
+	                if(title.innerText.length > 41){
+	                	title.style.fontSize = fontSize + 'px';
+	                	title.style.lineHeight = lineHeight + 'px';
+	                }
+	            }
+	        }
+		})
+	</script>
+</body>
+</html>

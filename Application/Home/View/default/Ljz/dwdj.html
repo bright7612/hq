@@ -1,0 +1,22 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	<link rel="stylesheet" href="/Public/ljz/css/link.css">	
+   <div class="layout">
+        <ul class="clearfix">
+      	
+		    <volist name="data"  id="di" >
+
+	            <li class="fl">
+	                <a href="{$di.link}">
+	                    <img src="{$di.pic}" alt="{$di.wxname}">
+	                    <p>{$di.wxname}</p>
+	                </a>
+	            </li>
+		    </volist>
+
+          
+        </ul>
+    </div>
+
+</block>

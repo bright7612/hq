@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>{$title}</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/activityList.css">
+</head>
+<body>
+<!--头部 start-->
+<section class="title clearfix">
+    <h1>{$title}</h1>
+    <div class="return fl">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+</section>
+<!--头部 end-->
+
+<!--主体 start-->
+<section class="content">
+    <ul class="list-wrapper">
+        <volist name="data" id="di">
+            <li class="list">
+
+                <switch name="type">
+                    <case value="1">
+                        <p>联建单位：{$di.name}</p>
+                        <p>居民区党组织：{$di.dzzmc}</p>
+                    </case>
+                    <case value="2">
+                        <h2>{$di.name}</h2>
+                        <p>地址:{$di.addr}</p>
+                        <p>联系方式:{$di.tel}</p>
+                    </case>
+                    <case value="3">
+                        <h2>{$di.name}</h2>
+                        <p>地址:{$di.addr}</p>
+                        <p>容纳人数:{$di.num}</p>
+                        <p>联系方式:{$di.tel}</p>
+                    </case>
+                    <case value="4">
+                        <h2>{$di.name}</h2>
+                        <p>单位名称:{$di.dwmc}</p>
+                        <p>内容:{$di.content}</p>
+                        <p>备注:{$di.bz}</p>
+                    </case>
+                    <case value="8">
+                        <p>服务项目:{$di.content}</p>
+                        <p>社会组织名称:{$di.dwmc}</p>
+                        <p>负责人:{$di.name}</p>
+                        <p>地址:{$di.addr}</p>
+                        <p>联系方式:{$di.tel}</p>
+
+                    </case>
+                    <case value="9">
+                        <p>居委:{$di.jw}</p>
+                        <p>项目名称:{$di.name}</p>
+                        <p>项目金额:{$di.je1}</p>
+                        <p>街道财政:{$di.je2}</p>
+                        <p>汇丰-交行资助项目:{$di.je3}</p>
+                    </case>
+                    <case value="11">
+                        <h2>{$di.name}</h2>
+                        <p>居民区名称:{$di.jw}</p>
+                        <p>金融单位:{$di.dwmc}</p>
+                        <p>活动时间:{$di.sj}</p>
+                        <p>参加人数:{$di.num}</p>
+                    </case>
+                    <case value="12">
+                        <p>时间:{$di.sj}</p>
+                        <p>项目:{$di.name}</p>
+                        <p>主办:{$di.zb}</p>
+                        <p>协办:{$di.xb}</p>
+                    </case>
+                </switch>
+            </li>
+        </volist>
+    </ul>
+</section>
+<!--主体 end-->
+</body>

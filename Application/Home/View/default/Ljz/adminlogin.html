@@ -1,0 +1,51 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/activity3.css">
+<div class="layout">
+    <form action="">
+        <p>请输入用户名密码登录</p>
+        <div class="clearfix name">
+            <span>用户名</span>
+            <input type="text" placeholder="请输入姓名" id="name" >
+        </div>
+        <div class="clearfix tel">
+            <span>密码</span>
+            <input type="text" placeholder="请输入密码" id="pass" >
+
+        </div>
+        <div class="confirm">
+           
+            
+             <div class="btn" id="submitBtn"/>提交</div>
+        </div>
+    </form>
+    
+    
+    
+</div>
+   <script src="/Public/ljz/js/jquery.js"></script> 
+  <script>
+ 	$("#submitBtn").on("click",function () {
+		$.post("/home/ljz/adminlogin", {
+            pass: $("#pass").val(),
+            name: $("#name").val(),
+
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	
+//			layer.open({
+//			    content: data.info
+//			    ,btn: '消息'
+//			  });
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+    	
+		
+    </script>
+</block>

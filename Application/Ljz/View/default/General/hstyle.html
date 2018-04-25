@@ -1,0 +1,476 @@
+<extend name="Public/base"/>
+<block name="head_title">
+    <title>风采榜</title>
+</block>
+<block name="style">
+    <link rel="stylesheet" href="/Public/css/caller/home.css"/>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .to-list {
+            float: right;
+            display: none;
+            background: url("/Public/images/ic_switch2.png") no-repeat 0 0 /100% 100%;
+            width: 90px;
+            height: 30px;
+            margin-top: 5px;
+        }
+
+        .to-list.on {
+            display: inline-block;
+        }
+
+        .to-map {
+            float: right;
+            display: none;
+            background: url("/Public/images/ic_switch1.png") no-repeat 0 0 /100% 100%;
+            width: 90px;
+            height: 30px;
+            margin-top: 5px;
+        }
+
+        .to-map.on {
+            display: inline-block;
+        }
+
+        .top1 {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            right: 0;
+            font-size: 16px;
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+            background: #fff;
+            color: #3E4752;
+        }
+
+        .list1 {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            bottom: 61px;
+            background: #fff;
+            box-sizing: border-box;
+            overflow: scroll;
+        }
+
+        .nearbyV {
+            background: url("/Public/images/ic_nearby_v1.png") no-repeat 0 0/100% 100%;
+            width: 72px;
+            height: 67px;
+            position: absolute;
+            right: 10px;
+            top: 55px;
+        }
+
+        .nearbyV.on {
+            background: url("/Public/images/ic_nearby_v2.png") no-repeat 0 0/100% 100%;
+        }
+
+        .nearbyW {
+            background: url("/Public/images/ic_nearby_w1.png") no-repeat 0 0/100% 100%;
+            width: 72px;
+            height: 67px;
+            position: absolute;
+            right: 10px;
+            top: 135px;
+        }
+
+        .nearbyW.on {
+            background: url("/Public/images/ic_nearby_w2.png") no-repeat 0 0/100% 100%;
+        }
+
+        .resort1 {
+            background: url("/Public/images/ic_resort5.png") no-repeat 0 0/100% 100%;
+            width: 78px;
+            height: 94px;
+            position: absolute;
+            left: 10px;
+            bottom: 70px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .resort1:active {
+            border: none;
+            outline: none;
+        }
+
+        ul li {
+            background: #fff;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        ul li:active {
+            background: #ececec;
+        }
+        .pitem {
+            clear: both;
+            overflow: hidden;
+        }
+        .pitem .pi-title,.pitem .pi-content {
+            display: inline-block;
+            float: left;
+        }
+        .pi-title {
+            width: 35px;
+            color: #000;
+        }
+        .pi-content {
+            width: 100px;
+        }
+
+    </style>
+</block>
+<block name="body">
+    <!--地图 start-->
+    <div style="height:100%;padding-bottom: 30px;box-sizing: border-box; position: relative;" id="containerMap">
+        <div id="container" style="height:100%;"></div>
+        <a class="nearbyV on" id="nearbyV"></a>
+        <a class="nearbyW" id="nearbyW"></a>
+        <a class="resort1" href="{:U('msgresort')}" style="display: none"></a>
+    </div>
+    <!--地图 end-->
+    <div class="top1 ws_divider">
+        <span id="countInfo"></span> <a class="to-list on" id="toList" ></a><a class="to-map" id="toMap" hidden></a>
+    </div>
+    <div id="containerList" class="list1" hidden>
+        <div id="filt" class="filt ws_divider clearfix">
+            <span class="f_icon">筛选</span>&nbsp;&nbsp;&nbsp;<span id="f_tag">全部</span> <i id="filter_arrow" class="down"
+                                                                                          style="float: right;margin-top: 10px;"></i>
+        </div>
+        <div class="filter" id="filter" style="top: 79px">
+            <ul id="filters" style="background: #fff">
+                <li class="filter_on" data-id="0">全部</li>
+                <li data-id="1">评价从高到低</li>
+                <li data-id="2">服务次数</li>
+                <li data-id="3">锦旗数</li>
+            </ul>
+        </div>
+
+        <div id="scrollcontainer" style="padding-top: 36px; ">
+            <ul id="list" class="ws_ul">
+            </ul>
+            <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                正在加载...
+            </div>
+            <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                没有数据了
+            </div>
+        </div>
+    </div>
+    <!--tabbar start-->
+    <div class="ws_tabbar" id="tabs" style="position: fixed ;bottom: 0;z-index: 5">
+        <a class="ws_tabbar_item on" id="tab_volunteer" href="javascript:void(0);">
+            <div class="ws_tabbar_icon">
+                <i class="ic_style"></i>
+            </div>
+            <p class="ws_tabbar_label">风采榜</p>
+        </a>
+        <a class="ws_tabbar_item" id="tab_resort" href="{:U('General/hwish')}">
+            <div class="ws_tabbar_icon">
+                <i class="ic_wish"></i>
+            </div>
+            <p class="ws_tabbar_label">心愿单</p>
+        </a>
+        <a class="ws_tabbar_item" id="tab_mine" href="hmine.html">
+            <div class="ws_tabbar_icon">
+                <i class="ic_mine"></i>
+            </div>
+            <p class="ws_tabbar_label">我的</p>
+        </a>
+    </div>
+    <!--tabbar end-->
+
+</block>
+<block name="script">
+    <script>
+        var map;
+        var g_lat = 0, g_lng = 0, g_address = "";
+        var geolocation;
+        var geoc;
+        /*异步加载地图*/
+        function initialize() {
+            map = new BMap.Map('container');
+            map.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+            geolocation = new BMap.Geolocation();
+            geoc = new BMap.Geocoder();
+            locate();
+
+            var winH = $("#containerList").height();
+            $("#containerList").scroll(function () {
+                var pageH = $("#scrollcontainer").height();
+                var scrollT = $("#containerList").scrollTop();
+                var aa = (pageH - winH - scrollT) / winH;
+                if (aa < 0.05) {
+                    getData();
+                }
+            });
+        }
+
+        function locate() {
+            geolocation.getCurrentPosition(function (r) {
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    g_lat = r.point.lat;
+                    g_lng = r.point.lng;
+                    uploadLocation(g_lat,g_lng);
+                    geoc.getLocation(r.point, function (rs) {
+                        g_address = rs.address;
+                    });
+                    map.centerAndZoom(new BMap.Point(g_lng, g_lat), 19);
+                    getNearby(1);
+                } else {
+                    //alert('failed' + this.getStatus());
+                    layer.open({
+                        content: "定位失败,请重试"
+                        , skin: "msg"
+                        , time: 2
+                    });
+                }
+            }, {enableHighAccuracy: true});
+        }
+
+        function loadScript() {
+            var script = document.createElement("script");
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=aF1pIRItNcC27rMZcPX04YZWpmKCvP3U&callback=initialize";
+            document.body.appendChild(script);
+        }
+        window.onload = loadScript;
+        //        0  全部  1志愿者 2心愿单
+        function getNearby(type) {
+            map.clearOverlays();
+            var myicon = new BMap.Icon("/Public/images/ic_loc.png", new BMap.Size(28, 50));
+            var myPoint = new BMap.Point(g_lng, g_lat);
+            var mk = new BMap.Marker(myPoint, {icon: myicon});
+            map.addOverlay(mk);
+            if(type ==3)
+            {
+                return;
+            }
+            // map.centerAndZoom(myPoint, 15);
+            $.get('{:U("Api/nearbyInfo")}', {}, function (data) {
+                var json = $.parseJSON(data);
+                if (json.result != 1) {
+                    layer.open({
+                        content: json.message,
+                        skin: 'msg',
+                        time: 2
+                    });
+                    return;
+                }
+
+                function addMarker(point, info) {
+                    var myIcon = new BMap.Icon("/Public/images/ic_volunteer.png", new BMap.Size(35, 34),{imageSize:new BMap.Size(35,34)});
+                    var marker = new BMap.Marker(point, {icon: myIcon});
+                    map.addOverlay(marker);
+                    marker.addEventListener("click", function () {
+                        var face = info.face ? "{:C('SERVER_IP')}" + info.face : "/Public/images/ic_avatar.png";
+                        var sContent = '<div style="font-size: 14px;color: #474747" onclick="toVHome(' + info.uid + ')" >' +
+                                '<img src=' + face + ' class="ws_avatar" width="64" height="64" style="vertical-align: top">' +
+                                '<div style="display: inline-block;width: 140px;margin-left: 10px">' +
+                                '<h3>' + info.realName + ' ' + info.education + '</h3>' +
+                                '<p class="pitem"><span class="pi-title">职业:</span><span class="pi-content">'+ info.job + '</span></p>' +
+                                '<p class="pitem"><span class="pi-title">特长:</span><span class="pi-content">' + info.skills + '</span></p>' +
+                                '<p class="pitem"><span class="pi-title">住址:</span><span class="pi-content">' + info.homeAddress + '</span></p>' +
+                                '<p>服务次数' + info.serviceTimes + '次</p>' +
+                                '</div>' +
+                                '</div>';
+                        var infoWindow = new BMap.InfoWindow(sContent);
+                        this.openInfoWindow(infoWindow);
+                    });
+                }
+
+                function addMarker2(point, info) {
+                    var myIcon = new BMap.Icon("/Public/images/ic_wish.png", new BMap.Size(35, 34),{imageSize:new BMap.Size(35,34)});
+                    var marker = new BMap.Marker(point, {icon: myIcon});
+                    map.addOverlay(marker);
+                    marker.addEventListener("click", function () {
+                        var face = info.fs_face ? "{:C('SERVER_IP')}" + info.fs_face : "/Public/images/ic_avatar.png";
+                        var sContent = '<div style="font-size: 14px;color: #474747" onclick="resorting(' + info.id + ')" >' +
+                                '<img src="' + face + '" class="ws_avatar" width="64" height="64" style="vertical-align: top">' +
+                                '<div style="display: inline-block;width: 140px;margin-left: 10px">' +
+                                '<h3>' + info.fs_name + '</h3>' +
+                                '<p class="pitem"><span class="pi-title">地址:</span><span class="pi-content">' + info.fs_address + '</span></p>' +
+                                '<p class="pitem"><span class="pi-title">求助:</span><span class="pi-content">' + info.fs_content + '</span></p>' +
+                                '</div></div>';
+                        var infoWindow = new BMap.InfoWindow(sContent);
+                        this.openInfoWindow(infoWindow);
+                    });
+                }
+
+                var points = [];
+                points.push(new BMap.Point(g_lng, g_lat));
+                var vList = json.list1;
+                var vCount = 0, wCount = 0;
+                if(vList)
+                {
+                    vCount = vList.length;
+                }
+                if (vList && type != 2) {
+                    for (var i = 0; i < vList.length; i++) {
+                        var point = new BMap.Point(vList[i].Lng, vList[i].Lat);
+                        points.push(point);
+                        addMarker(point, vList[i]);
+                    }
+                }
+                var wList = json.list2;
+                if (wList && type != 1) {
+                    wCount = wList.length;
+                    for (i = 0; i < wList.length; i++) {
+                        point = new BMap.Point(wList[i].Lng, wList[i].Lat);
+                        points.push(point);
+                        addMarker2(point, wList[i]);
+                    }
+                }
+                $("#countInfo").text("附近有" + vCount + "位志愿者");
+                //map.setViewport(points);
+            });
+        }
+
+
+        $('#toList').on("click", function () {
+//            $('#toList').removeClass("on");
+//            $('#toMap').addClass("on");
+//            $("#containerList").show();
+//            $("#containerMap").hide();
+            window.location.href = "{:U('Index/wall')}";
+        });
+        $('#toMap').on("click", function () {
+            $('#toList').addClass("on");
+            $('#toMap').removeClass("on");
+            $("#containerList").hide();
+            $("#containerMap").show();
+        });
+        var nearbyV = $("#nearbyV");
+        var nearbyW = $("#nearbyW");
+        nearbyV.on("click", function () {
+            nearbyV.toggleClass('on');
+            //nearbyW.removeClass('on');
+            refreshMap();
+        });
+        nearbyW.on("click", function () {
+            nearbyW.toggleClass('on');
+            //nearbyV.removeClass('on');
+            refreshMap();
+        });
+
+        function refreshMap() {
+            var b1 = nearbyV.hasClass("on");
+            var b2 = nearbyW.hasClass("on");
+            if (b1 && b2) {
+                getNearby(0);
+                return;
+            }
+            if (!b1 && !b2) {
+                getNearby(3);
+                return;
+            }
+
+            if (b1) {
+                getNearby(1);
+                return;
+            }
+            if (b2) {
+                getNearby(2);
+                return;
+            }
+
+        }
+
+        var rows = 10;
+        var page = 1; //设置当前页数，全局变量
+        var nomore = false;
+        var isloading = false;
+
+        $("#filt").click(function () {
+            var filter = $("#filter");
+            var arrow = $("#filter_arrow");
+            if (filter.is(":hidden")) {
+                filter.show();
+                arrow.removeClass("down");
+                arrow.addClass("up");
+            } else {
+                filter.hide();
+                arrow.removeClass("up");
+                arrow.addClass("down");
+            }
+        });
+
+        $("#filter").click(function () {
+            $(this).hide();
+            $("#filter_arrow").removeClass("up").addClass("down");
+        });
+
+        $("#filters").children().each(function (i, node) {
+            $(node).click(function () {
+                if ($(node) == $('.filter_on')) {
+                    return;
+                }
+                $(node).addClass("filter_on");
+                $(node).siblings().removeClass("filter_on");
+                $('#f_tag').text($(node).text());
+                clearVlist();
+                getData();
+            });
+        });
+
+        function clearVlist() {
+            page = 1;
+            nomore = false;
+            $("#list").empty();
+            $("#nomorediv").hide();
+        }
+
+        function getData() {
+            if (nomore || isloading) {
+                return;
+            }
+            isloading = true;
+            $("#loadingdiv").show();
+            var order = $("#filters li.filter_on").data("id");
+            $.get('{:U("Volunteer/listWall2")}', {
+                order: order,
+                page: page
+            }, function (data) {
+                isloading = false;
+                if ('nomore' == data) {
+                    $('#nomorediv').show();
+                    nomore = true;
+                    $("#loadingdiv").hide();
+                } else {
+                    page++;
+                    $("#list").append(data);
+                    if ($("#list").children('li').length % 10 > 0) {
+                        $('#nomorediv').show();
+                        nomore = true;
+                        $('#loadingdiv').hide();
+                    }
+                }
+            });
+        }
+        getData();
+
+
+        function toVHome(uid) {
+            window.location.href = '{:U("General/vhomepage")}?uid=' + uid;
+        }
+        function resorting(id) {
+            window.location.href = "{:U('Volunteer/resorting')}?oid=" + id;
+        }
+        function uploadLocation(lat,lng) {
+            $.post("{:U('Api/infoEdit')}",{lat:lat,lng:lng},function (data) {
+            });
+        }
+    </script>
+</block>

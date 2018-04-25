@@ -1,0 +1,30 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/lessonIndex.css">
+     <div class="layout" id="layout">
+        <div class="apply">
+            <a href="/home/ljz/sbdk1"></a>
+        </div>
+        <div class="teacher">
+            <a href="/home/ljz/sbdk3"></a>
+        </div>
+        <div class="threesteps">
+            <a href="http://dj.ischooldays.com/idealDJP/common/threeclass/index.jsp"></a>
+        </div>
+    </div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script>
+        window.onload = function () {
+            //获取当前屏幕高度
+            var clientheight = window.innerHeight || document.documentElement.clientHeight ||
+                document.body.clientHeight || 0;
+            var layout = document.getElementById('layout')
+            if (clientheight < 1000) {
+                layout.style.backgroundSize = '100% auto';
+            }
+        }
+    </script>
+
+</block>

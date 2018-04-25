@@ -1,0 +1,148 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+<script src="/Public/ljz/js/prefixfree.min.js"></script>
+
+<link rel="stylesheet" href="/Public/ljz/css/people.css">
+<link rel="stylesheet" href="/Public/ljz/font/iconfont.css"/>
+    <link rel="stylesheet" href="/Public/ljz/css/dropload.css" >
+<script src="/Public/ljz/js/template.js"></script>
+  <script type="text/html" id="peopleName">
+        {{if data}}
+        {{each data as value i}}
+        <li onclick="aaa('{{value.id}}')">
+            <a href="javascript:;" class="clearfix">
+                <div class="image fl">
+                    {{if value.img}}
+                    <img src="{{value.img}}" alt=""/>
+                    {{else}}
+                    <img src="/Public/ljz/img/default_avatar.png" alt=""/>
+                    {{/if}}
+                </div>
+                <div class="intro fl">
+                    <p class="intro-name">{{value.name}}</p>
+                    <!--<p>-->
+                        <!--<span>{{value.gender}}</span>&nbsp;&nbsp;&nbsp;-->
+                        <!--<span>{{value.nation}}</span>-->
+                    <!--</p>-->
+                    <p>{{value.dzzmc}}</p>
+                    <p>党员分类：{{value.sort}}</p>
+                </div>
+                <div class="right fr">
+                    <span class="iconfont icon-xia"></span>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+
+<div class="layout">
+        <!--头部 start-->
+        <section class="header-box clearfix">
+            <div class="header-left fl">
+                选择党员类别
+            </div>
+            <div class="header-right fl">
+                <div class="header-select" id="header-select">
+                    <span id="branch">{$title}</span>
+                    <span class="iconfont icon-xia fr"></span>
+                </div>
+                <!--党员类别列表-->
+                <ul class="select-content" id="select-content">
+                    <li id="sort01" data-type="1" >
+                        <span class="text">党员名册</span>
+                        <span class="iconfont icon-gou fr redColor"></span>
+                    </li>
+                    <li id="sort02" data-type="2" >
+                        <span class="text">双报到党员</span>
+                        <span class="iconfont icon-gou fr redColor"></span>
+                    </li>
+                    <li id="sort03" data-type="3" >
+                        <span class="text">免过组织生活党员</span>
+                        <span class="iconfont icon-gou fr redColor"></span>
+                    </li>
+                    <li id="sort04" data-type="4" >
+                        <span class="text">出国保留党籍党员</span>
+                        <span class="iconfont icon-gou fr redColor"></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!--头部 end-->
+
+        <!--内容部分 start-->
+        <section class="content-box">
+            <div class="content">
+                <!--人物列表-->
+                <ul id="people-content">
+
+                </ul>
+                <!--遮罩-->
+
+            </div>
+        </section>
+
+        <!--内容部分 end-->
+    <div class="bg" id="bg"></div>
+    </div>
+
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script src="/Public/ljz/js/dropload.min.js"></script>
+    <script src="/Public/ljz/js/people.js"></script>
+ 	<script>
+ 		function aaa(id){
+// 			alert("asd");
+        	window.location.href='__CONTROLLER__/people/id/'+id;
+        }
+
+        var dropload;
+        var page = 1;
+        var type = "{$type}";
+        var rows  =10;
+        $(function () {
+            dropload=   $('.content').dropload({
+                scrollArea: window,
+                domDown : {
+                    domClass   : 'dropload-down',
+                    domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+                    domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                    domNoData  : '<div class="dropload-noData">暂无数据</div>'
+                },
+                loadDownFn: function (dl) {
+                    $.get('{:U("ljz/listpeople")}', {
+                        page: page,
+                        r: rows,
+                        dzz:"{$dzz}",
+                        type:type
+                    }, function (d) {
+                        if (d.result == 1) {
+                            if (d.data && d.data.length > 0) {
+                                page++;
+                                var lis = template("peopleName", d);
+                                $('#people-content').append(lis);
+                            } else {
+                                dl.lock();
+                                dl.noData(true);
+                            }
+                        }
+                            dl.resetload();
+                    },"json");
+                }
+            });
+        });
+        function resetDropload(t) {
+            page = 1;
+            type = t;
+            $('#people-content').html("");
+            if(dropload) {
+                dropload.unlock();
+                dropload.noData(false);
+                dropload.resetload();
+            }
+        }
+
+ 	</script>
+    
+</block>

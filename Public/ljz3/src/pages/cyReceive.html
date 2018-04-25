@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>事件督办</title>
+    <script src="../js/flexible.js"></script>
+    <link rel="stylesheet" href="../css/initialize.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/cySend.css">
+    <script type="text/html" id="items">
+        {{if result}}
+        {{each result as value index}}
+            <li class="incident-item borderBtm-1px" data-id="{{value.id}}">
+                <div class="title-wrapper">
+                    <h3 class="title">{{value.eventname}}</h3>
+                    {{if value.status === 4}}
+                        <div class="logo over">
+                            <span class="iconfont icon-duigou"></span>
+                            <span class="text">已结案</span>
+                        </div>
+                    {{else if value.status === 5}}
+                        <div class="logo back">
+                            <span class="iconfont icon-zuofei"></span>
+                            <span class="text">已作废</span>
+                        </div>
+                    {{else}}
+                        <div class="logo delivery">
+                            <span class="iconfont icon-cuowu"></span>
+                            <span class="text">未结案</span>
+                        </div>
+                    {{/if}}
+                    {{if value.timeresult == 1}}
+                        <span class="iconfont icon-jubao status status-danger"></span>
+                    {{else if value.timeresult == 2}}
+                        <span class="iconfont icon-jubao status status-warning"></span>
+                    {{else if value.timeresult == 3}}
+                        <span class="iconfont icon-jubao status status-success"></span>
+                    {{else}}
+                        <span class="iconfont icon-jubao status status-cancel"></span>
+                    {{/if}}
+
+                </div>
+                <p class="detail">{{value.eventmemo}}</p>
+                <p class="infor">
+                    <span class="iconfont icon-renyuan"></span>
+                    派发人：<span>{{value.senddepartment}}</span>
+                </p>
+                <p class="infor">
+                    <span class="iconfont icon-shijian"></span>
+                    计划完成时间：<span>{{value.adviseendtime | formatDate:'yyyy-MM-dd'}}</span>
+                </p>
+                <p class="infor">
+                    <span class="iconfont icon-shijian"></span>
+                    {{if value.windtime}}
+                        实际完成时间：<span>{{value.windtime | formatDate:'yyyy-MM-dd'}}</span>
+                    {{else}}
+                        实际完成时间：<span>暂无</span>
+                    {{/if}}
+                </p>
+            </li>
+        {{/each}}
+        {{/if}}
+    </script>
+</head>
+<body>
+    <!--搜索区域 start-->
+    <section class="search-wrapper borderBtm-1px">
+        <form class="form" action="#">
+            <input id="search" class="search" type="search" placeholder="搜索">
+            <span id="sou1" class="iconfont icon-sousuo sou1"></span>
+            <span id="sou2" class="iconfont icon-sousuo sou2"></span>
+        </form>
+    </section>
+    <!--搜索区域 end-->
+
+    <!--列表信息部分 start-->
+    <section id="contentWrapper" class="content-wrapper">
+        <div id="scrollwrapper" class="scrollwrapper">
+            <ul id="incidentList" class="incident-list receive">
+
+            </ul>
+            <div id="loadtext" class="loadtext"></div>
+        </div>
+    </section>
+    <!--列表信息部分 end-->
+
+    <!--路由区域 start-->
+    <section class="link-wrapper">
+        <a class="link fl active" href="javascript:;">
+            <span class="iconfont icon-xinxi"></span>
+            <span class="text">收到信息</span>
+        </a>
+        <a class="link fr" href="./cySend.html">
+            <span class="iconfont icon-xinxi"></span>
+            <span class="text">发出信息</span>
+        </a>
+    </section>
+    <!--路由区域 end-->
+
+    <script src="../js/require.js" data-main="../js/cyReceive"></script>
+    <!--<script src="../js/alert.js"></script>-->
+</body>
+</html>

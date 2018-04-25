@@ -1,0 +1,38 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+<link rel="stylesheet" href="/Public/ljz/css/zzj2.css">	
+
+<div class="layout">
+    <div class="text">
+        <p>2017年，我们继续深化、推进以自治金为载体的自治家园建设，在前期需求征集、项目评审的基础上，最终确定了本年度共124个自治金项目，希望大家继续给予关注并支持。</p>
+    </div>
+    <div class="remind" id="remind">
+
+    </div>
+</div>
+
+
+<script>
+    window.onload = function () {
+        var remind = document.getElementById('remind');
+        var num = 6;
+        var timer = null;
+
+        timer = setInterval(function () {
+            num --;
+            remind.innerHTML = num + '秒后自动跳转';
+            if (num === 0) {
+                clearInterval(timer);
+                console.log('跳转');
+//              alert("跳转");
+                window.location.href='/home/ljz/zzxm';
+//                window.location =
+                num = 5;
+            }
+        }, 1000);
+    }
+</script>
+    
+    
+</block>

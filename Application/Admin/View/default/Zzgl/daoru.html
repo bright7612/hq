@@ -1,0 +1,22 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="panel-main">
+        <div class="with-padding">
+
+            <a class="btn" style="padding:5px 10px;margin-right:25px;" onclick="importClick('example',{$groupid})">标准excel导入(党员基本信息汇总表)</a><br>
+            <br>
+
+
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        function importClick(type,groupid) {
+            var url = "admin/uploadExcel/excelupload/type/" + type + "/index/" + 0 + "/groupid/" + groupid + ".html";
+            var options = {iframe: url, moveable: true};
+            var newTrigger = new $.zui.ModalTrigger(options);
+            newTrigger.show();
+        }
+    </script>
+</block>
+

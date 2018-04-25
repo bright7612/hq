@@ -1,0 +1,111 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/partyTransfer.css"/>
+
+    <div class="layout">
+        <section class="title">党员组织关系转接流程</section>
+
+        <section class="section-box style-first">
+            <div class="subtitle style-first">一.转入党员</div>
+            <div class="content">
+                <p>1、本市范围内党员组织关系转入本街道：应先通过“上海市党员党组织信息管理系统”
+                    或《中国共产党党员组织关系介绍信》将党员组织关系转到合庆街道党工委，然后本人到
+                    合庆街道社区党建服务中心办理相关转接手续。</p>
+                <p>2、组织关系从外省市转移至本街道：应由该党员所在的地方委员会（县级及县级以上的）
+                    开出《中国共产党党员组织关系介绍信》，党员组织关系介绍信抬头为“中共上海市浦东
+                    新区委员会组织部”，党员本人持党员组织关系介绍信，并在有效期内到合庆街道社区
+                    党建服务中心办理转接手续，再及时到相应的党总支（支部）报到。</p>
+            </div>
+        </section>
+
+        <section class="section-box style-second">
+            <div class="subtitle style-second">二.转出党员</div>
+            <div class="content">
+                <p>党员组织关系转出本街道：党员本人持基层党总支（支部）开具的党员组织关系介绍信到
+                    合庆街道社区党建服务中心办理转接手续。</p>
+            </div>
+        </section>
+
+        <section class="section-box style-third">
+            <div class="subtitle style-third">三.注意事项</div>
+            <div class="content">
+                <p>1、党员组织关系介绍信有效期一般不应超过三个月，过期的党员组织关系介绍信视作废，
+                    由本人到开出的党组织另行补转。</p>
+                <p>2、组织关系一般要由本人办理，特殊情况可由组织指定专人代办，本人不能随便指定哪个
+                    党员代办。</p>
+                <p>3、介绍信和证明信由本人携带，不能自己携带的由机要交通或机要邮政来转递，不能用挂
+                    号信。</p>
+                <p>4、党员组织关系转接时需带好：本人身份证、组织关系介绍信；在职党员还需带好劳动合
+                    同；辞职、失业的党员还需带好劳动手册、退工单。</p>
+            </div>
+        </section>
+
+        <section class="section-box style-forth">
+            <div class="subtitle style-forth">四.关系转接点</div>
+            <div class="content">
+                <p>地址：商城路1177弄12号</p>
+                <p>咨询电话：68871363</p>
+                <p>传真：68871363</p>
+                <p>工作时间：周一至周五 （国定节假日休息）</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8:30-11:30； 13:30-17:00</p>
+            </div>
+        </section>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script src="/Public/ljz/mobile/layer.js" type="text/javascript"></script>
+    <style>
+    	
+    	.layui-m-layerchild {
+	position: relative;
+	display: inline-block;
+	text-align: left;
+	background-color: #fff;
+	font-size: 28px;
+	border-radius: 5px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+	pointer-events: auto;
+	-webkit-overflow-scrolling: touch;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-duration: .2s;
+	animation-duration: .2s
+}
+    	
+    </style>
+    <script>
+        $("#work_condition").on("change",function () {
+           if($(this).val() ==2){
+                $("#addrlabel").text("居住地址");
+           }
+        });
+
+ 	$("#submitBtn").on("click",function () {
+		$.post("/home/ljz/zzgx", {
+			operation: $("#operation").val(),
+            order_date: $("#order_date").val(),
+            order_time: $("#order_time").val(),
+            name: $("#name").val(),
+            mobile: $("#mobile").val(),
+            work_condition: $("#work_condition").val(),
+            addr: $("#addr").val(),
+
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	
+//			layer.open({
+//			    content: data.info
+//			    ,btn: '消息'
+//			  });
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+    	
+		
+    </script>
+</block>

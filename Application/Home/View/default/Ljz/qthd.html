@@ -1,0 +1,103 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/qt.css">
+    <!--<link rel="stylesheet" href="/Public/ljz/css/activity.css">-->
+    <script src="/Public/ljz/js/template.js"></script>
+    <script type="text/html" id="temp">
+        {{if data}}
+        {{each data as datas i}}
+        <li  onclick="aaa('{{datas.id}}')" >
+            <a class="clearfix" href="javascript:;">
+                <!--图片部分 start-->
+                <div class="image fl">
+                    <img src="/Public/ljz/img/zzj01.jpg" alt=""/>
+                </div>
+                <!--图片部分 end-->
+                <!--文字部分 start-->
+                <div class="intro fl">
+                    <h3>{{datas.name}}</h3>
+                    <div class="bom">
+                        <p>{{datas.date}}</p>
+                        <p>
+                            <span>主办：<span>工会、妇联、团工委</span></span>
+                            &nbsp;&nbsp;<span>协办：<span></span></span>
+                        </p>
+                    </div>
+                </div>
+                <!--文字部分 end-->
+            </a>
+        </li>
+
+        {{/each}}
+        {{/if}}
+    </script>
+    <div id="containerList" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0; overflow: auto">
+        <div class="layout" style="height: auto" id="scrollcontainer">
+            <ul id="container">
+
+            </ul>
+            <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                正在加载...
+            </div>
+            <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                没有数据了
+            </div>
+        </div>
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        $(function () {
+            $('body').on('click', '#btn', function () {
+//          	$(this).data("id");
+//          	alert($(this).data("id"));
+                window.location.href='/home/ljz/hdxq/id/'+$(this).data("id");
+            });
+            var winH = $("#containerList").height();
+            $("#containerList").scroll(function () {
+                var pageH = $("#scrollcontainer").height();
+                var scrollT = $("#containerList").scrollTop();
+                var aa = (pageH - winH - scrollT) / winH;
+                if (aa < 0.05) {
+                    getData();
+                }
+            });
+        });
+
+        var rows = 10;
+        var page = 1;
+        var nomore = false;
+        var isloading = false;
+        function aaa(id){
+        	 window.location.href='/home/ljz/hdxq/id/'+id;
+        }
+        function getData() {
+            if (nomore || isloading) {
+                return;
+            }
+            isloading = true;
+            $("#loadingdiv").show();
+            $.get('{:U("Ljz/listhd")}', {
+                page: page,
+                type: 2,
+                rows: rows
+            }, function (data) {
+                isloading = false;
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    if (d.data && d.data.length == rows) {
+                        page++;
+                    } else {
+                        $('#nomorediv').show();
+                        nomore = true;
+                        $("#loadingdiv").hide();
+                    }
+                    var lis = template('temp', d);
+                    $('#container').append(lis);
+                }
+            });
+        }
+        getData();
+    </script>
+</block>

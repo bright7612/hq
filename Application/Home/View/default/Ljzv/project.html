@@ -1,0 +1,60 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>项目直通车</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/project.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section class="content">
+        <ul class="project-list" id="container">
+            <volist name="list" id="di" >
+                <li class="project-item clearfix" data-id="{$di.id}">
+                    <h2 class="title">{$di.name}</h2>
+                    <div class="clearfix">
+                        <div class="left fl">
+                            <p>
+                                <span class="iconfont icon-jieshao"></span>
+                                {$di.desc}
+                            </p>
+                        </div>
+                        <div class="right fr">
+                            <div class="fr btn orange-btn" onclick="aaa('{$di.id}')">详情</div>
+                        </div>
+                    </div>
+                    <notempty name="di.picpath" >
+                        <div class="photo-box clearfix">
+                            <img class="fl" src="{$di.picpath}">
+                            <img class="fr" src="{$di.picpath2}">
+                        </div>
+                    </notempty>
+                </li>
+            </volist>
+        </ul>
+    </section>
+
+    <section class="ewm">
+        <img src="/Public/ljz3/imgs/ewm/ewm_ljzdj.jpg" alt="">
+        <p class="please">也可扫描二维码认领参与项目</p>
+    </section>
+
+    <script>
+        function aaa(id){
+            window.location.href='/home/ljzv/projectDetail/id/'+id;
+        }
+    </script>
+</body>
+</html>

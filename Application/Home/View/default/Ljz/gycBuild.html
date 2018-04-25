@@ -1,0 +1,87 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/gycBuild.css">
+    <div class="layout">
+        <!--图文介绍区域 start-->
+        <section class="content">
+            <!--<h5 class="tips">敬请关注“合庆党建”微信公众号活动预告，参与公益项目</h5>-->
+            <h2 class="title">{$data.name}</h2>
+            <p>{$data.desc}</p>
+            <notempty name="pics" >
+                <volist name="pics" id="di" >
+                    <img src="{$di|get_cover='path'}" alt="">
+                </volist>
+            </notempty>
+        </section>
+        <!--图文介绍区域 end-->
+
+        <!--排名区域 start-->
+        <section class="rank">
+            <h3 class="rank-title">认领方</h3>
+            <ul class="rank-list">
+                <volist name = "rldata"  id="di" >
+                    <eq name="di.rllx" value="1" >
+                        <li class="rank-item">
+                            <span class="iconfont icon-rongyu"></span>
+                            {$di.name} 已认领{$di.rltype_str}
+                        </li>
+                        <else/>
+                        <li class="rank-item">
+                            <span class="iconfont icon-rongyu"></span>
+                            {$di.dw} 已认领{$di.rltype_str}
+                        </li>
+                    </eq>
+                </volist>
+            </ul>
+        </section>
+        <!--排名区域 end-->
+
+        <!--捐赠选择区域 start-->
+        <section class="claim">
+            <h3 class="choose-title">请选择认领项目</h3>
+            <ul class="choose-list clearfix">
+                <volist name="rltypelist" id="di">
+                    <li class="choose-item fl" data-id="{$di.id}" >{$di.name}</li>
+                </volist>
+            </ul>
+            <div class="btn clearfix">
+                <span id="company" class="company fl">单位认领</span>
+                <span id="person" class="person fr">个人认领</span>
+            </div>
+        </section>
+        <!--捐赠选择区域 end-->
+    </div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('.choose-item').on('click', function () {
+                $(this).toggleClass('chosed');
+            });
+            $('#company').on('click', function () {
+                var rlitem = $(".choose-item.chosed");
+                if(!rlitem[0]){
+                    alert("请选择认领项目");
+                    return;
+                }
+                var rltype = rlitem.data("id");
+                alert("{$data.id}");
+                window.location.href = "{:U('gycBuildCompany')}?id={$data.id}&rltype="+rltype;
+            });
+            $('#person').on('click', function () {
+                var rlitem = $(".choose-item.chosed");
+                if(!rlitem[0]){
+                    alert("请选择认领项目");
+                    return;
+                }
+                var rltype = rlitem.data("id");
+                alert("{$data.id}");
+                window.location.href = "{:U('gycBuildPerson')}?id={$data.id}&rltype="+rltype;
+            });
+        });
+    </script>
+
+</block>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>会议列表</title>
+    <script src="/Public/ljz3/srcYSH/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz3/srcYSH/css/conference.css">
+    <script type="text/html" id="item">
+        {{if result}}
+            {{each result as value}}
+            <li class="conference-item borderTop-1px borderBtm-1px" data-detailId="{{value.id}}">
+                <ul class="item-list">
+                    <li class="item-item borderBtm-1px">
+                        <span class="iconfont icon-biaoti"></span>
+                        会议标题：{{value.meeting_title}}
+                    </li>
+                    <li class="item-item borderBtm-1px">
+                        <span class="iconfont icon-shijian1"></span>
+                        开始时间：<span class="time">{{value.meeting_start | formatDate:'yyyy-MM-dd hh:mm'}}</span>
+                    </li>
+                    <li class="item-item borderBtm-1px">
+                        <span class="iconfont icon-shijian1"></span>
+                        结束时间：<span class="time">{{value.meeting_end | formatDate:'yyyy-MM-dd hh:mm'}}</span>
+                    </li>
+                    <li class="item-item borderBtm-1px">
+                        <span class="iconfont icon-didian1"></span>
+                        会议地址：{{value.meeting_address}}
+                    </li>
+                    <li class="item-item borderBtm-1px">
+                        <span class="iconfont icon-iconfonticonfontwode1"></span>
+                        会议发起人：{{value.meeting_creat_people_name}}
+                    </li>
+                    <li class="item-item borderBtm-1px">
+                        <span class="iconfont icon-zhuangtai"></span>
+                        会议状态：{{value.status}}
+                    </li>
+                </ul>
+            </li>
+            {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="detailContent">
+        {{if $data}}
+            <!--区块一-->
+            <section class="infor-box borderTop-1px borderBtm-1px">
+                <div class="infor">
+                    <h2 class="title">{{meeting_title}}</h2>
+                </div>
+                <div class="infor">
+                    <p class="content">{{meeting_content}}</p>
+                </div>
+            </section>
+            <!--区块二-->
+            <section class="infor-box borderTop-1px borderBtm-1px">
+                <div class="infor">
+                    <span class="infor-label">开始时间：</span>
+                    <span class="infor-content">{{meeting_start | formatDate:'yyyy-MM-dd hh:mm'}}</span>
+                </div>
+                <div class="infor">
+                    <span class="infor-label">结束时间：</span>
+                    <span class="infor-content">{{meeting_end | formatDate:'yyyy-MM-dd hh:mm'}}</span>
+                </div>
+                <div class="infor">
+                    <span class="infor-label">会议地点：</span>
+                    <span class="infor-content">{{meeting_address}}</span>
+                </div>
+                <div class="infor">
+                    <span class="infor-label">参会人：</span>
+                    <div id="nameWrapper" class="infor-name">
+                        <ul id="nameList" class="name-list clearfix">
+                            {{if meeting_inviter.length}}
+                            {{each meeting_inviter as item index}}
+                            <li class="name-item fl">
+                                <span class="text">{{item}}</span>
+                            </li>
+                            {{/each}}
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        {{/if}}
+</script>
+</head>
+<body>
+    <!--会议列表展示部分 start-->
+    <section id="listWrapper" class="list-wrapper">
+        <div id="scrollWrapper">
+            <ul id="conferlist" class="conference-list">
+            </ul>
+            <div id="loadtext" class="loadtext"></div>
+        </div>
+    </section>
+    <!--会议列表展示部分 end-->
+
+    <!--会议详情展示部分 start-->
+    <section id="detail" class="detail-wrapper">
+        <div id="detailWrapper" class="detail-content">
+            <article id="detailScroll">
+
+            </article>
+        </div>
+        <div id="close" class="detail-btn">关闭</div>
+    </section>
+    <!--会议详情展示部分 end-->
+
+    <script src="/Public/ljz3/srcYSH/js/require.js" data-main="/Public/ljz3/srcYSH/js/conferenceList"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/gyc3.css">
+    <div class="layout">
+        <form action="">
+            <p>请留下您的联系方式</p>
+            <div class="clearfix name">
+                <span>姓名</span>
+                <input type="text" placeholder="请输入姓名" name="name" id="name" value="{$wxmember.name}">
+            </div>
+            <div class="clearfix tel">
+                <span>手机号</span>
+                <input type="text" placeholder="请输入手机号" name="mobile" id="mobile" value="{$wxmember.mobile}">
+            </div>
+            <div class="confirm">
+                <div class="btn" id="submitBtn"/>提交</div>
+            </div>
+        </form>
+    </div>
+   <script src="/Public/ljz/js/jquery.js"></script>
+  <script>
+ 	$("#submitBtn").on("click",function () {
+		$.post("/home/ljz/xmbm2", {
+			aid: '{$data.id}',
+            mobile: $("#mobile").val(),
+            name: $("#name").val()
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+
+
+    </script>
+</block>

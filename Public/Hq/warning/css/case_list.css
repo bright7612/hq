@@ -1,0 +1,420 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #f3f3f3;
+    overflow: hidden;
+}
+
+img {
+    border: 0 none;
+}
+
+i, em {
+    font-style: normal;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+input, select, button, h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-family: inherit;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: "微软雅黑";
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+}
+
+input[type="text"], textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.clearfix:after {
+    content: ".";
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/*调节默认的滚动轮的样式*/
+::-webkit-scrollbar {
+    width: 20px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    /*border-radius: 10px;*/
+    background: #e8e8e8;
+}
+
+body {
+    width: 1920px;
+    height: 1080px;
+    background: url("../img/anli_bg1.jpg") no-repeat;
+}
+
+#header {
+    box-sizing: border-box;
+    width: 100%;
+    height: 240px;
+    text-align: center;
+    /*border-bottom: dashed 1px #A9A9A9;*/
+}
+
+#part_content {
+    box-sizing: border-box;
+    width: 1822px;
+    height: 804px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#sidebar_left {
+    box-sizing: border-box;
+    width: 686px;
+    height: 100%;
+    border: dashed 1px #A9A9A9;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+#sidebar_right {
+    box-sizing: border-box;
+    width: 1123px;
+    height: 100%;
+    border: dashed 1px #A9A9A9;
+    border-radius: 8px;
+    background: rgba(224, 235, 243, 0.45);
+}
+
+#sidebar_left > dl {
+    margin: 0 auto;
+    /*padding:0 27px;*/
+    width: 635px;
+    /*height: 783px;*/
+    height: 350px;
+    /*border:1px solid black;*/;
+    /*background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9))*/
+    /*margin-left: 28px;*/
+}
+
+#sidebar_left > dl > dt, #sidebar_right > dl > dt {
+    box-sizing: border-box;
+    height: 91px;
+    width: 100%;
+    border-bottom: dashed 1px #A9A9A9;
+    position: relative;
+}
+
+#sidebar_left > dl > dt > i, #sidebar_right > dl > dt > i {
+    display: block;
+    font-size: 42px;
+    position: absolute;
+    top: 26px;
+    left: 7px;
+    color: #BF2525;
+}
+
+#sidebar_left > dl > dt img, #sidebar_right > dl > dt img {
+    margin-left: 63px;
+    margin-top: 35px;
+}
+
+#sidebar_left > dl > dd {
+    background: #fff;
+}
+
+#sidebar_left > .video_box {
+    width: 635px;
+    height: 375px;
+    margin: 8px auto 8px auto;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9))
+}
+
+#sidebar_left > .video_box > .video_title {
+    height: 56px;
+    line-height: 56px;
+    font-size: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+#sidebar_left > .video_box > .video_title > span {
+    margin-left: 12px;
+    font-size: 30px;
+    line-height: 56px;
+    color: #BF2525;
+}
+#sidebar_left > .video_box > .video_title>img{
+    width: 150px;
+    height: 29px;
+    margin-top: 12px;
+    margin-left: 18px;
+}
+#sidebar_left > .video_box > .video_title>.more{
+    font-size: 22px;
+    margin-left: 335px;
+    vertical-align: baseline;
+    cursor: pointer;
+}
+#sidebar_left > .video_box > .video_title>.more>a{
+    text-decoration: none;
+    color:#7D888F;
+}
+
+#sidebar_left > .video_box > .video1 {
+    width: 100%;
+    height: 320px;
+}
+
+#system_tab {
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 14px;
+    flex-direction: row;
+    height: 72px;
+    text-align: center;
+    font-size: 30px;
+    color: #666666;
+}
+
+#tab1, #tab2 {
+    width: 50%;
+    vertical-align: bottom;
+    line-height: 72px;
+    cursor: pointer;
+}
+
+#tab1 {
+    color: #C33434;
+}
+
+#tab2 {
+    background: #EFEFEF;
+}
+
+#study ul {
+    list-style: none;
+    margin: 0 10px;
+    overflow-y: auto;
+    /*height: 535px;*/
+    height: 170px;
+}
+
+#build ul {
+    list-style: none;
+    margin: 0 10px;
+    overflow-y: auto;
+    /*height: 535px;*/
+    height: 170px;
+}
+
+#study ul a {
+    text-decoration: none;
+    color: #4B4B4B;
+    font-size: 30px;
+}
+
+#build ul a {
+    text-decoration: none;
+    color: #4B4B4B;
+    font-size: 30px;
+}
+
+#study ul li {
+    margin-left: 18px;
+    margin-right: 10px;
+    height: 74px;
+    line-height: 74px;
+    border-bottom: dotted 1px #A9A9A9;
+    overflow: hidden;
+    text-overflow: ellipsis; /*文本溢出时显示省略标记*/
+    display: -webkit-box; /*设置弹性盒模型*/
+    -webkit-line-clamp: 1; /*文本占的行数,如果要设置2行加...则设置为2*/
+    -webkit-box-orient: vertical; /*子代元素垂直显示*/
+}
+
+#build ul li {
+    margin-left: 18px;
+    margin-right: 10px;
+    height: 74px;
+    line-height: 74px;
+    border-bottom: dotted 1px #A9A9A9;
+    overflow: hidden;
+    text-overflow: ellipsis; /*文本溢出时显示省略标记*/
+    display: -webkit-box; /*设置弹性盒模型*/
+    -webkit-line-clamp: 1; /*文本占的行数,如果要设置2行加...则设置为2*/
+    -webkit-box-orient: vertical; /*子代元素垂直显示*/
+}
+#sidebar_left>.scroll_box{
+    margin: 0 auto;
+    width: 635px;
+    height: 56px;
+    background: #fff;
+    line-height: 56px;
+    display: flex;
+    flex-direction: row;
+}
+#sidebar_left>.scroll_box>i{
+    color:#BF2525;
+    font-size: 34px;
+    line-height: 56px;
+    height: 100%;
+}
+#sidebar_left>.scroll_box>img{
+    width: 130px;
+    height: 26px;
+    margin-top: 16px;
+    margin-left: 10px;
+}
+#sidebar_left>.scroll_box>.scroll_text{
+    height: 56px;
+    font-size: 24px;
+    margin-left: 50px;
+    line-height: 56px;
+    width: 350px;
+}
+#sidebar_left>.scroll_box>.scroll_text>a{
+    text-decoration: none;
+    color:#5D5D5D;
+}
+#sidebar_right {
+    padding: 0 12px;
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5))
+}
+#sidebar_right>dl>.right_tab_item{
+    height: 72px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 14px;
+    cursor: pointer;
+}
+#tab3,#tab4{
+    width: 50%;
+    text-align: center;
+    font-size: 32px;
+    line-height: 72px;
+}
+#tab3{
+    color: #C33434;
+}
+#tab4{
+    background: #EFEFEF;
+}
+#sidebar_right a {
+    text-decoration: none;
+}
+
+#sidebar_right a .new_box {
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 170px;
+    border-bottom: dashed 1px #A9A9A9;
+    margin: 33px 22px 0 33px;
+}
+
+#sidebar_right .new_box .title {
+    box-sizing: border-box;
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: 500;
+    font-family: "SimHei";
+    width: 100%;
+    height: 40px;
+}
+
+#sidebar_right .new_box .title {
+    overflow: hidden;
+    text-overflow: ellipsis; /*文本溢出时显示省略标记*/
+    display: -webkit-box; /*设置弹性盒模型*/
+    -webkit-line-clamp: 1; /*文本占的行数,如果要设置2行加...则设置为2*/
+    -webkit-box-orient: vertical; /*子代元素垂直显示*/
+}
+
+#sidebar_right .new_box .abstract {
+    color: #7A7A7A;
+    padding-top: 13px;
+    font-size: 20px;
+    line-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis; /*文本溢出时显示省略标记*/
+    display: -webkit-box; /*设置弹性盒模型*/
+    -webkit-line-clamp: 2; /*文本占的行数,如果要设置2行加...则设置为2*/
+    -webkit-box-orient: vertical; /*子代元素垂直显示*/
+}
+
+#sidebar_right .new_box .time {
+    font-size: 25px;
+    color: #4F4F4F;
+}
+
+#sidebar_right .new_box .time i {
+    font-style: normal;
+    line-height: 60px;
+}
+
+#sidebar_right > dl > dd {
+    width: 100%;
+    height: 624px;
+    overflow-y: auto;
+}
+#tab4Box{
+    display: none;
+}
+
+/*初始状态党镇建设不显示*/
+#build {
+    display: none;
+}

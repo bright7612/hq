@@ -1,0 +1,26 @@
+<div style="margin-bottom: 55px;overflow: scroll">
+    <ul id="communities">
+        <volist name="communities" id="vo">
+            <if condition="$vo['id'] eq $mycommunity['id']">
+                <li data-id="{$vo.id}" class="checked">
+                    <else/>
+                <li data-id="{$vo.id}">
+            </if>
+            <div class="i_center">
+                <p>{$vo.name}</p>
+            </div>
+            </li>
+        </volist>
+    </ul>
+</div>
+<div style="position: fixed;bottom: 0;width: 100%;padding: 5px 15px 15px;box-sizing: border-box;background-color: #fff">
+    <a class="ws_btn_block" onclick="onCommunitySelected()">确定</a>
+</div>
+<script>
+    $("#communities").children().each(function (i, n) {
+        $(n).click(function () {
+            $(this).addClass("checked");
+            $(this).siblings().removeClass("checked");
+        });
+    })
+</script>

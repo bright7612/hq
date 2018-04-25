@@ -1,0 +1,201 @@
+html {
+  width: 1366px;
+  height: 768px;
+  margin: 0 auto;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url("../imgs/bg.jpg") no-repeat;
+  background-size: 100% 100%;
+  font-family: 'microsoft yahei';
+}
+.banner {
+  width: 1366px;
+  margin: 0 auto;
+}
+.banner .title {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  padding-left: 13px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.banner .title .iconfont {
+  font-size: 35px;
+  color: #FADD4D;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FEE858), to(#E5AB1B));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.banner .title .text {
+  color: #FFF;
+  font-size: 30px;
+  font-family: '方正舒体';
+  margin-left: 10px;
+}
+.banner .content {
+  width: 1356px;
+  height: 711px;
+  margin: 5px auto 0;
+}
+.content {
+  overflow: hidden;
+  position: relative;
+}
+.content .rank-wrapper {
+  width: 630px;
+  margin-left: 20px;
+}
+.content .rank-wrapper .subtitle {
+  color: #91101B;
+  font-size: 30px;
+  line-height: 74px;
+  padding-left: 15px;
+}
+.content .rank-wrapper .rank-content {
+  width: 100%;
+  height: 540px;
+}
+.content .rank-wrapper .rank-content table th:first-child {
+  width: 90px;
+}
+.content .rank-wrapper .rank-content table td:first-child {
+  width: 90px;
+}
+.content .rank-wrapper .bottom {
+  width: 100%;
+  margin-top: 7px;
+}
+.content .rank-wrapper .bottom .add,
+.content .rank-wrapper .bottom .more {
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 6px;
+}
+.content .rank-wrapper .bottom .add {
+  width: 396px;
+  height: 65px;
+  line-height: 63px;
+  border: 1px solid #AF4F3F;
+  background-color: rgba(175, 79, 63, 0.6);
+}
+.content .rank-wrapper .bottom .add b {
+  font-size: 30px;
+  color: #FFFC19;
+  text-shadow: 1px 1px #9E4A02;
+  margin-left: 10px;
+}
+.content .rank-wrapper .bottom .more {
+  width: 133px;
+  height: 48px;
+  line-height: 46px;
+  margin-top: 10px;
+  border: 1px solid #E82A33;
+  background-color: #CD4A4F;
+  background-image: linear-gradient(180deg, #EA5B62, #76211F);
+  cursor: pointer;
+}
+.content .shield {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  display: none;
+}
+.content .shield .more-box {
+  width: 604px;
+  height: 642px;
+  margin: 40px auto 0;
+  border: 1px solid #990900;
+  border-radius: 6px;
+  background-color: #FFF;
+  position: relative;
+}
+.content .shield .more-box .close {
+  width: 39px;
+  height: 39px;
+  color: #960E19;
+  text-align: center;
+  line-height: 37px;
+  border: 1px solid #960E19;
+  border-radius: 50%;
+  background-color: #FFF;
+  position: absolute;
+  top: -19px;
+  right: -19px;
+  cursor: pointer;
+}
+.content .shield .more-box .close .iconfont {
+  font-size: 20px;
+}
+.content .shield .more-box .more-innerbox {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.content table {
+  width: 100%;
+  border: 1px solid #900914;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.content table th {
+  height: 58px;
+  color: #77251E;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+.content table th:first-child {
+  width: 64px;
+}
+.content table th:nth-child(2) {
+  width: 335px;
+}
+.content table tbody tr td {
+  height: 48px;
+  color: #77251E;
+  font-size: 16px;
+  text-align: center;
+}
+.content table tbody tr td:first-child {
+  width: 64px;
+  text-align: center;
+}
+.content table tbody tr td:nth-child(2) {
+  width: 335px;
+  max-width: 335px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.content table tbody tr td .score {
+  display: inline-block;
+  margin-right: 20px;
+}
+.content table tbody tr td .iconfont {
+  display: inline-block;
+}
+.content table tbody tr td .iconfont[data-condition="1"] {
+  color: #EF4505;
+}
+.content table tbody tr td .iconfont[data-condition="-1"] {
+  color: #529F02;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.content table tbody tr td .iconfont[data-condition="0"] {
+  display: none;
+}

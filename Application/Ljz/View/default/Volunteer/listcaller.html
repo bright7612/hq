@@ -1,0 +1,23 @@
+<volist name="list" id="vo">
+    <li class="v_item">
+        <img src="{$vo.fs_face|getFace}" class="ws_avatar">
+        <i class="item_btn" onclick="help('{$vo.id}')">去支助</i>
+        <div class="ws_li_content" onclick="resorting('{$vo.id}')">
+            <p class="item_name">{$vo.fs_name}
+            </p>
+            <p>{$vo.fs_signature|default='这家伙很懒，什么都没有写'}</p>
+            <p>
+                <if condition="$vo.type eq 1">
+                    紧急求助
+                    <else/>
+                    求助：
+                </if>
+                <if condition="$vo.serviceType neq 0">
+                    {$vo.serviceType|formatServiceType}
+                    <else/>
+                    {$vo.fs_content}
+                </if>
+            </p>
+        </div>
+    </li>
+</volist>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="format-detection" content="telephone=no">
+    <title>事件督办-事件详情</title>
+    <script src="/Public/ljz3/src/js/flexible.js"></script>
+    <!--<script src="../js/template.js"></script>-->
+    <link rel="stylesheet" href="/Public/ljz3/src/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/font/iconfont.css?v=1.1">
+    <link rel="stylesheet" href="/Public/ljz3/src/css/cyDetail.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/lib/webuploader/webuploader.css">
+    <link rel="stylesheet" href="/Public/ljz3/src/lib/layer_mobile/need/layer.css">
+    <script type="text/html" id="detail">
+        {{if result}}
+            <ul class="info-list">
+                <li class="info-item borderBtm-1px">
+                    <span class="iconfont icon-wenzhang-copy"></span>
+                    标题：{{result.eventname}}
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-bumen"></span>
+                    类型：{{result.eventtype}}
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-renyuan"></span>
+                    接单人：姜丽丽
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-shijian"></span>
+                    发生时间：{{result.eventtime | formatDate:'yyyy-MM-dd'}}
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-didian"></span>
+                    发生地点：{{result.address}}
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-shijian"></span>
+                    派送时间：{{result.reporttime | formatDate:'yyyy-MM-dd'}}
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-shijian"></span>
+                    预计完成时间：{{result.adviseendtime | formatDate:'yyyy-MM-dd'}}
+                </li>
+                <li class="info-item">
+                    <span class="iconfont icon-shijian"></span>
+                    上报时间：{{result.sendtime | formatDate:'yyyy-MM-dd'}} / 暂未上报
+                </li>
+            </ul>
+            <div class="send-info borderTop-1px">
+                <h4 class="info-subtitle">
+                    <span class="iconfont icon-wenzhang-copy"></span>
+                    事件详情
+                </h4>
+                <div class="info-detail">
+                    <p>{{result.eventmemo}}</p>
+                    <p>永业二居党支部张书记每次活动都会第一时间来到现场，帮大家一起布置场地、维持秩序。居民
+                        们也都很喜欢和她聊上几句真心话，谈谈家里的困难，说说小区的问题，提提自己的建议。张书记耐
+                        心得听取了居民的想法和建议，对于能反馈的，总是第一时间给予回应；需要协调的问题则记下来，
+                        事后再答复。</p>
+                    <p>永业二居党支部张书记每次活动都会第一时间来到现场，帮大家一起布置场地、维持秩序。居民
+                        们也都很喜欢和她聊上几句真心话，谈谈家里的困难，说说小区的问题，提提自己的建议。张书记耐
+                        心得听取了居民的想法和建议，对于能反馈的，总是第一时间给予回应；需要协调的问题则记下来，
+                        事后再答复。</p>
+                </div>
+                {{if result.photo.length}}
+                    <ul class="info-photo">
+                        {{each result.photo as value}}
+                        <li class="photo-item">
+                            <img src="{{value}}">
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+            </div>
+            {{if result.windview}}
+                <div class="receive-info">
+                    <h4 class="info-subtitle">
+                        <span class="iconfont icon-wenzhang-copy"></span>
+                        处理详情
+                    </h4>
+                    <div class="info-detail">
+                        <p>{{result.windview}}</p>
+                    </div>
+                    {{if result.finishphoto.length}}
+                        <ul class="info-photo">
+                            {{each result.finishphoto as value}}
+                                <li class="photo-item">
+                                    <img src="{{value}}">
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{/if}}
+    </script>
+</head>
+<body>
+    <!--处理状态区域 start-->
+    <section class="status-wrapper borderTop-1px borderBtm-1px">
+        <div id="statusLine" class="line clearfix">
+            <span class="segment fl"></span>
+            <span class="segment fl"></span>
+            <span class="segment fl"></span>
+            <div class="status status-first completed">
+                <div class="ball">
+                    <div class="inner-ball">
+                        <span class="iconfont icon-shangbaoguanli"></span>
+                    </div>
+                </div>
+                <p class="text">已上报</p>
+            </div>
+            <div class="status status-second">
+                <div class="ball">
+                    <div class="inner-ball">
+                        <span class="iconfont icon-xunzhao03"></span>
+                    </div>
+                </div>
+                <p class="text">已派送</p>
+            </div>
+            <div class="status status-third">
+                <div class="ball">
+                    <div class="inner-ball">
+                        <span class="iconfont icon-jiedan"></span>
+                    </div>
+                </div>
+                <p class="text">已接单</p>
+            </div>
+            <div class="status status-forth">
+                <div class="ball">
+                    <div class="inner-ball">
+                        <span class="iconfont icon-duigou"></span>
+                    </div>
+                </div>
+                <p class="text">已结案</p>
+            </div>
+        </div>
+    </section>
+    <!--处理状态区域 end-->
+
+    <!--事件详情区域 start-->
+    <section id="contentWrapper" class="content-wrapper borderTop-1px borderBtm-1px">
+        <div id="incidentDetail" class="content">
+
+        </div>
+    </section>
+    <!--事件详情区域 end-->
+
+    <!--事件回复区域 start-->
+    <section id="replyWrapper" class="reply-wrapper">
+        <div class="reply">
+            <!--事件内容-->
+            <div class="content-box">
+                <h3 class="title">事件回复</h3>
+                <textarea name="" id="textarea"></textarea>
+            </div>
+            <!--事件照片-->
+            <div class="photo-box">
+                <h3 class="title">添加图片</h3>
+                <!--dom结构部分-->
+                <div id="uploader" class="uploader">
+                    <!--用来存放item-->
+                    <ul id="fileList" class="uploader-list">
+                        <li class="uploader-item">
+                            <div id="filePicker" class="file-picker">
+                                <span class="iconfont icon-tianjia"></span>
+                            </div>
+                        </li>
+                        <li class="uploader-item">
+                            <img src="/Public/ljz3/src/imgs/default.jpg">
+                        </li>
+                        <li class="uploader-item">
+                            <img src="/Public/ljz3/src/imgs/default.jpg">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--事件回复区域 end-->
+
+    <!--事件处理按钮区域 start-->
+    <section id="btnWrapper" class="btn-wrapper clearfix">
+        <span id="receive" class="btn fl">马上接单</span>
+        <span id="return" class="btn fr">马上退回</span>
+    </section>
+    <!--事件处理按钮区域 start-->
+
+    <!--事件上报按钮区域 start-->
+    <section class="report-wrapper clearfix">
+        <input id="submit" class="submit fl" type="submit" value="上报">
+        <input id="close" class="close fr" type="button" value="关闭">
+    </section>
+    <!--事件上报按钮区域 end-->
+
+    <script src="/Public/ljz3/src/js/alert.js"></script>
+    <script src="/Public/ljz3/src/js/require.js" data-main="/Public/ljz3/src/js/cyDetail"></script>
+</body>
+</html>

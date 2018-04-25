@@ -1,0 +1,76 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	
+
+	<link rel="stylesheet" href="/Public/ljz/css/dwgj2.css">	
+	<link rel="stylesheet" href="/Public/ljz/font/iconfont.css">	
+
+
+<div class="layout">
+    <section class="project">
+        <div class="project-info clearfix">
+            <h2>{$data.title}</h2>
+            <p>赞：{$data.zan}</p>
+            <p>居委：{$data.juwei}</p>
+            <p>联系人：{$data.name}</p>
+            <p>电话：{$data.tel}</p>
+            <p>地址：{$data.addr}</p>
+        </div>
+        <div class="project-content">
+            <img src="/Public/ljz/xm/{$data.id}_1.jpg" alt="图片">
+            <p>{$data.content}</p>
+        </div>
+    </section>
+
+    <section class="clearfix btn">
+        <div class="clearfix">
+            <span class="iconfont icon-aixin zan"></span>
+            <span class="zan" id="zanclick">赞</span>
+        </div>
+        <div class="clearfix" onclick="pay()" >
+            <span class="iconfont icon-coin zan"></span>
+            <span class="zan">赏</span>
+        </div>
+        <div class="lbtn1">
+            <span onclick="bbb('{$data.id}')">个人报名</span>
+        </div>
+        <div class="lbtn2">
+            <span onclick="aaa('{$data.id}')">单位共建</span>
+        </div>
+        <form style="display: none" action="http://care.wiseljz.com/Home/Wxpayljz/index2" method="post" id="formpay">
+        <input type="text" id="sum" name="sum" value="10" />
+        <input type="text"  name="id" id="xmid" />
+        <input type="text"  name="rdurl" value="/Home/ljz/xmbm/id/{$data.id}" />
+    	</form>
+    </section>
+</div>
+
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+	 	$("#zanclick").on("click",function () {
+			$.post("/home/ljz/zan", {
+				id: '{$data.id}',
+
+	         }, function (data) {
+	            if(data.info){
+	            	alert(data.info);
+	            	if(data.status){
+	            		window.location.href=data.url;
+	            	}
+	            }
+	        });
+	    });
+        function aaa(id){
+        	 window.location.href='/home/ljz/xmbm2/type/1/id/'+id;
+        }
+        function bbb(id){
+        	 window.location.href='/home/ljz/xmbm2/id/'+id;
+        }
+        function pay() {
+            $("#formpay").submit();
+        }
+
+    </script>
+</block>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>社区党校</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/schoolBm.css">
+</head>
+<body>
+    <!--头部 start-->
+    <section  class="title clearfix">
+        <h1>党课详情</h1>
+        <div class="return fl">
+            <a href="javascript:;" onClick="javascript:history.back(-1);">
+                <span class="iconfont icon-fanhui"></span>
+                返回
+            </a>
+        </div>
+    </section>
+    <!--头部 end-->
+
+    <!--主体 start-->
+    <section class="content">
+        <div class="content-left">
+            <div class="infor">
+                <h2>{$data.course_name}</h2>
+                <p>授课时间：{$data.datestr}</p>
+                <p>授课老师：{$data.teacher}</p>
+                <p>授课地点：{$data.addr}</p>
+                <span class="block"></span>
+            </div>
+            <div class="appoint">
+                <h2>报名方式</h2>
+                <p>如需报名，请致电：<span class="orange">{$data.contacter}  {$data.contact}</span></p>
+                <p>或扫二维码进行报名</p>
+                <span class="block"></span>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="erweima-wrapper">
+                <div class="erweima">
+                    <img src="{$data.qrcode}" alt="">
+                </div>
+                <p class="text">扫描二维码进行党课报名</p>
+            </div>
+        </div>
+    </section>
+    <!--主体 end-->
+</body>
+</html>

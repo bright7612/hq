@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>党建服务站点</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/activityList.css">
+</head>
+<body>
+<!--头部 start-->
+<section  class="title clearfix">
+    <h1>党建服务站点</h1>
+    <div class="return fl">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+</section>
+<!--头部 end-->
+
+<!--主体 start-->
+<section class="content">
+    <ul class="list-wrapper">
+        <volist name="data" id="di" >
+            <li class="list">
+                <h2>{$di.name}</h2>
+                <p>地址：{$di.addr}</p>
+            </li>
+        </volist>
+    </ul>
+</section>
+<!--主体 end-->
+</body>

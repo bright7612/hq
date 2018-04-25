@@ -1,0 +1,24 @@
+<if condition="$list">
+    <volist name="list" id="vo">
+        <li>
+            <img src="{$vo.receiver_face|getFace}" class="item_avatar">
+            <div class="item_info" style="min-height: 70px">
+                <span class="item_time">{$vo.create_time|date="Y-m-d H:i:s",###}</span>
+                <span class="item_name">{$vo.receiver_name}</span><br>
+                <if condition="$vo['type'] eq 1">
+                    <p>紧急求助</p>
+                    <else/>
+                    <p style="font-size: 13px">求助:
+                        <if condition="$vo['serviceType'] neq 0">
+                            {$vo.serviceType|formatServiceType}
+                            <else/>
+                            {$vo.fs_content}
+                        </if>
+                    </p>
+                </if>
+                <span style="font-size: 12px">{$vo.fs_address}</span><br>
+                <p>{$vo|formatStatus3}</p>
+            </div>
+        </li>
+    </volist>
+</if>

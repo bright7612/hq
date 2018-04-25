@@ -1,0 +1,176 @@
+@import "./base";
+
+.content {
+  overflow: hidden;
+  .rank-wrapper, .detail-wrapper {
+    margin-left: 20px;
+    .subtitle {
+      color: #FDD901;
+      font-size: 30px;
+      line-height: 70px;
+      padding-left: 15px;
+    }
+    .rank-content, .detail-content {
+      width: 100%;
+      height: 599px;
+    }
+  }
+  .rank-wrapper {
+    width: 604px;
+    table {
+      width: 100%;
+      border: 1px solid #46D8E2;
+      th {
+        height: 58px;
+        color: #4EF1FA;
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        &:nth-child(2) {
+          width: 272px;
+        }
+        &:nth-child(3) {
+          width: 140px;
+        }
+        &:nth-child(4) {
+          width: 140px;
+        }
+      }
+      tbody {
+        tr {
+          td {
+            height: 54px;
+            color: #FFF;
+            font-size: 16px;
+            &:first-child {
+              text-align: center;
+            }
+            &:nth-child(2) {
+              width: 272px;
+              max-width: 272px;
+            }
+            &:nth-child(3) {
+              width: 140px;
+              text-align: center;
+            }
+            &:nth-child(4) {
+              width: 140px;
+              text-align: center;
+            }
+            span {
+              display: inline-block;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              &:first-child {
+                width: 76%;
+                padding-left: 22px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+              &:last-child {
+                width: 20%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .detail-wrapper {
+    width: 687px;
+    .detail-content {
+      padding-top: 19px;
+      border: 1px solid #46D8E2;
+      .detail-left, .detail-right {
+        height: 100%;
+      }
+      .detail-left {
+        width: 340px;
+        .data-list {
+          .data {
+            width: 316px;
+            height: 79px;
+            color: #FFF;
+            font-size: 25px;
+            line-height: 75px;
+            padding-left: 8px;
+            margin-bottom: 26px;
+            border: 2px solid #46D8E2;
+            .iconfont {
+              font-size: 28px;
+              &.color-blue {
+                color: #3BAED4;
+              }
+              &.color-yellow {
+                color: #F4BF06;
+              }
+              &.color-green {
+                color: #91BD35;
+              }
+            }
+            b{
+              color: #FDD901;
+              font-size: 40px;
+              padding: 0 5px;
+            }
+          }
+        }
+        .progress-box {
+          width: 195px;
+          height: 155px;
+          margin: 16px 63px 0 0;
+          position: relative;
+          & > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+          .progress {
+            width: 100%;
+            color: #FFF;
+            font-size: 18px;
+            text-align: center;
+            top: 45px;
+            left:0;
+            position: absolute;
+            z-index: 50;
+            .progress-num {
+              font-size: 50px;
+              line-height: 60px;
+            }
+          }
+        }
+      }
+      .detail-right {
+        width: 343px;
+        color: #FFF;
+        padding: 0 20px;
+        .record-title {
+          font-size: 20px;
+          font-size: 20px;
+          line-height: 56px;
+          padding-left: 12px;
+        }
+        .record-list {
+          width: 100%;
+          height: 485px;
+          overflow-x: hidden;
+          overflow-y: auto;
+          &::-webkit-scrollbar{display: none;}
+          .record {
+            width: 100%;
+            height: 54px;
+            font-size: 15px;
+            line-height: 54px;
+            padding-left: 12px;
+            border-bottom: 1px solid #46D8E2;
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<volist name="list" id="vo">
+    <li class="v_item">
+        <img src="{$vo.fs_face|getFace}" class="ws_avatar">
+        <div class="ws_li_content" onclick="resorting('{$vo.id}')">
+            <p class="item_name">{$vo.fs_name}</p>
+            <p>{$vo.create_time|date="m月d日 H:i:s",###}</p>
+            <if condition="$vo.homeAddress neq ''">
+                <p class="addr">地址:{$vo.homeAddress}</p>
+                <else/>
+                <p class="addr empty">未填写住址</p>
+            </if>
+            <p>求助内容:{$vo.fs_content}
+            </p>
+        </div>
+        <div>
+            <i class="item_btn" onclick="help('{$vo.id}')">任务认领</i>
+        </div>
+    </li>
+</volist>

@@ -1,0 +1,52 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/ordinaryBg.jpg") 100% 100% no-repeat;
+}
+
+.content {
+  width: 1826px;
+  height: 861px;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {display:none}
+
+  .list-wrapper {
+    width: 100%;
+    .list {
+      width: 100%;
+      padding: 20px 30px;
+      background-image: linear-gradient(180deg, #FDFAF3, #EBE7DA);
+      & > h2 {
+        color: #B51C22;
+        font-size: 45px;
+        line-height: 60px;
+      }
+      & > p {
+        width: 100%;
+        color: #5D6C85;
+        font-size: 35px;
+        line-height: 60px;
+      }
+
+      & > .btn{
+          width: 197px;
+          line-height: 86px;
+          font-size: 40px;
+          text-align: center;
+          margin: 20px auto 0;
+          border-radius: 10px;
+          background-image: linear-gradient(180deg, #FD1801, #C41215);
+          cursor: pointer;
+          a{
+              width: 100%;
+              height: 100%;
+              color: #FFF;
+          }
+      }
+    }
+  }
+}

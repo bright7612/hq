@@ -1,0 +1,48 @@
+<if condition="$list">
+    <volist name="list" id="vo">
+        <li>
+            <div class="item clearfix">
+                <div onclick="toDetail('{$vo.id}')">
+                    <p class="item_top ws_divider">{$vo|formatStatus4}<span class="item_time">{$vo.create_time|date='Y-m-d H:i:s',###}</span>
+                    </p>
+                    <div class="item_mid ws_divider">
+                        <p>求助内容：{$vo.fs_content}</p>
+                        <if condition="$vo[fs_id]">
+                            <p>求助者：{$vo.fs_name}</p>
+                        </if>
+                        <p class="item_address">{$vo.fs_address}</p>
+                    </div>
+                </div>
+                <div class="item_bottom" style="margin-top: 10px">
+                    <switch name="vo.status">
+                        <case value="1"></case>
+                        <case value="2">
+                            <a class="ws_btn_primary " onclick="vCompleteOrder('{$vo.id}')">待确认</a>
+                        </case>
+                        <case value="3">
+                            <if condition="$vo.result eq ''">
+                                <a class="ws_btn_primary " href="{:U('evaluate')}?oid={$vo.id}">待评价</a>
+                            </if>
+                        </case>
+                        <case value="4">
+                            <if condition="$vo.result_time neq 0">
+                                <if condition="$vo.result eq ''">
+                                <a class="ws_btn_primary " href="{:U('evaluate')}?oid={$vo.id}">待评价</a>
+                                </if>
+                            </if>
+                        </case>
+                        <case value="5"></case>
+                        <case value="6">
+                            <if condition="$vo.result_time neq 0">
+                                <if condition="$vo.result eq ''">
+                                    <a class="ws_btn_primary " href="{:U('evaluate')}?oid={$vo.id}">待评价</a>
+                                </if>
+                            </if>
+                        </case>
+                    </switch>
+                </div>
+
+            </div>
+        </li>
+    </volist>
+</if>

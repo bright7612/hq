@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <title>美丽合庆</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DQ1BXIF0qGFddSG8wudhSHCZeftt7ztz"></script>
+    <link rel="stylesheet" href="__DJ__/css/map.css">
+</head>
+<body>
+    <section class="title">
+        <a href="javascript:history.back(-1)">
+            <div class="back">
+                <i class="iconfont icon-fanhui"></i>返回
+            </div>
+        </a>
+        <div class="title-name" id="titleNme">党建地图</div>
+    </section>
+
+    <section class="content">
+        <div id="allmap" class="map">
+
+        </div>
+        <!--<div id="subtitle" class="subtitle-box">业务主管</div>-->
+        <div class="subtab-box">
+            <span data-category="15" class="subtab active">村居党组织</span>
+            <span data-category="18" class="subtab">“两新”组织党组织</span>
+            <span data-category="16" class="subtab">机关事业单位党组织</span>
+            <span data-category="17" class="subtab">区域化共建单位</span>
+        </div>
+        <div id="inforBox" class="infor-box">
+            <span id="close" class="infor-close">╳</span>
+            <div class="infor-abstract">
+                <h3  class="infor-title">
+                    <span id="inforIcon" class="infor-icon"></span>
+                    <span id="inforTitle">合庆养老院</span>
+                </h3>
+                <p class="infor-content">详细地址：<span id="inforAddress">浦东新区合庆镇合庆大道1号</span></p>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="__DJ__/js/jquery.min.js"></script>
+    <script src="__DJ__/js/map.js"></script>
+</body>
+</html>

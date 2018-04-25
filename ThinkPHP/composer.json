@@ -1,0 +1,9 @@
+{
+    "require": {
+        "filp/whoops": "^2.1",
+        "sami/sami": "3.0",
+         "monolog/monolog":"^1.0.0",
+        "jakub-onderka/php-console-highlighter": "^0.3.2"
+
+    }
+}

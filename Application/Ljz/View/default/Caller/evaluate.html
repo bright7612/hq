@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+
+
+    <title>爱互助</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/evaluate.css"/>
+</head>
+<body>
+<div class="ws_content">
+    <!--志愿者信息 start-->
+    <div class="vinfo">
+        <img src="/Public/images/ic_avatar.png" class="avatar">
+        <img src="/Public/images/ic_call.png" class="call">
+        <div class="vinfo_center">
+            <p>志愿者1
+                <i class="ws_star">★</i><i class="ws_star">★</i><i class="ws_star">★</i><i class="ws_star">★</i>
+            </p>
+            <p style="font-size: small">
+                合庆志愿者
+            </p>
+        </div>
+    </div>
+    <!--志愿者信息 end-->
+    <div style="font-size: 12px;color: #9B9B9B;text-align: center;margin: -20px 25px 25px;border-bottom: 1px solid #9B9B9B;">
+        <span style="padding: 10px;background-color: #f7f7fa;position: relative;bottom: -10px">评价志愿者</span>
+    </div>
+    <!--评价志愿者 start-->
+    <div class="evaluate">
+        <p>评价志愿者：<i class="star_desc">5分-非常满意</i></p>
+        <div>
+            <i class="ws_star">★</i>
+            <i class="ws_star">★</i>
+            <i class="ws_star">★</i>
+            <i class="ws_star">★</i>
+            <i class="ws_star">★</i>
+        </div>
+        <textarea class="comment_desc"></textarea>
+        <a class="weui_btn weui_btn_primary" style="margin-top: 25px" href="pennant.html">提交</a>
+    </div>
+    <!--评价志愿者 end-->
+</div>
+</body>
+<script src="/Public/js/jquery-2.1.1.js"></script>
+<script>
+    $.each($("#tags").childNodes, function (item) {
+        item.onclick = function () {
+            alert("ssss");
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,66 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+
+<link rel="stylesheet" href="/Public/ljz/css/myGrade.css">
+ <script src="/Public/ljz/js/prefixfree.min.js"></script>
+
+  <div class="layout">
+      <empty name="data" >
+
+          <!--积分头部 start-->
+          <section class="header">
+              <div class="grade-box">
+                  <p class="grade-explain clearfix">
+                      <empty name="pmid" >
+                          <span class="fl">您还没有党员报道,或者报道还未审核通过</span>
+                          <else/>
+                          <span class="fl">目前还没有您的评分记录</span>
+                      </empty>
+                  </p>
+              </div>
+          </section>
+          <!--积分头部 end-->
+
+        <else/>
+
+          <!--积分头部 start-->
+          <section class="header">
+              <div class="grade-box">
+                  <p class="grade-explain clearfix">
+                      <span class="fl">当前积分</span>
+                      <span class="fr">
+                        <a href="javascript:;">积分说明</a>
+                    </span>
+                  </p>
+                  <p class="grade-show">
+                      <span class="grade">{$sum}</span> 分
+                  </p>
+              </div>
+          </section>
+          <!--积分头部 end-->
+
+          <!--积分记录 start-->
+          <section class="record-box">
+              <div class="record-title">积分记录</div>
+              <ul class="record-list">
+                  <volist  name="data" id="di"  >
+                      <li class="clearfix">
+                          <div class="left fl">
+                              <h3>{$di.jftype_name}</h3>
+                              <p class="time">{$di.create_time|date='Y-m-d',###}</p>
+                          </div>
+                          <div class="right fr">
+                              + <span>{$di.fen}</span>
+                          </div>
+                      </li>
+                  </volist>
+              </ul>
+          </section>
+          <!--积分记录 end-->
+      </empty>
+
+    </div>	
+</block>
+
+

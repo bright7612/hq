@@ -1,0 +1,27 @@
+
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/manage2.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css"/>
+    <div class="layout">
+        <ul>
+
+            <foreach name="list" item="vo" >
+                <li class="list" data-id="{$di.id}" >
+                    <p>{$vo}<br>
+                        <a href="/home/index/qrcode/type/zymap/id/{$key}" target="_self">
+                        <img src="/home/index/qrcode/type/zymap/id/{$key}">
+                        </a>
+                    </p>
+                </li>
+            </foreach>
+
+        </ul>
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+
+
+</block>

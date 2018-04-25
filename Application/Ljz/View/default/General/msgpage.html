@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>爱互助</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/pennant.css"/>
+    <style>
+        .title {
+            font-size: 20px;
+            color: #3E4752;
+            margin-top:20px ;
+            margin-bottom: 20px;
+        }
+
+        .msg {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="weui_msg">
+    <img src="/Public/images/ic_ok.png" width="80px" height="80px">
+    <p class="title">提交成功</p>
+    <p class="msg" >您的资料已提交成功</p>
+    <p class="msg">请耐心等待3-5个工作日进行审核</p>
+    <p class="msg">我们将尽快与您联系</p>
+</div>
+</body>
+<script>
+    setTimeout(function () {
+        window.location.href = "{:U('Index/wall')}";
+    },5000);
+</script>
+</html>

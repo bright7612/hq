@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>预约登记</title>
+
+</head>
+<body>
+
+
+    <script src="/Public/ljz3/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+
+            /*
+             点击列表页控制模态框的行为
+             */
+            $.getJSON('http://139.196.184.43:1010/yj/api/listPeople?rows=3&page=1', function (data) {
+                alert(data.count);
+                alert(data.data[0].id);
+                alert(data.data[0].XM);
+            });
+
+            /*
+             返回顶部功能
+             * */
+            function returnTop (btn, scroll) {
+                $(btn).on('click', function () {
+                    var top = $(scroll).scrollTop();
+                    var perTop = top / 25;
+                    var interval = setInterval(function () {
+                        if (top <= 0) {
+                            clearInterval(interval);
+                            top = 0
+                        }
+                        $(scroll).scrollTop(top -= perTop);
+                    }, 10);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

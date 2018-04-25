@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我收到的礼物</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <style>
+        .top {
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            background-color: #f7f7fa;
+        }
+
+        .t_top {
+            height: 70px;
+            background: url("/Public/images/bg_pennant.png") no-repeat 0 0;
+            background-size: 100% 100%;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .title {
+            margin-top: 15px;
+            background-color: #fff;
+            border-bottom: 1px #e0e0e0 solid;
+            border-top: 1px #e0e0e0 solid;
+            color: #3E4752;
+            padding: 8px 20px;
+        }
+
+        ul li {
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        ul li:after {
+
+        }
+
+        .i_info {
+            font-size: 15px;
+            color: #3E4752;
+        }
+
+        .i_time {
+            font-size: 12px;
+            color: #A3A3A3;
+        }
+
+        .i_integral {
+            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+            font-style: normal;
+            color: #FF582B;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="t_top">
+        <p style="color: rgba(255,255,255,0.7);font-size: 15px;font-weight: 600;">我收到的礼物</p>
+        <p style="color: #fff;font-size: 18px;font-weight: 600;margin-top: 5px" id="flagCount"></p>
+    </div>
+    <p class="title">
+        明细
+    </p>
+</div>
+<div>
+    <ul id="list">
+    </ul>
+    <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+        没有数据了
+    </div>
+</div>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    var rows = 10;
+    var page = 1; //设置当前页数，全局变量
+    var nomore = false;
+    var isloading = false;
+
+    function clearList() {
+        page = 1;
+        nomore = false;
+        $("#list").empty();
+        $("#nomorediv").hide();
+    }
+
+    function getData() {
+        if (nomore || isloading) {
+            return;
+        }
+        isloading = true;
+        $.get('{:U("api/myGift")}', {
+            page: page,
+        }, function (data) {
+            isloading = false;
+            var d = $.parseJSON(data);
+            if (d.result == "1") {
+                var html1 = "";
+                $('#flagCount').text(d.listgetcount);
+                for (var i = 0; i < d.listget.length; i++) {
+                    var item = d.listget[i];
+                    var time = formatDate(item.datetime * 1000);
+                    html1 += "<li><p class='i_info'>"+ item.uName+"送给您" + item.giftName + "</p>";
+                    html1 += "<p class='i_time'>" + time + "</p></li>";
+                }
+                $("#list").append(html1);
+                if (d.listget.length != 10) {
+                    $('#nomorediv').show();
+                    nomore = true;
+                } else {
+                    page++;
+                }
+            } else {
+                layer.open({content: d.message, skin: "msg", time: 2});
+            }
+        });
+    }
+    getData();
+
+    $(function () {
+        var winH = $(window).height();
+        $(window).scroll(function () {
+            var pageH = $(document).height();
+            var scrollT = $(window).scrollTop();
+            var aa = (pageH - winH - scrollT) / winH;
+            if (aa < 0.02) {
+                getData();
+            }
+        });
+    });
+
+
+    //时间转换
+    function formatDate(datetime) {
+        var now = new Date(datetime);
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return year + "-" + fixZero(month, 2) + "-" + fixZero(date, 2) + "    " + fixZero(hour, 2) + ":" + fixZero(minute, 2) + ":" + fixZero(second, 2);
+    }
+    //时间如果为单位数补0
+    function fixZero(num, length) {
+        var str = "" + num;
+        var len = str.length;
+        var s = "";
+        for (var i = length; i-- > len;) {
+            s += "0";
+        }
+        return s + str;
+    }
+</script>
+</body>
+</html>

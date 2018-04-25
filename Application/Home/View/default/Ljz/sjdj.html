@@ -1,0 +1,100 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/shuji1.css">
+    <!--<link rel="stylesheet" href="/Public/ljz/css/activity.css">-->
+    <script src="/Public/ljz/js/template.js"></script>
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+    <script type="text/html" id="temp">
+        {{if data}}
+        {{each data as datas i}}
+        
+        <li class="clearfix" onclick="aaa('{{datas.id}}')" >
+            <div class="left fl">
+                <h2>值班书记：<span>{{datas.name}}</span></h2>
+                <p>
+                    <span>{{datas.date}}</span>&nbsp;
+                    <span>上午9点</span>
+                </p>
+            </div>
+            <div class="right fr">
+                <div class="btn fr">报名</div>
+            </div>
+        </li>
+        
+
+
+        {{/each}}
+        {{/if}}
+    </script>
+    
+
+    <div id="containerList" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0; overflow: auto">
+        <div class="layout" style="height: auto" id="scrollcontainer">
+            <ul id="container">
+
+            </ul>
+            <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                正在加载...
+            </div>
+            <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                没有数据了
+            </div>
+        </div>
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        $(function () {
+            $('body').on('click', '#btn', function () {
+//          	$(this).data("id");
+//          	alert($(this).data("id"));
+                window.location.href='/home/ljz/hdbm/tyep/4/id/'+$(this).data("id");
+            });
+            var winH = $("#containerList").height();
+            $("#containerList").scroll(function () {
+                var pageH = $("#scrollcontainer").height();
+                var scrollT = $("#containerList").scrollTop();
+                var aa = (pageH - winH - scrollT) / winH;
+                if (aa < 0.05) {
+                    getData();
+                }
+            });
+        });
+
+        var rows = 10;
+        var page = 1;
+        var nomore = false;
+        var isloading = false;
+        function aaa(id){
+        	 window.location.href='/home/ljz/hdbm/type/4/id/'+id;
+        }
+        function getData() {
+            if (nomore || isloading) {
+                return;
+            }
+            isloading = true;
+            $("#loadingdiv").show();
+            $.get('{:U("Ljz/listhd")}', {
+                page: page,
+                type: 4,
+                rows: rows
+            }, function (data) {
+                isloading = false;
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    if (d.data && d.data.length == rows) {
+                        page++;
+                    } else {
+                        $('#nomorediv').show();
+                        nomore = true;
+                        $("#loadingdiv").hide();
+                    }
+                    var lis = template('temp', d);
+                    $('#container').append(lis);
+                }
+            });
+        }
+        getData();
+    </script>
+</block>

@@ -1,0 +1,296 @@
+html {
+  width: 1080px;
+  height: 1920px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.return {
+  width: 194px;
+  height: 81px;
+  text-align: center;
+  line-height: 81px;
+  border-radius: 10px;
+  background-color: #5D1113;
+  position: relative;
+  top: 82px;
+  left: 51px;
+}
+.return a {
+  color: #FFF;
+  font-size: 30px;
+}
+.return a .iconfont {
+  font-size: 70px;
+  vertical-align: middle;
+}
+body {
+  background: url("../imgs/bg/yydj_bg.jpg") 100% 100% no-repeat;
+  position: relative;
+}
+.place-appoint,
+.activity-appoint {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  width: 991px;
+  height: 953px;
+  padding: 20px 0;
+  margin: 0 auto 38px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  position: relative;
+}
+.place-appoint .appoint-title,
+.activity-appoint .appoint-title {
+  height: 147px;
+  position: relative;
+}
+.place-appoint .appoint-title .place-change,
+.activity-appoint .appoint-title .place-change,
+.place-appoint .appoint-title .activity-change,
+.activity-appoint .appoint-title .activity-change {
+  width: 447px;
+  color: #FFF;
+  font-size: 44px;
+  text-align: center;
+  line-height: 102px;
+  border-radius: 20px;
+  background-color: #7E7E7E;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+.place-appoint .appoint-title .place-change.active,
+.activity-appoint .appoint-title .place-change.active,
+.place-appoint .appoint-title .activity-change.active,
+.activity-appoint .appoint-title .activity-change.active {
+  background-color: #C02B31;
+}
+.place-appoint .appoint-title .place-change,
+.activity-appoint .appoint-title .place-change {
+  left: 35px;
+}
+.place-appoint .appoint-title .activity-change,
+.activity-appoint .appoint-title .activity-change {
+  right: 35px;
+}
+.place-appoint .appoint-content,
+.activity-appoint .appoint-content {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.place-appoint .appoint-content::-webkit-scrollbar,
+.activity-appoint .appoint-content::-webkit-scrollbar {
+  display: none;
+}
+.place-appoint .appoint-content .list-wrapper,
+.activity-appoint .appoint-content .list-wrapper {
+  width: 100%;
+  padding: 0 52px;
+}
+.place-appoint .appoint-content .list-wrapper .list,
+.activity-appoint .appoint-content .list-wrapper .list {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #818181;
+  cursor: pointer;
+}
+.place-appoint .appoint-content .list-wrapper .list:last-child,
+.activity-appoint .appoint-content .list-wrapper .list:last-child {
+  border-bottom: none;
+}
+.place-appoint .appoint-content .list-wrapper .list h2,
+.activity-appoint .appoint-content .list-wrapper .list h2 {
+  color: #000;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 80px;
+}
+.place-appoint .appoint-content .list-wrapper .list p,
+.activity-appoint .appoint-content .list-wrapper .list p {
+  color: #515151;
+  font-size: 35px;
+  line-height: 60px;
+}
+.place-appoint .appoint-content .list-wrapper .list p .iconfont,
+.activity-appoint .appoint-content .list-wrapper .list p .iconfont {
+  color: #CD332A;
+  font-size: 40px;
+}
+.place-appoint .returnTop,
+.activity-appoint .returnTop {
+  position: absolute;
+  right: 50px;
+  bottom: 10px;
+  display: none;
+  cursor: pointer;
+}
+.place-appoint .returnTop .iconfont,
+.activity-appoint .returnTop .iconfont {
+  color: #5D1113;
+  font-size: 80px;
+}
+.place-appoint {
+  margin-top: 150px;
+}
+.activity-appoint {
+  margin-top: 60px;
+}
+.ewm {
+  width: 991px;
+  height: 623px;
+  padding: 50px 70px 0;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+}
+.ewm > img {
+  display: block;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 25px;
+}
+.ewm .please {
+  color: #C12A33;
+  font-size: 38px;
+  text-align: center;
+  line-height: 70px;
+  margin-bottom: 20px;
+}
+.ewm .text {
+  color: #55504A;
+  font-size: 35px;
+  line-height: 70px;
+  text-indent: 2em;
+}
+.bg {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: none;
+}
+.bg .place-box,
+.bg .activity-box {
+  width: 900px;
+  padding: 80px;
+  margin: 300px auto 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: none;
+}
+.bg .place-box .title,
+.bg .activity-box .title {
+  font-size: 50px;
+  text-align: center;
+  line-height: 80px;
+  margin-bottom: 30px;
+}
+.bg .place-box .form-box,
+.bg .activity-box .form-box {
+  width: 100%;
+  margin-bottom: 50px;
+}
+.bg .place-box .form-box .form-list,
+.bg .activity-box .form-box .form-list {
+  line-height: 71px;
+  margin-bottom: 30px;
+}
+.bg .place-box .form-box label,
+.bg .activity-box .form-box label,
+.bg .place-box .form-box input[type="text"],
+.bg .activity-box .form-box input[type="text"],
+.bg .place-box .form-box textarea,
+.bg .activity-box .form-box textarea {
+  color: #4D4D4D;
+  font-size: 35px;
+  box-sizing: border-box;
+}
+.bg .place-box .form-box label,
+.bg .activity-box .form-box label {
+  display: inline-block;
+  width: 210px;
+  height: 71px;
+  text-align: right;
+  padding-right: 30px;
+}
+.bg .place-box .form-box input[type="text"],
+.bg .activity-box .form-box input[type="text"] {
+  width: 500px;
+  height: 71px;
+  text-align: center;
+  border: 1px solid #BD2026;
+  border-radius: 5px;
+  outline: none;
+}
+.bg .place-box .form-box textarea,
+.bg .activity-box .form-box textarea {
+  width: 500px;
+  height: 300px;
+  padding: 10px;
+  border: 1px solid #BD2026;
+  vertical-align: top;
+  outline: none;
+  resize: none;
+}
+.bg .place-box .form-box input[type="datetime-local"],
+.bg .activity-box .form-box input[type="datetime-local"] {
+  width: 500px;
+  height: 71px;
+  text-align: center;
+  border: 1px solid #BD2026;
+  border-radius: 5px;
+  outline: none;
+}
+.bg .place-box .btn-box,
+.bg .activity-box .btn-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 120px;
+}
+.bg .place-box .btn-box .confirm,
+.bg .activity-box .btn-box .confirm,
+.bg .place-box .btn-box .cancel,
+.bg .activity-box .btn-box .cancel {
+  display: inline-block;
+  width: 200px;
+  color: #FFF;
+  font-size: 35px;
+  text-align: center;
+  line-height: 85px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.bg .place-box .btn-box .confirm.color-red,
+.bg .activity-box .btn-box .confirm.color-red,
+.bg .place-box .btn-box .cancel.color-red,
+.bg .activity-box .btn-box .cancel.color-red {
+  background-color: #D8352F;
+}
+.bg .place-box .btn-box .confirm.color-orange,
+.bg .activity-box .btn-box .confirm.color-orange,
+.bg .place-box .btn-box .cancel.color-orange,
+.bg .activity-box .btn-box .cancel.color-orange {
+  background-color: #FF973B;
+}

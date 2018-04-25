@@ -1,0 +1,9 @@
+<if condition="$list">
+    <volist name="list" id="v">
+        <li>
+            <p class="i_info">[{$v.getName}]送给您一面锦旗</p>
+            <p class="i_time">{$v.datetime|date='Y-m-d H:i:s',###}</p>
+        </li>
+    </volist>
+</if>
+

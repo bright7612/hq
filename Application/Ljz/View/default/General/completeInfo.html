@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>完善个人信息</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <style>
+        .ws_cell {
+            display: flex;
+            display: -webkit-flex;
+            align-items: center;
+            -webkit-align-items: center;
+        }
+
+        .cell_fill {
+            flex: 1;
+            -webkit-flex: 1;
+            margin-right: 15px;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            font-size: 17px;
+            color: #3E4752;
+        }
+
+        .cell_lt {
+            width: 80px;
+        }
+
+        .fixbottom {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        /*社区样式 start*/
+        ul li {
+            position: relative;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 50px 10px 15px;
+        }
+
+        .checked:after {
+            content: ' ';
+            display: inline-block;
+            width: 27px;
+            height: 18px;
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+            background: url("/Public/images/ic_checked.png") 0 0/100% 100% no-repeat;
+        }
+
+        ul li:active {
+            background-color: #ECECEC;
+        }
+        /*社区样式 end*/
+    </style>
+</head>
+<body>
+<div class="ws_cells" >
+    <div class="ws_cell" id="div_avatar">
+        <img id="avatar" src="{$info.face|getFace}" width="50" height="50" alt="" style="border-radius: 100px">
+        <p class="cell_fill" style="margin-left: 30px">上传真实头像</p>
+        <i class="arrow_r1"></i>
+    </div>
+    <div class="ws_cell no_access">
+        <p class="cell_lt">*姓名</p>
+        <input id="name" class="cell_fill" placeholder="您的真实姓名" value="{$info.realname}"/>
+        <i class="arrow_r1"></i>
+    </div>
+    <div class="ws_cell no_access">
+        <p class="cell_lt">自我介绍</p>
+        <input id="signature" class="cell_fill" value="{$info.signature}"/>
+        <i class="arrow_r1"></i>
+    </div>
+    <div class="ws_cell no_access">
+        <p class="cell_lt">电话</p>
+        <p class="cell_fill">{$info.mobile}</p>
+    </div>
+    <div class="ws_cell no_access">
+        <p  class="cell_lt">身份证号</p>
+        <input class="cell_fill" value="{$info.idcard}" id="cardId"/>
+        <i class="arrow_r1"></i>
+    </div>
+    <div class="ws_cell no_access" onclick="$('#selectC').show()">
+        <p  class="cell_lt">*选择居委</p>
+        <p id="community">{$info.community.name|default="请选择您的居委"}</p>
+        <i class="arrow_r1"></i>
+    </div>
+</div>
+<p style="padding: 15px;font-size: 17px;color: #3E4752" style="margin-bottom: 100px">请完善个人信息，完善后可进入爱互助平台进行求助</p>
+<div class="spacing fixbottom">
+    <a class="ws_btn_block" onclick="commit()">完成</a>
+</div>
+
+<!--选择居委 start-->
+<div style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 100;overflow: scroll;display: none" id="selectC">
+    <div style="margin-bottom: 105px;">
+        <ul id="communities">
+            <volist name="communities" id="vo">
+                <if condition="$vo['id'] eq $mycommunity['id']">
+                    <li data-id="{$vo.id}" class="checked">
+                        <else/>
+                    <li data-id="{$vo.id}">
+                </if>
+                    {$vo.name}
+                </li>
+            </volist>
+        </ul>
+    </div>
+    <div style="position: fixed;bottom: 0;width: 100%;padding: 5px 15px 15px;box-sizing: border-box;background-color: #fff">
+        <a class="ws_btn_block" onclick="setCommunity()">确定</a>
+        <a class="ws_btn_block" onclick="$('#selectC').hide()" style="margin-top: 10px">取消</a>
+    </div>
+</div>
+<!--选择居委 end-->
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    wx.config({
+        debug: false,
+        appId: '{$sign.appId}',
+        timestamp: '{$sign.timestamp}',
+        nonceStr: '{$sign.nonceStr}',
+        signature: '{$sign.signature}',
+        jsApiList: [
+            /* 所有要调用的 API 都要加到这个列表中*/
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    function toast(content,time) {
+        if(!time){
+            time = 2;
+        }
+        layer.open({
+            content: content
+            , skin: 'msg'
+            , time: time
+        });
+    }
+
+    var localId = "";
+    var communityId = '{$info.community.id}';
+
+    wx.ready(function () {
+        //手机相册选图或拍照
+        //选择图片
+        $("#div_avatar").click(function () {
+            wx.chooseImage({
+                count: 1,
+                sizeType: ['compressed'],
+                success: function (res) {
+                    localId = res.localIds[0];
+                    $('#avatar').attr('src', localId);
+                }
+            });
+        });
+    });
+
+    function commit() {
+        var name = $('#name').val();
+        var signature = $('#signature').val();
+        var cardId = $('#cardId').val();
+
+        if(!communityId)
+        {
+            toast('请选择您所属居委');
+            return;
+        }
+
+        if(name == ""){
+            toast('姓名不能为空');
+            return;
+        }
+
+        if(localId) {
+            wx.uploadImage({
+                localId: localId,
+                success: function (res) {
+                    $.post('{:U("Api/faceEdit")}', {serverId: res.serverId}, function (data) {
+                        var d = $.parseJSON(data);
+                        if (d.result == 1) {
+                            docommit(name,signature,cardId,communityId);
+                        } else {
+                            toast(d.message);
+                        }
+                    })
+                },
+                fail: function (res) {
+                    alert("头像上传失败" + JSON.stringify(res));
+                }
+            });
+        }else{
+            docommit(name,signature,cardId,communityId);
+        }
+    }
+
+    function docommit(realname,signature,idCard,communityid) {
+        layer.open({type: 2});
+        $.post("{:U('Api/infoEdit')}", {
+            realName: realname,
+            signature: signature,
+            idCard: idCard,
+            community:communityid
+        }, function (data) {
+            layer.closeAll();
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                window.location.href = "{:U('Index/index')}";
+            } else {
+                layer.open({
+                    content: "commit"
+                    , skin: 'msg'
+                    , time: 2
+                });
+            }
+        });
+    }
+
+
+    $("#communities").children().each(function (i, n) {
+        $(n).click(function () {
+            $(this).addClass("checked");
+            $(this).siblings().removeClass("checked");
+        });
+    });
+
+    function setCommunity() {
+        var li = $(".checked");
+        if(li.length ==0){
+            toast("请选择您所属居委");
+            return;
+        }
+
+        communityId =  li.data('id');
+        var name = li.text();
+        $("#community").text(name);
+        $('#selectC').hide();
+    }
+
+</script>
+</html>

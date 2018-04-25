@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DQ1BXIF0qGFddSG8wudhSHCZeftt7ztz"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/css/map.css">
+    <title>签到定位</title>
+</head>
+<body>
+<div class="layout" id="allmap">
+
+</div>
+<div class="bottom clearfix">
+    <div class="txt fl">{$info.name}</div>
+    <div class="btn fr" id="btn">签到</div>
+</div>
+<div class="bg hide"  id="bg">
+    <div class="success-box" id="success-box">
+        <img src="/Public/ljz/img/my/success.png" alt="">
+        <p class="p1">签到成功</p>
+        <p class="p2">获得<span id="grade">5</span>积分</p>
+        <div class="bottom" id="ok">好的</div>
+    </div>
+    <div class="failed-box" id="failed-box">
+        <p class="p1">距离较远</p>
+        <p class="p2">当前不在目的地附近，请前往目的地签到获得积分~</p>
+        <div class="bottom" id="cancel">好的</div>
+    </div>
+</div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+<script src="/Public/ljz/js/jquery.js"></script>
+    <script type="text/javascript">
+        //遮罩层行为初始化
+        $('#bg').removeClass('show').addClass('hide')
+                .find('#success-box').addClass('hide')
+                .end().find('#failed-box').addClass('hide');
+
+        /*
+         地图数据初始化
+         */
+        var map = new BMap.Map("allmap");     // 创建Map实例
+        var point = new BMap.Point({$info.lat|default="0"}, {$info.lng|default="0"});     //设置地图初始位置
+        map.centerAndZoom(point, 17);     //初始化地图,设置中心点坐标和地图级别
+        map.setCurrentCity("上海");     //设置地图显示的城市
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+        /*
+         目的地图标
+         */
+        var mk = new BMap.Marker(point,{
+            offset: new BMap.Size(5, 12)
+        });
+        map.addOverlay(mk);
+
+
+        /*
+         目的地半径
+         */
+        var circle = new BMap.Circle(point, 100, {
+            strokeColor: '#B6CAE2',
+            strokeWeight: 2,
+            strokeOpacity: 0.5,
+            fillColor: '#D3E9F3'
+        });
+        map.addOverlay(circle);
+
+
+        /*
+         目的地文字标签
+         */
+        var label = new BMap.Label("{$info.addr}",{
+            offset:new BMap.Size(20,-10)
+        });
+        mk.setLabel(label);
+
+
+        /*
+         自定义新的定位图标
+         */
+        var myIcon = new BMap.Icon("http://api0.map.bdimg.com/images/geolocation-control/point/position-icon-14x14.png", new BMap.Size(14, 14), {
+            imageOffset: new BMap.Size(0, 0)    //图片的偏移量
+        });
+        var myMarker = new BMap.Marker({icon:myIcon});  // 创建图标实例
+
+
+        /*
+         我的定位文字标签
+         */
+        var myLabel = new BMap.Label("我的位置", {
+            offset:new BMap.Size(20,-10),
+        });
+        myLabel.setStyle({
+            borderColor: 'blue'
+        });
+
+
+        /*
+         添加定位控件
+         */
+        var geolocationControl = new BMap.GeolocationControl({
+            offset: new BMap.Size(20, 70)
+        });
+        geolocationControl.addEventListener("locationSuccess", function(e){
+//          定位成功事件
+            map.removeOverlay(myMarker);    //移除当前位置覆盖物
+        });
+        geolocationControl.addEventListener("locationError",function(e){
+//          定位失败事件
+            alert(e.message);
+        });
+        map.addControl(geolocationControl);
+
+
+        //坐标转换后的回调
+        //        translateCallback = function (data) {
+        //            if(data.status === 0){
+        //                var mk = new BMap.Marker(data.points[0]);
+        //                map.addOverlay(mk);
+        //                map.panTo(data.points[0]);
+        //            }
+        //        }
+        //坐标转换公式
+        //        var convertor = new BMap.Convertor();
+        //        var pointArr = [];
+        //        pointArr.push(r.point);
+        //        convertor.translate(pointArr, 1, 5, translateCallback);
+
+
+        /*
+         创建定位实例
+         */
+        var geolocation = new BMap.Geolocation();
+        var flag = true;  //定义节流阀
+
+
+        /*
+         每隔3秒更新实时位置
+         */
+        var distance;
+        setInterval("myLocation()", 3000);
+
+
+        /*
+         定位当前位置
+         */
+        function myLocation() {
+//            console.log('进入函数');
+            if(flag){
+                flag = false;
+//                console.log('开始工作');
+                geolocation.getCurrentPosition(function(r){
+//                    console.log('成功');
+                    if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                        distance = map.getDistance(r.point,point).toFixed(2);
+                        map.removeOverlay(myMarker);    //移除当前位置覆盖物
+//                        map.panTo(r.point);   //移动到点中心
+                        myMarker = new BMap.Marker(r.point,{icon:myIcon});  // 修改图标实例
+                        //修改标签文本显示
+                        myLabel = new BMap.Label("我的位置，距离目的地" + distance + "米", {
+                            offset:new BMap.Size(20,-10),
+                        });
+                        myLabel.setStyle({
+                            borderColor: 'blue'
+                        });
+                        myMarker.setLabel(myLabel);
+                        map.addOverlay(myMarker);
+                        flag = true;
+//                  var walking = new BMap.WalkingRoute(map, {renderOptions:{map: map, autoViewport: true}});
+//                  walking.search(r.point, point);
+                    }
+                    else {
+//                        console.log('定位失败');
+                    }
+                },{enableHighAccuracy: true});
+            } else {
+//                console.log('暂不工作');
+                return;
+            }
+        }
+
+
+        var issigning = false;
+        /*
+         判断是否达到目的地附近
+         */
+        //点击签到时
+        $('#btn').on('click', function () {
+            //遮罩打开
+            //判断用户是否在可定位区域
+            if(distance <= 100){
+                if(issigning){
+                    return;
+                }
+                var type = "{$type}";
+                var id = "{$id}";
+                issigning = true;
+                $.post("{:U('sign')}",{type:type,id:id},function (data) {
+                    issigning = false;
+                    if(data.result == 1){
+                        if(data.score){
+                            $("#grade").text(data.score);
+                        }
+                        $('#bg').removeClass('hide').addClass('show');
+                        $('#success-box').removeClass('hide').addClass('show');
+                    }else{
+                        alert(data.msg);
+                    }
+                },"json");
+            } else {
+                $('#bg').removeClass('hide').addClass('show');
+                $('#failed-box').removeClass('hide').addClass('show');
+            }
+        });
+        $('#ok, #cancel').on('click', function () {
+            $('#bg').removeClass('show').addClass('hide')
+                    .find('#success-box').removeClass('show').addClass('hide')
+                    .end().find('#failed-box').removeClass('show').addClass('hide');
+        });
+
+
+        //        function remove_overlay(){
+        //            map.clearOverlays();
+        //        }
+
+//        /*
+//           判断是否达到目的地附近
+//        */
+//        function isArrive() {
+////            if(distance && distance <= 100){
+////                alert('签到成功')
+////            } else {
+////                alert('签到失败，请前往目的地再进行签到');
+////            }
+//            geolocation.getCurrentPosition(function(r){
+//                if(this.getStatus() == BMAP_STATUS_SUCCESS){
+//                    var mk = new BMap.Marker(r.point);
+//                    map.addOverlay(mk);
+//                    map.panTo(r.point);
+//                    alert('您的位置：'+r.point.lng+','+r.point.lat);
+//                    $.post('/home/ljz/sign',{},function (data) {
+//                         alert(data);
+//                    });
+//                }
+//                else {
+//                    alert('failed'+this.getStatus());
+//                }
+//            },{enableHighAccuracy: true});
+//
+//        }
+//
+////        function remove_overlay(){
+////            map.clearOverlays();
+////        }
+    </script>
+</body>
+</html>

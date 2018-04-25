@@ -1,0 +1,58 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/activityBg.jpg") 100% 100% no-repeat;
+}
+
+.content {
+  .displayFlex();
+  justify-content: space-between;
+  width: 1700px;
+  height: 460px;
+  margin: 160px auto 0;
+  .list {
+    width: 330px;
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      .circle {
+        width: 330px;
+        height: 330px;
+        text-align: center;
+        line-height: 330px;
+        border-radius: 50%;
+        box-shadow: 0px 5px 15px #666;
+        .iconfont {
+          color: #FFF;
+          font-size: 130px;
+          -webkit-text-shadow: 0 5px 10px #333;
+          -ms-text-shadow: 0 5px 10px #333;
+          text-shadow: 0 5px 10px #333;
+        }
+        &.bg-qing {
+          background-image: linear-gradient(180deg, #68CBBC, #14A6AE);
+        }
+        &.bg-purple {
+          background-image: linear-gradient(180deg, #A46FEA, #684CDE);
+        }
+        &.bg-blue {
+          background-image: linear-gradient(180deg, #2CB0E1, #257AD7);
+        }
+        &.bg-pink {
+          background-image: linear-gradient(180deg, #FE82BC, #F94E9E);
+        }
+      }
+      .text {
+        color: #FFF;
+        font-size: 50px;
+        text-align: center;
+        line-height: 100px;
+        margin-top: 25px;
+        -webkit-text-shadow: 0 3px 10px #333;
+        -ms-text-shadow: 0 3px 10px #333;
+        text-shadow: 0 3px 10px #333;
+      }
+    }
+  }
+}

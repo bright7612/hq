@@ -1,0 +1,39 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	<link rel="stylesheet" href="/Public/ljz/css/partyConstruct.css">	
+    <div class="layout" id="layout">
+        <div class="demand" id="demand">
+            <a href="/home/ljz/xq"></a>
+        </div>
+        <div class="resourceList" id="resourceList">
+            <a href="/home/ljz/zyqd"></a>
+        </div>
+        <div class="benefitCity" id="benefitCity">
+            <a href="/home/ljz/gyc"></a>
+        </div>
+        <div class="wellPudong" id="wellPudong">
+            <a href="http://dj.ischooldays.com/idealDJP/wxcore/web/community/community.action?home=ypd"></a>
+        </div>
+        <div class="company" id="company">
+            <a href="/home/ljz/dwdj"></a>
+        </div>
+        <div class="dangqun" id="dangqun">
+            <a href="/home/ljz/dangqun"></a>
+        </div>
+    </div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script>
+        window.onload = function () {
+            //获取当前屏幕高度
+            var clientheight = window.innerHeight || document.documentElement.clientHeight ||
+                document.body.clientHeight || 0;
+            var layout = document.getElementById('layout')
+            if (clientheight < 1000) {
+                layout.style.backgroundSize = '100% auto';
+            }
+        }
+    </script>
+
+</block>

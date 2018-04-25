@@ -1,0 +1,74 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	<link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/activity2.css">
+    <div class="layout">
+
+		<section class="project">
+			<!--活动信息板块 start-->
+			<div class="info-box">
+				<div class="title">
+					<h2>{$data.name}</h2>&nbsp;
+					<span class="logo" id="logo">{$data.type}</span>
+				</div>
+				<if condition="$data.type neq '场地预约' ">
+					<p>
+						<span class="iconfont icon-shijian1 color-blue"></span>
+						{$data.date|date='Y-m-d H:i',###}
+					</p>
+				</if>
+				<p>
+					<span class="iconfont icon-svg18 color-orange"></span>
+					地点{$data.type}：{$data.addr}
+				</p>
+				<p>
+					<span class="iconfont icon-renshu1 color-pink"></span>
+					人数：{$data.count}人
+				</p>
+			</div>
+			<!--活动信息板块 end-->
+
+			<!--活动内容板块 start-->
+			<div class="content-box">
+				<p>
+					{$data.content}
+				</p>
+				
+				<if condition="$data.type eq '场地预约' ">
+				<img src="{$data.pic1|get_cover='path'}"  style="width: 100%;"/>
+
+				</if>
+			</div>
+			<!--活动内容板块 end-->
+		</section>
+		<if condition="($data.type eq '场地预约' ) AND ($data.subtype eq '2' )">
+			<section class="btn-box">
+				预约电话：<span style="color: #F77F28;font-size: 1.3em;font-style: oblique;font-weight: bold " >{$data.tel}</span>
+			</section>
+		<else/>
+			<if condition="($data.type eq '场地预约' ) OR ($canbm eq 1 ) ">
+			<section class="btn-box">
+				<div class="btn" id="submitBtn">{$submittitle}</div>
+			</section>
+				</if>
+		</if>
+    </div>
+   <script src="/Public/ljz/js/jquery.js"></script>
+  <script>
+ 	$("#submitBtn").on("click",function () {
+		window.location.href='/home/ljz/hdbm/id/'+{$data.id};
+    });
+	$(function () {
+		var logoSort = $('#logo').text();
+		if( logoSort && logoSort === '公益活动' ){
+			$('#logo').addClass('redColor');
+		} else if( logoSort && logoSort === '文体活动' ){
+			$('#logo').addClass('orangeColor');
+		} else if( logoSort && logoSort === '群团活动' ) {
+            $('#logo').addClass('blueColor');
+        }
+	});
+		
+    </script>
+</block>

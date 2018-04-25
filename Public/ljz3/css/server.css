@@ -1,0 +1,71 @@
+html {
+  width: 1080px;
+  height: 1920px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.return {
+  width: 194px;
+  height: 81px;
+  text-align: center;
+  line-height: 81px;
+  border-radius: 10px;
+  background-color: #5D1113;
+  position: relative;
+  top: 82px;
+  left: 51px;
+}
+.return a {
+  color: #FFF;
+  font-size: 30px;
+}
+.return a .iconfont {
+  font-size: 70px;
+  vertical-align: middle;
+}
+body {
+  background: url("../imgs/bg/fwhq_bg.jpg") 100% 100% no-repeat;
+}
+.content {
+  width: 991px;
+  height: 1632px;
+  margin: 150px auto 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+.content .list-wrapper {
+  width: 100%;
+  padding: 34px 30px;
+}
+.content .list-wrapper .list {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #818181;
+}
+.content .list-wrapper .list:last-child {
+  border-bottom: none;
+}
+.content .list-wrapper .list h2 {
+  color: #000;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 80px;
+}
+.content .list-wrapper .list p {
+  color: #515151;
+  font-size: 35px;
+  line-height: 65px;
+}
+.content .list-wrapper .list p .iconfont {
+  color: #CD332A;
+  font-size: 40px;
+}

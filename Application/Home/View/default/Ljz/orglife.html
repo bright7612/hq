@@ -1,0 +1,51 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+ 
+    <link rel="stylesheet" href="/Public/ljz/css/orgLife2.css">
+    <div class="layout">
+        <!--标题部分 start-->
+        <section class="header-box">
+            <h2>{$data.subject}</h2>
+            <p>党组织名称：<span>{$data.dzzname}</span></p>
+            <p>时间：<span>{$data.datetime|date="Y-m-d H:i",###}</span></p>
+            <p>地点：{$data.addr}</p>
+        </section>
+        <!--标题部分 end-->
+
+        <!--参与党员部分 start-->
+        <!--<section class="partier-box">-->
+            <!--<span>参与党员</span>-->
+            <!--<ul class="clearfix">-->
+                <!--<li class="fl">-->
+                    <!--<img src="./img/people/n01.jpg" alt="">-->
+                <!--</li>-->
+                <!--<li class="fl">-->
+                    <!--<img src="./img/people/n02.jpg" alt="">-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</section>-->
+        <!--参与党员部分 end-->
+
+        <!--主要内容部分 start-->
+        <section class="content-box">
+            <div class="content">
+                <h3>学习内容</h3>
+                <p>{$data.content}</p>
+            </div>
+            <div class="discussion">
+                <h3>讨论情况</h3>
+                <p>{$data.discuss}</p>
+            </div>
+            <div class="consensus">
+                <h3>达成共识</h3>
+                <p>{$data.consensus}</p>
+            </div>
+            <img src="{$data.pic1|get_cover='path'}" alt="">
+        </section>
+        <!--主要内容部分 end-->
+    </div>
+    
+</block>

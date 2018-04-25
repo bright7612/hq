@@ -1,0 +1,32 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/qt2.css">
+    <div class="layout">
+		<!--详情介绍 start-->
+		<section class="project">
+			<div class="title">
+				<h2>{$data.name}</h2>
+				<p class="info">
+					<span class="time">{$data.date|date='Y-m-d H:i',###}</span>&nbsp;&nbsp;
+					<span class="org">
+                    <span>主办：<span>工会、妇联、团工委</span></span>
+                    &nbsp;&nbsp;<span>协办：<span></span></span>
+                </span>
+				</p>
+			</div>
+			<img src="/Public/ljz/img/zzj02.jpg" alt=""/>
+			<p class="text">	{$data.content}			</p>
+		</section>
+		<!--详情介绍 end-->
+	    <section class="btn-box">
+	        <div class="btn"  id="submitBtn">我要报名</div>
+	    </section>
+    </div>
+   <script src="/Public/ljz/js/jquery.js"></script>
+  <script>
+ 	$("#submitBtn").on("click",function () {
+		window.location.href='/home/ljz/hdbm/id/{$data.id}';
+    });
+    </script>
+</block>

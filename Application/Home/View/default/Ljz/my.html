@@ -1,0 +1,104 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/my.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+
+<div class="layout">
+    <!--头部 start-->
+    <section class="header-box">
+        <div class="image">
+            <img src="{$wxmember.headimage}" alt="" />
+        </div>
+        <h2>{$wxmember.name}</h2>
+    </section>
+    <!--头部 end-->
+
+    <!--签到部分 start-->
+    <section class="register-box" id="qiandao">
+        <div class="register clearfix">
+            <div class="icon fl">
+                <img src="/Public/ljz/img/my/03.png" alt=""/>
+                 <span>签到</span>
+            </div>
+            <span class="iconfont icon-right fr"></span>
+            <div class="news-box fr" id="newsBox">
+                <span class="spot"></span>
+                <notempty name="count" >
+                    <span class="news">有<span>{$count}</span>条未签到消息</span>
+                </notempty>
+            </div>
+        </div>
+    </section>
+    <!--签到部分 end-->
+
+    <!--列表信息部分 start-->
+    <section class="list-box">
+        <ul>
+            <li class="clearfix" id="baoming">
+                <div class="icon fl">
+                    <img src="/Public/ljz/img/my/07.png" alt=""/>
+                    <span>我的活动报名</span>
+                </div>
+                <span class="iconfont icon-right fr"></span>
+            </li>
+            <li class="clearfix" id="renling">
+                <div class="icon fl">
+                    <img src="/Public/ljz/img/my/07-02.png" alt=""/>
+                    <span>我的自治金项目认领</span>
+                </div>
+                <span class="iconfont icon-right fr"></span>
+            </li>
+            <li class="clearfix" id="yuyue">
+                <div class="icon fl">
+                    <img src="/Public/ljz/img/my/07-03.png" alt=""/>
+                    <span>我的党课预约</span>
+                </div>
+                <span class="iconfont icon-right fr"></span>
+            </li>
+            <li class="clearfix" id="jifeng">
+                <div class="icon fl">
+                    <img src="/Public/ljz/img/my/07-04.png" alt=""/>
+                    <span>我的积分</span>
+                </div>
+                <span class="iconfont icon-right fr"></span>
+            </li>
+            <li class="clearfix" id="dybd">
+                <div class="icon fl">
+                    <img src="/Public/ljz/img/my/07-05.png" alt=""/>
+                    <span>党员报到</span>
+                </div>
+                <span class="iconfont icon-right fr"></span>
+            </li>
+            
+            
+        </ul>
+    </section>
+    <!--列表信息部分 end-->
+
+</div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+            $('#qiandao').on('click', function () {
+               window.location.href='/home/ljz/myRegister';
+            });
+            $('#baoming').on('click', function () {
+               window.location.href='/home/ljz/myApply';
+            });
+            $('#renling').on('click', function () {
+            	window.location.href='/home/ljz/myClaim';
+            });
+            $('#yuyue').on('click', function () {
+            	window.location.href='/home/ljz/myAppoint';
+            });
+            $('#jifeng').on('click', function () {
+            	window.location.href='/home/ljz/myGrade';
+            });
+            $('#dybd').on('click', function () {
+            	window.location.href='/home/ljz/dybd1';
+            });
+    </script>
+
+</block>
+

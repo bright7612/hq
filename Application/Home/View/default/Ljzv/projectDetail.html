@@ -1,0 +1,201 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>项目直通车</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/projectDetail.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section class="content">
+
+        <!--滚动区域 start-->
+        <article class="top">
+            <!--项目介绍区域 start-->
+            <section class="project">
+
+                <!--图文介绍-->
+                <div class="project-content">
+                    <h2 class="title">{$data.name}</h2>
+                    <p>{$data.desc}</p>
+                    <notempty name="pics" >
+                        <volist name="pics" id="di" >
+                            <img src="{$di|get_cover='path'}" alt="">
+                        </volist>
+                    </notempty>
+                </div>
+
+                <!--排名-->
+                <div class="project-rank">
+                    <h3 class="rank-title">认领方</h3>
+                    <ul class="rank-list">
+                        <volist name = "rldata"  id="di" >
+                            <eq name="data.id"  value="18" >
+                                <li class="rank-item">
+                                    <span class="iconfont icon-aixin color-red"></span>
+                                    {$di.name} 已认领
+                                </li>
+                                <else/>
+                                <eq name="di.rllx" value="1" >
+                                    <li class="rank-item">
+                                        <span class="iconfont icon-aixin color-red"></span>
+                                        {$di.name} 已认领{$di.rltype_str}
+                                    </li>
+                                    <else/>
+                                    <li class="rank-item">
+                                        <span class="iconfont icon-aixin color-red"></span>
+                                        {$di.dw} 已认领{$di.rltype_str}
+                                    </li>
+                                </eq>
+                            </eq>
+
+                        </volist>
+                    </ul>
+                </div>
+
+                <!--评价-->
+                <div class="project-evaluate">
+                    <h3 class="rank-title">评价内容</h3>
+                    <ul class="evaluate-list clearfix">
+                        <li class="evaluate-item fl">
+                            <span class="iconfont icon-manyidu color-red"></span>
+                            非常满意：{$pjcount.pj1}
+                        </li>
+                        <li class="evaluate-item fl">
+                            <span class="iconfont icon-manyidu color-orange"></span>
+                            满意：{$pjcount.pj2}
+                        </li>
+                        <li class="evaluate-item fl">
+                            <span class="iconfont icon-manyidu color-blue"></span>
+                            一般：{$pjcount.pj3}
+                        </li>
+                        <li class="evaluate-item fl">
+                            <span class="iconfont icon-manyidu color-grey"></span>
+                            不够满意：{$pjcount.pj4}
+                        </li>
+                    </ul>
+                    <ul class="rank-list">
+                        <volist name="pjdata" id="di" >
+                            <li class="rank-item">
+                                <span class="iconfont icon-message color-green"></span>
+                                {$di.content}
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </section>
+            <!--项目介绍区域 end-->
+        </article>
+        <!--滚动区域 end-->
+
+        <!--捐赠按钮区域 start-->
+        <bottom class="btn">
+            <in name="data.id" value="13" >
+                <span id="cy" class="option bg-red">我要参与</span>
+            </in>
+            <in name="data.id" value="14,15,17,18,20,28">
+                <span id="claim" class="option bg-red">我要认领</span>
+                <span id="xq" class="option bg-orange">我有需求</span>
+            </in>
+            <span id="evaluate" class="option bg-blue">我要评价</span>
+        </bottom>
+        <!--捐赠按钮区域 end-->
+
+        <!--遮罩区域 start-->
+        <div id="bg" class="bg">
+            <form action="" class="box">
+                <section class="choose-box">
+                    <h3 class="choose-title">请选择您对该项目的看法</h3>
+                    <ul class="choose-list clearfix">
+                        <li class="choose-item fl chosed" data-evaluate="1">非常满意</li>
+                        <li class="choose-item fl" data-evaluate="2">满意</li>
+                        <li class="choose-item fl" data-evaluate="3">一般</li>
+                        <li class="choose-item fl" data-evaluate="4">不够满意</li>
+                    </ul>
+                </section>
+                <section class="text-box">
+                    <h3 class="text-title">可以留下您的心声</h3>
+                    <textarea id="content" class="textarea" id="text" placeholder="建议或意见（字数300字以内）"></textarea>
+                </section>
+                <section class="btn-box clearfix">
+                    <input id="submit" class="confirm fl" type="button" value="提交">
+                    <input id="cancel" class="cancel fr" type="button" value="取消">
+                </section>
+            </form>
+        </div>
+        <!--遮罩区域 end-->
+
+    </section>
+
+    <script src="/Public/ljz3/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            /*
+             我要评价按钮点击事件
+             * */
+            $('#evaluate').on('click', function () {
+                $('#bg').show();
+            });
+
+            /*
+             监听提交按钮点击事件
+             * */
+            $('#submit').on('click', function () {
+                var evaluate = $('.chosed').attr('data-evaluate'); // 获取评价按钮值
+                var  content = $("#content").val();
+                var aid = "{$data.id}";
+                $.post("{:U('projectDetail')}",{pj:evaluate,content:content,id:aid},function (data) {
+                    if(data.info){
+                        alert(data.info);
+                    }
+                    if(data.status ==1){
+                        $('.choose-item').removeClass('chosed').first().addClass('chosed');
+                        $('#bg').hide();
+                        $('#content').val('');
+                    }
+                },"json");
+            });
+
+            /*
+             监听取消按钮点击事件
+             * */
+            $('#cancel').on('click', function () {
+                $('.choose-item').removeClass('chosed').first().addClass('chosed');
+                $('#bg').hide();
+                $('#text').val('');
+            });
+
+            /*
+             监听评价选择点击
+             * */
+            $('.choose-item').on('click', function () {
+                $(this).siblings().removeClass('chosed').end().addClass('chosed');
+            });
+        });
+
+        $("#claim").on("click",function () {
+            window.location.href="{:U('projectClaim')}?id={$data.id}";
+        });
+        $("#xq").on("click",function () {
+            window.location.href="{:U('demand')}";
+        });
+
+        $("#cy").on("click",function () {
+            window.location.href="{:U('projectClaim')}?id={$data.id}";
+        });
+
+    </script>
+</body>
+</html>

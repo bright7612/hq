@@ -1,0 +1,85 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+<script src="/Public/ljz/js/prefixfree.min.js"></script>
+
+<link rel="stylesheet" href="/Public/ljz/css/people.css">
+<link rel="stylesheet" href="/Public/ljz/font/iconfont.css"/>
+<script src="/Public/ljz/js/template.js"></script>
+<script type="text/html" id="dzbName">
+    {{if result}}
+    {{each result as value i}}
+    <li id="{{value.dzbId}}"  >
+        <span class="text">{{value.name}}</span>
+        <span class="iconfont icon-gou fr redColor"></span>
+    </li>
+    {{/each}}
+    {{/if}}
+</script>
+<script type="text/html" id="peopleName">
+    {{if result}}
+    {{each result as value i}}
+    <li onclick="aaa('{{value.dzbId}}')">
+        <a href="javascript:;" class="clearfix">
+            <div class="image fl">
+                <img src="{{value.img}}" alt=""/>
+            </div>
+            <div class="intro fl">
+                <p class="intro-name">{{value.name}}</p>
+                <p>
+                    <span>{{value.gender}}</span>&nbsp;&nbsp;&nbsp;
+                    <span>{{value.nation}}</span>
+                </p>
+                <p>{{value.dzb}}</p>
+            </div>
+            <div class="right fr">
+                <span class="iconfont icon-xia"></span>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+    {{/if}}
+</script>
+
+<div class="layout">
+        <!--头部 start-->
+        <section class="header-box clearfix">
+            <div class="header-left fl">
+                <span>所在党支部</span>
+            </div>
+            <div class="header-right fl">
+                <div class="header-select" id="header-select">
+                    <span id="branch">所有党支部</span>
+                    <span class="iconfont icon-xia fr"></span>
+                </div>
+                <!--党支部列表-->
+                <ul class="select-content" id="select-content">
+
+                </ul>
+            </div>
+        </section>
+        <!--头部 end-->
+
+        <!--内容部分 start-->
+        <section class="content-box">
+            <!--人物列表-->
+            <ul id="people-content">
+
+            </ul>
+            <!--遮罩-->
+            <div class="bg" id="bg"></div>
+        </section>
+        <!--内容部分 end-->
+    </div>
+
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script src="/Public/ljz/js/people.js"></script>
+ 	<script>
+ 		function aaa(id){
+// 			alert("asd");
+        	window.location.href='/home/ljz/people/id/'+id;
+        }
+ 	</script>
+    
+</block>

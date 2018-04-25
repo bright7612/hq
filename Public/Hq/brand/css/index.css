@@ -1,0 +1,208 @@
+@import "reset.css";
+html {
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'microsoft yahei';
+  background: url("../img/background.jpg") no-repeat 100% 100%;
+  position: relative;
+  overflow: hidden;
+}
+.title {
+  top: 135px;
+  left: 590px;
+  position: absolute;
+  z-index: 5;
+}
+.title > img {
+  display: block;
+}
+.content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 1780px;
+  height: 535px;
+  margin: 335px auto 0;
+}
+.video {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  width: 567px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 11px 11px 0;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #FB0000;
+  overflow: hidden;
+}
+.video > video {
+  width: 100%;
+  height: 439px;
+  background: #000;
+}
+.video .subtitle {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.introduce {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  width: 1190px;
+}
+.introduce .tab-list {
+  height: 178px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.introduce .tab-list .tab-item {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 395px;
+  -webkit-border-top-left-radius: 25px;
+  border-top-left-radius: 25px;
+  -webkit-border-top-right-radius: 25px;
+  border-top-right-radius: 25px;
+  background: #EA7F00;
+  cursor: pointer;
+}
+.introduce .tab-list .tab-item.active {
+  background: #B30000;
+}
+.introduce .tab-list .tab-item .img-box {
+  width: 110px;
+}
+.introduce .tab-list .tab-item .img-box > img {
+  display: block;
+  width: 100%;
+}
+.introduce .tab-list .tab-item .text-box {
+  width: 170px;
+}
+.introduce .tab-list .tab-item .text-box .text {
+  color: #FFF;
+  font-size: 32px;
+  line-height: 42px;
+  text-align: center;
+}
+.introduce .tab-view {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #B30000;
+}
+.introduce .tab-view .inner {
+  display: none;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 23px;
+  overflow: hidden;
+}
+.introduce .tab-view .inner > a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.introduce .tab-view .inner .img-box {
+  width: 337px;
+  height: 247px;
+  margin-right: 15px;
+}
+.introduce .tab-view .inner .img-box > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.introduce .tab-view .inner .text-box {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 247px;
+  overflow-y: auto;
+}
+.introduce .tab-view .inner .text-box::-webkit-scrollbar {
+  width: 20px;
+}
+.introduce .tab-view .inner .text-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+.introduce .tab-view .inner .text-box::-webkit-scrollbar-button {
+  display: none;
+}
+.introduce .tab-view .inner .text-box::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #e8e8e8;
+}
+.introduce .tab-view .inner .text-box .text {
+  color: #FFF;
+  font-size: 30px;
+  line-height: 50px;
+  text-indent: 2em;
+}

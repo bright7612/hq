@@ -1,0 +1,13 @@
+<if condition="$list">
+    <volist name="list" id="item">
+        <li>
+            <p class="i_info">{$item.model_name}</p>
+            <p class="i_time">{$item.create_time|date='Y-m-d H:i:s',###}</p>
+            <if condition="$item.action eq inc">
+                <i class="i_integral">+{$item.value}</i>
+                <else/>
+                <i class="i_integral i_integral_gray">-{$item.value}</i>
+            </if>
+        </li>
+    </volist>
+</if>

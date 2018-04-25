@@ -1,0 +1,44 @@
+<volist name="list" id="v">
+    <li class="v_item"  onclick="toVHome('{$v.uid}')">
+        <if condition="$v.index eq 1">
+            <i class="item_rank1"></i>
+            <elseif condition="$v.index eq 2"/>
+            <i class="item_rank2"></i>
+            <elseif condition="$v.index eq 3"/>
+            <i class="item_rank3"></i>
+            <elseif condition="$v.index gt 9"/>
+            <i class="item_rank" style="font-size: 1em">{$v.index}</i>
+            <else/>
+            <i class="item_rank">{$v.index}</i>
+        </if>
+        <img src="{$v.face|getFace}" class="ws_avatar">
+        <div class="ws_li_content">
+            <div>
+                <span class="item_name">{$v.realName}</span>
+                <for start="0" end='$v.assessment'><i class='ws_star_small'></i></for>
+                <if condition="$v.CCP eq 1">
+                    <i class="ws_ccp"></i>
+                </if>
+            </div>
+            <div style="font-size: small">
+                {$v.signature|default="这家伙很懒，什么都没有写"}
+            </div>
+            <div>
+                <if condition="$v['stypes']">
+                    <volist name="v.stypes" id="type">
+                        <i class="ws_tag">{$type|formatServiceType}</i>
+                    </volist>
+                    <else/>
+                    还未设置可提供的服务
+                </if>
+            </div>
+            <div style="font-size: 13px;margin-top: 2px">
+                服务次数 {$v.serviceTimes}&nbsp;&nbsp;&nbsp;锦旗数
+                {$v.flags}
+            </div>
+        </div>
+        <span class="more">更多</span>
+        <i class="arrow_r1">
+        </i>
+    </li>
+</volist>

@@ -1,0 +1,65 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/ordinaryBg.jpg") 100% 100% no-repeat;
+}
+
+.content {
+  width: 1777px;
+  height: 861px;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {display:none}
+  .list-wrapper {
+    width: 100%;
+    .list {
+      width: 874px;
+      height: 552px;
+      padding: 50px 45px 0;
+      margin-bottom: 29px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+      &:nth-child(2n+1) {
+        margin-right: 25px;
+      }
+      .list-title {
+        height: 120px;
+        margin-bottom: 8px;
+        h2 {
+          color: #B51C22;
+          font-size: 48px;
+          line-height: 60px;
+          overflow : hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp:2;
+          -webkit-box-orient: vertical;
+        }
+      }
+      p {
+        color: #626F7F;
+        font-size: 32px;
+        line-height: 60px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .btn {
+        width: 197px;
+        line-height: 86px;
+        font-size: 40px;
+        text-align: center;
+        margin: 20px auto 0;
+        border-radius: 10px;
+        background-image: linear-gradient(180deg, #FD1801, #C41215);
+        cursor: pointer;
+        a {
+          width: 100%;
+          height: 100%;
+          color: #FFF;
+        }
+      }
+    }
+  }
+}

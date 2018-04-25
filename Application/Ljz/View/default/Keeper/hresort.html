@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>发布</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/caller/home.css"/>
+    <style>
+        html {
+            height: 100%
+        }
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+    </style>
+</head>
+<body>
+<!--地图 start-->
+<div style="height:100%;padding-bottom: 30px;box-sizing: border-box; ">
+    <div id="container" style="height:100%;"></div>
+</div>
+<!--地图 end-->
+<!--tabbar start-->
+<div class="ws_tabbar" id="tabs" style="position: fixed ;bottom: 0;z-index: 5">
+    <a class="ws_tabbar_item " id="tab_volunteer" href="home.html">
+        <div class="ws_tabbar_icon">
+            <i class="ic_volunteer"></i>
+        </div>
+        <p class="ws_tabbar_label">志愿者</p>
+    </a>
+    <a class="ws_tabbar_item ws_bar_item_on" id="tab_resort" href="#">
+        <div class="ws_tabbar_icon">
+            <i class="ic_resort"></i>
+        </div>
+        <p class="ws_tabbar_label">发布</p>
+    </a>
+    <a class="ws_tabbar_item" id="tab_mine" href="hmine.html">
+        <div class="ws_tabbar_icon">
+            <i class="ic_mine"></i>
+        </div>
+        <p class="ws_tabbar_label">我的</p>
+    </a>
+</div>
+<!--tabbar end-->
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=aF1pIRItNcC27rMZcPX04YZWpmKCvP3U" type="text/javascript"></script>
+<script>
+    var map = new BMap.Map("container");          // 创建地图实例
+    var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+</script>
+</html>

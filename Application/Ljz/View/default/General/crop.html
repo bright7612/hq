@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="index">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>设置新头像</title>
+    <link rel="stylesheet" href="/Public/css/ws.css" type="text/css"  >
+    <style>
+        body {
+            margin: 0;
+            text-align: center;
+        }
+        #clipArea {
+            margin: 20px;
+            height: 300px;
+        }
+        #file,
+        #clipBtn {
+            margin: 20px;
+        }
+        #view {
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body ontouchstart="">
+<div id="clipArea"></div>
+<label for="file" class="ws_btn1" >请选择图片</label>
+<input type="file" id="file" hidden>
+<label id="clipBtn" class="ws_btn1">截取并保存</label>
+<!--<div id="view"></div>-->
+
+<script src="/Public/js/crop/jquery-3.1.1.min.js"></script>
+<script src="/Public/js/crop/iscroll-zoom.js"></script>
+<script src="/Public/js/crop/hammer.js"></script>
+<script src="/Public/js/crop/lrz.all.bundle.js"></script>
+<script src="/Public/js/crop/PhotoClip.js"></script>
+<script src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+
+
+
+    var clipArea = new PhotoClip("#clipArea", {
+        size: [260, 260],
+        outputSize: [640, 640],
+        file: "#file",
+//        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function() {
+            console.log("照片读取中");
+        },
+        loadComplete: function(aa) {
+            console.log("照片读取完成");
+        },loadError:function (a,msg) {
+            alert( "请选择图片");
+        },
+        clipFinish: function(dataURL) {
+            if(dataURL) {
+                $.post("{:U('Api/faceEdit2')}", {picstr: dataURL.replace("data:image/jpeg;base64,", "")}, function (data) {
+                    var d = $.parseJSON(data);
+                    if (d.result == 1) {
+                        layer.open({
+                            content: d.message
+                            , skin: 'msg'
+                            , time: 2
+                            , end: function () {
+                                window.location.href = '{:U("General/hmine")}'
+                            }
+                        });
+                    } else {
+                        layer.open({
+                            content: d.message
+                            , skin: 'msg'
+                            , time: 2
+                        });
+                    }
+                });
+            }else{
+                alert("请选择图片");
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

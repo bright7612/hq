@@ -1,0 +1,89 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/myApply.css">
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+
+<div class="layout">
+    <ul id="container">
+    	
+    <volist name="list" id="d">
+		<li>
+            <!--活动信息板块 start-->
+            <div class="info-box clearfix">
+                <div class="left fl leftalert">
+                    <div class="title">
+                        <h2>{$d.name}</h2>
+                        <span class="logo">{$d.typename}</span>
+                    </div>
+                    <p>地点：<span>{$d.date|date='Y-m-d',###}</span>
+
+                    </p>
+                    <p>地点：<span>{$d.addr}</span></p>
+                    <p>人数：<span>{$d.count}</span>人</p>
+                    <p>报名时间：<span>{$d.create_time|date='Y-m-d H:m:s ',###}</span></p>
+                    <p>报名状态：<span>{$d.state|statename}</span></p>
+                </div>
+                <if condition = '$d.state lt 2'>
+                    <div class="right fr">
+                        <div class="btn fr" id="submitBtn" data-id="{$d.id}">取消报名</div>
+                    </div>
+                </if>
+
+            </div>
+            <!--活动信息板块 end-->
+
+            <!--活动内容板块 start-->
+            <div class="content-box">
+                <p>{$d.content}</p>
+            </div>
+            <!--活动内容板块 end-->
+        </li>
+    </volist>
+    	
+        
+   
+    </ul>
+</div>
+
+<script src="/Public/ljz/js/jquery.js"></script>
+<script>
+    $(function () {
+        //遍历logo，改变其颜色
+        $('.logo').each(function () {
+            var logoSort = $(this).text();
+            if(logoSort && logoSort === '志愿公益'){
+                $(this).addClass('orangeColor');
+            } else if(logoSort && logoSort === '文体活动'){
+                $(this).addClass('blueColor');
+            } else if(logoSort && logoSort === '群团活动'){
+                $(this).addClass('rColor');
+            }
+        });
+
+        $('body').on('click', '.btn', function () {
+            //alert('跳转到签到页');
+        })
+    });
+
+        $("#submitBtn").on("click",function () {
+            var  alllyid= $(this).data("id");
+            $.post("/home/ljz/myApplydel", { id:alllyid
+
+        }, function (data) {
+                if(data.info){
+                    alert(data.info);
+
+                    if(data.status){
+                        window.location.href=data.url;
+                    }
+                }
+            });
+        });
+
+
+    </script>
+  
+</block>
+
+

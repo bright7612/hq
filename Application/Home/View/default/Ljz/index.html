@@ -1,0 +1,48 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	<link rel="stylesheet" href="/Public/ljz/css/redLife.css">
+   <div class="layout" id="layout">
+        <!--<div class="greatwall" id="greatWall">-->
+            <!--<a href="/home/ljz/ccjy1"></a>-->
+        <!--</div>-->
+
+       <div class="cost" id="cost">
+           <a href="/home/ljz/dfjn"></a>
+       </div>
+
+       <div class="activity" id="activity">
+           <a href="/home/ljz/hdyg"></a>
+       </div>
+
+       <div class="shuji" id="shuji">
+           <a href="/home/ljz/sbdk2"></a>
+       </div>
+
+       <div class="partier" id="partier">
+            <a href="/home/ljz/dysbd1"></a>
+       </div>
+
+       <div class="relationship" id="relationship">
+           <a href="/home/ljz/zzgx"></a>
+       </div>
+
+        <!--<div class="idea" id="idea">-->
+            <!--<a href="/home/ljz/dyxs"></a>-->
+        <!--</div>-->
+    </div>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script>
+        window.onload = function () {
+            //获取当前屏幕高度
+            var clientheight = window.innerHeight || document.documentElement.clientHeight ||
+                document.body.clientHeight || 0;
+            var layout = document.getElementById('layout')
+            if (clientheight < 1000) {
+                layout.style.backgroundSize = '100% auto';
+            }
+        }
+    </script>
+
+</block>

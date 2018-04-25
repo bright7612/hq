@@ -1,0 +1,108 @@
+@import "./base";
+
+html {
+  font-size: 108px;
+}
+
+body {
+  background: url("../imgs/bg/partier_bg.jpg") 100% 100% no-repeat;
+}
+
+input, select, textarea {
+  outline: none;
+  border: none;
+}
+
+.content {
+  width: 991px;
+  height: 1632px;
+  margin: 150px auto 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  &::-webkit-scrollbar {display: none;}
+  .form{
+    font-size: 40px;
+    padding: 30/108rem;
+    & > .input-box {
+      background-color: #FFF;
+      line-height: 180/108rem;
+      padding-left: 57/108rem;
+      margin-bottom: 30/108rem;
+      position: relative;
+      input[type=text] {
+        width: 600/108rem;
+        height: 93/108rem;
+        position: absolute;
+        left: 300/108rem;
+        top: 50/108rem;
+      }
+      ul {
+        width: 700/108rem;
+        position: absolute;
+        left: 300/108rem;
+        top: 30/108rem;
+        li {
+          width: 250/108rem;
+          height: 110/108rem;
+          line-height: 120/108rem;
+          text-align: center;
+          border: 1px solid #ccc;
+          border-radius: 10/108rem;
+          margin-right: 50/108rem;
+        }
+        .choose-style{
+          color: #C60A1E;
+          border: 1px solid #C60A1E;
+          position: relative;
+          overflow: hidden;
+          &::after{
+            content: "";
+            display: block;
+            width: 100/108rem;
+            height: 100/108rem;
+            background-color: #C60A1E;
+            transform: rotate(45deg) translate(70%);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+      .jmq{
+        width: 700/108rem;
+        height: 93/108rem;
+        color: #999999;
+        line-height: 110/108rem;
+        position: absolute;
+        left: 300/108rem;
+        top: 40/108rem;
+        span{
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
+  .btn-section{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 40/108rem 90/108rem;
+    background-color: #FFFFFF;
+    .btn{
+      width: 100%;
+      font-size: 40px;
+      color: #FFF;
+      text-align: center;
+      line-height: 125/108rem;
+      border-radius: 5px;
+      background-color: #C60A1E;
+      cursor: pointer;
+    }
+  }
+}

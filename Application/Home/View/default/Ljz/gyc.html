@@ -1,0 +1,40 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/gyc.css">
+    <div class="layout">
+    	<!--<p class="tips">敬请关注“合庆党建”微信公众号活动预告，参与公益项目</p>-->
+        <ul id="container">
+            <volist name="list" id="di" >
+				<li class="clearfix" data-id="{$di.id}" onclick="aaa('{$di.id}')">
+                    <h2>{$di.name}</h2>
+	                <div class="clearfix">
+                        <div class="left fl">
+                            <p>
+                                <span class="iconfont icon-neirong"></span>
+                                {$di.desc}
+                            </p>
+                        </div>
+                        <div class="right fr">
+                            <div class="fr btn orange-btn">详情</div>
+                        </div>
+                    </div>
+                    <notempty name="di.picpath" >
+                        <div class="photo-box clearfix">
+                            <img class="fl" src="{$di.picpath}">
+                            <img class="fr" src="{$di.picpath2}">
+                        </div>
+                    </notempty>
+            	</li>
+            </volist>
+        </ul>
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        function aaa(id){
+        	 window.location.href='/home/ljz/gycDetail/id/'+id;
+        }
+    </script>
+</block>

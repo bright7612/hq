@@ -1,0 +1,54 @@
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 100px;
+    float: right;
+}
+
+
+.arrow {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    border-bottom: 2px solid #9B9B9B;
+    border-right: 2px solid #9B9B9B;
+    width: 8px;
+    height: 8px;
+    transform: translate(0, -50%) rotate(-45deg);
+    -webkit-transform: translate(0, -50%) rotate(-45deg);
+    color: #9B9B9B;
+}
+
+.ws_cell {
+    overflow: hidden;
+    padding: 10px 25px 10px 20px;
+}
+
+.ws_cell .lt {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+}
+
+.ws_cell .rt {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    font-size: 13px;
+    color: #9B9B9B;
+    left: 120px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ws_cell span {
+    color: #3E4752;
+}
+
+

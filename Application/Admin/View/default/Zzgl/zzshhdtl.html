@@ -1,0 +1,43 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>组织生活会详情</h2>
+    </div>
+    <div class="with-padding">
+        <table class="table table-bordered">
+            <tr>
+           <th  width="120px">时间 </th><td>{$data.datetime|date='Y-m-d H:i',###}</td>
+                <th width="120px" >地点</th><td>{$data.addr}</td>
+                <th width="120px" >人数</th><td>{$data.count}</td>
+            </tr>
+            <tr>
+                <th>主题</th>
+                <td colspan="5">{$data.subject}</td>
+            </tr>
+            <tr  style="height: 100px">
+                <th>学习内容</th>
+                <td colspan="5" >{$data.content}</td>
+            </tr>
+            <tr  style="height: 100px">
+                <th>讨论情况</th>
+                <td colspan="5"  >{$data.discuss}</td>
+            </tr>
+            <tr  style="height: 100px">
+                <th>达成共识</th>
+                <td colspan="5"  >{$data.consensus}</td>
+            </tr>
+            <tr  style="height: 100px">
+                <th>图片</th>
+                <td colspan="5"  ><img src="{$data.pic1|get_cover='path'}"  width="200px" height="150px" /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-item with-padding">
+        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">{:L("_RETURN_WITH_SPACE_")}</button>
+    </div>
+</block>
+<block name="script">
+    <script>
+        highlight_subnav('{:U("zzshh")}');
+    </script>
+</block>

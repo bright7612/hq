@@ -1,0 +1,306 @@
+html {
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: url("../img/dangjian-bg.png") no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+}
+.title {
+  z-index: 999;
+  width: 100%;
+  height: 235px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url("../img/dangjian-shade.png") no-repeat;
+  background-size: 505px 100%;
+  background-position: 70% 0;
+}
+.title .back {
+  width: 250px;
+  height: 105px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 46px;
+  float: left;
+  text-align: center;
+  line-height: 90px;
+  border-radius: 55px;
+  margin-left: 65px;
+  margin-top: 40px;
+}
+.title .back .iconfont {
+  font-size: 70px;
+  margin-right: 15px;
+}
+.title .title-name {
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+.title .title-name > img {
+  display: block;
+}
+.content {
+  width: 1814px;
+  margin: 210px auto 0;
+}
+.content .content-inner {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.content .content-inner:first-child {
+  height: 406px;
+}
+.content .content-inner:last-child {
+  height: 424px;
+  margin-top: 17px;
+}
+.content .box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 25px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+}
+.content .box h4 {
+  height: 46px;
+  color: #d30015;
+  font-size: 0;
+  font-weight: bold;
+  line-height: 46px;
+  border-bottom: 1px dashed #d30015;
+  position: relative;
+}
+.content .box h4 .iconfont,
+.content .box h4 .text {
+  display: inline-block;
+  vertical-align: top;
+}
+.content .box h4 .iconfont {
+  font-size: 24px;
+  margin-right: 5px;
+}
+.content .box h4 .text {
+  font-size: 24px;
+}
+.content .box h4 .more {
+  color: #4b4b4b;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.content .box h4 .more .iconfont {
+  font-size: 16px;
+  margin-left: 5px;
+}
+.content .huodong {
+  width: 512px;
+  height: 406px;
+  padding-top: 32px;
+}
+.content .huodong .wrapper {
+  padding-top: 11px;
+}
+.content .huodong .wrapper .video {
+  width: 100%;
+  height: 306px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.content .huodong .wrapper .video img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.content .huodong .wrapper .video .text {
+  width: 455px;
+  height: 40px;
+  color: #fff;
+  padding-left: 15px;
+  line-height: 40px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+.content .zhidu {
+  width: 805px;
+  height: 406px;
+  padding-top: 32px;
+}
+.content .zhidu .wrapper {
+  padding-top: 11px;
+}
+.content .frame-box {
+  width: 466px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.content .frame-box .frame-left-right {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.content .frame-box .frame-left-right > a {
+  display: block;
+  width: 225px;
+  height: 192px;
+}
+.content .frame-box .frame {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-size: 100% 100%;
+  color: #fff;
+  border-radius: 15px;
+}
+.content .frame-box .frame .iconfont {
+  font-size: 100px;
+}
+.content .frame-box .frame .iconfont2 {
+  font-size: 100px;
+}
+.content .frame-box .frame .name {
+  font-size: 24px;
+  margin-top: -15px;
+}
+.content .shuji {
+  width: 902px;
+  padding-top: 23px;
+}
+.content .shuji .wrapper {
+  padding-top: 22px;
+}
+.content .shuji .wrapper .shuji-link {
+  display: block;
+  width: 100%;
+  height: 283px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.content .shuji .wrapper .shuji-link .photo {
+  float: left;
+  width: 180px;
+  height: 95%;
+}
+.content .shuji .wrapper .shuji-link .photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.content .shuji .wrapper .shuji-link .jianjie {
+  width: 620px;
+  height: 98%;
+  margin-left: 20px;
+  float: left;
+  font-size: 24px;
+  line-height: 42px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+.content .shuji .wrapper .shuji-link .jianjie::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content .shuji .wrapper .shuji-link .jianjie ::-webkit-scrollbar-button {
+  display: none;
+}
+.content .shuji .wrapper .shuji-link .jianjie ::-webkit-scrollbar-thumb {
+  /*border-radius: 10px;*/
+  background: #e8e8e8;
+}
+.content .zuzhi {
+  width: 900px;
+  padding-top: 23px;
+}
+.content .zuzhi .wrapper {
+  padding: 10px 10px;
+  height: 270px;
+  /*background: rgba(255,255,255,0.5);*/
+}
+.content .list {
+  height: 100%;
+  list-style: disc inside;
+}
+.content .list .item {
+  list-style: none;
+  width: 100%;
+  border-bottom: 1px dashed #021345;
+  overflow: hidden;
+}
+.content .list .item a {
+  display: block;
+  color: #3D3C3C;
+  font-size: 24px;
+  line-height: 73px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.content .list .item a .spot {
+  display: inline-block;
+  margin-right: 15px;
+}
+.swiper-pagination {
+  text-align: right;
+  z-index: 10000;
+}
+.swiper-pagination .swiper-slide {
+  position: relative;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: #fff!important;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+            我认领的任务
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/myresort.css"/>
+</head>
+<body>
+<div class="ws_content" style="background-color: #EDEDED">
+    <div id="tabs" class="tabs">
+        <i id="all" class="tab tab_on" data-id="9">全部
+        </i><i id="complete" class="tab" data-id="11">已接受
+    </i><i id="evaluate" class="tab" data-id="13">待评价
+    </i><i id="accept" class="tab" data-id="12">已完成</i>
+    </div>
+    <ul id="list">
+    </ul>
+    <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+        正在加载...
+    </div>
+    <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+        没有数据了
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+
+    var rows = 10;
+    var page = 1; //设置当前页数，全局变量
+    var status = 9;
+    var nomore = false;
+    var isloading = false;
+
+    $("#tabs").children().each(function (i, n) {
+        $(n).click(function () {
+            loadData(i, n);
+        });
+    });
+
+    function loadData(index, n) {
+        if ($(n).data("id") == status) {
+            return;
+        }
+        status = $(n).data("id");
+
+        $("#tabs").children().each(function (i, n) {
+            if (i == index) {
+                $(n).addClass("tab_on");
+            } else {
+                $(n).removeClass("tab_on");
+            }
+        });
+        clearList();
+        getData();
+    }
+
+    function clearList() {
+        page = 1;
+        nomore = false;
+        $("#list").empty();
+        $("#nomorediv").hide();
+    }
+
+    function getData() {
+        if (nomore || isloading) {
+            return;
+        }
+        isloading = true;
+        $('#loadingdiv').show();
+        $.get('{:U("listOrder")}', {
+            page: page,
+            status: status,
+            type: '{$type}'
+        }, function (data) {
+            isloading = false;
+            if ('nomore' == data) {
+                $('#nomorediv').show();
+                nomore = true;
+                $('#loadingdiv').hide();
+            } else {
+                page++;
+                $("#list").append(data);
+                if($("#list").children('li').length%10 >0){
+                    $('#nomorediv').show();
+                    nomore = true;
+                    $('#loadingdiv').hide();
+                }
+            }
+        });
+    }
+    getData();
+
+    $(function () {
+        var winH = $(window).height();
+        $(window).scroll(function () {
+            var pageH = $(document).height();
+            var scrollT = $(window).scrollTop();
+            var aa = (pageH - winH - scrollT) / winH;
+            if (aa < 0.02) {
+                getData();
+            }
+        });
+    });
+
+    function toDetail(id) {
+        location.href = "{:U('orderdetail')}?id=" + id;
+    }
+
+    function cancelResort(id) {
+        $.post('{:U("Api/orderDel")}', {id: id}, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                    , end: function () {
+                        location.reload();
+                    }
+                });
+            } else {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        });
+    }
+
+    function vCompleteOrder(oid) {
+        $.post('{:U("Api/complete")}', {oid: oid}, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                layer.open({
+                    content: "订单完成，3秒后跳转到评价求助者"
+                    , skin: "msg"
+                    , time: 3
+                    , end: function () {
+                        window.location.href = "{:U('evaluate')}?oid=" + oid;
+                    }
+                });
+            } else {
+                layer.open({
+                    content: d.message
+                    , skin: "msg"
+                    , time: 2
+                });
+            }
+        });
+    }
+
+</script>
+</html>

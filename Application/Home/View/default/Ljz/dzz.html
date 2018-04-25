@@ -1,0 +1,26 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/manage2.css">
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css"/>
+    <div class="layout">
+        <ul>
+            <volist name="data" id="di">
+                <li class="clearfix" onclick="aaa('{$di.id}')">
+                    {$di.name}
+                    <span class="iconfont icon-right fr"></span>
+                </li>
+            </volist>
+        </ul>
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        function aaa(id) {
+// 			alert("asd");
+            window.location.href = '/home/ljz/dzzxq/id/' + id;
+        }
+    </script>
+
+</block>

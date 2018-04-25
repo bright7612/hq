@@ -1,0 +1,47 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/gycConfirm.css">
+
+    <section class="layout">
+        <p class="message">请留下您的联系方式</p>
+        <form action="">
+            <div class="ordinary clearfix">
+                <label>姓名</label>
+                <input id="name" type="text" placeholder="请输入姓名" name="name">
+            </div>
+            <div class="ordinary clearfix">
+                <label>联系方式</label>
+                <input id="tel" type="text" placeholder="请输入手机号" name="mobile" >
+            </div>
+            <div class="ordinary clearfix">
+                <label>认领项目</label>
+                <input id="project" type="text" value="{$rltype.name}" readonly>
+                <input hidden type="text" value="{$rltype.id}" name="rltype">
+                <input hidden type="text" value="{$data.id}" name="aid">
+                <input hidden type="text" value="1" name="rllx">
+            </div>
+            <div class="confirm">
+                <input id="submitBtn" class="person" type="button" value="提交">
+            </div>
+        </form>
+    </section>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.min.js">
+    </script>
+    <script>
+        $("#submitBtn").on("click",function () {
+            var params= $("form").serialize();
+            alert(params);
+            $.post("{:U('gycrl')}",params,function (data) {
+                if(data.info){
+                    alert(data.info);
+                    if(data.status){
+                        window.location.href=data.url;
+                    }
+                }
+            });
+        });
+    </script>
+</block>

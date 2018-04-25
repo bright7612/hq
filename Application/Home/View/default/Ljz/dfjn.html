@@ -1,0 +1,168 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/lCalendar.css">
+    <link rel="stylesheet" href="/Public/ljz/css/partyPay.css"/>
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css">
+    <div class="layout">
+        <!--标题部分 start-->
+        <section class="title-box">
+            <h1>党费缴纳在线计算</h1>
+        </section>
+        <!--标题部分 end-->
+
+        <!--表单操作部分 start-->
+        <section class="form-box">
+            <form action="">
+                <div class="clearfix catagory">
+                    <span>党员分类</span>
+                    <select id="partierType" name="">
+                        <!--<option value="0">请先选择您的党员分类</option>-->
+                        <option value="1">月薪制党员</option>
+                        <option value="2">年薪制党员</option>
+                        <option value="3">个体经营党员</option>
+                        <option value="4">离退休党员</option>
+                        <option value="5">退休返聘党员</option>
+                        <option value="6">农民党员</option>
+                        <option value="7">学生党员</option>
+                        <option value="8">下岗失业党员</option>
+                        <option value="9">生活困难党员</option>
+                    </select>
+                </div>
+                <div id="salary" class="clearfix salary">
+
+                </div>
+                <!--<div class="clearfix date">-->
+                    <!--<p>选择缴费起止月份</p>-->
+                    <!--<div>-->
+                        <!--<input id="demo1" type="text" name="input_date" readonly="readonly"-->
+                               <!--placeholder="开始缴纳月份" data-lcalendar="2016-01-1,2020-12-31" />-->
+                        <!--<span>至</span>-->
+                        <!--<input id="demo2" type="text" name="input_date" readonly="readonly"-->
+                               <!--placeholder="结束缴纳月份" data-lcalendar="2016-01-1,2020-12-31" />-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="confirm">
+                    <div id="btn" class="btn">在线试算</div>
+                </div>
+            </form>
+        </section>
+        <!--表单操作部分 end-->
+
+        <!--党费介绍部分 start-->
+        <section class="notion-box">
+            <p class="fl">温馨提示：党费是党员向党组织交纳的用于党的事业和党的活动的经费。
+                交纳党费是党员对党组织应尽的义务，是对党员党性的检验，也是党员关心党的事
+                业的一种表现。按照《党章》规定，党员向党组织交纳党费，是党员必须具备的起码条件。</p>
+            <a href="./partyPayDetail.html">《浦东新区关于党员党费收缴的实施细则》</a>
+        </section>
+        <!--党费介绍部分 end-->
+
+        <!--模态框部分 start-->
+        <section id="bg" class="bg">
+            <div class="box">
+                <div class="cancel-box clearfix">
+                    试算结果
+                    <span id="close" class="iconfont icon-quxiao fr"></span>
+                </div>
+                <div class="result-box">
+                    <p>
+                        计算<span id="month">1</span>个月党费
+                    </p>
+                    <p>
+                        您应缴纳<span><span id="pay">XXX</span>元</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!--模态框部分 end-->
+    </div>
+
+    <form style="display: none" action="http://care.wiseljz.com/Home/Wxpayljz/index" method="post" id="formpay">
+        <input type="text" id="sum" name="sum" />
+        <input type="text"  name="id" id="duesid" />
+        <input type="text"  name="rdurl" value="/Home/ljz/dfjn" />
+    </form>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script src="/Public/ljz/js/partyPay.js"></script>
+    <script src="/Public/ljz/js/lCalendar.js"></script>
+    <script>
+        window.onload = function () {
+            $('#demo1, #demo2').on('click', function (evevt) {
+                event.preventDefault();
+            })
+
+            var calendar = new lCalendar();
+            calendar.init({
+                'trigger': '#demo1',
+                'type': 'date'
+            });
+
+            var calendar2 = new lCalendar();
+            calendar2.init({
+                'trigger': '#demo2',
+                'type': 'date'
+            });
+        }
+    </script>
+
+    <script>
+        var dzz = {$dzz};
+        $("#dzztype").on("change", function (v) {
+            setupDzz($("#dzztype").val());
+        });
+        setupDzz($("#dzztype").val());
+        function setupDzz(dzztype) {
+            var zz = dzz[$("#dzztype").val()]
+            var html = "";
+            for (var k = 0, length = zz.length; k < length; k++) {
+
+                html += "<option value='" + zz[k].name + "'>" + zz[k].name + "</option>"
+            }
+            $("#dzzname").html(html);
+        }
+
+        function paydues() {
+            var idnum = $('#idnum').val();
+            if (!idnum || (idnum == "")) {
+                alert("身份证号不能为空");
+                return;
+            }
+            var name = $('#name').val();
+            if (!name || (name == "")) {
+                alert("姓名不能为空");
+                return;
+            }
+            var dues = $('#dues').val();
+            if (!dues || (dues == "")) {
+                alert("金额不能为空");
+                return;
+            }
+//            if(isNumber(dues)){
+//                alert("请填写金额");
+//                return;
+//            }
+
+            $.post("__SELF__", $("#mainform").serialize(), function (data) {
+                    var d = $.parseJSON(data);
+                    if(d)
+                    {
+                        if(d.result == 1)
+                        {
+                            $("#sum").val($("#dues").val());
+                            $("#duesid").val(d.id);
+                            $("#formpay").submit();
+                        }else{
+                            alert(d.msg);
+                        }
+                    }else{
+                        alert("接口异常");
+                    }
+
+            });
+
+        }
+    </script>
+</block>

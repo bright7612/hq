@@ -1,0 +1,51 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/css/demoDiscuss.css">
+    <div class="layout">
+        <ul class="democracy-box">
+           <volist name="data" id="di" >
+            <li>
+                <p class="demo-title">
+                    <span>{$key}</span>年党员民主评议
+                </p>
+                <p class="demo-detail">
+                    <span>{$di.total|default=0}</span>人参评 <span>{$di.mp|default=0}</span>人免评
+                </p>
+                <p class="demo-detail">
+                    评测结果：<span>{$di.yx|default=0}</span>名优秀，<span>{$di.hg|default=0}</span>名合格
+                    <gt name="di.jbhg"  value="0">
+                        ，<span>{$di.jbhg}</span>名基本合格
+                    </gt>
+                    <gt name="di.bhg"  value="0">
+                        ，<span>{$di.bhg|default=0}</span>名不合格
+                    </gt>
+                    <gt name="di.gzr"  value="0">
+                        ，<span>{$di.gzr|default=0}</span>名刚转入
+                    </gt>
+                    <gt name="di.bldj"  value="0">
+                        ，<span>{$di.bldj|default=0}</span>名保留党籍
+                    </gt>
+                    <gt name="di.wz"  value="0">
+                        ，<span>{$di.wz|default=0}</span>名未知
+                    </gt>
+                </p>
+                <!--<p class="demo-free">-->
+                    <!--免评人员情况：<span>XXXXX</span>-->
+                <!--</p>-->
+            </li>
+           </volist>
+        </ul>
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script>
+        function aaa(id) {
+            window.location.href = '/home/ljz/dzzxq/id/' + id;
+        }
+    </script>
+
+</block>

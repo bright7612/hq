@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--送锦旗-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>赠送礼物</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <style>
+        tr td {
+            width: 50%;
+            text-align: center;
+            overflow: visible;
+        }
+
+        tr td a {
+            display: inline-block;
+            background-position: 5px 0;
+            background-size: 150px 150px;
+            background-repeat: no-repeat;
+            width: 160px;
+            padding-top: 160px;
+            padding-bottom: 15px;
+            overflow: visible;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0);
+        }
+
+        tr td a.on {
+            border-radius: 15px;
+            border: 2px solid #F68F3C;
+        }
+
+        tr td a p:first-child {
+            color: #656D77;
+        }
+
+        tr td a p:last-child {
+            color: #F68F3C;
+        }
+
+        /*.gift1 {*/
+        /*background-image: url("/Public/images/ic_gift1.png");*/
+        /*}*/
+
+        /*.gift2 {*/
+        /*background-image: url("/Public/images/ic_gift2.png");*/
+        /*}*/
+
+        /*.gift3 {*/
+        /*background-image: url("/Public/images/ic_gift3.png");*/
+        /*}*/
+
+
+    </style>
+</head>
+<body>
+<div class="ws_content">
+    <p style="color: #3E4752;font-size: 20px;margin-top: 30px;text-align: center">选择您要送出的礼物</p>
+    <table style="width: 100%">
+        <tbody id="gifts">
+        <volist name="gifts" id="gift" mod="2">
+            <eq name="mod" value="0">
+                <tr>
+                    <td><a class="gift " data-id="{$gift.id}"
+                           style="background-image: url('{:C(\'SERVER_IP\')}{$gift.goods_ico}')"
+                           data-name="{$gift.goods_name}" data-price="{$gift.bei_need}">
+                        <p>{$gift.goods_name}</p>
+                        <p>{$gift.bei_need}贝</p>
+                    </a></td>
+            </eq>
+            <eq name="mod" value="1">
+                <td><a class="gift " data-id="{$gift.id}"
+                       style="background-image: url('{:C(\'SERVER_IP\')}{$gift.goods_ico}')"
+                       data-name="{$gift.goods_name}" data-price="{$gift.bei_need}">
+                    <p>{$gift.goods_name}</p>
+                    <p>{$gift.bei_need}贝</p>
+                </a></td>
+                </tr>
+            </eq>
+        </volist>
+        </tbody>
+    </table>
+    <div style="padding: 30px;margin-top: 20px;">
+        <a id="send" class="weui_btn weui_btn_primary">送出</a>
+    </div>
+
+    <div class="weui_dialog_confirm" style="display: none" id="dialog">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title"></strong></div>
+            <div class="weui_dialog_bd" style="color: #000" id="dContent">确定送出吗？</div>
+            <div class="weui_dialog_ft">
+                <a  class="weui_btn_dialog default">取消</a>
+                <a class="weui_btn_dialog primary" onclick="send()">确定</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui_dialog_confirm" style="display: none" id="dialog2">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title"></strong></div>
+            <div class="weui_dialog_bd" style="color: #000" >您的贝不足，是否点击购买？</div>
+            <div class="weui_dialog_ft">
+                <a  class="weui_btn_dialog default">取消</a>
+                <a class="weui_btn_dialog primary" href="{:U('General/recharge')}">确定</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    $(".gift").on("click", function () {
+        $(".gift").removeClass("on");
+        $(this).addClass("on");
+    });
+    $("#send").on("click", function () {
+        var gift =$("a.gift.on");
+        if(gift.length!=1)
+        {
+            layer.open({content:"请选择您要送出的礼物",skin:"msg",time:2});
+            return;
+        }
+        var text = "确定用" + gift.data("price") + "贝送出" + gift.data("name") + "吗?";
+        $("#dContent").text(text);
+        $("#dialog").show();
+    });
+    $("#dialog").on("click", function () {
+        $("#dialog").hide();
+    });
+    $("#dialog2").on("click", function () {
+        $("#dialog2").hide();
+    });
+
+    function send() {
+        var gid = $("a.gift.on").data('id');
+        $.post("{:U('Api/sendGift')}", {oid: "{$order.id}", uid: "{$order.receiver_id}", gid:gid},function (data) {
+            var d = $.parseJSON(data);
+            if(d.result=="1")
+            {
+                layer.open({content:"赠送成功",skin:"msg",time:2,end:function () {
+                    location.href="{:U('General/hmine')}"
+                }});
+            }else if(d.result=="5802")
+            {
+                $("#dialog2").show();
+            }
+            else
+            {
+                layer.open({content:d.message,skin:"msg",time:2});
+            }
+        });
+    }
+</script>
+</html>

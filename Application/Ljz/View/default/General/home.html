@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>志愿者排行榜</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/caller/home.css"/>
+    <style>
+
+        #list li .ws_li_content {
+            flex: 1;
+            -webkit-flex: 1;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<!--志愿者列表 start-->
+<div id="content_volunteer">
+    <div id="filt" class="filt ws_divider clearfix">
+        <span class="f_icon">筛选</span>&nbsp;&nbsp;&nbsp;<span id="f_tag">全部</span> <i id="filter_arrow" class="down"
+                                                                                      style="float: right;margin-top: 10px;"></i>
+    </div>
+    <div class="filter" id="filter">
+        <ul id="filters" style="background: #fff">
+            <li class="filter_on">全部</li>
+            <li>评价从高到低</li>
+            <li>服务次数</li>
+            <li>锦旗数</li>
+        </ul>
+    </div>
+
+    <div style="padding-top: 38px;padding-bottom: 55px">
+        <ul id="list" class="ws_ul">
+        </ul>
+        <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;color: #5A5A5A">
+            正在加载...
+        </div>
+        <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+            没有数据了
+        </div>
+    </div>
+</div>
+<!--志愿者列表 end-->
+<div class="ws_tabbar" id="tabs" style="position: fixed ;bottom: 0;z-index: 5">
+    <a class="ws_tabbar_item ws_bar_item_on" id="tab_volunteer" href="#">
+        <div class="ws_tabbar_icon">
+            <i class="ic_volunteer"></i>
+        </div>
+        <p class="ws_tabbar_label">志愿者</p>
+    </a>
+    <a class="ws_tabbar_item" id="tab_resort" href="{:U('General/hresort')}">
+        <div class="ws_tabbar_icon">
+            <i class="ic_resort"></i>
+        </div>
+        <p class="ws_tabbar_label">求助</p>
+    </a>
+    <a class="ws_tabbar_item" id="tab_mine" href="{:U('hmine')}">
+        <div class="ws_tabbar_icon">
+            <i class="ic_mine"></i>
+        </div>
+        <p class="ws_tabbar_label">我的</p>
+    </a>
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script>
+    var rows = 10;
+    var page = 1; //设置当前页数，全局变量
+    var nomore = false;
+    var isloading = false;
+
+    $("#filt").click(function () {
+        var filter = $("#filter");
+        var arrow = $("#filter_arrow");
+        if (filter.is(":hidden")) {
+            filter.show();
+            arrow.removeClass("down");
+            arrow.addClass("up");
+        } else {
+            filter.hide();
+            arrow.removeClass("up");
+            arrow.addClass("down");
+        }
+    });
+
+    $("#filter").click(function () {
+        $(this).hide();
+        $("#filter_arrow").removeClass("up").addClass("down");
+    });
+
+    $("#filters").children().each(function (i, node) {
+        $(node).click(function () {
+            if ($(node) == $('.filter_on')) {
+                return;
+            }
+            $(node).addClass("filter_on");
+            $(node).siblings().removeClass("filter_on");
+            $('#f_tag').text($(node).text());
+
+            clearVlist();
+            getData();
+        });
+    });
+
+    function clearVlist() {
+        page = 1;
+        nomore = false;
+        $("#list").empty();
+        $("#nomorediv").hide();
+    }
+
+    function getData() {
+        if (nomore || isloading) {
+            return;
+        }
+        isloading = true;
+        $('#loadingdiv').show();
+        var order = $("#filters li.filter_on").index();
+        $.get('{:U("General/listVolunteer")}', {
+            order: order,
+            page: page
+        }, function (data) {
+            isloading = false;
+            if ('nomore' == data) {
+                $('#nomorediv').show();
+                nomore = true;
+                $('#loadingdiv').hide();
+            } else {
+                page++;
+                $("#list").append(data);
+                if ($("#list").children('li').length % 10 > 0) {
+                    $('#nomorediv').show();
+                    nomore = true;
+                    $('#loadingdiv').hide();
+                }
+            }
+        });
+    }
+    getData();
+
+    $(function () {
+        var winH = $(window).height();
+        $(window).scroll(function () {
+            var pageH = $(document).height();
+            var scrollT = $(window).scrollTop();
+            var aa = (pageH - winH - scrollT) / winH;
+            if (aa < 0.02) {
+                getData();
+            }
+        });
+    });
+</script>
+</html>

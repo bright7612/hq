@@ -1,0 +1,44 @@
+<volist name="list" id="v">
+    <li class=""  onclick="toVHome('{$v.uid}')" style="background-color: #fff" >
+        <div style="float: left;margin-top: 35px">
+        <img src="{$v.face|getFace}" class="ws_avatar" width="64" height="64">
+        </div>
+        <div class="ws_li_content"  style="margin-left: 84px" >
+            <p class="item_name">{$v.realName}
+                <if condition="$v.education neq ''">
+                    | <span style="font-size: 0.9em">{$v.education}</span>
+                </if>
+                <if condition="$v.assessment gt 0">
+                    | <for start="0" end='$v.assessment'><i class='ws_star_small'></i></for>
+                </if>
+                <if condition="$v.CCP eq 1">
+                    <i class="ws_ccp"></i>
+                </if>
+                    <i class="ws_volunteer"></i>
+            </p>
+            <if condition="$v.job neq ''">
+                <p class="job">职业:{$v.job}</p>
+                <else/>
+                <p class="job empty">未填写职业</p>
+            </if>
+            <if condition="$v.skills neq ''">
+                <p class="hobby">特长:{$v.skills}</p>
+                <else/>
+                <p class="hobby empty">未填写特长</p>
+            </if>
+            <if condition="$v.homeAddress neq ''">
+                <p class="addr">地址:{$v.homeAddress}</p>
+                <else/>
+                <p class="addr empty">未填写住址</p>
+            </if>
+            <p class="serve">服务次数{$v.serviceTimes}次</p>
+            <if condition="$v.signature neq ''">
+                <p >个性签名:{$v.signature}</p>
+                <else/>
+                <p class="empty">未填写个性签名</p>
+            </if>
+        </div>
+        <i class="arrow_r1">
+        </i>
+    </li>
+</volist>

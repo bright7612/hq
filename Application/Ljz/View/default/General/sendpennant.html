@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--送锦旗-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>评价</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/pennant.css"/>
+</head>
+<body>
+<div class="ws_content">
+    <div class="wrapper">
+        <p style="color: #3E4752;font-size: 20px">感谢您对本次服务的评价</p>
+        <p style="color: #5A5A5A;margin-top: 15px;font-size: 13px;margin-bottom: 10px"><span style="color: #EF4F4F">{$oinfo.receiver_name}</span>志愿者将获得10积分<br/>积分将作为社区志愿者的评比基础</p>
+        <img src="/Public/images/ic_ok.png" width="25%" height="auto" style="margin: 50px 0">
+        <p style="color: #5A5A5A;">您还可以为志愿者送出一份礼物表达谢意</p>
+    </div>
+    <div style="padding: 30px;margin-top: 20px;">
+        <a id="send" class="weui_btn weui_btn_primary" href="{:U('sendgift')}?oid={$oinfo.id}">送礼物</a>
+        <a id="latersend" class="weui_btn" style="color: #5A5A5A">稍后再送</a>
+    </div>
+
+    <!--<div class="weui_dialog_confirm" style="display: none">-->
+        <!--<div class="weui_mask"></div>-->
+        <!--<div class="weui_dialog">-->
+            <!--<div class="weui_dialog_hd"><strong class="weui_dialog_title"></strong></div>-->
+            <!--<div class="weui_dialog_bd">确定送出吗？</div>-->
+            <!--<div class="weui_dialog_ft">-->
+                <!--<a href="#" class="weui_btn_dialog default">取消</a>-->
+                <!--<a class="weui_btn_dialog primary" onclick="send()">确定</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+//    $("#send").click(function (e) {
+//        $(".weui_dialog_confirm").show();
+//    });
+//    $(".weui_dialog_confirm").click(function (e) {
+//        $(".weui_dialog_confirm").hide()
+//    });
+
+//    function send() {
+//        $.post("{:U('Api/sendPennant')}", {oid: '{$oinfo.id}', uid: '{$oinfo.receiver_id}', gid: 1}, function (data) {
+//            var d = $.parseJSON(data);
+//            if (d.result == 1) {
+//                layer.open({
+//                    content: d.message,
+//                    skin: 'msg',
+//                    time: 2,
+//                    end: function () {
+//                        window.location.href = '{:U("General/hmine")}';
+//                    }
+//                });
+//            } else {
+//                layer.open({
+//                    content: d.message,
+//                    skin: 'msg',
+//                    time: 2
+//                });
+//            }
+//        });
+//    }
+
+    $("#latersend").click(function () {
+        window.location.href = '{:U("General/hmine")}';
+    });
+
+</script>
+</html>

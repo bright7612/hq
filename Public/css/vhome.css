@@ -1,0 +1,73 @@
+.ws_avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 100px;
+    margin: 10px 0 0;
+}
+
+.ws_vinfo {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #fff;
+    background: url("../images/bg_mine.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.ws_vinfo .ws_vinfo_right {
+}
+
+.vinfo_tags {
+    padding: 5px 10px 5px 20px;
+    clear: both;
+}
+
+/*.resort {*/
+    /*display: block;*/
+    /*width: 100px;*/
+    /*height: 75px;*/
+    /*color: #FFFFFF;*/
+    /*background: linear-gradient(135deg,#F5905A,#F36B5A);*/
+    /*border-radius: 100px;*/
+    /*margin: 10px auto;*/
+    /*text-align: center;*/
+    /*font-size: 20px;*/
+    /*line-height: 1.2;*/
+    /*padding-top: 25px;*/
+/*}*/
+
+.ws_star {
+    font-style: normal;
+    font-size: 16px;
+    margin-top: -5px;
+}
+
+.item_avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin: 10px;
+    float: left;
+}
+
+.li_divider {
+    border-bottom: 1px solid #ccc;
+    margin-left: -60px;
+    margin-top: 10px
+}
+
+.item_info {
+    margin-top: 10px;
+    margin-left: 70px;
+    line-height: 1.2;
+}
+
+.item_time {
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.ws_ul li {
+    background: none;
+}

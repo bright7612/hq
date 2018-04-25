@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>贝充值</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <style>
+        .tag {
+            color: #51C5D4;
+            border: #51C5D4 solid 2px;
+            padding: 20px 15px;
+            border-radius: 5px;
+            margin: 20px;
+            display: block;
+            font-size: 25px;
+            line-height: 25px;
+        }
+
+        .tag.on {
+            border: #51C5D4 solid 2px;
+            background-color: #51C5D4;
+            color: #fff;
+        }
+
+        .tag span {
+            font-size: 15px;
+            line-height: 15px;
+        }
+
+    </style>
+</head>
+<body style="text-align: center;color: #3E4752;font-size: 1em;">
+<table style="width: 100%;table-layout: fixed">
+    <tbody>
+    <tr>
+        <td><a class="tag" data-sum="10">10贝<br><span>需10元</span></a></td>
+        <td><a class="tag" data-sum="20">20贝<br><span>需20元</span></a></td>
+    </tr>
+    <tr>
+        <td><a class="tag" data-sum="50">50贝<br><span>需50元</span></a></td>
+        <td><a class="tag" data-sum="100">100贝<br><span>需100元</span></a></td>
+    </tr>
+    <tr>
+        <td><a class="tag" data-sum="200">200贝<br><span>需200元</span></a></td>
+        <td><a class="tag" data-sum="300">300贝<br><span>需300元</span></a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="spacing">
+    <a class="ws_btn_block" onclick="recharge();">充值</a>
+</div>
+<form style="display: none" action="{:U('Wxpay/index')}" method="post">
+    <input type="text" id="sum" name="sum"/>
+</form>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    $(".tag").on("click", function () {
+        if ($(this).hasClass("on")) {
+            return;
+        }
+        $(this).addClass("on");
+        $(".tag").not(this).removeClass("on");
+
+    });
+    function recharge() {
+        var on = $(".tag.on");
+        if (on.length == 0) {
+            layer.open({content: "请选择充值金额", skin: "msg", time: 2});
+        } else {
+            $("#sum").val(on.data("sum"));
+            $("form").submit();
+        }
+    }
+</script>
+</body>
+</html>

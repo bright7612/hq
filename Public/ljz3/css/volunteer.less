@@ -1,0 +1,138 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/zyz_bg.jpg") 100% 100% no-repeat;
+}
+
+.help {
+  width: 991px;
+  height: 689px;
+  padding: 60px 45px 0;
+  margin: 122px auto 0;
+  background-color: #FFF;
+  border-radius: 10px;
+  p {
+    color: #D73334;
+    font-size: 34px;
+    line-height: 50px;
+    text-indent: 2em;
+  }
+  .ewm-wrapper {
+    margin-top: 50px;
+    .ewm-help {
+      width: 265px;
+      height: 266px;
+      margin: 0 auto;
+      border: 2px solid #616161;
+      box-sizing: border-box;
+      & > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .text {
+      width: 270px;
+      color: #FFF;
+      font-size: 25px;
+      text-align: center;
+      line-height: 56px;
+      border-radius: 25px;
+      margin: 17px auto;
+      background-color: #616161;
+    }
+  }
+}
+
+.more {
+  color: #FFF;
+  font-size: 38px;
+  line-height: 40px;
+  text-align: right;
+  padding: 0 45px;
+  margin-top: 45px;
+}
+
+.volunteer {
+  width: 991px;
+  height: 870px;
+  margin: 25px auto 0;
+  overflow-x: hidden ;
+  overflow-y: auto;
+  &::-webkit-scrollbar {display:none}
+  .list-wrapper {
+    width: 100%;
+    .list {
+      .displayFlex();
+      width: 100%;
+      padding: 22px 0 16px 15px;
+      margin-bottom: 41px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+      .list-left {
+        width: 309px;
+        height: 225px;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .list-right {
+        .flex(1);
+        padding: 0 30px 0 36px;
+        position: relative;
+        .list-title {
+          color: #DD4034;
+          font-size: 41px;
+          line-height: 57px;
+          margin-bottom: 10px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .list-intro {
+          color: #737373;
+          font-size: 29px;
+          line-height: 45px;
+          overflow : hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp:2;
+          -webkit-box-orient: vertical;
+        }
+        .join {
+          display: block;
+          width: 242px;
+          height: 59px;
+          color: #FFF;
+          font-size: 32px;
+          text-align: center;
+          line-height: 59px;
+          border-radius: 10px;
+          background-color: #DC4235;
+          position: absolute;
+          bottom: 0;
+          cursor: pointer;
+        }
+        .ewm-box {
+          width: 265px;
+          border: 2px solid #616161;
+          box-sizing: border-box;
+          background-color: #FFF;
+          position: absolute;
+          top: -25px;
+          left: 285px;
+          z-index:100;
+          & > img {
+            display: block;
+            width: 100%;
+          }
+          & > p {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的标签</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/volunteer/tag.css"/>
+</head>
+<body>
+<div style="padding:10px 10px 10px 20px;border-bottom: 1px solid #e0e0e0">
+    <p style="margin-bottom: 10px">我的服务标签</p>
+    <div id="tags_in">
+        <span class="tag_in">修水管</span><span class="tag_in">修水管</span><span class="tag_in">修水管</span><span
+            class="tag_in">修水管</span><span class="tag_in">修水管</span>
+    </div>
+</div>
+
+<div style="padding:10px 10px 10px 20px;border-bottom: 1px solid #e0e0e0">
+    <p style="margin-bottom: 10px">添加标签</p>
+    <div id="tags_out">
+        <span class="tag">修水管</span><span class="tag">修水管</span><span class="tag">修水管</span><span
+            class="tag">修水管</span><span class="tag">修水管</span>
+    </div>
+</div>
+
+<div class="weui_btn_area bottom">
+    <a class="weui_btn weui_btn_primary" >保存</a>
+</div>
+
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script>
+    $(".tag").click(function () {
+        change1(this);
+    });
+    $(".tag_in").click(function () {
+        change2(this);
+    });
+
+    function change1(node) {
+        $("#tags_in").append('<span class="tag_in" onclick="change2(this)" >修水管</span>');
+        $(node).remove();
+    }
+
+    function change2(node) {
+        $("#tags_out").append('<span class="tag" onclick="change1(this)" >修水管</span>');
+        $(node).remove();
+    }
+
+</script>
+</html>

@@ -1,0 +1,146 @@
+@import "base.css";
+@import "../iconfont/iconfont.css";
+html {
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: url("../img/list-bg.png") no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.anchorBL {
+  display: none;
+}
+.title {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+.title .back {
+  width: 250px;
+  height: 105px;
+  color: #fff;
+  font-size: 46px;
+  text-align: center;
+  line-height: 90px;
+  border-radius: 55px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 40px;
+  left: 65px;
+}
+.title .back .icon-fanhui {
+  font-size: 70px;
+  margin-right: 15px;
+}
+.title .title-name {
+  width: 1300px;
+  height: 116px;
+  text-align: center;
+  line-height: 116px;
+  color: #fff;
+  font-size: 50px;
+  margin: 30px auto 0;
+  background: url("../img/list-item.png") no-repeat;
+  background-size: 848px 100%;
+  background-position: 280px 0;
+}
+.content {
+  width: 1840px;
+  height: 800px;
+  margin: 50px auto 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+.content .map {
+  width: 100%;
+  height: 100%;
+}
+.content .subtab-box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 20px 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  left: 50%;
+  bottom: 23px;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 1000;
+}
+.content .subtab-box .subtab {
+  display: block;
+  width: 326px;
+  color: #FFF;
+  font-size: 45px;
+  line-height: 80px;
+  text-align: center;
+  margin: 0 20px;
+  border-radius: 10px;
+  background: #666;
+  cursor: pointer;
+}
+.content .subtab-box .subtab.active {
+  background: #CE0000;
+}
+.content .infor-box {
+  width: 529px;
+  border-radius: 15px;
+  background: #FFF;
+  position: absolute;
+  top: 50px;
+  right: 30px;
+}
+.content .infor-box .infor-close {
+  color: #404040;
+  font-size: 35px;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+}
+.content .infor-box .infor-abstract {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 25px 30px;
+  border-bottom: 2px solid #D8D8D8;
+}
+.content .infor-box .infor-abstract .infor-title {
+  color: #404040;
+  font-size: 32px;
+  line-height: 50px;
+  padding-left: 45px;
+  position: relative;
+}
+.content .infor-box .infor-abstract .infor-title .infor-icon {
+  width: 45px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.content .infor-box .infor-abstract .infor-content {
+  color: #797979;
+  font-size: 25px;
+  line-height: 38px;
+  min-height: 100px;
+}

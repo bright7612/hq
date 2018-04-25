@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>服务获取</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/server.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section class="content">
+        <ul class="list-wrapper">
+            <volist  name="data" id="di" >
+            <li class="list">
+                <h2>{$di.name}</h2>
+                <p>{$di.content}</p>
+                <p>
+                    <span class="iconfont icon-didian"></span>
+                    地址：{$di.addr}
+                </p>
+                <p>
+                    <span class="iconfont icon-contacts"></span>
+                    联系人：{$di.contact}
+                </p>
+                <p>
+                    <span class="iconfont icon-dianhua"></span>
+                    电话：{$di.tel}
+                </p>
+            </li>
+            </volist>
+        </ul>
+    </section>
+</body>
+</html>

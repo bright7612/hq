@@ -1,0 +1,40 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+<link rel="stylesheet" href="/Public/ljz/css/zzj.css">	
+
+<div class="layout">
+    <div class="btn" id="btn0">
+    	<img src="/Public/ljz/img/zzj2.png" alt="">
+         
+        <span>关于自治金</span>
+    </div>
+    <div class="btn" id="btn1">
+    	<img src="/Public/ljz/img/zzj1.png" alt="">
+         
+        <span>2017年自治金项目</span>
+    </div>
+</div>
+
+
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+
+	<script>
+
+        $(function () {
+            $('#btn0').on('click', function () {
+               window.location.href='/home/ljz/zzj2';
+            });
+            $('#btn1').on('click', function () {
+            	 window.location.href='/home/ljz/zzxm';
+                
+            });
+
+        });
+	   
+	   
+	</script>
+    
+    
+</block>

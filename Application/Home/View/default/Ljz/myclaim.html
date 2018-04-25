@@ -1,0 +1,27 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+
+<link rel="stylesheet" href="/Public/ljz/css/myClaim.css">
+
+<div class="layout">
+    <ul id="container">
+    	
+    <volist name="list" id="d">
+        <li class="clearfix">
+            <h2>{$d.title}  </h2>
+            <p class="time">{$d.create_time|date='Y-m-d',###} 　　{$d.state|statename}</p>
+
+            <p class="content">{$d.content}</p>
+        </li>
+
+    </volist>
+    	
+
+    </ul>
+</div>
+
+	
+</block>
+
+

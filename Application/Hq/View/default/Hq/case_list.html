@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__WARNING__/css/case_list.css">
+    <link rel="stylesheet" href="__WARNING__/iconfont/iconfont.css">
+    <title>基层防腐败警示案例</title>
+</head>
+<body>
+<!--头部的字体-->
+<div id="header">
+</div>
+<!--第二部分-->
+<div id="part_content">
+    <!--左边栏-->
+    <div id="sidebar_left">
+        <dl>
+            <!--制度建设-->
+            <dt class="title">
+                <i class="iconfont icon-jieshao"></i>
+                <img src="__WARNING__/img/organize_build.png" alt="">
+            </dt>
+            <dd>
+                <!--点击标签-->
+                <div id="system_tab">
+                    <p id="tab1">上级制度精神</p>
+                    <p id="tab2">本镇制度建设</p>
+                </div>
+                <!--上级制度学习-->
+                <div id="study">
+                    <ul>
+                        <volist name="articleList" id="vo">
+                        <a href="{:U('Hq/organize_detail?id='.$vo[id])}">
+                            <li>{$vo.title}</li>
+                        </a>
+                        </volist>
+                    </ul>
+                </div>
+                <!--本镇制度建设-->
+                <div id="build">
+                    <ul>
+                        <volist name="articleList2" id="vo">
+                        <a href="{:U('Hq/organize_detail?id='.$vo[id])}">
+                            <li>{$vo.title}</li>
+                        </a>
+                        </volist>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+    </div>
+    <!--右边栏-->
+    <div id="sidebar_right">
+        <dl>
+            <!--警示案例-->
+            <dt class="title">
+                <i class="iconfont icon-gaojing"></i>
+                <img src="__WARNING__/img/anli-list.png" alt="">
+            </dt>
+            <dd>
+                <volist name="articleList1" id="vo">
+                <a href="{:U('Hq/articeDetail?id='.$vo[id])}">
+                    <!-- 需要渲染的部分-->
+                    <dl class="new_box">
+                        <dt class="title">
+                         {$vo.title}
+                        </dt>
+                        <dd class="abstract">
+                         {$vo.content}
+                        </dd>
+                        <p class="time">
+                            时间：<i>{$vo.time}</i>&nbsp;&nbsp;
+                            来源：<i>{$vo.source}</i>
+                        </p>
+                    </dl>
+                </a>
+                </volist>
+            </dd>
+        </dl>
+    </div>
+</div>
+<script src="__WARNING__/js/case_list.js"></script>\
+<script src="__WARNING__/js/jquery-2.1.1.js"></script>
+<script>
+    (function () {
+
+        var flag = false;
+        var timer = null;
+        $('body').on('click', function () {
+
+            clearTimeout(timer);
+            flag = true;
+            timer= setTimeout(function () {
+//                    console.log('执行timer变为false');
+                flag = false;
+            }, 30000);
+        }).on('moveEnd', function () {
+
+            clearTimeout(timer);
+            flag = true;
+            timer= setTimeout(function () {
+//                    console.log('执行timer变为false');
+                flag = false;
+            }, 30000);
+        });
+
+        setInterval(function () {
+
+            if (!flag) {
+                window.location.href='http://hqdj.cmlzjz.com/hq/hq/warningindex.html'
+            }
+        }, 30000);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #f3f3f3;
+}
+
+img {
+    border: 0 none;
+}
+
+i, em {
+    font-style: normal;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+input, select, button, h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-family: inherit;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+}
+
+input[type="text"], textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.clearfix:after {
+    content: ".";
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+html {
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: url("../img/anli_bg1.jpg") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.title {
+    z-index: 999;
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.title .back {
+    width: 250px;
+    height: 105px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    font-size: 46px;
+    float: left;
+    text-align: center;
+    line-height: 90px;
+    border-radius: 55px;
+    margin-left: 10px;
+    margin-top: 80px;
+}
+
+.title .back .icon-fanhui {
+    font-size: 70px;
+    margin-right: 15px;
+}
+
+.content {
+    width: 1740px;
+    height: 760px;
+    padding: 20px 50px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 888;
+    top: 208px;
+    left: 45px;
+    background: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+}
+
+.content .wrapper {
+    height: 750px;
+    /*overflow: auto;*/
+}
+
+/*.content .wrapper::-webkit-scrollbar{
+  display:none;
+}*/
+.content .wrapper .video {
+    width: 100%;
+    height: 100%;
+}
+
+.content .wrapper .video .videoplay {
+    width: 100%;
+    height: 100%;
+}

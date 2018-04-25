@@ -1,0 +1,172 @@
+{
+  "status": 1,
+  "result": {
+    "increase": 3231,
+    "showData": [
+      {
+        "rank": 1,
+        "name": "范立洁",
+        "score": 100,
+        "condition": 1
+      },
+      {
+        "rank": 2,
+        "name": "蒋静",
+        "score": 98,
+        "condition": 1
+      },
+      {
+        "rank": 3,
+        "name": "金新海",
+        "score": 95,
+        "condition": -1
+      },
+      {
+        "rank": 4,
+        "name": "顾文元",
+        "score": 93,
+        "condition": 1
+      },
+      {
+        "rank": 5,
+        "name": "沈金宝",
+        "score": 90,
+        "condition": 1
+      },
+      {
+        "rank": 6,
+        "name": "王义华",
+        "score": 88,
+        "condition": -1
+      },
+      {
+        "rank": 7,
+        "name": "甄玉英",
+        "score": 86,
+        "condition": -1
+      },
+      {
+        "rank": 8,
+        "name": "张国英",
+        "score": 81,
+        "condition": -1
+      },
+      {
+        "rank": 9,
+        "name": "梁新洁",
+        "score": 80,
+        "condition": 1
+      },
+      {
+        "rank": 10,
+        "name": "方世玉",
+        "score": 79,
+        "condition": -1
+      }
+    ],
+    "allData": [
+      {
+        "rank": 1,
+        "name": "范立洁",
+        "score": 100,
+        "condition": 1
+      },
+      {
+        "rank": 2,
+        "name": "蒋静",
+        "score": 98,
+        "condition": 1
+      },
+      {
+        "rank": 3,
+        "name": "金新海",
+        "score": 95,
+        "condition": -1
+      },
+      {
+        "rank": 4,
+        "name": "顾文元",
+        "score": 93,
+        "condition": 1
+      },
+      {
+        "rank": 5,
+        "name": "沈金宝",
+        "score": 90,
+        "condition": 1
+      },
+      {
+        "rank": 6,
+        "name": "王义华",
+        "score": 88,
+        "condition": -1
+      },
+      {
+        "rank": 7,
+        "name": "甄玉英",
+        "score": 86,
+        "condition": -1
+      },
+      {
+        "rank": 8,
+        "name": "张国英",
+        "score": 81,
+        "condition": -1
+      },
+      {
+        "rank": 9,
+        "name": "梁新洁",
+        "score": 80,
+        "condition": 1
+      },
+      {
+        "rank": 10,
+        "name": "方世玉",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 11,
+        "name": "林单",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 12,
+        "name": "刘倪",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 13,
+        "name": "陈达单",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 14,
+        "name": "吴彦祖",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 15,
+        "name": "丑八怪",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 16,
+        "name": "杨伟",
+        "score": 79,
+        "condition": -1
+      },
+      {
+        "rank": 17,
+        "name": "嘻嘻",
+        "score": 79,
+        "condition": -1
+      }
+    ]
+  }
+}

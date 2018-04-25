@@ -1,0 +1,233 @@
+html{
+	width: 1920px;
+	height: 100%;
+	overflow: hidden;
+}
+body{
+	width: 100%;
+	height: 100%;
+	background: url("../img/dangjian-bg.png")  no-repeat;
+	background-size: 100% 100%; 
+	position: relative;
+}
+.title{
+	z-index: 999;
+	width: 100%;
+	height: 235px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: url("../img/dangjian-shade.png")  no-repeat;
+	background-size: 505px 100%;
+	background-position:70% 0;
+}
+.title .back{
+	width: 250px;
+	height: 105px;
+	color: #fff;
+	background: rgba(0,0,0,0.5);
+	font-size: 46px;
+	float: left;
+	text-align: center;
+	line-height: 90px;
+	border-radius: 55px;
+	margin-left: 65px;
+	margin-top: 40px;
+}
+.title .back .icon-fanhui{
+	font-size: 70px;
+	margin-right: 15px;
+}
+.title .title-name{
+	width: 655px;
+	height: 142px;
+	float: left;
+	margin-left: 280px;
+	margin-top: 30px;
+}
+.title .title-name img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.content{
+	width: 1840px;
+	/*height: 850px;*/
+	position: absolute;
+	z-index: 888;
+	top: 210px;
+	left:45px;
+}
+.content .box{
+	padding: 10px 25px 10px 25px;
+	background: rgba(255,255,255,0.6);
+	float: left; 
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+.content .box h4{
+	color: #d30015;
+	border-bottom: 1px dashed #d30015;
+	font-weight: bold;
+	padding-bottom: 5px;
+	font-size: 22px;
+}
+.content .box h4 .iconfont{
+	font-size: 25px;
+	margin-right: 5px;
+}
+.content .box h4 .more{
+	color: #4b4b4b;
+	float: right;
+	padding-top: 12px;
+	font-weight: normal;
+	font-size: 17px;
+}
+.content .box h4 .more .iconfont{
+	font-size: 16px;
+	margin-left: 5px;
+}
+.content .box .wrapper{
+	height: 300px;
+	margin-top: 12px;
+}
+
+.content .huodong{
+	width: 470px;
+	
+}
+.content .huodong .wrapper .video{
+	width: 100%;
+	height: 295px;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+.content .huodong .wrapper .video img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.content .huodong .wrapper .video  .text{
+	width: 455px;
+	height: 40px;
+	color: #fff;
+	padding-left:15px;
+	line-height: 40px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background:rgba(0,0,0,0.6);
+	z-index: 999;
+}
+.swiper-pagination{
+	text-align: right;
+	z-index: 10000;
+}
+.swiper-pagination .swiper-slide{
+	position: relative;
+}
+.swiper-pagination .swiper-pagination-bullet-active{
+	background: #fff!important;
+}
+.content .zhidu{
+	width: 765px;
+	margin-left: 15px;
+}
+.content .zhidu .wrapper .list{
+	list-style:disc inside;
+	overflow: hidden;
+	height: 100%;
+}
+.content .zhidu .wrapper .list .item{
+	font-size: 20px;
+	height: 49px;
+	line-height: 49px;
+	border-bottom: 1px dashed #021345;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.content .zhidu .wrapper .list .item a{
+	color: #000;
+}
+.content .frame-box{
+	float: left;
+	width: 480px;
+	height: 375px;
+	margin-left: 10px;
+}
+.content .frame-box .frame{
+	width: 220px;
+	height: 150px;
+	float: left;
+	text-align: center;
+	background-size: 100% 100%;
+	color: #fff;
+	padding-top: 5px;
+	padding-bottom: 25px;
+	margin: 5px;
+}
+.content .frame-box .frame .iconfont{
+	font-size: 100px;
+}
+.content .frame-box .frame .name{
+	font-size: 24px;
+	margin-top: -20px;
+}
+.content .shuji{
+	width: 850px;
+}
+.content .shuji .wrapper{
+	padding: 20px 10px;
+	height: 250px;
+	background: rgba(255,255,255,0.5);
+}
+.content .shuji .wrapper .photo{
+	float: left;
+	width: 180px;       
+	height: 95%;
+}
+.content .shuji .wrapper .photo img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.content .shuji .wrapper .jianjie{
+	width: 620px;
+	height: 98%;
+	margin-left: 20px;
+	float: left;
+	font-size: 18px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:9; 
+}
+.content .zuzhi{
+	width: 850px;
+	margin-left: 15px;
+}
+.content .zuzhi .wrapper{
+	padding: 10px 10px;
+	height: 270px;
+	/*background: rgba(255,255,255,0.5);*/
+}
+.content .zuzhi .wrapper .list{
+	height: 100%;
+	list-style:disc inside;
+	overflow: hidden;
+}
+.content .zuzhi .wrapper .list .item{
+	font-size: 20px;
+	height: 51px;
+	line-height: 52px;
+	border-bottom: 1px dashed #021345;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.content .zuzhi .wrapper .list .item a{
+	color: #000;
+}

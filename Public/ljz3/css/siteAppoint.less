@@ -1,0 +1,315 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/siteAppoint_bg.jpg") 100% 100% no-repeat;
+  position: relative;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.place-appoint, .activity-appoint {
+  .displayFlex();
+  .flexDirColumn();
+  width: 991px;
+  height: 953px;
+  padding: 20px 0;
+  margin: 0 auto 38px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  position: relative;
+  .appoint-content {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {display:none}
+    .list-wrapper {
+      width: 100%;
+      padding: 0 52px;
+      .list {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #818181;
+        &:last-child {
+          border-bottom: none;
+        }
+        & > h2 {
+          color: #000;
+          font-size: 40px;
+          font-weight: 700;
+          line-height: 80px;
+        }
+        & > p {
+          display: table;
+          color: #515151;
+          font-size: 35px;
+          line-height: 60px;
+          .iconfont {
+            display: table-cell;
+            white-space: nowrap;
+            color: #CD332A;
+            font-size: 40px;
+            margin-right: 10px;
+          }
+          .text {
+            display: table-cell;
+            padding-left: 10px;
+          }
+        }
+        .option-box {
+          width: 100%;
+          box-sizing: border-box;
+          margin-top: 10px;
+          .want-app, .watch-app {
+            display: inline-block;
+            width: 200px;
+            color: #FFF;
+            font-size: 35px;
+            text-align: center;
+            line-height: 65px;
+            border-radius: 10px;
+            margin: 0 30px;
+            cursor: pointer;
+          }
+          .suggest {
+            color: #D8352F;
+            font-size: 35px;
+            line-height: 60px;
+          }
+        }
+      }
+    }
+  }
+  .returnTop {
+    position: absolute;
+    right: 50px;
+    bottom: 10px;
+    display: none;
+    cursor: pointer;
+    .iconfont {
+      color: #5D1113;
+      font-size: 80px;
+    }
+  }
+}
+.place-appoint {
+  margin-top: 150px;
+}
+.activity-appoint {
+  margin-top: 60px;
+}
+
+.ewm {
+  width: 991px;
+  height: 623px;
+  padding: 50px 70px 0;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  & > img {
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 25px;
+  }
+  .please {
+    color: #C12A33;
+    font-size: 38px;
+    text-align: center;
+    line-height: 70px;
+    margin-bottom: 20px;
+  }
+  .text {
+    color: #55504A;
+    font-size: 35px;
+    line-height: 70px;
+    text-indent: 2em;
+  }
+}
+
+.bg {
+  background-color: rgba(0, 0, 0 ,0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: none;
+  .place-box, .watch-box{
+    width: 900px;
+    padding: 60px;
+    margin: 300px auto 0;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    .title {
+      font-size: 50px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 80px;
+      margin-bottom: 30px;
+    }
+    .btn-box {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 120px;
+      .confirm, .cancel {
+        display: inline-block;
+        width: 200px;
+        color: #FFF;
+        font-size: 35px;
+        text-align: center;
+        line-height: 85px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+  .place-box {
+    .form-box {
+      width: 100%;
+      margin-bottom: 50px;
+      .form-list {
+        line-height: 71px;
+        margin-bottom: 30px;
+      }
+      label, input[type="text"], textarea {
+        color: #4D4D4D;
+        font-size: 35px;
+        box-sizing: border-box;
+      }
+      label {
+        display: inline-block;
+        width: 310px;
+        height: 71px;
+        text-align: right;
+        padding-right: 30px;
+      }
+      input[type="text"] {
+        width: 430px;
+        height: 71px;
+        text-align: center;
+        border: 1px solid #BD2026;
+        border-radius: 5px;
+        outline: none;
+        &.form-control {
+          display: inline-block;
+        }
+      }
+      input[type="checkbox"] {
+        width: 35px;
+        height: 35px;
+        font-size: 35px;
+        border: 1px solid #BD2026;
+      }
+      .check-text {
+        color: #4D4D4D;
+        font-size: 30px;
+      }
+      //textarea {
+      //  width: 430px;
+      //  height: 300px;
+      //  padding: 10px;
+      //  border: 1px solid #BD2026;
+      //  vertical-align: top;
+      //  outline: none;
+      //  resize: none;
+      //}
+    }
+  }
+  .watch-box {
+    height: 1000px;
+    padding-bottom: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+    .inner-box {
+      min-height: 100%;
+      padding-bottom: 150px;
+      .title {
+        font-size: 40px;
+        margin-bottom: 0;
+      }
+      .subtitle {
+        font-size: 35px;
+        text-align: center;
+        line-height: 60px;
+      }
+      .hint {
+        color: #D8352F;
+        font-size: 35px;
+        text-align: center;
+        line-height: 60px;
+        margin-top: 150px;
+        //display: none;
+      }
+      .appoint-list {
+        width: 100%;
+        //display: none;
+        .appoint-item {
+          width: 100%;
+          padding: 10px 0;
+          border-bottom: 1px solid #818181;
+          &:last-child {
+            border-bottom: none;
+          }
+          & > p {
+            color: #515151;
+            font-size: 35px;
+            line-height: 60px;
+            .iconfont {
+              font-size: 38px;
+              vertical-align: top;
+              &.font-blue{
+                color: #0AAAEC;
+              }
+              &.font-orange{
+                color: #FF9227;
+              }
+              &.font-green{
+                color: #57C65C;
+              }
+            }
+          }
+        }
+      }
+    }
+    .btn-box {
+      margin-top: -100px;
+      .cancel {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.datetimepicker {
+  width: 300px;
+  .datetimepicker-hours, .datetimepicker-minutes {
+    span {
+      height: 35px;
+      line-height: 35px;
+    }
+  }
+  td, th {
+    width: 70px;
+    height: 20px;
+    padding: 3px 0;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+  }
+}
+
+.color-red {
+  background-color: #D8352F;
+}
+.color-orange {
+  background-color: #FF973B;
+}

@@ -1,0 +1,91 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+    <link rel="stylesheet" href="/Public/ljz/css/shuji2old.css">
+<div class="layout clearfix">
+    <section class="appointment">
+        <form action="" name="appointment" method="post">
+            <div class="formbox">
+                <span>姓名</span>
+                <input type="text" class="txt" placeholder="请输入姓名">
+            </div>
+            <div class="formbox">
+                <span>性别</span>
+                <select name="" id="sex" class="">
+                    <option value="">男</option>
+                    <option value="">女</option>
+                </select>
+            </div>
+            <div class="clearfix formbox">
+                <span>所属支部</span>
+                <select name="" id="party" class="">
+                    <option value="">国航大厦联合党支部</option>
+                    <option value="">东一居委会</option>
+                    <option value="">斯米克大厦党支部</option>
+                    <option value="">文化中心党支部</option>
+                    <option value="">机关离休党支部</option>
+                </select>
+            </div>
+            <div class="formbox">
+                <span>咨询方式</span>
+                <div class="radiobox clearfix">
+                    <div class="radio fl clearfix">
+                        <span class="circle checked fl"></span>
+                        <span class="fl">预约</span>
+                    </div>
+                    <div class="radio fl">
+                        <span class="circle fl"></span>
+                        <span class="fl">上门</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix formbox">
+                <span>登记时间</span>
+                <select name="" id="time" class="">
+                    <option value="">2017-03-30</option>
+                    <option value="">2017-03-30</option>
+                    <option value="">2017-03-30</option>
+                    <option value="">2017-03-30</option>
+                    <option value="">2017-03-30</option>
+                    <option value="">2017-03-30</option>
+                </select>
+            </div>
+            <textarea name="" id="text" cols="30" rows="10" placeholder="请输入您想咨询的问题（字数500字以内）"></textarea>
+
+
+            <div style="text-align: center">
+                <div class="btn" id="submitBtn">提交</div>
+            </div>
+        </form>
+    </section>
+</div>
+   <script src="/Public/ljz/js/jquery.js"></script> 
+  <script>
+ 	$("#submitBtn").on("click",function () {
+		$.post("/home/ljz/hdbm", {
+			aid: {$data.id},
+            mobile: $("#mobile").val(),
+            name: $("#name").val(),
+
+         }, function (data) {
+            if(data.info){
+            	alert(data.info);
+            	
+//			layer.open({
+//			    content: data.info
+//			    ,btn: '消息'
+//			  });
+            	if(data.status){
+            		window.location.href=data.url;
+            	}
+            }
+        });
+    });
+    	
+		
+        $('.radio').on('click', function () {
+            $('.circle').removeClass('checked');
+            $(this).find('.circle').addClass('checked');
+        });
+</script>
+</block>

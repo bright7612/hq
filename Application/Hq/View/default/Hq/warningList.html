@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__WARNING__/css/warningList.css">
+    <link rel="stylesheet" href="__WARNING__/iconfont/iconfont.css">
+    <title>美丽合庆</title>
+</head>
+<body>
+<!--头部的字体-->
+<div class="title">
+    <a href="javascript:history.back(-1)">
+        <div class="back"><i class="iconfont icon-fanhui"></i>返回</div>
+    </a>
+</div>
+<div id="header">
+</div>
+<!--第二部分-->
+<div id="part_content">
+    <ul class="detail_box">
+        <volist name="videoList" id="vo">
+        <li><a href="{:U('Hq/warningVideo?id='.$vo[id])}">{$vo.title}</a></li>
+        </volist>
+    </ul>
+</div>
+
+</body>
+</html>

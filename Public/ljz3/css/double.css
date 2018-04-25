@@ -1,0 +1,106 @@
+html {
+  width: 1080px;
+  height: 1920px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.return {
+  width: 194px;
+  height: 81px;
+  text-align: center;
+  line-height: 81px;
+  border-radius: 10px;
+  background-color: #5D1113;
+  position: relative;
+  top: 82px;
+  left: 51px;
+}
+.return a {
+  color: #FFF;
+  font-size: 30px;
+}
+.return a .iconfont {
+  font-size: 70px;
+  vertical-align: middle;
+}
+html {
+  font-size: 108px;
+}
+body {
+  background: url("../imgs/bg/partier_bg.jpg") 100% 100% no-repeat;
+}
+.content {
+  width: 991px;
+  height: 1150px;
+  margin: 150px auto 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  position: relative;
+}
+.content .inner-box {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.content .inner-box::-webkit-scrollbar {
+  display: none;
+}
+.content .inner-box .site-list {
+  width: 100%;
+  font-size: 40px;
+}
+.content .inner-box .site-list .site-item {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+.content .inner-box .site-list .site-item > a {
+  display: block;
+  line-height: 1.38888889rem;
+  color: #7B8490;
+  padding: 0 0.41666667rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.content .inner-box .site-list .site-item > a .iconfont {
+  font-size: 40px;
+}
+.content .returnTop {
+  position: absolute;
+  right: 50px;
+  bottom: 100px;
+  display: none;
+  cursor: pointer;
+}
+.content .returnTop .iconfont {
+  color: #5D1113;
+  font-size: 80px;
+}
+.ewm {
+  width: 991px;
+  height: 450px;
+  padding: 30px 70px 0;
+  margin: 38px auto 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+}
+.ewm > img {
+  display: block;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 25px;
+}
+.ewm .please {
+  color: #C12A33;
+  font-size: 38px;
+  text-align: center;
+  line-height: 70px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>活动详情</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/schoolBm.css">
+</head>
+<body>
+<!--头部 start-->
+<section  class="title clearfix">
+    <h1>活动详情</h1>
+    <div class="return fl">
+        <a href="javascript:;" onClick="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+</section>
+<!--头部 end-->
+
+<!--主体 start-->
+<section class="content">
+    <div class="content-left">
+        <div class="infor">
+            <h2>{$data.name}</h2>
+            <p>活动时间：{$data.date|date="Y-m-d H:i:s",###}<eq name="data.canbm" value="0" >(已过期)</eq></p>
+            <p>组织单位：{$data.zb}</p>
+            <p>活动地点：{$data.addr}</p>
+            <p>活动人数：{$data.count}</p>
+            <span class="block"></span>
+        </div>
+        <div class="appoint">
+            <h2>报名方式</h2>
+            <p>如需报名，请扫二维码进行报名</p>
+            <span class="block"></span>
+        </div>
+    </div>
+    <div class="content-right">
+        <div class="erweima-wrapper">
+            <div class="erweima">
+                <img src="{$data.qrcode}" alt="">
+            </div>
+            <p class="text">扫描二维码进行活动报名</p>
+        </div>
+    </div>
+</section>
+<!--主体 end-->
+</body>
+</html>

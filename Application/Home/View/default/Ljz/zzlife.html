@@ -1,0 +1,78 @@
+<extend name="Base/commonljz"/>
+
+<block name="body">
+	
+    <script src="/Public/ljz/js/prefixfree.min.js"></script>
+ 
+    <link rel="stylesheet" href="/Public/ljz/css/orgLife.css" >
+    <link rel="stylesheet" href="/Public/ljz/font/iconfont.css" >
+    <script src="/Public/ljz/js/template.js"></script>
+    <script type="text/html" id="orgName">
+        {{if result}}
+        {{each result as value i}}
+            <li id="{{value.id}}" onclick="tolist({{value.id}})" >
+                <span class="text">{{value.name}}</span>
+                <span class="iconfont icon-gou fr redColor"></span>
+            </li>
+        {{/each}}
+        {{/if}}
+    </script>
+    <script type="text/html" id="lifeInfo">
+        {{if result}}
+        {{each result as value i}}
+            <li  onclick="todetail('{{value.id}}')" >
+                <a href="javascript:;" class="clearfix">
+                    <div class="intro fl">
+                        <h3 class="intro-name">{{value.subject}}</h3>
+                        <p>党组织名称：<span>{{value.dzzname}}</span></p>
+                        <p>时间：<span>{{value.datetime}}</span></p>
+                        <p>参加人数：<span>{{value.count}}</span>人</p>
+                    </div>
+                    <div class="right fr">
+                        <div class="btn fr">查看</div>
+                    </div>
+                </a>
+            </li>
+        {{/each}}
+        {{/if}}
+    </script>
+	
+
+    <div class="layout">
+        <!--头部 start-->
+        <section class="header-box clearfix">
+            <div class="header-select" id="header-select">
+                <span id="branch">{$dzzdata.name}</span>
+                <span class="iconfont icon-xia fr"></span>
+            </div>
+            <!--组织列表-->
+            <ul class="select-content" id="select-content">
+
+            </ul>
+        </section>
+        <!--头部 end-->
+
+        <!--内容部分 start-->
+        <section class="content-box"  id="containerList">
+                <div class="layout" style="height: auto" id="scrollcontainer">
+            <!--人物列表-->
+            <ul id="orgLife-content">
+
+            </ul>
+            <div id="loadingdiv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                正在加载...
+            </div>
+            <div id="nomorediv" style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                没有数据了
+            </div>
+            </div>
+            <!--遮罩-->
+            <div class="bg" id="bg"></div>
+        </section>
+        <input value="{$dzzid}" id="dzzid" type="hidden"/>
+        <!--内容部分 end-->
+    </div>
+
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script src="/Public/ljz/js/orgLife.js"></script>
+</block>

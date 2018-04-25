@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <!--<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=DQ1BXIF0qGFddSG8wudhSHCZeftt7ztz"></script>
+    <script src="/Public/ljz/js/flexible.js"></script>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz/css/dropload.css" >
+    <link rel="stylesheet" href="/Public/ljz2/css/cdmap.css">
+    <title>资源清单</title>
+</head>
+<body>
+    <!--头部 start-->
+    <section  class="title clearfix">
+        <h1>项目清单</h1>
+        <div class="return fl">
+            <a href="javascript:history.back(-1);">
+                <span class="iconfont icon-fanhui"></span>
+                返回
+            </a>
+        </div>
+    </section>
+    <!--头部 end-->
+
+    <section class="content">
+        <!--地图实例显示区域 start-->
+        <section class="layout" id="allmap">
+
+        </section>
+        <!--地图实例显示区域 end-->
+
+        <!--顶部栏区域 start-->
+        <section class="top clearfix" id="topInfo">
+            <div id="tolist" class="to-list fl">切换列表</div>
+            <div id="maptitle" class="maptitle fr">金融服务</div>
+        </section>
+        <!--顶部栏区域 end-->
+
+        <!--底部区域 start-->
+        <section class="bottom clearfix" id="tab">
+            <ul class="btm-ul clearfix">
+                <li class="btn" data-type="3">活动场地</li>
+                <li class="btn" data-type="8">社会组织</li>
+                <li class="btn" data-type="10">文化活动</li>
+                <li class="btn" data-type="14">拥军优属</li>
+                <li class="btn" data-type="2">党建服务</li>
+                <li class="btn" data-type="7">白领课堂</li>
+            </ul>
+        </section>
+        <!--底部区域 end-->
+
+        <!--模态框区域 start-->
+        <section class="module" id="pointInfo">
+            <div class="module-info">
+                <div class="arrow" id="arrow">
+                    <i></i>
+                </div>
+                <div class="text">
+                    <p id="name"></p>
+                    <p id="addr"></p>
+                    <p id="tel"></p>
+                </div>
+            </div>
+            <div class="module-option clearfix">
+                <span class="mo-navi" id="dh">导航</span>
+                <span class="mo-close" id="close">关闭</span>
+            </div>
+        </section>
+        <!--模态框区域 end-->
+
+        <!--左侧划入栏 start-->
+        <section class="slidebar" id="listlayer">
+            <div class="slidebar-title clearfix">
+                <h2 id="listtitle"></h2>
+                <a id="tomap">切换地图</a>
+            </div>
+            <div class="slidebar-content" id="containerList">
+                <!--<div id="scrollcontainer">-->
+                <ul id="container">
+
+                </ul>
+                <div id="loadingdiv"
+                     style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                    正在加载...
+                </div>
+                <div id="nomorediv"
+                     style="height: 3em;line-height: 3em;text-align: center;display: none;color: #5A5A5A">
+                    没有数据了
+                </div>
+                <!--</div>-->
+            </div>
+        </section>
+        <!--左侧划入栏 end-->
+
+        <div id="maplayer" class="bg"></div>
+    </section>
+
+    <script src="/Public/ljz/js/alert.js"></script>
+    <script src="/Public/ljz/js/jquery.js"></script>
+    <script src="/Public/ljz/js/dropload.min.js"></script>
+    <script src="/Public/ljz/js/template.js"></script>
+    <script type="text/html" id="l1">
+        {{if data}}
+        {{each data as di i}}
+        <!--<li class="list" onclick="aaa('{{di.id}}')" >-->
+        <li class="list">
+            <p>{{di.name}}</p>
+            <p>{{di.addr}}</p>
+            <p>{{di.tel}}</p>
+        </li>
+        {{/each}}
+        {{/if}}
+    </script>
+
+    <script type="text/javascript">
+        var titles = {
+            "2": "合庆党建服务站点",
+            "3": "合庆街道活动场地",
+            "7": "白领课堂",
+            "8": "社会组织服务",
+            "10": "社区文化活动",
+            "14": "拥军优属服务项目",
+        };
+        /*
+         地图数据初始化
+         */
+        var map = new BMap.Map("allmap");     // 创建Map实例
+        var point = new BMap.Point(121.514, 31.242);     //设置地图初始位置
+        map.centerAndZoom(point, 16);     //初始化地图,设置中心点坐标和地图级别
+        map.setCurrentCity("上海");     //设置地图显示的城市
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+        var mylocation;
+        function locate() {
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function(r){
+                if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                    var mk = new BMap.Marker(r.point);
+                    mylocation = r.point;
+                    map.addOverlay(mk);
+                }
+            },{enableHighAccuracy: true});
+        }
+        locate();
+
+        $("#dh").on("click",function () {
+//            if(!mylocation){
+//                locate();
+//                return;
+//            }
+
+            window.open("http://api.map.baidu.com/direction?origin=latlng:"+31.24143+","+121.53415+"|name:我的位置&destination=latlng:"+curMarker.data.lat+","+curMarker.data.lng+"|name:"+curMarker.data.addr+"&mode=driving&region=上海&output=html&src=wiseljz",'_blank','width='+(window.screen.availWidth)+',height='+(window.screen.availHeight)+ ',top=0,left=0,status=no, toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no')
+
+
+        });
+
+
+        function addMarker(point, data,callback) {
+            var myIcon = new BMap.Icon("http://{$_SERVER['HTTP_HOST']}/Public/ljz/img/ic_location.png", new BMap.Size(24, 30));
+            var mk = new BMap.Marker(point, {
+                icon: myIcon
+            });
+            mk.addEventListener("click", function () {
+                if (callback instanceof Function) {
+                    callback(this);
+                }
+            });
+            mk.data = data;
+            map.addOverlay(mk);
+        }
+
+        $("#arrow, #close").on("click", function () {
+            $("#tab").show();
+            $("#pointInfo").hide();
+            if (curMarker) {
+                curMarker.setIcon(new BMap.Icon("http://{$_SERVER['HTTP_HOST']}/Public/ljz/img/ic_location.png", new BMap.Size(24, 30)));
+            }
+        });
+
+        var curMarker;
+        function showMarkers(data) {
+            map.clearOverlays();
+            curMarker = null;
+            $(data).each(function (i, item) {
+                if (item.lat) {
+                    addMarker(new BMap.Point(item.lng, item.lat),item, function (mk) {
+                        map.panTo(mk.getPosition());
+                        $('#tab').hide();
+                        if (zytype == "8") {
+                            $('#name').text(item.dwmc);
+                        } else {
+                            $('#name').text(item.name);
+                        }
+                        $('#addr').text(item.addr);
+                        $('#tel').text(item.tel);
+                        $('#pointInfo').show();
+                        if (curMarker) {
+                            curMarker.setIcon(new BMap.Icon("http://{$_SERVER['HTTP_HOST']}/Public/ljz/img/ic_location.png", new BMap.Size(24, 30)));
+                        }
+                        curMarker = mk;
+                        mk.setIcon(new BMap.Icon("http://{$_SERVER['HTTP_HOST']}/Public/ljz/img/ic_location.png", new BMap.Size(36, 45)));
+                    });
+                }
+            });
+        }
+
+        var request;
+        $('.bottom').on('click', ".btn", function () {
+            getZyAll($(this).data('type'));
+        });
+
+        var zytype = '{$type}';
+        getZyAll(zytype);
+
+        function getZyAll(type) {
+            zytype = type;
+            if (request && request.readyState != 4) {
+                request.abort();
+            }
+            $("#maptitle").text(titles[type]);
+            $("#listtitle").text(titles[type]);
+            request = $.get("{:U('zylist1')}", {
+                        type: type
+                    }, function (res) {
+                        var d = $.parseJSON(res);
+                        if (d && d.result == 1) {
+                            showMarkers(d.list);
+                        } else {
+                            alert("获取失败,请重试");
+                        }
+                    }
+            );
+        }
+
+        //遍历底部tab按钮，根据type值改变样式
+        $('.btn').each(function () {
+            if ($(this).attr('data-type') == zytype) {
+                $(this).addClass('active');
+            }
+        })
+
+        //点击底部tab按钮
+        $('.btn').on('click', function () {
+            $(this).siblings().removeClass('active').end().addClass('active');
+        })
+
+        //点击切换列表
+        $("#tolist").on("click", function () {
+            $("#maplayer").show();
+            $("#listlayer").css({'transform': 'translateX(0)'});
+            $("#topInfo").css({'transform': 'translateY(-100%)'});
+            resetList();
+            getData();
+        });
+
+        //点击切换地图
+        $("#tomap").on("click", function () {
+            $("#maplayer").hide();
+            $("#listlayer").css({'transform': 'translateX(-100%)'});
+            $("#topInfo").css({'transform': 'translateY(0)'});
+        });
+
+        //点击遮罩层
+        $("#maplayer").on('click', function () {
+            $("#listlayer").css({'transform': 'translateX(-100%)'});
+            $("#topInfo").css({'transform': 'translateY(0)'});
+            $(this).hide();
+        }).on('touchmove', function (event) {
+            event.preventDefault();
+        });
+
+//        var zytype = "{$type}";
+//        var rows = 10;
+//        var page = 1;
+//        // dropload
+//        $('.slidebar-content').dropload({
+//            scrollArea: window,
+//            domDown : {
+//                domClass   : 'dropload-down',
+//                domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+//                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+//                domNoData  : '<div class="dropload-noData">暂无数据</div>'
+//            },
+//            loadDownFn: function (me) {
+//                $.get('{:U("zylist2")}', {
+//                    page: page,
+//                    type: zytype,
+//                    rows: rows
+//                }, function (data) {
+//                    var d = $.parseJSON(data);
+//                    if (d.result == 1) {
+//                        if (d.data && d.data.length > 0) {
+//                            page++;
+//                            var lis = template('l1', d);
+//                        } else {
+//                            me.lock();
+//                            me.noData(true);
+//                            me.resetload();
+//                            return;
+//                        }
+//                    }
+//                    setTimeout(function () {
+//                        $('#container').append(lis);
+//                        me.resetload();
+//                    }, 700);
+//                })
+//            }
+//        });
+//
+//        function getData() {
+//            $.get('{:U("zylist2")}', {
+//                page: page,
+//                type: zytype,
+//                rows: rows
+//            }, function (data) {
+//                var d = $.parseJSON(data);
+//                if (d.result == 1) {
+//                    if (d.data && d.data.length > 0) {
+//                        page++;
+//                        var lis = template('l1', d);
+//                    }
+//                    $('#container').append(lis);
+//                }
+//            })
+//        }
+//
+//        function resetList() {
+//            page = 1;
+//            $("#container").html("");
+//        }
+
+
+        $(function () {
+    //        $('body').on('click', '#btn', function () {
+    ////          	$(this).data("id");
+    ////          	alert($(this).data("id"));
+    //            window.location.href='/home/ljz/hdxq/id/'+$(this).data("id");
+    //        });
+            var winH = $("#containerList").height();
+            $("#containerList").scroll(function () {
+                var pageH = $("#scrollcontainer").height();
+                var scrollT = $("#containerList").scrollTop();
+                var aa = (pageH - winH - scrollT) / winH;
+                console.log("winh"+winH+"   pageH:"+pageH+" scrollT:"+scrollT+"  aa:"+aa);
+                if (aa < 0.05) {
+                    getData();
+                }
+            });
+//            $("#listlayer").hide();
+        });
+
+        var rows = 20;
+        var page = 1;
+        var nomore = false;
+        var isloading = false;
+        //    function aaa(id){
+        //        window.location.href='/home/ljz/hdxq/id/'+id;
+        //    }
+        var request2;
+        function getData() {
+            if (nomore || isloading) {
+                return;
+            }
+            if (request2 && request2.readyState != 4) {
+                request2.abort();
+            }
+            isloading = true;
+            $("#loadingdiv").show();
+            $.get('{:U("zylist2")}', {
+                page: page,
+                type: zytype,
+                rows: rows
+            }, function (data) {
+                isloading = false;
+                var d = $.parseJSON(data);
+                if (d.result == 1) {
+                    if (d.data && d.data.length == rows) {
+                        page++;
+                    } else {
+                        $('#nomorediv').show();
+                        nomore = true;
+                        $("#loadingdiv").hide();
+                    }
+                    var lis = template('l1', d);
+                    $('#container').append(lis);
+                }
+            });
+        }
+
+        function resetList() {
+            page = 1;
+            nomore = false;
+            $("#container").html("");
+            $('#nomorediv').hide();
+            $("#loadingdiv").hide();
+        }
+
+//        getData();
+    </script>
+</body>
+</html>

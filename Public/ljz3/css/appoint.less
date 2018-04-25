@@ -1,0 +1,214 @@
+@import "./base";
+
+body {
+  background: url("../imgs/bg/yydj_bg.jpg") 100% 100% no-repeat;
+  position: relative;
+}
+
+.place-appoint, .activity-appoint {
+  .displayFlex();
+  .flexDirColumn();
+  width: 991px;
+  height: 953px;
+  padding: 20px 0;
+  margin: 0 auto 38px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  position: relative;
+  .appoint-title {
+    height: 147px;
+    position: relative;
+    .place-change, .activity-change {
+      width: 447px;
+      color: #FFF;
+      font-size: 44px;
+      text-align: center;
+      line-height: 102px;
+      border-radius: 20px;
+      background-color: #7E7E7E;
+      position: absolute;
+      bottom: 0;
+      cursor: pointer;
+      &.active {
+        background-color: #C02B31;
+      }
+    }
+    .place-change {
+      left: 35px;
+    }
+    .activity-change {
+      right: 35px;
+    }
+  }
+  .appoint-content {
+    .flex(1);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {display:none}
+    .list-wrapper {
+      width: 100%;
+      padding: 0 52px;
+      .list {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #818181;
+        cursor: pointer;
+        &:last-child {
+          border-bottom: none;
+        }
+        h2 {
+          color: #000;
+          font-size: 40px;
+          font-weight: 700;
+          line-height: 80px;
+        }
+        p {
+          color: #515151;
+          font-size: 35px;
+          line-height: 60px;
+          .iconfont {
+            color: #CD332A;
+            font-size: 40px;
+          }
+        }
+      }
+    }
+  }
+  .returnTop {
+    position: absolute;
+    right: 50px;
+    bottom: 10px;
+    display: none;
+    cursor: pointer;
+    .iconfont {
+      color: #5D1113;
+      font-size: 80px;
+    }
+  }
+}
+.place-appoint {
+  margin-top: 150px;
+}
+.activity-appoint {
+  margin-top: 60px;
+}
+
+.ewm {
+  width: 991px;
+  height: 623px;
+  padding: 50px 70px 0;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  & > img {
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 25px;
+  }
+  .please {
+    color: #C12A33;
+    font-size: 38px;
+    text-align: center;
+    line-height: 70px;
+    margin-bottom: 20px;
+  }
+  .text {
+    color: #55504A;
+    font-size: 35px;
+    line-height: 70px;
+    text-indent: 2em;
+  }
+}
+
+.bg {
+  background-color: rgba(0, 0, 0 ,0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: none;
+  .place-box, .activity-box{
+    width: 900px;
+    padding: 80px;
+    margin: 300px auto 0;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    .title {
+      font-size: 50px;
+      text-align: center;
+      line-height: 80px;
+      margin-bottom: 30px;
+    }
+    .form-box {
+      width: 100%;
+      margin-bottom: 50px;
+      .form-list {
+        line-height: 71px;
+        margin-bottom: 30px;
+      }
+      label, input[type="text"], textarea {
+        color: #4D4D4D;
+        font-size: 35px;
+        box-sizing: border-box;
+      }
+      label {
+        display: inline-block;
+        width: 210px;
+        height: 71px;
+        text-align: right;
+        padding-right: 30px;
+      }
+      input[type="text"] {
+        width: 500px;
+        height: 71px;
+        text-align: center;
+        border: 1px solid #BD2026;
+        border-radius: 5px;
+        outline: none;
+      }
+      textarea {
+        width: 500px;
+        height: 300px;
+        padding: 10px;
+        border: 1px solid #BD2026;
+        vertical-align: top;
+        outline: none;
+        resize: none;
+      }
+      input[type="datetime-local"] {
+        width: 500px;
+        height: 71px;
+        text-align: center;
+        border: 1px solid #BD2026;
+        border-radius: 5px;
+        outline: none;
+      }
+    }
+    .btn-box {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 120px;
+      .confirm, .cancel {
+        display: inline-block;
+        width: 200px;
+        color: #FFF;
+        font-size: 35px;
+        text-align: center;
+        line-height: 85px;
+        border-radius: 10px;
+        cursor: pointer;
+        &.color-red {
+          background-color: #D8352F;
+        }
+        &.color-orange {
+          background-color: #FF973B;
+        }
+      }
+    }
+  }
+}

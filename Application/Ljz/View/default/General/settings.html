@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>设置</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+    <link rel="stylesheet" href="/Public/css/settings.css"/>
+
+</head>
+<body>
+<div class="weui_cells weui_cells_access" style="color: #3E4752">
+    <a class="weui_cell" href="{:U('pwd')}">
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>修改密码</p>
+        </div>
+        <div class="weui_cell_ft"></div>
+    </a>
+    <a class="weui_cell" href="{:U('General/aboutus')}">
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>关于我们</p>
+        </div>
+        <div class="weui_cell_ft"></div>
+    </a>
+
+</div>
+<div class="weui_cells weui_cells_form">
+    <div class="weui_cell weui_cell_switch">
+        <div class="weui_cell_hd weui_cell_primary">接收微信推送</div>
+        <div class="weui_cell_ft">
+            <if condition="$receivePush eq 1">
+                <input id="check" class="weui_switch" type="checkbox" checked="checked"/>
+                <else/>
+                <input id="check" class="weui_switch" type="checkbox"/>
+            </if>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script>
+    $("#check").click(function () {
+        var accept = $("#check").attr("checked") ? "2" : "1";
+        $.post("{:U('Api/infoEdit')}", {receivePush: accept}, function (data) {
+        });
+    });
+</script>
+</body>
+</html>

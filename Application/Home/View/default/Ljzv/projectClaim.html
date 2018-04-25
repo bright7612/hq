@@ -1,0 +1,128 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>项目直通车</title>
+    <link rel="stylesheet" href="/Public/ljz3/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz3/css/projectClaim.css">
+</head>
+<body>
+    <div class="return">
+        <a href="javascript:history.back(-1);">
+            <span class="iconfont icon-fanhui"></span>
+            返回
+        </a>
+    </div>
+
+    <section class="content">
+        <p class="message">认领方联系方式</p>
+        <form class="form" action="">
+
+            <div class="ordinary">
+                <label>
+                    <span class="iconfont icon-dengji color-green"></span>认领方
+                </label>
+                <select id="type" name="rllx">
+                    <option value="2">单位</option>
+                    <option value="1">个人</option>
+                </select>
+            </div>
+            <section id="companyBlock">
+                <div class="ordinary clearfix">
+                    <label>
+                        <span class="iconfont icon-zuzhi color-purple"></span>单位名称
+                    </label>
+                    <input id="company" type="text" placeholder="请输入单位名称" name="dw">
+                </div>
+                <div class="ordinary clearfix">
+                    <label>
+                        <span class="iconfont icon-iconfont color-red"></span>联系人</label>
+                    <input id="bose" type="text" placeholder="请输入联系人姓名" name="name1">
+                </div>
+            </section>
+            <section id="personBlock">
+                <div class="ordinary clearfix">
+                    <label>
+                        <span class="iconfont icon-iconfont color-red"></span>姓名</label>
+                    <input id="name" type="text" placeholder="请输入您的姓名" name="name2">
+                </div>
+            </section>
+            <div class="ordinary clearfix">
+                <label>
+                    <span class="iconfont icon-lianxi color-blue"></span>联系方式
+                </label>
+                <input id="tel" type="text" placeholder="请输入手机号" name="mobile">
+            </div>
+            <eq name="data.id" value="15" >
+                <div class="ordinary clearfix">
+                    <label>
+                        <span class="iconfont icon-coin color-orange"></span>意向金额
+                    </label>
+                    <input id="cost" type="text" placeholder="元" name="sum">
+                </div>
+            </eq>
+
+            <!--捐赠选择区域 start-->
+            <eq name="data.id" value="14" >
+                <section class="choose">
+                    <h3 class="choose-title">请选择认领项目（可多选）</h3>
+                    <ul class="choose-list clearfix">
+                        <volist name="rltypelist" id="di">
+                            <li class="choose-item fl" data-id="{$di.id}"  >{$di.name}</li>
+                        </volist>
+                    </ul>
+                    <input name="rltype" value=""  hidden >
+                </section>
+            </eq>
+
+            <!--捐赠选择区域 end-->
+            <div class="confirm">
+                <input hidden type="text" value="{$data.id}" name="aid">
+                <input id="submitBtn" class="company" type="button" value="提交">
+            </div>
+        </form>
+    </section>
+
+    <script src="/Public/ljz3/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#type').on('change', function () {
+                var type = $(this).val();
+                if (type && type === '2') {
+                    $('.form').find('#personBlock').hide()
+                        .end().find('#companyBlock').show();
+                } else if (type && type === '1') {
+                    $('.form').find('#companyBlock').hide()
+                        .end().find('#personBlock').show();
+                }
+            });
+
+            $('.choose-item').on('click', function () {
+                $(this).toggleClass('chosed');
+                var arr = [];
+                $(".choose-item.chosed").each(function () {
+                    arr.push($(this).data("id"));
+                });
+                $("input[name='rltype']").val(arr.join());
+            });
+        });
+
+        $("#submitBtn").on("click",function () {
+            var params= $("form").serialize();
+            $.post("{:U('gycrl')}", params, function (data) {
+                if (data.info) {
+                    alert(data.info);
+                    if (data.status) {
+                        window.location.href = data.url;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

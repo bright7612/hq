@@ -1,0 +1,193 @@
+html {
+  width: 1080px;
+  height: 1920px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.return {
+  width: 194px;
+  height: 81px;
+  text-align: center;
+  line-height: 81px;
+  border-radius: 10px;
+  background-color: #5D1113;
+  position: relative;
+  top: 82px;
+  left: 51px;
+}
+.return a {
+  color: #FFF;
+  font-size: 30px;
+}
+.return a .iconfont {
+  font-size: 70px;
+  vertical-align: middle;
+}
+html {
+  font-size: 108px;
+}
+body {
+  background: url("../imgs/bg/project_bg.jpg") 100% 100% no-repeat;
+}
+.content {
+  width: 991px;
+  height: 1500px;
+  font-size: 40px;
+  margin: 150px auto 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 30px 2px #555;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+.content .message {
+  color: #826323;
+  font-size: 45px;
+  font-weight: 900;
+  line-height: 1.2962963rem;
+  padding-left: 0.49074074rem;
+  border-bottom: 2px solid #E0E0E0;
+  text-shadow: 3px 0px 0px #fff, -3px 0px 0px #fff, 0px 2px 0px #fff, 0px -2px 0px #fff;
+}
+.content .ordinary {
+  line-height: 1.37037037rem;
+  background-color: #FFF;
+  padding-left: 0.49074074rem;
+  border-bottom: 2px solid #E0E0E0;
+  position: relative;
+}
+.content .ordinary > label {
+  display: inline-block;
+  width: 2.77777778rem;
+}
+.content .ordinary > label .iconfont {
+  font-size: 40px;
+  margin-right: 0.13888889rem;
+}
+.content .ordinary > label .iconfont.color-red {
+  color: #CE2F0A;
+}
+.content .ordinary > label .iconfont.color-blue {
+  color: #0AAAEC;
+}
+.content .ordinary > label .iconfont.color-orange {
+  color: #FF9227;
+}
+.content .ordinary > label .iconfont.color-green {
+  color: #57C65C;
+}
+.content .ordinary > label .iconfont.color-purple {
+  color: #750075;
+}
+.content .ordinary > input[type=text] {
+  width: 5.09259259rem;
+}
+.content .ordinary select {
+  width: 4.7037037rem;
+  height: 0.86111111rem;
+  color: #8F8F8F;
+  padding: 0 0.41666667rem 0 0.27777778rem;
+  border: 2px solid #E0E0E0;
+  border-radius: 5px;
+  background: url("../imgs/selectArrow.png") no-repeat scroll right center transparent;
+  background-size: 0.55555556rem 0.18518519rem;
+}
+.content .ordinary .radiobox {
+  position: absolute;
+  left: 3.51851852rem;
+  top: 0.27777778rem;
+}
+.content .ordinary .radiobox .radio {
+  margin-right: 0.37037037rem;
+}
+.content .ordinary .radiobox .radio span {
+  display: inline-block;
+  line-height: 0.81481481rem;
+  margin-right: 0.27777778rem;
+}
+.content .ordinary .radiobox .radio span.checked {
+  background: #00A0E9 url("../imgs/gou.png") no-repeat center;
+  background-size: 0.44444444rem 0.44444444rem;
+  border: 4px solid #00A0E9 !important;
+}
+.content .ordinary .radiobox .radio .circle {
+  width: 0.62962963rem;
+  height: 0.62962963rem;
+  border: 4px solid #E0E0E0;
+  border-radius: 0.92592593rem;
+}
+.content #personBlock {
+  display: none;
+}
+.content .choose {
+  width: 100%;
+  padding: 0 0.46296296rem;
+  background: #FFF;
+}
+.content .choose .choose-title {
+  line-height: 0.92592593rem;
+}
+.content .choose .choose-list {
+  width: 100%;
+  padding: 0.27777778rem 0;
+}
+.content .choose .choose-list .choose-item {
+  width: 2.4537037rem;
+  font-size: 30px;
+  line-height: 0.93518519rem;
+  text-align: center;
+  margin: 0 0.11111111rem 0.18518519rem 0.11111111rem;
+  background-color: #DEDEDE;
+  border: 3px solid #DEDEDE;
+  border-radius: 0.09259259rem;
+  box-sizing: border-box;
+}
+.content .choose .choose-list .choose-item.chosed {
+  background-color: #FFF;
+  border: 3px solid #FF6750;
+  position: relative;
+  overflow: hidden;
+}
+.content .choose .choose-list .choose-item.chosed::after {
+  content: "";
+  display: block;
+  width: 0.92592593rem;
+  height: 0.92592593rem;
+  background-color: #FF6750;
+  transform: rotate(45deg) translate(75%);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.content .choose .choose-list .textarea {
+  border: none;
+  resize: none;
+  border: 1px solid #E0E0E0;
+}
+.content .confirm {
+  width: 100%;
+  text-align: center;
+  margin: 0.92592593rem 0;
+}
+.content .confirm > input[type=button] {
+  width: 92%;
+  height: 1.15740741rem;
+  color: #FFF;
+  font-size: 45px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+.content .confirm > input[type=button].person {
+  background-color: #FFA03B;
+}
+.content .confirm > input[type=button].company {
+  background-color: #FF6750;
+}

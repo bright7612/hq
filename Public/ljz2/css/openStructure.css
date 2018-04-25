@@ -1,0 +1,60 @@
+html {
+  width: 1920px;
+  height: 1080px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'microsoft yahei';
+}
+.title {
+  width: 1826px;
+  height: 175px;
+  margin: 0 auto;
+  position: relative;
+}
+.title h1 {
+  color: #FFF;
+  font-size: 80px;
+  text-align: center;
+  line-height: 175px;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#FFDF70));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title .return {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.title .return a {
+  display: block;
+  color: #FFF;
+  font-size: 50px;
+  line-height: 128px;
+}
+.title .return a .iconfont {
+  font-size: 100px;
+}
+body {
+  background: url("../imgs/bg/ordinaryBg.jpg") 100% 100% no-repeat;
+}
+.content {
+  width: 1826px;
+  height: 861px;
+  padding: 80px 50px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.content > img {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}

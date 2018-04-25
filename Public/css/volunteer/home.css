@@ -1,0 +1,221 @@
+.mine_avatar {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0 0;
+    border-radius: 100px;
+}
+
+.btn_edit {
+    font-size: 13px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    padding: 1px 8px;
+    display: inline-block;
+    margin: 10px 0 15px;
+}
+
+.btn_edit:active {
+    opacity: 0.8;
+}
+
+.mine_top {
+    text-align: center;
+    background: url("../../images/bg_mine.png");
+    color: #fff;
+    background-size: 100% 100%;
+}
+
+.v_item {
+    display: block;
+    color: #5A5A5A;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.v_item:active {
+    background-color: #ddd;
+}
+
+.v_item .item_rank {
+    float: left;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 23px 0 0 5px;
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    text-align: center;
+}
+
+.v_item .item_rank1 {
+    float: left;
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    margin: 26px 0 0 10px;
+    background: url("../../images/icons_rank.png") no-repeat;
+    background-size: 20px;
+}
+
+.v_item .item_rank2 {
+    float: left;
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    margin: 26px 0 0 10px;
+    background: url("../../images/icons_rank.png") no-repeat 0 -31px;
+    background-size: 20px;
+}
+
+.v_item .item_rank3 {
+    float: left;
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    margin: 26px 0 0 10px;
+    background: url("../../images/icons_rank.png") no-repeat 0 -62px;
+    background-size: 20px;
+}
+
+.v_item .item_btn {
+    float: right;
+    background: #50CADA;
+    padding: 2px 10px;
+    color: #fff;
+    display: inline-block;
+    margin-top: 25px;
+    font-size: 13px;
+    font-style: normal;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.ic_caller {
+    background: url("../../images/icons1.png") no-repeat -31px -94px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ws_bar_item_on .ic_caller {
+    background: url("../../images/icons1.png") no-repeat 4px -94px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ic_rank {
+    background: url("../../images/icons1.png") no-repeat -31px -126px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ws_bar_item_on .ic_rank {
+    background: url("../../images/icons1.png") no-repeat 4px -126px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ic_mine {
+    background: url("../../images/icons1.png") no-repeat -31px -63px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.ws_bar_item_on .ic_mine {
+    background: url("../../images/icons1.png") no-repeat 4px -63px;
+    width: 100%;
+    height: 100%;
+    background-size: 60px;
+    display: block;
+}
+
+.filt {
+    position: fixed;
+    line-height: 38px;
+    height: 38px;
+    display: block;
+    background: #fff;
+    width: 100%;
+    z-index: 8;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.f_icon {
+    background: url("../../images/ic_filter.png") no-repeat right center;
+    padding-right: 16px;
+    background-size: 14px;
+}
+
+.filter {
+    position: fixed;
+    top: 35px;
+    z-index: 7;
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    display: block;
+    height: 100%;
+    display: none;
+}
+
+.filter ul li.filter_on {
+    color: #50CADA;
+}
+
+.filter ul li {
+    font-size: 15px;
+    padding: 6px 10px;
+    color: #656D77;
+    border-bottom: 1px solid #ddd;
+}
+
+.filter ul li:active {
+    background: #ddd;
+}
+
+.m_icon p {
+    padding-left: 30px;
+}
+
+.m_icon p:before {
+    content: "";
+    display: inline-block;
+    background-size: 25px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+}
+
+.m_resort_e::before {
+    background: url("../../images/icons2.png") no-repeat 0 0;
+}
+
+.m_resort::before {
+    background: url("../../images/icons2.png") no-repeat 0 -27px;
+}
+
+.m_pennant::before {
+    background: url("../../images/icons2.png") no-repeat 0 -52px;
+}
+
+.m_integral::before {
+    background: url("../../images/icons2.png") no-repeat 0 -77px;
+}
+
+.m_settings::before {
+    background: url("../../images/icons2.png") no-repeat 0 -123px;
+}

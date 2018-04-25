@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>合庆党建品牌</title>
+	<link rel="stylesheet" type="text/css" href="__BRAND__/css/base.css">
+	<link rel="stylesheet" type="text/css" href="__BRAND__/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="__BRAND__/css/jizhi.css">
+</head>
+<body>
+	<div class="title">
+		<a href="javascript:history.back(-1)"><div class="back"><i class="iconfont icon-fanhui"></i>返回</div></a>
+		<div class="title-name" id="titleNme">1+1+X工作机制</div>
+	</div>
+	<div class="content">
+		<div class="frame-box">
+			<dl class="frame" style="background:url(__BRAND__/img/c.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[0][id])}">
+				<dt class="icon"><i class="iconfont icon-jieshao"></i></dt>
+				<dd class="name">机制介绍</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/a.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[1][id])}">
+				<dt class="icon"><i class="iconfont icon-bianjiICONCopy"></i></dt>
+				<dd class="name">结构图</dd>
+			</a></dl>
+			<dl class="frame" style="background:url(__BRAND__/img/b.png) no-repeat;background-size: 100% 100%;"><a href="{:U('Hq/brandList?id='.$stitle[2][id])}">
+				<dt class="icon"><i class="iconfont icon-gongzuo"></i></dt>
+				<dd class="name">章程细则</dd>
+			</a></dl>
+		</div>
+	</div>
+	<script type="text/javascript" src="__BRAND__/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			changeTitleStyle('titleNme', 29, 35, 60);
+			function changeTitleStyle(el, textLength, fontSize, lineHeight) {
+	            if (el) {
+	                var title = document.getElementById(el);
+	                if (title.innerText.length > textLength) {
+	                    title.style.fontSize = fontSize + 'px';
+	                    title.style.lineHeight = 116 + 'px';
+	                }
+	                if(title.innerText.length > 41){
+	                	title.style.fontSize = fontSize + 'px';
+	                	title.style.lineHeight = lineHeight + 'px';
+	                }
+	            }
+	        }
+		})
+	</script>
+</body>
+</html>

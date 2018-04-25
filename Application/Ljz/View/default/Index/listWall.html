@@ -1,0 +1,36 @@
+<volist name="list" id="v">
+    <div onclick="go('{$v.uid}')" >
+        <img src="{$v.face|getFace}" class="avatar"/>
+        <div>
+            <p ><span  class="name">{$v.realName}</span>
+                <if condition="$v.education neq ''">
+                | <span class="edu">{$v.education}</span>
+                </if>
+                <if condition="$v.CCP eq 1">
+                    <i class="ws_ccp"></i>
+                </if>
+            </p>
+            <if condition="$v.job neq ''">
+                <p>{$v.job}</p>
+                <else/>
+                <p class="empty">未填写职业</p>
+            </if>
+            <if condition="$v.skills neq ''">
+                <p>特长:{$v.skills}</p>
+                <else/>
+                <p class="empty">未填写特长</p>
+            </if>
+            <if condition="$v.homeAddress neq ''">
+                <p>{$v.homeAddress}</p>
+                <else/>
+                <p class="empty">未填写住址</p>
+            </if>
+            <div class="ws_divider"></div>
+            <if condition="$v.signature neq ''">
+                <p>{$v.signature}</p>
+                <else/>
+                <p class="empty">未填写个性签名</p>
+            </if>
+        </div>
+    </div>
+</volist>

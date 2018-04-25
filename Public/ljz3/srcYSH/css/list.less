@@ -1,0 +1,110 @@
+@import "base";
+
+@timeColor: #5A5A5A;
+@textColor: #666;
+@searchBg: #EAEAEA;
+
+body {
+  height: 100%;
+  .displayFlex();
+  .flexDirColumn();
+}
+
+.search-wrapper {
+  padding: 26/108rem 0;
+  .borderBtm-1px(#D1D1D1);
+  background: @searchBg;
+  .form {
+    position: relative;
+    .search {
+      display: block;
+      width: 998/108rem;
+      height: 90/108rem;
+      .font-size(32);
+      text-align: center;
+      padding-left: 100/108rem;
+      border-radius: 5px;
+      margin: 0 auto;
+    }
+    .icon-sousuo {
+      color: rgb(147, 153, 159);
+      .font-size(40);
+      position: absolute;
+      &.sou1 {
+        top: 15/108rem;
+        left: 450/108rem;
+      }
+      &.sou2 {
+        top: 15/108rem;
+        left: 60/108rem;
+        display: none;
+      }
+    }
+  }
+}
+
+.content-wrapper {
+  .flex(1);
+  overflow: hidden;
+
+  .layout {
+    padding-bottom: 50/108rem;
+    .img-wrapper {
+      & > img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .list-wrapper {
+      width: 100%;
+      .item {
+        .displayFlex();
+        padding: 34/108rem 29/108rem;
+        .borderBtm-1px(#CCC);
+        &:last-child {
+          .borderBtm-none();
+        }
+        .photo {
+          display: block;
+          width: 300/108rem;
+          height: 227/108rem;
+          margin-right: 29/108rem;
+        }
+        .text {
+          .flex(1);
+          overflow: hidden;
+          .title, .time {
+            line-height: 65/108rem;
+          }
+          .title {
+            .font-size(32);
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .time {
+            color: @timeColor;
+            .font-size(28);
+          }
+          .abstract {
+            color: @textColor;
+            .font-size(26);
+            line-height: 60/108rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+
+    .loadtext {
+      .font-size(30);
+      padding: 20/108rem 0 20/108rem 50/108rem;
+    }
+
+  }
+}

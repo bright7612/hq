@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <title>社区党校</title>
+    <link rel="stylesheet" href="/Public/ljz2/fonts/iconfont.css">
+    <link rel="stylesheet" href="/Public/ljz2/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/initialize.css">
+    <link rel="stylesheet" href="/Public/ljz2/css/schoolIndex.css">
+</head>
+<body>
+    <!--头部 start-->
+    <section  class="title clearfix">
+        <h1>社区党校</h1>
+        <div class="return fl">
+            <a href="javascript:;" onClick="javascript:history.back(-1);">
+                <span class="iconfont icon-fanhui"></span>
+                返回
+            </a>
+        </div>
+    </section>
+    <!--头部 end-->
+
+    <!--主体 start-->
+    <section class="content">
+        <div class="intro-wrapper">
+            <div class="intro-title">
+                <h2>
+                    <span class="iconfont icon-dangyuan"></span> 总体介绍
+                </h2>
+                <div class="block-one"></div>
+                <div class="block-two"></div>
+            </div>
+            <div class="intro-content">
+                <p>合庆社区党校成立于2016年4月28日。学校设在合庆社区党建服务中心（商城路
+                1177弄12号）。</p>
+                <p>社区党校按照“配合基层党组织落实政治功能”的办学要求，坚持“党校姓党”的
+                原则和“从严治校、规范管理、科学施教”的治校方针。</p>
+                <p>党校的教学培训由特聘的顾问团进行指导。顾问团成员由浦东新区区委组织处，市
+                、区党校专家、教授组成。师资队伍来自东昌中学，东方医院、合庆社区卫生服务中
+                心、阳光驿站公益服务社、东方讲坛、居民区党员志愿者讲师团等单位，他们中既有驻
+                区单位党的领导干部，也有丰富实践经验的基层党务干部和优秀手工作者。党校注重规
+                范化建设，建立了《社区党校管理制度》等一套相对完善的教育管理制度。</p>
+            </div>
+        </div>
+        <div class="photo-wrapper">
+            <div class="photo">
+                <div id="swiper1" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="/Public/ljz2/imgs/swiper/1.jpg" alt="">
+                            <span class="bar">卜惠文老师为斯米克片区的党员上党课</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/Public/ljz2/imgs/swiper/2.jpg" alt="">
+                            <span class="bar">曹树镇老师为乳四的居民区党员上党课</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/Public/ljz2/imgs/swiper/3.jpg" alt="">
+                            <span class="bar">东昌中学孙龙生老师为乳二居民区党课</span>
+                        </div>
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="photo">
+                <div id="swiper2" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="/Public/ljz2/imgs/swiper/4.jpg" alt="">
+                            <span class="bar">顾行超老师为乳五居民区党员上党课</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/Public/ljz2/imgs/swiper/5.jpg" alt="">
+                            <span class="bar">韩敏老师为东二居民区党员上党课</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/Public/ljz2/imgs/swiper/6.jpg" alt="">
+                            <span class="bar">韩敏老师为崂二居民区的党员上党课</span>
+                        </div>
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div class="lesson-wrapper">
+            <div class="lesson-title">
+                <h2>党课预告</h2>
+                <a class="more" href="./schoolMore.html">更多 &gt;</a>
+            </div>
+            <ul class="lesson-content">
+                <volist  name="list" id="li" >
+                    <li class="list clearfix">
+                        <h3 class="subtitle">{$li.course_name}</h3>
+                        <div class="list-left fl">
+                            <p>授课时间：{$li.datestr}</p>
+                            <p>授课老师：{$li.teacher}</p>
+                            <p>授课地点：{$li.addr}</p>
+                        </div>
+                        <div class="list-right fr">
+                            <div class="btn" data-id="{$li.id}" >报名</div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+    </section>
+    <!--主体 end-->
+    <script src="/Public/ljz2/js/jquery.min.js"></script>
+    <script src="/Public/ljz2/lib/swiper/swiper.jquery.min.js"></script>
+    <script>
+        $(function () {
+            var mySwiper1 = new Swiper ('#swiper1', {
+                autoplay: 2000,
+                autoplayDisableOnInteraction: false,
+                loop: true,
+                pagination: '.swiper-pagination',
+            })
+
+            var mySwiper2 = new Swiper ('#swiper2', {
+                autoplay: 2000,
+                autoplayDisableOnInteraction: false,
+                loop: true,
+                pagination: '.swiper-pagination',
+            })
+
+            $('.btn').on('click', function () {
+                window.location.href = '{:U("schoolBm")}?id='+$(this).data("id");
+            });
+        });
+    </script>
+</body>
+</html>

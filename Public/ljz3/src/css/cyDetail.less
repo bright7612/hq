@@ -1,0 +1,368 @@
+@import "base";
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  .font-size(30);
+  font-family: "microsoft yahei";
+  margin: 0 auto;
+  .displayFlex();
+  .flexDirColumn();
+  background: #EEEEEE;
+  &.received {
+    .content-wrapper {
+      flex: 0 0 750/108rem;
+      height: 750/108rem;
+      color: #FFF;
+      background: rgb(102, 146, 255);
+      overflow: hidden;
+      .iconfont {
+        color: #FFF !important;
+      }
+    }
+    .reply-wrapper {
+      display: block;
+    }
+    .btn-wrapper {
+      display: none !important;
+    }
+    .report-wrapper {
+      display: block;
+    }
+  }
+}
+
+.status-wrapper, .content-wrapper, .reply-wrapper, .btn-wrapper, .report-wrapper {
+  background: #FFF;
+}
+
+// 处理状态区域
+.status-wrapper {
+  height: 249/108rem;
+  margin-bottom: 24/108rem;
+  .borderTop-1px(#D1D1D1);
+  .borderBtm-1px(#D1D1D1);
+  .line {
+    width: 855/108rem;
+    height: 15/108rem;
+    background: rgb(210, 210, 210);
+    margin: 92/108rem auto 0;
+    position: relative;
+    .segment {
+      width: 33.333333%;
+      height: 100%;
+      &.completed {
+        background: rgb(102, 146, 255);
+      }
+    }
+    .status {
+      position: absolute;
+      top: -50/108rem;
+      .ball {
+        width: 110/108rem;
+        height: 110/108rem;
+        background: rgba(210, 210, 210, 0.5);
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        margin: 0 auto;
+        position: relative;
+        .inner-ball {
+          width: 80/108rem;
+          height: 80/108rem;
+          text-align: center;
+          line-height: 80/108rem;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          background: rgb(210, 210, 210);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          .translate(-50%, -50%);
+          .iconfont {
+            color: #FFF;
+            .font-size(30);
+          }
+        }
+      }
+      .text {
+        color: rgb(210, 210, 210);
+        .font-size(30);
+        margin-top: 20/108rem;
+      }
+      &.status-first {
+        left: 0;
+        .translate(-50%, 0);
+      }
+      &.status-second {
+        left: 25%;
+        .ball {
+          .inner-ball {
+            .iconfont {
+              .font-size(22);
+            }
+          }
+        }
+      }
+      &.status-third {
+        right: 25%;
+        .ball {
+          .inner-ball {
+            .iconfont {
+              .font-size(22);
+            }
+          }
+        }
+      }
+      &.status-forth {
+        right: 0;
+        .translate(50%, 0);
+      }
+      &.completed {
+        .ball {
+          background: rgba(102, 146, 255, 0.5);
+          .inner-ball {
+            background: rgb(102, 146, 255);
+          }
+        }
+        .text {
+          color: rgb(102, 146, 255);
+        }
+      }
+    }
+    //&.reported {
+    //  .status {
+    //    &:nth-child(4){
+    //      .ball {background: rgba(102, 146, 255, 0.5);
+    //        .inner-ball {background: rgb(102, 146, 255);}
+    //      }
+    //      .text {color: rgb(102, 146, 255);}
+    //    }
+    //  }
+    //}
+    &.sended {
+      .segment {
+        &:nth-child(1){background: rgb(102, 146, 255);}
+      }
+      .status {
+        &:nth-child(5){
+          .ball {background: rgba(102, 146, 255, 0.5);
+            .inner-ball {background: rgb(102, 146, 255);}
+          }
+          .text {color: rgb(102, 146, 255);}
+        }
+      }
+    }
+    &.received {
+      .segment {
+        &:nth-child(1), &:nth-child(2) {background: rgb(102, 146, 255);}
+      }
+      .status {
+        &:nth-child(5), &:nth-child(6){
+          .ball {background: rgba(102, 146, 255, 0.5);
+            .inner-ball {background: rgb(102, 146, 255);}
+          }
+          .text {color: rgb(102, 146, 255);}
+        }
+      }
+    }
+    &.end {
+      .segment {
+        &:nth-child(1), &:nth-child(2), &:nth-child(3) {background: rgb(102, 146, 255);}
+      }
+      .status {
+        &:nth-child(5), &:nth-child(6), &:nth-child(7){
+          .ball {background: rgba(102, 146, 255, 0.5);
+            .inner-ball {background: rgb(102, 146, 255);}
+          }
+          .text {color: rgb(102, 146, 255);}
+        }
+      }
+    }
+  }
+}
+
+// 事件详情区域
+.content-wrapper {
+  .flex(1);
+  color: rgb(147, 153, 159);
+  margin-bottom: 22/108rem;
+  .borderTop-1px(#D1D1D1);
+  .borderBtm-1px(#D1D1D1);
+  overflow: hidden;
+  .content {
+    width: 100%;
+    padding: 41/108rem 58/108rem;
+    //overflow-y: auto;
+    //-webkit-overflow-scrolling: touch;
+    .iconfont {
+      color: rgb(102, 146, 255);
+      .font-size(30);
+      margin-right: 10/108rem;
+    }
+    .info-list {
+      width: 100%;
+      .font-size(30);
+      .info-item {
+        line-height: 86/108rem;
+        .borderBtm-1px(#D1D1D1);
+      }
+    }
+    .send-info, .receive-info {
+      .info-subtitle {
+        .font-size(30);
+        line-height: 86/108rem;
+      }
+      .info-detail {
+        .font-size(28);
+        padding-bottom: 30/108rem;
+        p {
+          text-indent: 2em;
+          line-height: 60/108rem;
+        }
+      }
+      .info-photo {
+        .displayFlex();
+        .flexWrap();
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        .photo-item {
+          width: 310/108rem;
+          height: 192/108rem;
+          margin: 0 10/108rem 20/108rem 0;
+          border-radius: 5px;
+          position: relative;
+          & > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .receive-info {
+      .borderTop-1px(#D1D1D1);
+    }
+  }
+}
+
+// 事件回复区域
+.reply-wrapper {
+  .flex(1);
+  overflow: hidden;
+  display: none;
+  .reply {
+    width: 100%;
+    //height: 100%;
+    padding: 40/108rem 53/108rem;
+    //overflow-y: auto;
+    //-webkit-overflow-scrolling: touch;
+    .title {
+      .font-size(32);
+      line-height: 78/108rem;
+    }
+    .content-box {
+      & > textarea {
+        display: block;
+        width: 100%;
+        height: 360/108rem;
+        color: rgb(147, 153, 159);
+        .font-size(30);
+        padding: 30/108rem 30/108rem;
+        background: #F5F6FA;
+        border-radius: 5px;
+        resize: none;
+      }
+    }
+    .photo-box {
+      .uploader-list {
+        .displayFlex();
+        .flexWrap();
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        .uploader-item {
+          width: 314/108rem;
+          height: 193/108rem;
+          margin: 0 10/108rem 20/108rem 0;
+          border-radius: 5px;
+          position: relative;
+          .file-picker {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #BBBCBE;
+            text-align: center;
+            line-height: 193/108rem;
+            .icon-tianjia {
+              color: #BBBCBE;
+              .font-size(60);
+            }
+            & > div:nth-child(2) {
+              width: 100% !important;
+              height: 100% !important;
+            }
+          }
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+          .icon-cuowu {
+            color: rgb(147, 153, 159);
+            font-size: 50/108rem;
+            background: #FFF;
+            border-radius: 50%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            .translate(50%, -50%);
+            z-index: 100;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 事件处理按钮区域
+.btn-wrapper {
+  display: none;
+  .btn {
+    width: 50%;
+    color: #FFF;
+    .font-size(34);
+    text-align: center;
+    line-height: 145/108rem;
+    background: pink;
+    &:first-child {
+      background: #6692FF;
+    }
+    &:last-child {
+      background: #898989;
+    }
+  }
+}
+
+// 事件上报按钮区域
+.report-wrapper {
+  display: none;
+  padding: 40/108rem 53/108rem;
+  border-top: 1px solid #D1D1D1;
+  .submit, .close {
+    width: 466/108rem;
+    height: 102/108rem;
+    color: #FFF;
+    .font-size(32);
+    border-radius: 5px;
+  }
+  .submit {
+    background: #6692FF;
+  }
+  .close {
+    background: #AFAFAF;
+  }
+}

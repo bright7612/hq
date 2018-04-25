@@ -1,0 +1,49 @@
+.v_avatar {
+    width: 64px;
+    height:64px;
+    border-radius: 100px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+}
+
+.v_call{
+    width: 40px;
+    height:40px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+}
+
+.v_info {
+    padding: 10px 45px 10px 74px;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.r_info {
+    padding: 10px 10px 10px 74px;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.sub_title {
+    padding: 5px 10px;
+}
+
+.state {
+    padding: 10px;
+    font-weight: bold;
+    background: #fff;
+}
+.comment {
+    padding: 10px;
+}
+
+.ws_star {
+    font-size: 20px;
+}

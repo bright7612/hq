@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <title>美丽合庆</title>
+    <link rel="stylesheet" type="text/css" href="__DJ__/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__DJ__/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__DJ__/css/lesson.css">
+</head>
+<body>
+    <section class="title">
+        <a href="javascript:history.back(-1)">
+            <div class="back">
+                <i class="iconfont icon-fanhui"></i>返回
+            </div>
+        </a>
+        <div class="title-name" id="titleNme">党课报名</div>
+    </section>
+
+    <section class="content">
+        <div class="scroll-section">
+            <ul id="lessonList" class="lesson-list">
+                <volist name="less" id="vo">
+                <li class="lesson-item">
+                    <h3 class="lesson-title">{$vo.course_name}</h3>
+                    <div class="lesson-box">
+                        <div class="box-left">
+                            <div class="text">
+                                <span class="text-label">
+                                    <i class="iconfont icon-shijian color-blue"></i>
+                                </span>
+                                <span class="text-desc">{$vo.time}</span>
+                            </div>
+                            <div class="text">
+                                <span class="text-label">
+                                    <i class="iconfont icon-neirong color-green"></i>内容：
+                                </span>
+                                <span class="text-desc">{$vo.content}</span>
+                            </div>
+                            <div class="text">
+                                <span class="text-label">
+                                    <i class="iconfont icon-svg18 color-orange"></i>地点：
+                                </span>
+                                <span class="text-desc">{$vo.addr}</span>
+                            </div>
+                            <div class="text">
+                                <span class="text-label">
+                                    <i class="iconfont icon-guanyangdanwei color-yellow"></i>组织单位：
+                                </span>
+                                <span class="text-desc">{$vo.organize}</span>
+                            </div>
+                            <div class="text">
+                                <span class="text-label">
+                                    <i class="iconfont icon-renshu1 color-pink"></i>教室容量：
+                                </span>
+                                <span class="text-desc">{$vo.count}</span>
+                            </div>
+                        </div>
+                        <div class="box-right">
+                            <span class="btn" data-url="{$vo.qrcode}">预约</span>
+                        </div>
+                    </div>
+                </li>
+                </volist>
+            </ul>
+        </div>
+        <div id="bg" class="bg-section">
+            <div class="bg-inner">
+                <div class="ewm-box">
+                    <img id="ewm" class="ewm" src="" />
+                    <p class="text">请使用微信扫描二维码线上报名</p>
+                    <span id="close" class="close">关闭</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="__DJ__/js/jquery.min.js"></script>
+    <script src="__DJ__/js/lesson.js"></script>
+</body>
+</html>

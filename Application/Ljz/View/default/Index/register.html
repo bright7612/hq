@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>注册</title>
+    <link rel="stylesheet" href="/Public/css/weui.css"/>
+    <link rel="stylesheet" href="/Public/css/ws.css"/>
+</head>
+<body>
+<div class="ws_content">
+    <div class="spacing" style="margin-top:25px;margin-bottom: 300px">
+        <input id="mobile" name="mobile" type="text" class="ws_input1" placeholder="请输入手机号" value="{$mobile}">
+        <div style="display: flex;display: -webkit-flex; align-items: center;-webkit-align-items: center">
+            <input id="code" name="code" type="text" class="ws_input1" placeholder="验证码" style="flex: 1;-webkit-flex: 1;">
+            <a id="getcode" class="ws_btn1 " style="margin-left: 10px">获取验证码</a>
+        </div>
+        <input id="pwd" name="cpwd" type="text" class="ws_input1" placeholder="请输入密码" >
+        <a id="regist" class="weui_btn weui_btn_area weui_btn_primary">注册</a>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/Public/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="/Public/js/layer_mobile/layer.js"></script>
+<script type="text/javascript">
+    $('#getcode').click(function () {
+        var mobile = $('#mobile').val();
+        if (!mobile || (mobile == "")) {
+            layer.open({
+                content: "手机号不能为空",
+                skin: "msg",
+                time: 2
+            });
+            return;
+        }
+        $.post("{:U('getRegistCode')}", {mobile: mobile}, function (data) {
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                layer.open({
+                    content: "验证码已发送，请注意查收",
+                    skin: "msg",
+                    time: 2
+                });
+            } else {
+                layer.open({
+                    content: d.message,
+                    skin: "msg",
+                    time: 2
+                });
+            }
+        });
+    });
+
+    $("#regist").click(function () {
+        var mobile = $("#mobile").val();
+        var code = $("#code").val();
+        var pwd = $("#pwd").val();
+        layer.open({type:2});
+        $.post("{:U('regist')}", {mobile: mobile, code: code, pwd: pwd}, function (data) {
+            layer.closeAll();
+            var d = $.parseJSON(data);
+            if (d.result == 1) {
+                layer.open({
+                    content: d.message,
+                    skin: "msg",
+                    time: 2,
+                    end: function () {
+                        window.location.href = "{:U('Index/index')}";
+                    }
+                });
+            } else {
+                layer.open({
+                    content: d.message,
+                    skin: "msg",
+                    time: 2
+                });
+            }
+        });
+    });
+
+</script>
+</html>

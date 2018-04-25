@@ -1,0 +1,61 @@
+<if condition="$list">
+    <volist name="list" id="vo">
+        <li>
+            <div class="item clearfix">
+                <div onclick="toDetail('{$vo.id}')">
+                    <p class="item_top ws_pixel_line_down">{$vo|formatStatus3}<span class="item_time">{$vo.create_time|date='Y-m-d H:i:s',###}</span>
+                    </p>
+                    <div class="item_mid ws_pixel_line_down">
+                        <p>求助内容：{$vo.fs_content}</p>
+                        <if condition="$vo[receiver_id]">
+                            <p>志愿者：{$vo.receiver_name}</p>
+                        </if>
+                        <p class="item_address">{$vo.fs_address}</p>
+                    </div>
+                </div>
+                <switch name="vo.status">
+                    <case value="1">
+                        <div class="item_bottom" style="margin-top: 10px">
+                            <i class="ws_btn_primary" onclick="cancelResort('{$vo.id}')">取消求助</i>
+                        </div>
+                    </case>
+                    <case value="2">
+                        <if condition="$vo.comment_time eq 0">
+                            <div class="item_bottom" style="margin-top: 10px">
+                                <i class="ws_btn_primary" onclick="cancelResort('{$vo.id}')">取消求助</i>
+                                <i class="ws_btn_primary "
+                                   onclick="completeOrder('{$vo.id}','{$vo.receiver_id}')">待确认</i>
+                            </div>
+                            <elseif condition="$vo.comment eq ''"/>
+                            <div class="item_bottom" style="margin-top: 10px">
+                                <a class="ws_btn_primary " href="{:U('evaluatev')}?oid={$vo.id}&uid={$vo.receiver_id}">待评价</a>
+                            </div>
+                        </if>
+                    </case>
+                    <case value="3">
+                        <div class="item_bottom" style="margin-top: 10px">
+                            <i class="ws_btn_primary " onclick="completeOrder('{$vo.id}','{$vo.receiver_id}')">待确认</i>
+                        </div>
+                    </case>
+                    <case value="4">
+                        <div class="item_bottom" style="margin-top: 10px">
+                            <if condition="$vo.comment eq ''">
+                                <a class="ws_btn_primary " href="{:U('evaluatev')}?oid={$vo.id}&uid={$vo.receiver_id}">待评价</a>
+                                <else/>
+                                <a class="ws_btn_primary " href="{:U('sendgift')}?oid={$vo.id}">送礼物</a>
+                            </if>
+                        </div>
+                    </case>
+                    <case value="5"></case>
+                    <case value="6">
+                        <div class="item_bottom" style="margin-top: 10px">
+                            <if condition="$vo.comment eq ''">
+                                <a class="ws_btn_primary " href="{:U('evaluatev')}?oid={$vo.id}&uid={$vo.receiver_id}">去评价</a>
+                            </if>
+                        </div>
+                    </case>
+                </switch>
+            </div>
+        </li>
+    </volist>
+</if>
